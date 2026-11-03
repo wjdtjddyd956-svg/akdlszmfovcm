@@ -1,3 +1,7 @@
 package org.bukkit;
 import org.bukkit.plugin.PluginManager;
-public interface Server { PluginManager getPluginManager(); }
+import org.bukkit.command.CommandSender;
+public interface Server {
+    PluginManager getPluginManager();
+    boolean dispatchCommand(CommandSender sender, String commandLine);
+}

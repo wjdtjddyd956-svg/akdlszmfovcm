@@ -12,5 +12,5 @@ find "$project_dir/src/test/java" -name '*.java' -print0 | xargs -0 "${compiler[
 java -cp "$build_dir/main:$build_dir/test" kr.minecraft.rpg.koreancommands.CommandTranslatorTest
 
 cp -R "$project_dir/src/main/resources/." "$build_dir/main/"
-(cd "$build_dir/main" && zip -q -r -FS "$build_dir/libs/KoreanCommands-1.0.0.jar" .)
-echo "Built $build_dir/libs/KoreanCommands-1.0.0.jar"
+(cd "$build_dir/main" && zip -q -r -FS "$build_dir/libs/KoreanCommands-1.0.1.jar" .)
+echo "Built $build_dir/libs/KoreanCommands-1.0.1.jar"

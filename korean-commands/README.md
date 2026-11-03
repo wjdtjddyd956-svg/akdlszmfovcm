@@ -6,7 +6,7 @@ WorldEdit과 WorldGuard의 주요 명령어를 한글로 입력할 수 있게 �
 ## 설치
 
 1. 서버를 `stop`으로 종료합니다.
-2. WorldEdit과 WorldGuard가 설치된 서버의 `plugins` 폴더에 `KoreanCommands-1.0.0.jar`를 넣습니다.
+2. WorldEdit과 WorldGuard가 설치된 서버의 `plugins` 폴더에 `KoreanCommands-1.0.1.jar`를 넣습니다.
 3. 서버를 다시 실행합니다. `/reload`는 사용하지 마세요.
 4. `/한글명령어`로 간단한 사용 예를 확인합니다.
 
@@ -34,4 +34,4 @@ JDK 21 이상에서 다음 명령을 실행합니다.
 ./build.sh
 ```
 
-빌드 결과는 `build/libs/KoreanCommands-1.0.0.jar`에 생성됩니다. `tools/stubs`의 최소 API 정의는 컴파일에만 사용되며 결과 JAR에는 포함되지 않습니다.
+빌드 결과는 `build/libs/KoreanCommands-1.0.1.jar`에 생성됩니다. `tools/stubs`의 최소 API 정의는 컴파일에만 사용되며 결과 JAR에는 포함되지 않습니다.

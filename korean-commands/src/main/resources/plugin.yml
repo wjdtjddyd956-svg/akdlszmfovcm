@@ -1,7 +1,14 @@
 name: KoreanCommands
-version: 1.0.0
+version: 1.0.1
 main: kr.minecraft.rpg.koreancommands.KoreanCommandsPlugin
 api-version: '1.21.4'
 authors: [wjdtjddyd956-svg]
 description: WorldEdit과 WorldGuard 명령어에 한글 별칭을 추가합니다.
 depend: [WorldEdit, WorldGuard]
+commands:
+  한글명령어:
+    description: 한글 명령어 사용 예시를 표시합니다.
+    usage: /한글명령어
+  영역:
+    description: WorldGuard 영역 명령어의 한글 별칭입니다.
+    usage: /영역 <명령> [인수]

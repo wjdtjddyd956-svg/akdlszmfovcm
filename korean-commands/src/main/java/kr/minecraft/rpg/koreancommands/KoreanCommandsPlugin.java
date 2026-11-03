@@ -1,6 +1,7 @@
 package kr.minecraft.rpg.koreancommands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,12 +24,6 @@ public final class KoreanCommandsPlugin extends JavaPlugin implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
         String message = event.getMessage();
-        if (message.equals("/한글명령어") || message.equals("/한글명령어 도움말")) {
-            event.setCancelled(true);
-            sendHelp(event.getPlayer());
-            return;
-        }
-
         CommandTranslator.Result result = translator.translate(message);
         if (result.handled()) {
             event.setMessage(result.command());
@@ -36,6 +31,24 @@ public final class KoreanCommandsPlugin extends JavaPlugin implements Listener {
                 event.getPlayer().sendMessage(ChatColor.GRAY + "실행: " + result.command());
             }
         }
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("한글명령어")) {
+            sendHelp(sender);
+            return true;
+        }
+        if (command.getName().equalsIgnoreCase("영역")) {
+            String input = "/영역" + (args.length == 0 ? "" : " " + String.join(" ", args));
+            CommandTranslator.Result result = translator.translate(input);
+            if (!result.handled()) {
+                sender.sendMessage(ChatColor.RED + "알 수 없는 한글 영역 명령입니다. /한글명령어를 확인하세요.");
+                return true;
+            }
+            return getServer().dispatchCommand(sender, result.command().substring(1));
+        }
+        return false;
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)

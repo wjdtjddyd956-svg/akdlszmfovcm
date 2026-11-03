@@ -1,1 +1,1 @@
-a6b241ec5a226a2b4525fe46789f608d4dbaef121c33f6519d0689ec1c2dd5e8  ../releases/korean-commands/KoreanCommands-1.0.0.jar
+720fdc4e0c5fbbfaa5ee0ca843106aea021318e87a84c2cce5095cdd95c28b59  ../releases/korean-commands/KoreanCommands-1.0.1.jar
