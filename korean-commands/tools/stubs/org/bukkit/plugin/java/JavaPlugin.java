@@ -4,7 +4,8 @@ import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-public class JavaPlugin {
+import org.bukkit.plugin.Plugin;
+public class JavaPlugin implements Plugin {
     public void onEnable() { }
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) { return false; }
     public void saveDefaultConfig() { }

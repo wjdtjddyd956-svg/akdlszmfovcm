@@ -1,4 +1,4 @@
-KoreanCommands 1.0.1 설치 안내
+KoreanCommands 1.0.2 설치 안내
 
 필수 플러그인
 - WorldEdit 7.4.6
@@ -7,8 +7,8 @@ KoreanCommands 1.0.1 설치 안내
 설치 방법
 1. 서버 콘솔에 stop을 입력하여 서버를 완전히 종료합니다.
 2. 서버 폴더 전체를 백업합니다.
-3. 기존 KoreanCommands-1.0.0.jar를 plugins 폴더 밖으로 옮깁니다.
-4. KoreanCommands-1.0.1.jar를 서버의 plugins 폴더에 넣습니다.
+3. 기존 KoreanCommands-1.0.0.jar 또는 KoreanCommands-1.0.1.jar를 plugins 폴더 밖으로 옮깁니다.
+4. KoreanCommands-1.0.2.jar를 서버의 plugins 폴더에 넣습니다.
 5. 서버를 다시 실행합니다. /reload는 사용하지 마세요.
 6. 게임에서 /한글명령어를 입력해 사용 예를 확인합니다.
 
@@ -35,4 +35,4 @@ KoreanCommands 1.0.1 설치 안내
 - 실제 Paper 26.3 서버 구동은 사용자 서버에서 확인해야 합니다. 문제가 생기면 콘솔 오류 전체를 확인하세요.
 
 제거 방법
-서버를 종료한 다음 plugins 폴더에서 KoreanCommands-1.0.1.jar를 빼고 다시 실행합니다.
+서버를 종료한 다음 plugins 폴더에서 KoreanCommands-1.0.2.jar를 빼고 다시 실행합니다.

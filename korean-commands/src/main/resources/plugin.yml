@@ -1,5 +1,5 @@
 name: KoreanCommands
-version: 1.0.1
+version: 1.0.2
 main: kr.minecraft.rpg.koreancommands.KoreanCommandsPlugin
 api-version: '1.21.4'
 authors: [wjdtjddyd956-svg]
