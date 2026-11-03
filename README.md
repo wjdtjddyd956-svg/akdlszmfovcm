@@ -12,3 +12,14 @@
 - `설치안내.txt`: 적용법, 번역 범위, 검증 결과
 
 공식 배포판이 아닌 수정본이므로 적용 전에 서버와 기존 플러그인을 백업해야 합니다.
+
+## 한글 명령어
+
+`korean-commands/`에는 WorldEdit과 WorldGuard의 주요 명령어를 한글로 입력할 수 있게 해 주는 Paper 플러그인 소스가 있습니다.
+설치용 JAR과 안내 문서는 `releases/korean-commands/`에 있습니다.
+
+```text
+//채우기 돌                    → //set stone
+/영역 생성 마을               → /rg define 마을
+/영역 설정 마을 피브이피 거부 → /rg flag 마을 pvp deny
+```
