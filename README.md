@@ -36,3 +36,5 @@
 `survival-pack/`에는 공식 EssentialsX·EssentialsXSpawn·Vault·QuickShop JAR의 배포 묶음 생성기와 한글 신규 설정, 추가 플러그인 다운로드 스크립트가 있습니다.
 설치 ZIP과 단독 메뉴 JAR는 `releases/survival-pack/`에 있습니다. Paper 26.3 전체 호환성 및 실제 서버 실행은 미검증이며, 추천 추가 플러그인 LuckPerms·GriefPrevention·CoreProtect JAR는 ZIP에 포함되지 않습니다. 상세 범위는 해당 설치 안내를 참고하세요.
 최신 묶음은 `EconomySurvival-Korean-Pack-1.1.0.zip`이며 한글 채팅 기능은 포함하지 않습니다. EarthMC 공개 가이드를 참고한 [설계](survival-pack/참고서버.md)와 [한글 명령어 안내](survival-pack/한글명령어.md)를 함께 제공합니다.
+
+Paper 26.3에서 EssentialsX 2.22.0 미지원 메시지가 실제 확인되었습니다. 본체·스폰은 공식 26.3 지원 개발 빌드로 교체해야 합니다. [26.3 수정 안내](korean-pack-setup/README.md)와 `releases/survival-pack/Paper26.3-Economy-Fix-1.0.0.zip`에는 기존 데이터를 유지하는 1회 설정 적용 JAR와 공식 개발 빌드 다운로드 스크립트가 있습니다. 차단된 공식 개발 JAR 자체는 포함하지 않습니다.

@@ -1,0 +1,2 @@
+5488204530250deefcda6ff894e5967e637e11d9e09d3af9aba2d12f550726ba  Paper26.3-Economy-Fix-1.0.0.zip
+e9b2934eeb2c8a5646071a139941eacc4f9ad832df9c68bdb7fc5bfb0065ce0c  KoreanPackSetup-1.0.0.jar

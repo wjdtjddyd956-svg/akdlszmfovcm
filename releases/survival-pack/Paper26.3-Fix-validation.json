@@ -1,0 +1,21 @@
+{
+  "assertions": 29,
+  "yaml_engine": "SnakeYAML 2.2 (real)",
+  "filesystem_tested": true,
+  "actual_paper_runtime_tested": false,
+  "fix_plugin": "KoreanPackSetup",
+  "version": "1.0.0",
+  "essentials_2_22_0_confirmed_unsupported_for_26_3": true,
+  "development_jars_included": false,
+  "development_download_blocker": "Cloud network policy: HTTP 403 for essentialsx.net and ci.ender.zone",
+  "actual_windows_downloader_tested": false,
+  "quickshop_display_mode": 3,
+  "existing_player_balances_modified": false,
+  "reference_development_readme": "https://github.com/EssentialsX/Essentials/blob/2.x/README.md",
+  "reference_development_version_code": "https://github.com/EssentialsX/Essentials/blob/2.x/Essentials/src/main/java/com/earth2me/essentials/utils/VersionUtil.java",
+  "snakeyaml_compile_dependency": {
+    "url": "https://repo.maven.apache.org/maven2/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar",
+    "sha256": "1467931448a0817696ae2805b7b8b20bfb082652bf9c4efaed528930dc49389b",
+    "bundled": false
+  }
+}

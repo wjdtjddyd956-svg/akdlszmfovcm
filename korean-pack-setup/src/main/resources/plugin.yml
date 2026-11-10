@@ -1,0 +1,16 @@
+name: KoreanPackSetup
+version: 1.0.0
+main: kr.minecraft.survival.setup.KoreanPackSetupPlugin
+api-version: '1.21'
+load: STARTUP
+loadbefore: [Essentials, EssentialsSpawn, QuickShop-Hikari]
+description: 경제 팩 언어·신규 잔액·원화·아이템 표시 설정을 백업 후 한 번 적용합니다.
+authors: [wjdtjddyd956-svg]
+commands:
+  경제팩설정:
+    description: 경제 팩 설정 상태 확인 및 재적용
+    usage: /경제팩설정 [다시적용]
+    permission: koreanpacksetup.admin
+permissions:
+  koreanpacksetup.admin:
+    default: op
