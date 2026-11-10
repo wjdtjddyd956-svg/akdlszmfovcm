@@ -51,3 +51,15 @@ python3 generate_spawn.py
 
 결과는 `dist/economy_spawn_v1.schem`에 생성됩니다.
 같은 폴더에 위에서 내려다본 배치도 PNG와 구조 검증 결과도 생성됩니다.
+
+## v3 Handbuilt
+
+`generate_spawn_v3_handbuilt.py`는 격자형 배치를 버리고 사람이 조금씩 확장한 마을처럼 만든 버전입니다. 굽은 길과 하천, 돌다리, ㄱ자 시청, 경사진 지붕, 목재 골조, 서로 다른 상점 10채, 불규칙 농장, 강변 정자와 여관 안뜰을 포함합니다.
+
+```bash
+python3 generate_spawn_v3_handbuilt.py
+python3 validate_schematic.py dist/economy_spawn_v3_handbuilt.schem
+python3 render_v3_isometric.py
+```
+
+![v3 등각 미리보기](../releases/economy-spawn/economy_spawn_v3_handbuilt_isometric.png)

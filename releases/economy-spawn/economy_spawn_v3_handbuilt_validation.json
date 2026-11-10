@@ -1,0 +1,33 @@
+{
+  "format": "Sponge Schematic v2",
+  "map_version": "v3-handbuilt",
+  "data_version": 3465,
+  "dimensions": [
+    193,
+    48,
+    193
+  ],
+  "origin_offset": [
+    -96,
+    -2,
+    -96
+  ],
+  "palette_size": 98,
+  "encoded_blocks": 1787952,
+  "non_air_blocks": 178159,
+  "block_data_bytes": 1787952,
+  "design": [
+    "organic_curved_roads",
+    "meandering_river_and_bridge",
+    "varied_terrain",
+    "l_shaped_civic_hall",
+    "pitched_and_gabled_roofs",
+    "mixed_masonry_and_timber",
+    "staggered_individual_shops",
+    "irregular_fenced_fields",
+    "furnished_interiors",
+    "riverside_park_gazebo",
+    "inn_courtyard",
+    "hand_placed_clutter"
+  ]
+}
