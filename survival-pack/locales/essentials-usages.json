@@ -1,0 +1,19 @@
+{
+  "balanceCommandUsage": "/돈 [닉네임]",
+  "balanceCommandUsage1": "/돈",
+  "balanceCommandUsage2": "/돈 <닉네임>",
+  "balancetopCommandUsage": "/돈순위 [쪽번호]",
+  "balancetopCommandUsage1": "/돈순위 [쪽번호]",
+  "payCommandUsage": "/송금 <닉네임> <금액>",
+  "homeCommandUsage": "/집 [집이름]",
+  "sethomeCommandUsage": "/집저장 [집이름]",
+  "delhomeCommandUsage": "/집삭제 <집이름>",
+  "tpaCommandUsage": "/이동요청 <닉네임>",
+  "tpacceptCommandUsage": "/이동수락 [닉네임]",
+  "tpdenyCommandUsage": "/이동거절 [닉네임]",
+  "tpacancelCommandUsage": "/이동취소 [닉네임]",
+  "tpahereCommandUsage": "/소환요청 <닉네임>",
+  "msgCommandUsage": "/귓속말 <닉네임> <내용>",
+  "rCommandUsage": "/답장 <내용>",
+  "ecoCommandUsage": "/돈관리 <지급|회수|설정|초기화> <닉네임> [금액]"
+}

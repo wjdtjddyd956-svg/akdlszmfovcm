@@ -28,15 +28,34 @@
     },
     {
       "name": "KoreanMenu",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "dependencies": [],
-      "file": "KoreanMenu-1.0.0.jar"
+      "file": "KoreanMenu-1.1.0.jar"
+    },
+    {
+      "name": "KoreanCommands",
+      "version": "1.1.0",
+      "dependencies": [],
+      "file": "KoreanCommands-1.1.0.jar"
+    },
+    {
+      "name": "KoreanEconomy",
+      "version": "1.0.0",
+      "dependencies": [
+        "Vault"
+      ],
+      "file": "KoreanEconomy-1.0.0.jar"
     }
   ],
   "jar_integrity": "passed",
   "yaml": "passed",
   "hard_dependencies": "passed",
-  "korean_menu_fixture_assertions": 29,
+  "korean_menu_fixture_assertions": 33,
+  "economy_assertions": 33,
+  "command_assertions": 38,
+  "quickshop_overrides_validated": 142,
+  "essentials_usage_overrides": 29,
+  "chat_input_plugin_included": false,
   "actual_paper_runtime_tested": false,
   "actual_windows_installer_tested": false,
   "target_minecraft": "26.3",

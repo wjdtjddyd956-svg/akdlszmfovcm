@@ -41,7 +41,7 @@ public final class MenuEventTest {
     static class World implements Server {
         Queue<Runnable> tasks=new ArrayDeque<>();
         List<User> users=new ArrayList<>();
-        Set<String> dependencies=new HashSet<>(List.of("Essentials","EssentialsSpawn","QuickShop-Hikari"));
+        Set<String> dependencies=new HashSet<>(List.of("Essentials","EssentialsSpawn","QuickShop-Hikari","KoreanEconomy","KoreanCommands"));
         public PluginManager getPluginManager(){return new PluginManager(){
             public void registerEvents(Listener l,Plugin p){}
             public boolean isPluginEnabled(String n){return dependencies.contains(n);}
@@ -82,6 +82,8 @@ public final class MenuEventTest {
         check(!unrelated.cancelled,"other inventory untouched");
         p.click(u,10);check(u.commands.isEmpty(),"command deferred until next tick");p.world.tick();
         check(u.commands.equals(List.of("essentials:balance")),"balance dispatched as player");
+        User market=p.open();p.click(market,14);p.world.tick();check(market.commands.equals(List.of("상점")),"server market is actionable");
+        User daily=p.open();p.click(daily,22);p.world.tick();check(daily.commands.equals(List.of("일일보상")),"daily reward button dispatches as player");
         User save=p.open();p.click(save,28);p.world.tick();
         check(save.commands.isEmpty(),"save first opens confirmation");
         check(((KoreanMenuPlugin.Menu)save.current.getTopInventory().getHolder()).confirmation,"confirmation inventory");

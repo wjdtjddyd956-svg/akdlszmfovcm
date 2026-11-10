@@ -1,15 +1,15 @@
 name: KoreanMenu
-version: 1.0.0
+version: 1.1.0
 main: kr.minecraft.survival.menu.KoreanMenuPlugin
 api-version: '1.21'
 description: 쉬프트+F로 여는 경제 야생 한글 메뉴
 authors: [wjdtjddyd956-svg]
-softdepend: [Essentials, EssentialsSpawn, QuickShop-Hikari, GriefPrevention, LuckPerms]
+softdepend: [Essentials, EssentialsSpawn, QuickShop-Hikari, GriefPrevention, LuckPerms, KoreanCommands, KoreanEconomy]
 commands:
-  kmenu:
+  메뉴:
     description: 경제 야생 메뉴를 엽니다.
-    aliases: [메뉴]
-    usage: /kmenu
+    aliases: [kmenu]
+    usage: /메뉴
     permission: koreanmenu.use
 permissions:
   koreanmenu.use:
@@ -20,15 +20,24 @@ permissions:
     default: true
     children:
       essentials.balance: true
+      essentials.balancetop: true
       essentials.pay: true
       essentials.home: true
       essentials.sethome: true
+      essentials.delhome: true
       essentials.spawn: true
       essentials.tpa: true
       essentials.tpaccept: true
       essentials.tpdeny: true
+      essentials.tpacancel: true
+      essentials.tpahere: true
+      essentials.msg: true
+      essentials.reply: true
       quickshop.create.sell: true
       quickshop.create.buy: true
       quickshop.create.cmd: true
       quickshop.create.changeprice: true
+      quickshop.create.changeamount: true
+      quickshop.staff: true
+      quickshop.shopnaming: true
       quickshop.use: true

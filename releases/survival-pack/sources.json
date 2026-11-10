@@ -42,5 +42,9 @@
       "sha256": "06634f76bd13236b92d39281a472e5d53419b6af03304fd5005368bc8f9da3ca"
     }
   ],
-  "menu_source": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm/tree/main/korean-menu"
+  "custom_sources": {
+    "korean-menu": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm/tree/main/korean-menu",
+    "korean-commands": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm/tree/main/korean-commands",
+    "korean-economy": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm/tree/main/korean-economy"
+  }
 }

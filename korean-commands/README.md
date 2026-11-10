@@ -1,18 +1,21 @@
 # KoreanCommands
 
-WorldEdit과 WorldGuard의 주요 명령어를 한글로 입력할 수 있게 해 주는 Paper 플러그인입니다.
-영문 명령어를 실행 직전에 원래 명령어로 변환하므로 기존 플러그인 파일을 다시 수정하지 않습니다.
+생활 경제·유저 상점·집·이동·땅 보호·WorldEdit·WorldGuard의 주요 명령어를 한글로 입력하는 Paper 플러그인입니다.
+한글 별칭을 실행 직전에 원래 명령어로 변환하며 실행한 사람의 권한을 그대로 사용합니다. [생활 명령어 안내](../survival-pack/한글명령어.md)를 참고하세요.
 
 ## 설치
 
 1. 서버를 `stop`으로 종료합니다.
-2. WorldEdit과 WorldGuard가 설치된 서버의 `plugins` 폴더에 `KoreanCommands-1.0.2.jar`를 넣습니다.
+2. 기존 같은 플러그인 JAR를 꺼내고 `plugins`에 `KoreanCommands-1.1.0.jar`를 넣습니다. 연결 플러그인은 선택 의존성이므로 WorldEdit·WorldGuard가 없어도 켜집니다. 해당 기능을 실제로 쓰려면 대상 플러그인이 필요합니다.
 3. 서버를 다시 실행합니다. `/reload`는 사용하지 마세요.
 4. `/한글명령어`로 간단한 사용 예를 확인합니다.
 
 ## 예시
 
 ```text
+/돈, /송금 닉네임 금액
+/집저장, /집, /스폰, /이동요청 닉네임, /이동수락
+/거래소 생성 가격, /거래소 직원 추가 닉네임
 //도끼                         → //wand
 //채우기 돌                    → //set stone
 //채우기 50%돌,50%흙           → //set 50%stone,50%dirt
@@ -34,4 +37,4 @@ JDK 21 이상에서 다음 명령을 실행합니다.
 ./build.sh
 ```
 
-빌드 결과는 `build/libs/KoreanCommands-1.0.2.jar`에 생성됩니다. `tools/stubs`의 최소 API 정의는 컴파일에만 사용되며 결과 JAR에는 포함되지 않습니다.
+빌드 결과는 `build/libs/KoreanCommands-1.1.0.jar`에 생성됩니다. `tools/stubs`의 최소 API 정의는 오프라인 컴파일에만 쓰며 JAR에는 포함하지 않습니다. 명령어 변환 검사는 수행하지만 실제 Paper 26.3 서버 실행은 미검증입니다.

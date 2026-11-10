@@ -32,6 +32,7 @@
 
 ## 경제 야생 플러그인과 쉬프트+F 메뉴
 
-`korean-menu/`에는 직접 만든 한글 메뉴 플러그인과 오프라인 이벤트 검사가 있습니다.
+`korean-menu/`에는 직접 만든 한글 메뉴와 검사가 있습니다. `korean-economy/`에는 같은 Vault 잔액으로 거래하는 서버 상점과 일일 보상이 있습니다.
 `survival-pack/`에는 공식 EssentialsX·EssentialsXSpawn·Vault·QuickShop JAR의 배포 묶음 생성기와 한글 신규 설정, 추가 플러그인 다운로드 스크립트가 있습니다.
 설치 ZIP과 단독 메뉴 JAR는 `releases/survival-pack/`에 있습니다. Paper 26.3 전체 호환성 및 실제 서버 실행은 미검증이며, 추천 추가 플러그인 LuckPerms·GriefPrevention·CoreProtect JAR는 ZIP에 포함되지 않습니다. 상세 범위는 해당 설치 안내를 참고하세요.
+최신 묶음은 `EconomySurvival-Korean-Pack-1.1.0.zip`이며 한글 채팅 기능은 포함하지 않습니다. EarthMC 공개 가이드를 참고한 [설계](survival-pack/참고서버.md)와 [한글 명령어 안내](survival-pack/한글명령어.md)를 함께 제공합니다.

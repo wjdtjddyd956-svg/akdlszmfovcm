@@ -40,7 +40,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
 
     @Override public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
-        getLogger().info("쉬프트+F 한글 메뉴 활성화. /kmenu 또는 /메뉴로도 열 수 있습니다.");
+        getLogger().info("쉬프트+F 한글 메뉴 활성화. /메뉴로도 열 수 있습니다.");
     }
 
     @Override public void onDisable() {
@@ -60,7 +60,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
 
     @Override public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("게임 안에서 /kmenu를 입력하세요.");
+            sender.sendMessage("게임 안에서 /메뉴를 입력하세요.");
             return true;
         }
         if (!player.hasPermission("koreanmenu.use")) {
@@ -83,18 +83,20 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
             for (int i = 0; i < 54; i++) menu.inventory.setItem(i, border);
             if (confirmation) {
                 menu.inventory.setItem(22, icon(Material.OAK_DOOR, "§e이곳을 집으로 저장할까요?",
-                        "§7기존 default 집 위치가 바뀝니다.", "§7저장 시 현재 서 있는 위치를 사용합니다."));
+                        "§7기존 기본 집 위치가 바뀝니다.", "§7저장 시 현재 서 있는 위치를 사용합니다."));
                 menu.inventory.setItem(30, icon(Material.LIME_CONCRETE, "§a확인 · 집 저장"));
                 menu.inventory.setItem(32, icon(Material.RED_CONCRETE, "§c취소"));
             } else {
                 menu.inventory.setItem(4, icon(Material.BOOK, "§6" + player.getName() + "님의 마을 수첩",
                         "§7쉬프트+F로 언제든 열기", "§7일반 F키는 보조 손 바꾸기"));
                 menu.inventory.setItem(10, icon(Material.GOLD_INGOT, "§e내 돈 확인", "§7현재 잔액을 확인합니다."));
-                menu.inventory.setItem(12, icon(Material.EMERALD, "§a송금 안내", "§7/pay 닉네임 금액", "§7예: /pay Steve 100"));
-                menu.inventory.setItem(14, icon(Material.CHEST, "§6상점 안내", "§7유저 상점 만들기와 거래 방법"));
+                menu.inventory.setItem(12, icon(Material.EMERALD, "§a송금 안내", "§7/송금 닉네임 금액", "§7예: /송금 Steve 100"));
+                menu.inventory.setItem(14, icon(Material.CHEST, "§6서버 상점", "§7농산물·광물을 사고팔아 보세요."));
                 menu.inventory.setItem(16, icon(Material.GOLDEN_SHOVEL, "§b내 땅 보호", "§7땅 보호와 친구 초대 방법"));
                 menu.inventory.setItem(28, icon(Material.OAK_DOOR, "§a집 위치 저장", "§7확인 화면을 거쳐 저장합니다."));
-                menu.inventory.setItem(30, icon(Material.RED_BED, "§a집으로 이동", "§7저장한 default 집으로 이동"));
+                menu.inventory.setItem(22, icon(Material.SUNFLOWER, "§e일일 보상", "§7하루에 한 번 보상을 받습니다."));
+                menu.inventory.setItem(24, icon(Material.ENDER_CHEST, "§6유저 거래소", "§7유저 상점 만들기와 거래 방법"));
+                menu.inventory.setItem(30, icon(Material.RED_BED, "§a집으로 이동", "§7저장한 기본 집으로 이동"));
                 menu.inventory.setItem(32, icon(Material.COMPASS, "§b스폰으로 이동", "§7운영자가 설정한 스폰으로 이동"));
                 menu.inventory.setItem(34, icon(Material.WRITABLE_BOOK, "§e서버 도움말", "§7거래·텔레포트·기본 명령어"));
             }
@@ -128,26 +130,28 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
         } else {
             switch (slot) {
                 case 10 -> action(player, "Essentials", "essentials:balance");
-                case 12 -> help(player, "§e송금: /pay 닉네임 금액", "§7예: /pay Steve 100", "§7송금 전에 닉네임과 금액을 확인하세요.");
-                case 14 -> {
-                    if (!enabled("QuickShop-Hikari")) help(player, "§cQuickShop-Hikari가 설치되거나 활성화되지 않았습니다.");
+                case 12 -> help(player, "§e송금: /송금 닉네임 금액", "§7예: /송금 Steve 100", "§7송금 전에 닉네임과 금액을 확인하세요.");
+                case 14 -> action(player, "KoreanEconomy", "상점");
+                case 22 -> action(player, "KoreanEconomy", "일일보상");
+                case 24 -> {
+                    if (!enabled("QuickShop-Hikari") || !enabled("KoreanCommands")) help(player, "§c유저 거래소 기능이 설치되거나 활성화되지 않았습니다.");
                     else help(player, "§6[유저 상점]", "§f판매할 아이템을 손에 들고 상자를 바라보세요.",
-                            "§f/qs create 가격 §7으로 상점을 만듭니다.", "§7안내에 따라 판매/구매 수량을 입력하세요.",
-                            "§7예: /qs create 100", "§7상점 거래는 해당 상점의 안내를 따라 진행하세요.");
+                            "§f/거래소 생성 가격 §7으로 상점을 만듭니다.", "§7안내에 따라 판매/구매 수량을 입력하세요.",
+                            "§7예: /거래소 생성 100", "§7상점 거래는 해당 상점의 안내를 따라 진행하세요.");
                 }
                 case 16 -> {
-                    if (!enabled("GriefPrevention")) help(player, "§cGriefPrevention이 설치되거나 활성화되지 않았습니다.", "§7추가 다운로드 안내를 확인하세요.");
+                    if (!enabled("GriefPrevention") || !enabled("KoreanCommands")) help(player, "§c땅 보호 기능이 설치되거나 활성화되지 않았습니다.", "§7추가 다운로드 안내를 확인하세요.");
                     else help(player, "§b[내 땅 보호]", "§f금 삽으로 대각선 두 모서리를 우클릭하세요.",
-                            "§f/trust 닉네임 §7: 친구에게 건축 권한", "§f/untrust 닉네임 §7: 권한 회수", "§f/claimslist §7: 내 땅 목록");
+                            "§f/땅초대 닉네임 §7: 친구에게 건축 권한", "§f/땅추방 닉네임 §7: 권한 회수", "§f/땅목록 §7: 내 땅 목록");
                 }
                 case 28 -> {
                     if (enabled("Essentials")) open(player, true);
-                    else help(player, "§cEssentialsX가 활성화되지 않았습니다.");
+                    else help(player, "§c집 저장 기능이 활성화되지 않았습니다.");
                 }
                 case 30 -> action(player, "Essentials", "essentials:home default");
                 case 32 -> action(player, "EssentialsSpawn", "essentialsspawn:spawn");
-                case 34 -> help(player, "§6[경제 야생 도움말]", "§f쉬프트+F 또는 /kmenu §7: 메뉴", "§f/bal §7: 내 돈",
-                        "§f/pay 닉네임 금액 §7: 송금", "§f/tpa 닉네임 §7: 이동 요청", "§f/tpaccept §7: 이동 수락", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
+                case 34 -> help(player, "§6[경제 야생 도움말]", "§f쉬프트+F 또는 /메뉴 §7: 메뉴", "§f/돈 §7: 내 돈",
+                        "§f/송금 닉네임 금액 §7: 송금", "§f/이동요청 닉네임 §7: 이동 요청", "§f/이동수락 §7: 이동 수락", "§f/상점 · /일일보상 · /경제안내", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
                 default -> { }
             }
         }
@@ -170,7 +174,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
         getServer().getScheduler().runTask(this, () -> {
             if (!player.isOnline() || !player.hasPermission("koreanmenu.use")) return;
             player.closeInventory();
-            if (!enabled(dependency)) { player.sendMessage("§c" + dependency + "가 활성화되지 않았습니다."); return; }
+            if (!enabled(dependency)) { player.sendMessage("§c선택한 기능이 활성화되지 않았습니다. 운영자에게 문의하세요."); return; }
             // Player dispatch preserves the target plugin's permissions, cooldowns and fees.
             player.performCommand(command);
         });

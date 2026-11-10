@@ -1,10 +1,19 @@
 name: KoreanCommands
-version: 1.0.2
+version: 1.1.0
 main: kr.minecraft.rpg.koreancommands.KoreanCommandsPlugin
-api-version: '1.21.4'
-authors: [wjdtjddyd956-svg]
-description: WorldEdit과 WorldGuard 명령어에 한글 별칭을 추가합니다.
-depend: [WorldEdit, WorldGuard]
+api-version: 1.21.4
+authors:
+- wjdtjddyd956-svg
+description: 생활 경제·상점·땅 보호·건축 명령어의 한글 별칭입니다.
+softdepend:
+- WorldEdit
+- WorldGuard
+- Essentials
+- EssentialsSpawn
+- QuickShop-Hikari
+- GriefPrevention
+- LuckPerms
+- CoreProtect
 commands:
   한글명령어:
     description: 한글 명령어 사용 예시를 표시합니다.
@@ -12,3 +21,99 @@ commands:
   영역:
     description: WorldGuard 영역 명령어의 한글 별칭입니다.
     usage: /영역 <명령> [인수]
+  돈:
+    description: 한글 생활 경제 명령어
+    usage: /돈
+  잔액:
+    description: 한글 생활 경제 명령어
+    usage: /잔액
+  돈순위:
+    description: 한글 생활 경제 명령어
+    usage: /돈순위
+  송금:
+    description: 한글 생활 경제 명령어
+    usage: /송금
+  집:
+    description: 한글 생활 경제 명령어
+    usage: /집
+  집저장:
+    description: 한글 생활 경제 명령어
+    usage: /집저장
+  집삭제:
+    description: 한글 생활 경제 명령어
+    usage: /집삭제
+  스폰:
+    description: 한글 생활 경제 명령어
+    usage: /스폰
+  스폰설정:
+    description: 한글 생활 경제 명령어
+    usage: /스폰설정
+  이동요청:
+    description: 한글 생활 경제 명령어
+    usage: /이동요청
+  이동수락:
+    description: 한글 생활 경제 명령어
+    usage: /이동수락
+  이동거절:
+    description: 한글 생활 경제 명령어
+    usage: /이동거절
+  소환요청:
+    description: 한글 생활 경제 명령어
+    usage: /소환요청
+  이동취소:
+    description: 한글 생활 경제 명령어
+    usage: /이동취소
+  이전위치:
+    description: 한글 생활 경제 명령어
+    usage: /이전위치
+  귓속말:
+    description: 한글 생활 경제 명령어
+    usage: /귓속말
+  답장:
+    description: 한글 생활 경제 명령어
+    usage: /답장
+  접속자:
+    description: 한글 생활 경제 명령어
+    usage: /접속자
+  땅목록:
+    description: 한글 생활 경제 명령어
+    usage: /땅목록
+  땅확인:
+    description: 한글 생활 경제 명령어
+    usage: /땅확인
+  땅초대:
+    description: 한글 생활 경제 명령어
+    usage: /땅초대
+  땅추방:
+    description: 한글 생활 경제 명령어
+    usage: /땅추방
+  땅권한:
+    description: 한글 생활 경제 명령어
+    usage: /땅권한
+  땅포기:
+    description: 한글 생활 경제 명령어
+    usage: /땅포기
+  땅구매:
+    description: 한글 생활 경제 명령어
+    usage: /땅구매
+  땅판매:
+    description: 한글 생활 경제 명령어
+    usage: /땅판매
+  돈관리:
+    description: 한글 생활 경제 명령어
+    usage: /돈관리
+  권한:
+    description: 한글 생활 경제 명령어
+    usage: /권한
+  블록조사:
+    description: 한글 생활 경제 명령어
+    usage: /블록조사
+  플러그인목록:
+    description: 한글 생활 경제 명령어
+    usage: /플러그인목록
+  서버정보:
+    description: 한글 생활 경제 명령어
+    usage: /서버정보
+  거래소:
+    description: 한글 생활 경제 명령어
+    usage: /거래소

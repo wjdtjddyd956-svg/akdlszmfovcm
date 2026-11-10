@@ -1,0 +1,28 @@
+name: KoreanEconomy
+version: 1.0.0
+main: kr.minecraft.survival.economy.KoreanEconomyPlugin
+api-version: '1.21'
+description: 한글 서버 상점과 하루 한 번 경제 보상
+authors: [wjdtjddyd956-svg]
+depend: [Vault]
+softdepend: [Essentials, KoreanCommands]
+commands:
+  상점:
+    description: 서버 상점에서 물건을 구매·판매합니다.
+    usage: /상점
+  일일보상:
+    description: 하루 한 번 보상을 받습니다.
+    usage: /일일보상
+  경제안내:
+    description: 한글 경제 명령어를 확인합니다.
+    usage: /경제안내
+  경제설정:
+    description: 운영자용 경제 설정 다시 읽기
+    usage: /경제설정 새로고침
+permissions:
+  koreaneconomy.use:
+    default: true
+    description: 상점과 일일 보상 사용
+  koreaneconomy.admin:
+    default: op
+    description: 경제 설정 다시 읽기

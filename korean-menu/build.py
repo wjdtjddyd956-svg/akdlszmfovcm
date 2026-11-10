@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Build Java 21 plugin and run offline event tests; no network or extra dependencies."""
 import os
+import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -26,7 +28,9 @@ compile_dir(BUILD / 'fixture-src', BUILD / 'fixtures')
 compile_dir(ROOT / 'src/main/java', BUILD / 'main', BUILD / 'fixtures')
 cp = os.pathsep.join(str(BUILD / p) for p in ('fixtures', 'main'))
 compile_dir(ROOT / 'src/test/java', BUILD / 'test', cp)
-subprocess.run(['java', '-cp', cp + os.pathsep + str(BUILD / 'test'), 'kr.minecraft.survival.menu.MenuEventTest'], check=True)
+test = subprocess.run(['java', '-cp', cp + os.pathsep + str(BUILD / 'test'), 'kr.minecraft.survival.menu.MenuEventTest'], check=True, capture_output=True, text=True)
+print(test.stdout, end='')
+(BUILD / 'test-results.json').write_text(json.dumps({'assertions': int(re.search(r'PASS: (\d+)', test.stdout).group(1)), 'type': 'offline fixtures'}) + '\n')
 if os.environ.get('BUKKIT_API_JAR'):
     shutil.rmtree(BUILD / 'main')
     (BUILD / 'main').mkdir()
@@ -35,7 +39,7 @@ if os.environ.get('BUKKIT_API_JAR'):
 else:
     print('Offline signature compilation only; real Paper runtime test has not been run.')
 
-jar = BUILD / 'libs/KoreanMenu-1.0.0.jar'
+jar = BUILD / 'libs/KoreanMenu-1.1.0.jar'
 with zipfile.ZipFile(jar, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted((BUILD / 'main').rglob('*.class')):
         z.write(p, p.relative_to(BUILD / 'main'))

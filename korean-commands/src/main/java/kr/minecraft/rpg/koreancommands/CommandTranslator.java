@@ -7,6 +7,30 @@ import java.util.Locale;
 import java.util.Map;
 
 final class CommandTranslator {
+    private static final Map<String, String> LIFE = aliases(
+            "돈", "essentials:balance", "잔액", "essentials:balance", "돈순위", "essentials:balancetop",
+            "송금", "essentials:pay", "집", "essentials:home", "집저장", "essentials:sethome",
+            "집삭제", "essentials:delhome", "스폰", "essentialsspawn:spawn", "스폰설정", "essentialsspawn:setspawn",
+            "이동요청", "essentials:tpa", "이동수락", "essentials:tpaccept", "이동거절", "essentials:tpdeny",
+            "소환요청", "essentials:tpahere", "이동취소", "essentials:tpacancel", "이전위치", "essentials:back",
+            "귓속말", "essentials:msg", "답장", "essentials:reply", "접속자", "minecraft:list",
+            "땅목록", "griefprevention:claimslist", "땅확인", "griefprevention:claimslist",
+            "땅초대", "griefprevention:trust", "땅추방", "griefprevention:untrust",
+            "땅권한", "griefprevention:trustlist", "땅포기", "griefprevention:abandonclaim",
+            "땅구매", "griefprevention:buyclaimblocks", "땅판매", "griefprevention:sellclaimblocks",
+            "돈관리", "essentials:eco", "권한", "luckperms:lp",
+            "블록조사", "coreprotect:co inspect", "플러그인목록", "bukkit:plugins", "서버정보", "bukkit:version"
+    );
+    private static final Map<String, String> SHOP = aliases(
+            "생성", "create", "만들기", "create", "가격", "price", "판매", "sell", "매입", "buy",
+            "수량", "size", "삭제", "remove", "직원", "staff", "이름", "name",
+            "잠금", "lock", "찾기", "find", "도움말", "help", "정보", "info",
+            "즐겨찾기", "favorite", "관심", "watch", "기록", "history", "전시", "toggledisplay",
+            "양도", "transferownership", "무제한", "unlimited", "둘러보기", "browse",
+            "추천가격", "suggestprice", "표지판", "sign", "태그", "tag"
+    );
+    private static final Map<String, String> STAFF = aliases("추가", "add", "삭제", "del", "목록", "list", "전체삭제", "clear");
+
     record Result(boolean handled, String command) {
         static Result ignored() {
             return new Result(false, null);
@@ -84,10 +108,35 @@ final class CommandTranslator {
             return translateWorldEdit(message.substring(2));
         }
         List<String> tokens = tokenize(message.substring(1));
-        if (tokens.isEmpty() || !tokens.get(0).equals("영역")) {
-            return Result.ignored();
+        if (tokens.isEmpty()) return Result.ignored();
+        String root = tokens.get(0);
+        if (root.equals("영역")) return translateRegion(tokens);
+        if (root.equals("거래소")) {
+            List<String> output = new ArrayList<>(tokens);
+            output.set(0, "quickshop-hikari:quickshop");
+            if (output.size() == 1) output.add("help");
+            if (output.size() >= 2) output.set(1, SHOP.getOrDefault(output.get(1), output.get(1)));
+            if (output.size() >= 3 && output.get(1).equals("staff")) output.set(2, STAFF.getOrDefault(output.get(2), output.get(2)));
+            if (output.size() >= 3 && output.get(1).equals("transferownership")) output.set(2, aliases("수락", "accept", "거절", "deny").getOrDefault(output.get(2), output.get(2)));
+            return new Result(true, "/" + join(output));
         }
-        return translateRegion(tokens);
+        String translated = LIFE.get(root);
+        if (translated == null) return Result.ignored();
+        if (root.equals("돈관리") && tokens.size() > 1) {
+            tokens.set(1, aliases("지급", "give", "회수", "take", "설정", "set", "초기화", "reset").getOrDefault(tokens.get(1), tokens.get(1)));
+            return new Result(true, "/" + translated + " " + join(tokens.subList(1, tokens.size())));
+        }
+        if (root.equals("권한") && tokens.size() > 1) {
+            tokens.set(1, aliases("사용자", "user", "그룹", "group", "그룹생성", "creategroup", "그룹삭제", "deletegroup", "편집기", "editor", "동기화", "sync", "도움말", "help").getOrDefault(tokens.get(1), tokens.get(1)));
+            if (tokens.size()>3) tokens.set(3, aliases("권한", "permission", "상속", "parent", "정보", "info").getOrDefault(tokens.get(3), tokens.get(3)));
+            if (tokens.size()>4) tokens.set(4, aliases("설정", "set", "해제", "unset", "추가", "add", "삭제", "remove").getOrDefault(tokens.get(4), tokens.get(4)));
+            if (tokens.size()>6 && (tokens.get(6).equals("참") || tokens.get(6).equals("거짓"))) tokens.set(6,tokens.get(6).equals("참")?"true":"false");
+            return new Result(true,"/"+translated+" "+join(tokens.subList(1,tokens.size())));
+        }
+        // Preserve message text and quoted arguments for whispers and other simple aliases.
+        String suffix = message.substring(1 + root.length());
+        if ((root.equals("집") || root.equals("집저장")) && suffix.isBlank()) suffix = " default";
+        return new Result(true, "/" + translated + suffix);
     }
 
     List<String> complete(String buffer) {
@@ -107,9 +156,15 @@ final class CommandTranslator {
             }
             return List.of();
         }
-        if (!buffer.startsWith("/영역")) {
+        if (buffer.startsWith("/거래소 ")) {
+            String body = buffer.substring(5);
+            List<String> shopTokens = tokenize(body);
+            if (shopTokens.size() <= 1 && !body.endsWith(" ")) return matches(SHOP.keySet(), body);
+            if (!shopTokens.isEmpty() && shopTokens.get(0).equals("직원")) return matches(STAFF.keySet(), currentToken(body));
             return List.of();
         }
+        if (buffer.startsWith("/") && !buffer.contains(" ")) return matches(commandNames(), buffer.substring(1));
+        if (!buffer.startsWith("/영역")) return List.of();
         String body = buffer.substring(1);
         List<String> tokens = tokenize(body);
         if (tokens.size() <= 1) {
@@ -128,6 +183,24 @@ final class CommandTranslator {
             return matches(VALUES.keySet(), currentToken(body));
         }
         return List.of();
+    }
+
+    static List<String> commandNames() {
+        List<String> names = new ArrayList<>(LIFE.keySet());
+        names.addAll(List.of("거래소", "영역", "한글명령어"));
+        return names.stream().sorted().toList();
+    }
+
+    static String requiredPlugin(String command) {
+        if (command.startsWith("//")) return "WorldEdit";
+        if (command.startsWith("/rg ")) return "WorldGuard";
+        if (command.startsWith("/essentials:")) return "Essentials";
+        if (command.startsWith("/essentialsspawn:")) return "EssentialsSpawn";
+        if (command.startsWith("/quickshop-hikari:")) return "QuickShop-Hikari";
+        if (command.startsWith("/griefprevention:")) return "GriefPrevention";
+        if (command.startsWith("/luckperms:")) return "LuckPerms";
+        if (command.startsWith("/coreprotect:")) return "CoreProtect";
+        return null;
     }
 
     private Result translateWorldEdit(String input) {
