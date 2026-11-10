@@ -1,0 +1,29 @@
+{
+  "format": "Sponge Schematic v2",
+  "data_version": 3465,
+  "dimensions": [
+    161,
+    32,
+    161
+  ],
+  "origin_offset": [
+    -80,
+    -1,
+    -80
+  ],
+  "palette_size": 31,
+  "encoded_blocks": 829472,
+  "non_air_blocks": 74213,
+  "block_data_bytes": 829472,
+  "areas": [
+    "central_plaza",
+    "city_hall",
+    "bank",
+    "jobs_office",
+    "10_player_shops",
+    "beginner_farm",
+    "warehouse",
+    "park",
+    "wild_entrance"
+  ]
+}

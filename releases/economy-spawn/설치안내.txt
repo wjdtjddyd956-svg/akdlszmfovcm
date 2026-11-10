@@ -1,0 +1,40 @@
+현실 경제 야생 스폰 v1 설치 안내
+
+파일
+- economy_spawn_v1.schem
+- 크기: 161 × 32 × 161 블록
+- 기준점: 스폰 중앙의 지면
+
+필수 플러그인
+- WorldEdit 7.4.6 이상
+
+설치 방법
+1. 서버 콘솔에 stop을 입력하고 서버 폴더를 백업합니다.
+2. economy_spawn_v1.schem 파일을 다음 폴더에 넣습니다.
+   plugins/WorldEdit/schematics/
+3. 서버를 다시 실행하고 운영자 권한으로 접속합니다.
+4. 맵을 설치할 넓고 평평한 장소의 중앙에 섭니다.
+5. 아래 명령을 차례로 실행합니다.
+   //schem load economy_spawn_v1
+   //paste
+6. 위치가 마음에 들지 않으면 바로 //undo를 실행합니다.
+
+중요
+- 161 × 161 범위의 기존 지형과 건축물을 덮어쓸 수 있으므로 반드시 빈 장소에서 작업하세요.
+- 이 스키매틱에는 공기 블록이 포함되어 있어 건물 위 장애물을 정리합니다.
+- 기존 지형을 최대한 남기려면 //paste -a를 사용할 수 있지만, 지형과 건물이 겹칠 수 있습니다.
+- 붙여넣기 전에 서버와 월드를 백업하세요.
+- 북쪽 문 바깥을 야생 월드로 연결하는 구조입니다.
+
+권장 WorldGuard 영역
+//pos1과 //pos2로 도시 전체를 선택한 뒤:
+/rg define spawn_city
+/rg flag spawn_city pvp deny
+/rg flag spawn_city mob-spawning deny
+/rg flag spawn_city creeper-explosion deny
+/rg flag spawn_city tnt deny
+
+한글 명령어 플러그인을 사용한다면:
+/영역 생성 spawn_city
+/영역 설정 spawn_city 피브이피 거부
+/영역 설정 spawn_city 몬스터생성 거부

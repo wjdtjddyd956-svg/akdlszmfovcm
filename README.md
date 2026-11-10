@@ -23,3 +23,8 @@
 /영역 생성 마을               → /rg define 마을
 /영역 설정 마을 피브이피 거부 → /rg flag 마을 pvp deny
 ```
+
+## 현실 경제 야생 스폰
+
+`economy-spawn/`에는 중앙광장, 시청, 은행, 직업소, 유저 상점 10칸, 초보 농장과 야생 출구가 포함된 현대 소도시형 스폰 생성기가 있습니다.
+설치용 WorldEdit 스키매틱은 `releases/economy-spawn/`에 있습니다.

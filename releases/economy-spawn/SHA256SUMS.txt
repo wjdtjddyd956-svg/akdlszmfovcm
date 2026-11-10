@@ -1,0 +1,1 @@
+0d3344af9f4d9e51e1183a37ffbc02ae7084dadb2d83602cacb6fcd174bfda23  ../releases/economy-spawn/economy_spawn_v1.schem
