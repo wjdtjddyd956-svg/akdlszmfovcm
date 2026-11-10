@@ -1,0 +1,15 @@
+{
+  "assertions": 33,
+  "npc_assertions": 29,
+  "type": "real Vault API, offline Bukkit fixtures",
+  "version": "1.1.0",
+  "target_paper": "26.3",
+  "npc_backend": "native MANNEQUIN or VILLAGER",
+  "additional_npc_plugin_required": false,
+  "actual_paper_runtime_tested": false,
+  "actual_world_save_reload_tested": false,
+  "source_api_reference": "https://github.com/PaperMC/Paper/tree/main/paper-api/src/main/java/org/bukkit",
+  "worldguard_cancelled_interactions_respected": true,
+  "other_plugin_jars_replaced": false,
+  "essential_economy_provider_still_required": true
+}

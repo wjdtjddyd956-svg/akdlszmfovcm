@@ -38,3 +38,5 @@
 최신 묶음은 `EconomySurvival-Korean-Pack-1.1.0.zip`이며 한글 채팅 기능은 포함하지 않습니다. EarthMC 공개 가이드를 참고한 [설계](survival-pack/참고서버.md)와 [한글 명령어 안내](survival-pack/한글명령어.md)를 함께 제공합니다.
 
 Paper 26.3에서 EssentialsX 2.22.0 미지원 메시지가 실제 확인되었습니다. 본체·스폰은 공식 26.3 지원 개발 빌드로 교체해야 합니다. [26.3 수정 안내](korean-pack-setup/README.md)와 `releases/survival-pack/Paper26.3-Economy-Fix-1.0.0.zip`에는 기존 데이터를 유지하는 1회 설정 적용 JAR와 공식 개발 빌드 다운로드 스크립트가 있습니다. 차단된 공식 개발 JAR 자체는 포함하지 않습니다.
+
+상점의 최신 버전은 NPC 우클릭 방식입니다. `NPC-Shop-Korean-Update-1.1.0.zip`의 `KoreanEconomy-1.1.0.jar`로 기존 1.0.0 JAR를 교체하세요. `/상인 생성 농부 농산물`처럼 한글 명령으로 사람형·주민형 NPC를 배치할 수 있습니다. [NPC 상점 안내](survival-pack/NPC상점-설치안내.md)를 확인하세요. 현재 소스에서 NPC 교체 파일을 만들 때는 `python3 korean-economy/build.py` 후 `python3 survival-pack/build_npc_update.py`를 사용합니다. 기본 묶음 1.1 ZIP은 NPC 업데이트 이전 배포본입니다.

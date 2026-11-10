@@ -45,6 +45,10 @@ shutil.copyfile(menu, RELEASE / menu.name)
 custom_jars = [menu]
 for directory, filename in [('korean-commands', 'KoreanCommands-1.1.0.jar'), ('korean-economy', 'KoreanEconomy-1.0.0.jar')]:
     jar = REPO / directory / 'build/libs' / filename
+    # This builder reconstructs the pre-NPC 1.1 base pack. Current economy source
+    # builds 1.1.0; use the archived 1.0.0 artifact for this historical base only.
+    if not jar.is_file() and filename == 'KoreanEconomy-1.0.0.jar':
+        jar = RELEASE / filename
     assert jar.is_file(), 'Build ' + directory + ' first'
     with zipfile.ZipFile(jar) as z:
         assert z.testzip() is None

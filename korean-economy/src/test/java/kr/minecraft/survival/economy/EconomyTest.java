@@ -33,7 +33,7 @@ public final class EconomyTest {
         public String getName(){return "시험사용자";}
         public boolean isSneaking(){return false;}
         public boolean isOnline(){return true;}
-        public boolean hasPermission(String p){return !p.equals("koreaneconomy.admin")||admin;}
+        public boolean hasPermission(String p){return (!p.equals("koreaneconomy.admin")&&!p.equals("koreaneconomy.npc.admin"))||admin;}
         public GameMode getGameMode(){return mode;}
         public boolean performCommand(String c){return true;}
         public void sendMessage(String s){messages.add(s);}
@@ -69,7 +69,7 @@ public final class EconomyTest {
         };
         public Server getServer(){return server;}
         void tick(){while(!tasks.isEmpty())tasks.remove().run();}
-        void open(){onCommand(user,new Command("상점"),"상점",new String[0]);}
+        void open(){open(user,false,ShopCategory.ALL,null);}
         InventoryClickEvent click(int slot){InventoryClickEvent e=new InventoryClickEvent(user.view,user,slot);onClick(e);return e;}
     }
     public static void main(String[] args)throws Exception {

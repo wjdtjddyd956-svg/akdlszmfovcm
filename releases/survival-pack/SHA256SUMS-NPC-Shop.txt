@@ -1,0 +1,2 @@
+0c678ffeb48ea519bcf3efd7f8c436ee3ef253bdcf88f14e2e48976cdd246462  NPC-Shop-Korean-Update-1.1.0.zip
+4cf1d04f080c2bfacb9197ba5b1dbe92f99364e42c4c74ba4f36da38335c6808  KoreanEconomy-1.1.0.jar

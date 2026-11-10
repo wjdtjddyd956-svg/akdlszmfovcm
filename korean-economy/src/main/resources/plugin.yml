@@ -1,15 +1,19 @@
 name: KoreanEconomy
-version: 1.0.0
+version: 1.1.0
 main: kr.minecraft.survival.economy.KoreanEconomyPlugin
-api-version: '1.21'
-description: 한글 서버 상점과 하루 한 번 경제 보상
+api-version: '26.3'
+description: NPC 우클릭 한글 구매·판매 상점과 일일 보상
 authors: [wjdtjddyd956-svg]
 depend: [Vault]
 softdepend: [Essentials, KoreanCommands]
 commands:
   상점:
-    description: 서버 상점에서 물건을 구매·판매합니다.
+    description: NPC 상점 이용 방법을 안내합니다.
     usage: /상점
+  상인:
+    description: 운영자용 NPC 상인 생성·삭제·목록
+    aliases: [상점엔피시]
+    usage: /상인 생성 이름 [전체|농산물|광물|재료] [사람|주민]
   일일보상:
     description: 하루 한 번 보상을 받습니다.
     usage: /일일보상
@@ -26,3 +30,6 @@ permissions:
   koreaneconomy.admin:
     default: op
     description: 경제 설정 다시 읽기
+  koreaneconomy.npc.admin:
+    default: op
+    description: 상인 생성·삭제·목록

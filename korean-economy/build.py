@@ -12,6 +12,8 @@ import zipfile
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT.parent/'korean-menu/tools'))
 from compile_fixtures import write
+sys.path.insert(0,str(ROOT/'tools'))
+from npc_fixtures import write as npc_write
 BUILD=ROOT/'build'
 if BUILD.exists():shutil.rmtree(BUILD)
 for name in ['fixture-src','fixtures','main','test','libs']:(BUILD/name).mkdir(parents=True)
@@ -21,6 +23,7 @@ compiler=['java','--module','jdk.compiler/com.sun.tools.javac.Main','-source','2
 def compile(source,dest,cp=None):
     subprocess.run(compiler+(['-cp',str(cp)] if cp else [])+['-d',str(dest)]+[str(p) for p in source.rglob('*.java')],check=True)
 write(BUILD/'fixture-src')
+npc_write(BUILD/'fixture-src')
 compile(BUILD/'fixture-src',BUILD/'fixtures')
 api=os.pathsep.join([str(BUILD/'fixtures'),str(vault)])
 compile(ROOT/'src/main/java',BUILD/'main',api)
@@ -28,11 +31,15 @@ cp=api+os.pathsep+str(BUILD/'main')
 compile(ROOT/'src/test/java',BUILD/'test',cp)
 test=subprocess.run(['java','-cp',cp+os.pathsep+str(BUILD/'test'),'kr.minecraft.survival.economy.EconomyTest'],check=True,capture_output=True,text=True)
 print(test.stdout,end='')
-(BUILD/'test-results.json').write_text(json.dumps({'assertions':int(re.search(r'PASS: (\d+)',test.stdout).group(1)), 'type':'real Vault API, offline Bukkit fixtures'})+'\n')
+npc_test=subprocess.run(['java','-cp',cp+os.pathsep+str(BUILD/'test'),'kr.minecraft.survival.economy.NpcTest'],capture_output=True,text=True)
+if npc_test.returncode:
+    print(npc_test.stdout);print(npc_test.stderr);npc_test.check_returncode()
+print(npc_test.stdout,end='')
+(BUILD/'test-results.json').write_text(json.dumps({'assertions':int(re.search(r'PASS: (\d+)',test.stdout).group(1)), 'npc_assertions':int(re.search(r'PASS: (\d+)',npc_test.stdout).group(1)), 'type':'real Vault API, offline Bukkit fixtures'})+'\n')
 if os.environ.get('BUKKIT_API_JAR'):
     shutil.rmtree(BUILD/'main');(BUILD/'main').mkdir()
     compile(ROOT/'src/main/java',BUILD/'main',os.environ['BUKKIT_API_JAR']+os.pathsep+str(vault))
-jar=BUILD/'libs/KoreanEconomy-1.0.0.jar'
+jar=BUILD/'libs/KoreanEconomy-1.1.0.jar'
 with zipfile.ZipFile(jar,'w',zipfile.ZIP_DEFLATED) as z:
     for path in (BUILD/'main').rglob('*.class'):z.write(path,path.relative_to(BUILD/'main'))
     for path in (ROOT/'src/main/resources').rglob('*'):
