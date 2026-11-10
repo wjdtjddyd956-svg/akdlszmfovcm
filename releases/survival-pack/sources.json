@@ -1,0 +1,46 @@
+{
+  "jars": [
+    {
+      "file": "EssentialsX-2.22.0.jar",
+      "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+      "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+      "size": 4861125
+    },
+    {
+      "file": "EssentialsXSpawn-2.22.0.jar",
+      "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsXSpawn-2.22.0.jar",
+      "sha256": "dd5377c4c921b9b67814209f4f6646ffbb959729003e721ec5e63c47c7c010b8",
+      "size": 18661
+    },
+    {
+      "file": "Vault.jar",
+      "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+      "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+      "size": 272259
+    },
+    {
+      "file": "QuickShop-Hikari-6.3.0.4.jar",
+      "url": "https://github.com/QuickShop-Community/QuickShop-Hikari/releases/download/6.3.0.4/QuickShop-Hikari-6.3.0.4.jar",
+      "sha256": "ce1e36d4bd6081b1258a9943ed28416b3e26c3bf0bbca6ec69cf0a397e320b5d",
+      "size": 4660403
+    }
+  ],
+  "source_archives": [
+    {
+      "file": "upstream-source/EssentialsX-2.22.0-source.zip",
+      "url": "https://codeload.github.com/EssentialsX/Essentials/zip/refs/tags/2.22.0",
+      "sha256": "10bc2e4e22d09067a883b93290f59d354a7c7f69f81b839d1e86a2e787724ce3"
+    },
+    {
+      "file": "upstream-source/QuickShop-Hikari-6.3.0.4-source.zip",
+      "url": "https://codeload.github.com/QuickShop-Community/QuickShop-Hikari/zip/refs/tags/6.3.0.4",
+      "sha256": "f0b39a414597a4b979ef3e4eab7d3170d28a5d28a8411b0aacf206af9c1e1dc5"
+    },
+    {
+      "file": "upstream-source/Vault-1.7.3-source.zip",
+      "url": "https://codeload.github.com/MilkBowl/Vault/zip/refs/tags/1.7.3",
+      "sha256": "06634f76bd13236b92d39281a472e5d53419b6af03304fd5005368bc8f9da3ca"
+    }
+  ],
+  "menu_source": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm/tree/main/korean-menu"
+}

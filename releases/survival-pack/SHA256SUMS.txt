@@ -1,0 +1,2 @@
+3bef739b9ecfd49e9826c28ee5791929ed843a2bdb880d44683f87de805c0418  EconomySurvival-Korean-Pack-1.0.0.zip
+eed54c2278a61ee11b90af4abd112f3ccf57dbecd4c44cd407b073b20a7cf7fe  KoreanMenu-1.0.0.jar

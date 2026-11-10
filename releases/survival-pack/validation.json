@@ -1,0 +1,49 @@
+{
+  "included_plugins": [
+    {
+      "name": "Essentials",
+      "version": "2.22.0",
+      "dependencies": [],
+      "file": "EssentialsX-2.22.0.jar"
+    },
+    {
+      "name": "EssentialsSpawn",
+      "version": "2.22.0",
+      "dependencies": [
+        "Essentials"
+      ],
+      "file": "EssentialsXSpawn-2.22.0.jar"
+    },
+    {
+      "name": "Vault",
+      "version": "1.7.3-b131",
+      "dependencies": [],
+      "file": "Vault.jar"
+    },
+    {
+      "name": "QuickShop-Hikari",
+      "version": "6.3.0.4",
+      "dependencies": [],
+      "file": "QuickShop-Hikari-6.3.0.4.jar"
+    },
+    {
+      "name": "KoreanMenu",
+      "version": "1.0.0",
+      "dependencies": [],
+      "file": "KoreanMenu-1.0.0.jar"
+    }
+  ],
+  "jar_integrity": "passed",
+  "yaml": "passed",
+  "hard_dependencies": "passed",
+  "korean_menu_fixture_assertions": 29,
+  "actual_paper_runtime_tested": false,
+  "actual_windows_installer_tested": false,
+  "target_minecraft": "26.3",
+  "all_plugins_confirmed_for_target": false,
+  "extra_jars_not_included": [
+    "LuckPerms",
+    "GriefPrevention",
+    "CoreProtect"
+  ]
+}

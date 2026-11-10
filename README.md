@@ -29,3 +29,9 @@
 `economy-spawn/`에는 중앙광장, 시청, 은행, 직업소, 유저 상점 10칸, 초보 농장과 야생 출구가 포함된 현대 소도시형 스폰 생성기가 있습니다.
 설치용 WorldEdit 스키매틱은 `releases/economy-spawn/`에 있습니다.
 `v3_handbuilt`판은 굽은 길·하천·돌다리·경사지붕·목재 골조·불규칙 농장으로 다시 설계한 고품질 버전입니다.
+
+## 경제 야생 플러그인과 쉬프트+F 메뉴
+
+`korean-menu/`에는 직접 만든 한글 메뉴 플러그인과 오프라인 이벤트 검사가 있습니다.
+`survival-pack/`에는 공식 EssentialsX·EssentialsXSpawn·Vault·QuickShop JAR의 배포 묶음 생성기와 한글 신규 설정, 추가 플러그인 다운로드 스크립트가 있습니다.
+설치 ZIP과 단독 메뉴 JAR는 `releases/survival-pack/`에 있습니다. Paper 26.3 전체 호환성 및 실제 서버 실행은 미검증이며, 추천 추가 플러그인 LuckPerms·GriefPrevention·CoreProtect JAR는 ZIP에 포함되지 않습니다. 상세 범위는 해당 설치 안내를 참고하세요.
