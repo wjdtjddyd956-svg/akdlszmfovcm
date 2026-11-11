@@ -1,0 +1,6 @@
+[
+ ["codex","아이템 도감","BOOK"],["achievements","수집 업적","NETHER_STAR"],["forest","숲과 채집","OAK_SAPLING"],["crops","농장과 식량","WHEAT"],["mining","광물과 채굴","IRON_PICKAXE"],["sea","낚시와 바다","COD"],
+ ["crafting","제작과 생활","CRAFTING_TABLE"],["nether","네더 탐사","OBSIDIAN"],["end","엔드 탐험","ELYTRA"],["treasure","탐험과 전리품","CHEST"],["custom_farm","도시 농장","SWEET_BERRIES"],["effects","내 수집 효과","AMETHYST_SHARD"],
+ ["speed","이동 속도","FEATHER"],["mining_speed","채굴 속도","GOLDEN_PICKAXE"],["health","최대 체력","APPLE"],["damage","공격력","IRON_SWORD"],["armor","방어력","IRON_CHESTPLATE"],["attack_speed","공격 속도","CLOCK"],
+ ["knockback","넉백 저항","SHIELD"],["luck","행운","RABBIT_FOOT"],["ready","등록 가능","LIME_DYE"],["missing","미보유","SPYGLASS"],["done","등록 완료","GOLD_INGOT"],["back","뒤로 가기","ARROW"]
+]

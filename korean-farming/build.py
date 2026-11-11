@@ -3,6 +3,8 @@
 from pathlib import Path
 import subprocess,os,zipfile,hashlib,json,shutil,tempfile,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];BASE=Path(os.environ.get('TYCOON_TOOLCHAINS','/workspace/toolchains'));OUT=ROOT/'releases/farming-update';WORK=ROOT/'.build/farming-release';WORK.mkdir(parents=True,exist_ok=True);OUT.mkdir(parents=True,exist_ok=True)
+if 'version: 1.0.0\n' not in (ROOT/'korean-farming/src/main/resources/plugin.yml').read_text():
+ raise SystemExit('이 스크립트는 ee8edb8의 농장 1.0.0 재현용입니다. 최신 메뉴 통합 빌드는 interface-update/build.py를 사용하세요.')
 JDK=BASE/'jdk-25.0.5.0.3/bin';API=BASE/'paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar';DEPS=BASE/'paper-api-build/build/deps';VENDOR=ROOT/'survival-pack/vendor/tycoon'
 def run(args,**kw):return subprocess.run(list(map(str,args)),check=True,**kw)
 def zipped(path,entries):

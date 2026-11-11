@@ -22,9 +22,9 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     record Icon(String id,String label,Material base){}
     private final Map<String,Icon> icons=new LinkedHashMap<>();
     private final Set<UUID> active=new HashSet<>(),manual=new HashSet<>();
-    private NamespacedKey previousModel;
+    private NamespacedKey previousModel;InterfacePack ui;
     static final class Preview implements InventoryHolder {
-        final UUID owner;final Inventory inventory;
+        final UUID owner;final Inventory inventory;boolean uiPage;
         Preview(CityTexturesPlugin plugin,Player p){owner=p.getUniqueId();inventory=plugin.getServer().createInventory(this,54,"시티 이코노미 | 아이콘 미리보기");}
         public Inventory getInventory(){return inventory;}
     }
@@ -38,30 +38,33 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
             }
             if(icons.size()!=32)throw new IOException("아이콘 32종이 필요합니다.");
         }catch(Exception e){getLogger().log(java.util.logging.Level.SEVERE,"도시팩 시작 실패",e);getServer().getPluginManager().disablePlugin(this);return;}
+        try{ui=new InterfacePack(this);}catch(Exception e){getLogger().log(java.util.logging.Level.SEVERE,"통합 메뉴팩 준비 실패",e);getServer().getPluginManager().disablePlugin(this);return;}
         loadManual();getServer().getPluginManager().registerEvents(this,this);
-        for(Player p:getServer().getOnlinePlayers())if(getConfig().getBoolean("수동설정-기억",true)&&!getConfig().getBoolean("자동요청",false)&&manual.contains(p.getUniqueId()))active.add(p.getUniqueId());
-        getLogger().info("시티 이코노미 아이콘 32종 준비 완료. ZIP 적용 후 /도시팩 켜기");
+        for(Player p:getServer().getOnlinePlayers()){ui.join(p);if(ui.ready.contains(p.getUniqueId())||getConfig().getBoolean("수동설정-기억",true)&&manual.contains(p.getUniqueId()))active.add(p.getUniqueId());}
+        getLogger().info("도시 아이콘 32종 + 메뉴·도감 아이콘 24종 준비 완료. 쉬프트+F의 메뉴 리소스팩에서 확인하세요.");
     }
     private void loadManual(){manual.clear();for(String raw:getConfig().getStringList("수동-이용자"))try{manual.add(UUID.fromString(raw));}catch(IllegalArgumentException e){getLogger().warning("잘못된 수동 이용자 UUID를 건너뜁니다.");}}
     private void remember(Player p,boolean enabled){if(enabled)manual.add(p.getUniqueId());else manual.remove(p.getUniqueId());if(getConfig().getBoolean("수동설정-기억",true)){getConfig().set("수동-이용자",manual.stream().map(UUID::toString).sorted().toList());saveConfig();}}
-    @Override public void onDisable(){for(Player p:getServer().getOnlinePlayers()){Inventory top=p.getOpenInventory().getTopInventory();if(top==null)continue;if(top.getHolder() instanceof Preview)p.closeInventory();else clear(top);}active.clear();manual.clear();}
+    @Override public void onDisable(){for(Player p:getServer().getOnlinePlayers()){if(ui!=null)ui.mark(p,false);Inventory top=p.getOpenInventory().getTopInventory();if(top==null)continue;if(top.getHolder() instanceof Preview)p.closeInventory();else clear(top);}active.clear();manual.clear();}
     @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args){
         if(!sender.hasPermission("citytextures.use")){sender.sendMessage("§c도시팩 사용 권한이 없습니다.");return true;}
         if(args.length==1&&Set.of("관리","새로고침").contains(args[0])){
             if(!sender.hasPermission("citytextures.admin")){sender.sendMessage("§c운영자 전용입니다.");return true;}
-            if(args[0].equals("새로고침")){reloadConfig();loadManual();sender.sendMessage("§a도시팩 설정을 다시 읽었습니다.");}
-            sender.sendMessage("§6[도시팩] 아이콘 32종 · 자동 요청 "+getConfig().getBoolean("자동요청",false));
-            try{requestSettings();sender.sendMessage("§aHTTPS ZIP 주소와 SHA-1 형식이 준비됐습니다. 외부 다운로드 성공을 보장하는 검사는 아닙니다.");}catch(IllegalArgumentException e){sender.sendMessage("§e"+e.getMessage());}return true;
+            if(args[0].equals("새로고침")){reloadConfig();loadManual();ui.reload();sender.sendMessage("§a도시팩 설정을 다시 읽었습니다.");}
+            sender.sendMessage("§6[도시팩] 기존 32종 + 메뉴 24종 · 통합 자동 요청 "+ui.config.getBoolean("접속시-요청",true));
+            try{if(ui.enabled())ui.request();else requestSettings();sender.sendMessage("§aHTTPS ZIP 주소와 SHA-1 형식이 준비됐습니다. 외부 다운로드 성공을 보장하는 검사는 아닙니다.");}catch(IllegalArgumentException e){sender.sendMessage("§e"+e.getMessage());}return true;
         }
         if(!(sender instanceof Player p)){sender.sendMessage("게임 안에서 /도시팩을 사용하세요.");return true;}
         if(args.length==1)switch(args[0]){
             case "미리보기"->{preview(p);return true;}
             case "켜기"->{active.add(p.getUniqueId());remember(p,true);decorate(p,p.getOpenInventory().getTopInventory(),p.getOpenInventory().getTitle());p.sendMessage("§a도시 메뉴 아이콘을 켰습니다. ZIP을 적용하지 않았다면 게임 설정에서 먼저 선택하세요.");return true;}
-            case "끄기"->{active.remove(p.getUniqueId());remember(p,false);clear(p.getOpenInventory().getTopInventory());p.sendMessage("§e도시 메뉴 아이콘을 껐습니다. 클라이언트 리소스팩 선택은 게임 설정에서 변경하세요.");return true;}
-            case "받기"->{try{request(p);}catch(IllegalArgumentException e){p.sendMessage("§c"+e.getMessage());}return true;}
+            case "메뉴켜기"->{ui.manual(p,true);active.add(p.getUniqueId());decorate(p,p.getOpenInventory().getTopInventory(),p.getOpenInventory().getTitle());p.sendMessage("§a통합팩 직접 설치 확인 완료. 쉬프트+F로 메뉴를 여세요.");return true;}
+            case "메뉴미리보기"->{previewUI(p);return true;}
+            case "끄기"->{ui.manual(p,false);active.remove(p.getUniqueId());remember(p,false);clear(p.getOpenInventory().getTopInventory());p.sendMessage("§e도시 메뉴 아이콘을 껐습니다. 클라이언트 리소스팩 선택은 게임 설정에서 변경하세요.");return true;}
+            case "받기"->{try{ui.request(p);}catch(IllegalArgumentException e){p.sendMessage("§c"+e.getMessage());}return true;}
             default->{}
         }
-        p.sendMessage("§6[시티 이코노미] 도시 생활 경제 리소스팩");p.sendMessage("§e/도시팩 미리보기 §7아이콘 보기");p.sendMessage("§e/도시팩 켜기 · /도시팩 끄기 §7내 메뉴 아이콘 설정");p.sendMessage("§e/도시팩 받기 §7서버 팩 다운로드 요청");return true;
+        p.sendMessage("§6[시티 이코노미] 도시 생활 경제 리소스팩");p.sendMessage("§e/도시팩 미리보기 §7아이콘 보기");p.sendMessage("§e/도시팩 켜기 · /도시팩 끄기 §7내 메뉴 아이콘 설정");p.sendMessage("§e/도시팩 받기 §7통합팩 다운로드 요청");p.sendMessage("§e/도시팩 메뉴미리보기 §7전용 아이콘·다운로드·직접 설치 확인");return true;
     }
     record Request(String url,byte[] sha1){}
     Request requestSettings(){
@@ -72,12 +75,14 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
         return new Request(url,HexFormat.of().parseHex(hex));
     }
     void request(Player p){Request request=requestSettings();p.addResourcePack(PACK_ID,request.url,request.sha1,getConfig().getString("요청-문구","도시 경제 팩을 적용할까요?"),false);p.sendMessage("§e도시팩 다운로드 요청을 보냈습니다. 적용이 완료되면 메뉴 아이콘이 켜집니다.");}
-    @EventHandler public void join(PlayerJoinEvent e){Player p=e.getPlayer();if(!getConfig().getBoolean("자동요청",false)){if(getConfig().getBoolean("수동설정-기억",true)&&manual.contains(p.getUniqueId()))active.add(p.getUniqueId());return;}
-        getServer().getScheduler().runTaskLater(this,()->{if(!p.isOnline()||!p.hasPermission("citytextures.use"))return;try{request(p);}catch(IllegalArgumentException failure){getLogger().warning(failure.getMessage());}},40L);
+    public boolean isMenuPackAutoEnabled(Player p){return ui!=null&&ui.auto(p);}
+    @EventHandler public void join(PlayerJoinEvent e){Player p=e.getPlayer();ui.join(p);if(ui.ready.contains(p.getUniqueId())||getConfig().getBoolean("수동설정-기억",true)&&manual.contains(p.getUniqueId()))active.add(p.getUniqueId());
+        if(!isMenuPackAutoEnabled(p)&&!getConfig().getBoolean("자동요청",false))return;
+        getServer().getScheduler().runTaskLater(this,()->{if(!p.isOnline()||!p.hasPermission("citytextures.use"))return;try{ui.request(p);}catch(IllegalArgumentException failure){getLogger().warning(failure.getMessage());}},40L);
     }
-    @EventHandler public void quit(PlayerQuitEvent e){active.remove(e.getPlayer().getUniqueId());}
+    @EventHandler public void quit(PlayerQuitEvent e){active.remove(e.getPlayer().getUniqueId());ui.ready.remove(e.getPlayer().getUniqueId());}
     @EventHandler public void packStatus(PlayerResourcePackStatusEvent e){
-        if(!PACK_ID.equals(e.getID()))return;Player p=e.getPlayer();
+        if(!PACK_ID.equals(e.getID()))return;ui.status(e);Player p=e.getPlayer();
         switch(e.getStatus()){
             case SUCCESSFULLY_LOADED->{if(p.hasPermission("citytextures.use")){active.add(p.getUniqueId());decorate(p,p.getOpenInventory().getTopInventory(),p.getOpenInventory().getTitle());p.sendMessage("§a도시팩 적용 완료. /메뉴 또는 쉬프트+F로 확인하세요.");}}
             case DECLINED,FAILED_DOWNLOAD,INVALID_URL,FAILED_RELOAD,DISCARDED->{active.remove(p.getUniqueId());clear(p.getOpenInventory().getTopInventory());p.sendMessage("§e도시팩이 적용되지 않아 기본 메뉴 아이콘을 사용합니다. 게임은 계속 이용할 수 있습니다.");}
@@ -86,11 +91,13 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     }
     boolean trusted(Inventory inventory){
         if(inventory==null||inventory.getHolder()==null)return false;Class<?> holder=inventory.getHolder().getClass();String name=holder.getName();
-        String owner=switch(name){case "kr.minecraft.survival.menu.KoreanMenuPlugin$Menu"->"KoreanMenu";case "kr.minecraft.survival.economy.KoreanEconomyPlugin$Market","kr.minecraft.survival.economy.Tycoon$Screen","kr.minecraft.survival.economy.LifeProgress$Menu"->"KoreanEconomy";default->null;};
+        String owner=switch(name){case "kr.minecraft.survival.menu.KoreanMenuPlugin$Menu"->"KoreanMenu";case "kr.minecraft.survival.codex.KoreanCodexPlugin$Screen"->"KoreanCodex";case "kr.minecraft.survival.farming.FarmMenus$Screen"->"KoreanFarming";case "kr.minecraft.survival.economy.KoreanEconomyPlugin$Market","kr.minecraft.survival.economy.Tycoon$Screen","kr.minecraft.survival.economy.LifeProgress$Menu"->"KoreanEconomy";default->null;};
         if(owner==null)return false;Plugin plugin=getServer().getPluginManager().getPlugin(owner);if(plugin==null||!plugin.isEnabled())return false;try{return Class.forName(plugin.getDescription().getMain(),false,holder.getClassLoader()).isInstance(plugin);}catch(ClassNotFoundException e){return false;}
     }
     String model(String title,int slot,ItemStack item){
-        if(item==null||!item.hasItemMeta())return null;ItemMeta meta=item.getItemMeta();if(!meta.hasDisplayName())return null;String name=ChatColor.stripColor(meta.getDisplayName());
+        if(item==null||!item.hasItemMeta())return null;ItemMeta meta=item.getItemMeta();if(!meta.hasDisplayName())return null;String explicit=meta.getPersistentDataContainer().get(new NamespacedKey("tycoon","ui_icon"),PersistentDataType.STRING);if(explicit!=null&&(icons.containsKey(explicit)||ui!=null&&ui.icons.containsKey(explicit)))return explicit;
+        if(title.startsWith("도감")||title.startsWith("아이템 도감")||title.startsWith("수집 업적")||title.startsWith("농장")||title.startsWith("도시 농장"))return null;
+        String name=ChatColor.stripColor(meta.getDisplayName());
         // The upgrade slot contains a copy of the actual tool. Only decorate interface controls.
         if(title.contains("도구 강화")&&slot==22)return null;
         for(Icon icon:icons.values())if(name.equals(icon.label))return icon.id;
@@ -112,7 +119,7 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     void decorate(Player p,Inventory inventory,String title){
         if(!active.contains(p.getUniqueId())||!p.hasPermission("citytextures.use")||!trusted(inventory))return;
         for(int slot=0;slot<inventory.getSize();slot++){
-            ItemStack original=inventory.getItem(slot);String model=model(title,slot,original);if(model==null)continue;
+            ItemStack original=inventory.getItem(slot);String model=model(title,slot,original);if(model==null||model.startsWith("ui/")&&!ui.ready.contains(p.getUniqueId()))continue;
             ItemStack shown=original.clone();ItemMeta meta=shown.getItemMeta();if(!meta.getPersistentDataContainer().has(previousModel,PersistentDataType.STRING))meta.getPersistentDataContainer().set(previousModel,PersistentDataType.STRING,meta.hasItemModel()?meta.getItemModel().toString():"");
             meta.setItemModel(new NamespacedKey("tycoon",model));shown.setItemMeta(meta);inventory.setItem(slot,shown);
         }
@@ -129,9 +136,11 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     void preview(Player p){
         Preview menu=new Preview(this,p);int[] slots={10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43,45,46,47,48};int index=0;
         for(Icon icon:icons.values()){ItemStack item=new ItemStack(icon.base);ItemMeta meta=item.getItemMeta();meta.setDisplayName("§f"+icon.label);meta.setLore(List.of("§7시티 이코노미 · 디자인 미리보기"));meta.setItemModel(new NamespacedKey("tycoon",icon.id));item.setItemMeta(meta);menu.inventory.setItem(slots[index++],item);}
-        ItemStack close=new ItemStack(Material.BARRIER);ItemMeta meta=close.getItemMeta();meta.setDisplayName("§c닫기");close.setItemMeta(meta);menu.inventory.setItem(49,close);p.openInventory(menu.inventory);
+        ItemStack close=new ItemStack(Material.BARRIER);ItemMeta meta=close.getItemMeta();meta.setDisplayName("§c닫기");close.setItemMeta(meta);menu.inventory.setItem(49,close);menu.inventory.setItem(53,navigation("§b메뉴·도감 아이콘 24종 보기"));p.openInventory(menu.inventory);
     }
-    @EventHandler(priority=EventPriority.HIGHEST) public void click(InventoryClickEvent e){if(!(e.getView().getTopInventory().getHolder() instanceof Preview menu))return;e.setCancelled(true);if(e.getRawSlot()==49&&e.getClick()==ClickType.LEFT&&e.getWhoClicked() instanceof Player p&&menu.owner.equals(p.getUniqueId()))getServer().getScheduler().runTask(this,()->{if(p.isOnline()&&p.getOpenInventory().getTopInventory()==menu.inventory)p.closeInventory();});}
+    ItemStack navigation(String label){ItemStack s=new ItemStack(label.contains("닫기")?Material.BARRIER:label.contains("직접")?Material.LIME_CONCRETE:label.contains("받기")?Material.PAINTING:Material.ARROW);var m=s.getItemMeta();m.setDisplayName(label);m.setLore(List.of(label.contains("직접")?"§7게임 설정에서 새 통합팩을 선택한 뒤 누르세요.":"§7왼쪽 클릭으로 선택합니다."));s.setItemMeta(m);return s;}
+    void previewUI(Player p){Preview menu=new Preview(this,p);menu.uiPage=true;int[] slots={10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39};int i=0;for(Icon icon:ui.icons.values()){ItemStack item=new ItemStack(icon.base);var m=item.getItemMeta();m.setDisplayName("§f"+icon.label);m.setLore(List.of("§7도감·업적·상태 구분용 전용 아이콘",ui.ready.contains(p.getUniqueId())?"§a통합팩 적용 확인됨":"§e통합팩을 먼저 받거나 직접 설치 확인하세요."));if(ui.ready.contains(p.getUniqueId()))m.setItemModel(NamespacedKey.fromString("tycoon:"+icon.id));item.setItemMeta(m);menu.inventory.setItem(slots[i++],item);}menu.inventory.setItem(45,navigation("§e기존 도시 아이콘 보기"));menu.inventory.setItem(49,navigation("§c닫기"));menu.inventory.setItem(51,navigation("§a직접 설치 확인"));menu.inventory.setItem(53,navigation("§b통합팩 받기"));p.openInventory(menu.inventory);}
+    @EventHandler(priority=EventPriority.HIGHEST) public void click(InventoryClickEvent e){if(!(e.getView().getTopInventory().getHolder() instanceof Preview menu))return;e.setCancelled(true);if(e.getClick()!=ClickType.LEFT||!(e.getWhoClicked() instanceof Player p)||!menu.owner.equals(p.getUniqueId()))return;int slot=e.getRawSlot();getServer().getScheduler().runTask(this,()->{if(!p.isOnline()||p.getOpenInventory().getTopInventory()!=menu.inventory||!p.hasPermission("citytextures.use"))return;try{if(slot==49)p.closeInventory();else if(slot==45&&menu.uiPage)preview(p);else if(slot==51&&menu.uiPage){ui.manual(p,true);active.add(p.getUniqueId());previewUI(p);p.sendMessage("§a통합팩 직접 설치 확인을 저장했습니다.");}else if(slot==53){if(menu.uiPage)ui.request(p);else previewUI(p);}}catch(IllegalArgumentException ex){p.sendMessage("§c"+ex.getMessage());}});}
     @EventHandler(priority=EventPriority.HIGHEST) public void drag(InventoryDragEvent e){if(e.getView().getTopInventory().getHolder() instanceof Preview)e.setCancelled(true);}
-    @Override public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){if(args.length!=1)return List.of();return List.of("미리보기","켜기","끄기","받기").stream().filter(v->v.startsWith(args[0])).toList();}
+    @Override public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){if(args.length!=1)return List.of();return List.of("미리보기","메뉴미리보기","메뉴켜기","켜기","끄기","받기").stream().filter(v->v.startsWith(args[0])).toList();}
 }

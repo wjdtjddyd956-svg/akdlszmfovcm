@@ -9,6 +9,8 @@ from PIL import Image,ImageDraw,ImageFont
 import io,json,hashlib,zipfile,subprocess,os,shutil,html,base64
 
 ROOT=Path(__file__).resolve().parents[2];HERE=ROOT/'city-resourcepack';OUT=ROOT/'releases/city-resourcepack';BUILD=HERE/'build'
+if 'version: 1.0.0\n' not in (ROOT/'city-textures/src/main/resources/plugin.yml').read_text():
+    raise SystemExit('이 스크립트는 기존 도시팩 1.0 재현용입니다. 최신 메뉴 통합팩은 interface-update/build.py로 빌드하세요.')
 OUT.mkdir(parents=True,exist_ok=True);BUILD.mkdir(exist_ok=True)
 CAT=json.loads((HERE/'catalog.json').read_text());ITEMS=CAT['items'];BLOCKS=CAT['blocks'];BASE=Path(os.environ.get('TYCOON_TOOLCHAINS','/workspace/toolchains'))
 def png(image):

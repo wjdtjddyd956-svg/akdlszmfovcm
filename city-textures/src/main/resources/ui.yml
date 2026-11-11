@@ -1,0 +1,7 @@
+# 새 메뉴 통합팩만의 설정입니다. 기존 config.yml은 보존합니다.
+사용: true
+접속시-요청: true
+팩-주소: https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/CityEconomy-Interface-26.3-1.2.0.zip
+체크섬-SHA1: '@UI_PACK_SHA1@'
+# 클라이언트에 직접 설치한 뒤 메뉴의 직접 설치 확인 또는 /도시팩 메뉴켜기를 사용합니다.
+직접설치-확인: []

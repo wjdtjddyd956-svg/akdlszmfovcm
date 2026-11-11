@@ -1,5 +1,5 @@
 name: KoreanCodex
-version: 1.1.0
+version: 1.2.0
 main: kr.minecraft.survival.codex.KoreanCodexPlugin
 api-version: '26.3'
 description: 85종 아이템 영구 도감, 13개 수집 업적과 작은 능력치 보너스

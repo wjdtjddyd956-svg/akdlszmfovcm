@@ -1,0 +1,16 @@
+{
+  "version": "1.2.0",
+  "minecraft": "26.3",
+  "resource_format": [
+    97,
+    1
+  ],
+  "new_ui_icons": 24,
+  "existing_city_icons": 32,
+  "farm_item_icons": 15,
+  "crop_growth_models": 20,
+  "base_sha1": "e76e2c98f7659c07cea00050ca87edf88267af7e",
+  "complete_sha1": "1cce824f9d242c960eff4140cb876302a4d88ded",
+  "original_atlas_sha256": "ef9922469876b56df9390a6b5424c20af5e00318b3ee8fdae6acd33530e1cabc",
+  "native_client_visual_tested": false
+}

@@ -1,0 +1,24 @@
+ui/codex	아이템 도감	BOOK
+ui/achievements	수집 업적	NETHER_STAR
+ui/forest	숲과 채집	OAK_SAPLING
+ui/crops	농장과 식량	WHEAT
+ui/mining	광물과 채굴	IRON_PICKAXE
+ui/sea	낚시와 바다	COD
+ui/crafting	제작과 생활	CRAFTING_TABLE
+ui/nether	네더 탐사	OBSIDIAN
+ui/end	엔드 탐험	ELYTRA
+ui/treasure	탐험과 전리품	CHEST
+ui/custom_farm	도시 농장	SWEET_BERRIES
+ui/effects	내 수집 효과	AMETHYST_SHARD
+ui/speed	이동 속도	FEATHER
+ui/mining_speed	채굴 속도	GOLDEN_PICKAXE
+ui/health	최대 체력	APPLE
+ui/damage	공격력	IRON_SWORD
+ui/armor	방어력	IRON_CHESTPLATE
+ui/attack_speed	공격 속도	CLOCK
+ui/knockback	넉백 저항	SHIELD
+ui/luck	행운	RABBIT_FOOT
+ui/ready	등록 가능	LIME_DYE
+ui/missing	미보유	SPYGLASS
+ui/done	등록 완료	GOLD_INGOT
+ui/back	뒤로 가기	ARROW

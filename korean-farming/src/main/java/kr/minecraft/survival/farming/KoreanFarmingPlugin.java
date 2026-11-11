@@ -20,7 +20,7 @@ import static kr.minecraft.survival.economy.domain.ActionEngine.*;
 public class KoreanFarmingPlugin extends JavaPlugin implements Listener {
     static final UUID PACK_ID=UUID.fromString("734c28bf-cf02-4f7d-b9cc-d68b04c97a02");
     KoreanEconomyPlugin core;StateStore db;ActionEngine engine;FarmStore plots;FarmItems items;FarmProtection protection;FarmRenderer renderer;FarmMenus menus;
-    final Set<UUID> ready=new HashSet<>();private final Map<UUID,Long> cooldown=new HashMap<>();boolean healthy=true;
+    final Set<UUID> ready=new HashSet<>(),nativeReady=new HashSet<>(),menuReady=new HashSet<>();private final Map<UUID,Long> cooldown=new HashMap<>();boolean healthy=true;
     @Override public void onEnable(){
         saveDefaultConfig();try{
             var dependency=getServer().getPluginManager().getPlugin("KoreanEconomy");if(!(dependency instanceof KoreanEconomyPlugin economy)||!economy.isEnabled())throw new IllegalStateException("KoreanEconomy 2.0.2 이상이 필요합니다.");core=economy;
@@ -32,8 +32,10 @@ public class KoreanFarmingPlugin extends JavaPlugin implements Listener {
             getLogger().info("커스텀 농장 5종 · 씨앗/NPC/농부/요리/도감 연결 완료: /농사");
         }catch(RuntimeException|LinkageError e){getLogger().log(Level.SEVERE,"농사 시작 실패: 기존 DB는 보존합니다. 경제 2.0.2와 함께 설치하세요.",e);getServer().getPluginManager().disablePlugin(this);}
     }
-    @Override public void onDisable(){if(menus!=null)menus.close();if(renderer!=null)renderer.close();ready.clear();cooldown.clear();/* shared core DB is owned by KoreanEconomy */}
+    @Override public void onDisable(){if(menus!=null)menus.close();if(renderer!=null)renderer.close();ready.clear();nativeReady.clear();menuReady.clear();cooldown.clear();/* shared core DB is owned by KoreanEconomy */}
     /** Stable codex API. Never trusts item display name alone. */
+    public void setMenuPackReady(Player p,boolean value){if(value)menuReady.add(p.getUniqueId());else menuReady.remove(p.getUniqueId());updatePackReady(p);}
+    private void updatePackReady(Player p){if(nativeReady.contains(p.getUniqueId())||menuReady.contains(p.getUniqueId()))ready.add(p.getUniqueId());else ready.remove(p.getUniqueId());renderer.visibility(p);}
     public ItemStack item(String id){return items.item(id);}
     public ItemStack previewItem(String id,Player viewer){ItemStack s=item(id);if(!ready.contains(viewer.getUniqueId())){var m=s.getItemMeta();m.setItemModel(null);s.setItemMeta(m);}return s;}
     public boolean isItem(ItemStack stack,String id){return items.matches(stack,id);}
@@ -86,14 +88,15 @@ public class KoreanFarmingPlugin extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void consume(PlayerItemConsumeEvent e){String id=items.id(e.getItem());if(id==null||FarmRules.DISHES.stream().noneMatch(d->d.id().equals(id)))return;e.setCancelled(true);Player player=e.getPlayer();if(!isItem(e.getItem(),id)||!throttle(player))return;getServer().getScheduler().runTask(this,()->{if(!player.isOnline())return;safe(player,()->{
         survival(player);var dish=FarmRules.dish(id);InventoryPlan plan=new InventoryPlan(player);plan.take(s->isItem(s,id),1);plan.give(new ItemStack(dish.containerReturn()),1);var out=engine.execute(player.getUniqueId(),"FARM_EAT","farm:eat:"+UUID.randomUUID(),0,Direction.NONE,id,null,plan,()->{});result(player,out,dish.name()+"을 먹었습니다.");if(out.status()==Status.DONE){player.setFoodLevel(Math.min(20,player.getFoodLevel()+dish.food()));player.setSaturation(Math.min(player.getFoodLevel(),player.getSaturation()+dish.saturation()));}
     });});}
-    void autoRequest(Player p){if(getConfig().getBoolean("리소스팩.접속시-요청",true))getServer().getScheduler().runTaskLater(this,()->{if(p.isOnline())safe(p,()->request(p));},60);}
+    boolean combinedAuto(Player p){var city=getServer().getPluginManager().getPlugin("CityTextures");if(city==null||!city.isEnabled())return false;try{return Boolean.TRUE.equals(city.getClass().getMethod("isMenuPackAutoEnabled",Player.class).invoke(city,p));}catch(ReflectiveOperationException ex){return false;}}
+    void autoRequest(Player p){if(getConfig().getBoolean("리소스팩.접속시-요청",true))getServer().getScheduler().runTaskLater(this,()->{if(p.isOnline()&&!combinedAuto(p))safe(p,()->request(p));},60);}
     void request(Player p){String url=getConfig().getString("리소스팩.주소","");String hash=getConfig().getString("리소스팩.SHA1","");URI uri=URI.create(url);if(!uri.getScheme().equals("https")||uri.getHost()==null||!hash.matches("[a-fA-F0-9]{40}"))throw new StateStore.Denied("운영자가 리소스팩의 HTTPS 주소와 SHA1을 설정해야 합니다.");p.addResourcePack(PACK_ID,url,HexFormat.of().parseHex(hash),"커스텀 농작물 5종과 도시 아이콘을 적용할까요?",false);p.sendMessage("§e농장 리소스팩 요청을 보냈습니다. 다운로드·적용을 허용하세요.");}
-    @EventHandler public void status(PlayerResourcePackStatusEvent e){if(!PACK_ID.equals(e.getID()))return;if(e.getStatus()==PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED){ready.add(e.getPlayer().getUniqueId());e.getPlayer().sendMessage("§a농장 리소스팩 적용 완료! /농사 로 시작하세요.");}else if(e.getStatus()!=PlayerResourcePackStatusEvent.Status.ACCEPTED&&e.getStatus()!=PlayerResourcePackStatusEvent.Status.DOWNLOADED)ready.remove(e.getPlayer().getUniqueId());renderer.visibility(e.getPlayer());}
+    @EventHandler public void status(PlayerResourcePackStatusEvent e){if(!PACK_ID.equals(e.getID()))return;if(e.getStatus()==PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED){nativeReady.add(e.getPlayer().getUniqueId());e.getPlayer().sendMessage("§a농장 리소스팩 적용 완료! /농사 로 시작하세요.");}else if(e.getStatus()!=PlayerResourcePackStatusEvent.Status.ACCEPTED&&e.getStatus()!=PlayerResourcePackStatusEvent.Status.DOWNLOADED)nativeReady.remove(e.getPlayer().getUniqueId());updatePackReady(e.getPlayer());}
     @EventHandler public void join(PlayerJoinEvent e){autoRequest(e.getPlayer());}
-    @EventHandler public void quit(PlayerQuitEvent e){ready.remove(e.getPlayer().getUniqueId());cooldown.remove(e.getPlayer().getUniqueId());}
+    @EventHandler public void quit(PlayerQuitEvent e){ready.remove(e.getPlayer().getUniqueId());nativeReady.remove(e.getPlayer().getUniqueId());menuReady.remove(e.getPlayer().getUniqueId());cooldown.remove(e.getPlayer().getUniqueId());}
     @EventHandler public void world(PlayerChangedWorldEvent e){renderer.visibility(e.getPlayer());}
     @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args){if(command.getName().equals("농사관리")){admin(sender,args);return true;}if(!(sender instanceof Player p)){sender.sendMessage("게임 안에서 사용하세요.");return true;}safe(p,()->{
-        switch(args.length==0?"안내":args[0]){case "팩받기"->request(p);case "팩확인"->{ready.add(p.getUniqueId());renderer.visibility(p);p.sendMessage("§a수동 설치 확인을 저장했습니다. 작물이 보이지 않으면 /농사 팩받기 를 사용하세요.");}case "요리"->menus.kitchen(p,null);case "회수"->{Block target=p.getTargetBlockExact(6);var plot=target==null?null:touching(target);if(plot==null)throw new StateStore.Denied("회수할 작물의 경작지를 바라보세요.");menus.reclaim(p,plot);}default->menus.home(p);}
+        switch(args.length==0?"안내":args[0]){case "팩받기"->request(p);case "팩확인"->{nativeReady.add(p.getUniqueId());updatePackReady(p);p.sendMessage("§a수동 설치 확인을 저장했습니다. 작물이 보이지 않으면 /농사 팩받기 를 사용하세요.");}case "요리"->menus.kitchen(p,null);case "회수"->{Block target=p.getTargetBlockExact(6);var plot=target==null?null:touching(target);if(plot==null)throw new StateStore.Denied("회수할 작물의 경작지를 바라보세요.");menus.reclaim(p,plot);}default->menus.home(p);}
     });return true;}
     void admin(CommandSender sender,String[] args){if(!sender.hasPermission("koreanfarming.admin")){sender.sendMessage("§c운영자 전용입니다.");return;}try{
         if(args.length==1&&args[0].equals("목록")){for(var plot:plots.all())sender.sendMessage("§7"+plot.id()+" | "+plot.owner()+" | "+plot.crop()+" | "+plot.world()+" "+plot.x()+","+plot.y()+","+plot.z()+" | "+plot.state());}

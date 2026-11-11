@@ -1,0 +1,2809 @@
+{
+  "main": {
+    "title": "경제 야생 | 마을 수첩",
+    "slots": [
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BOOK",
+        "name": "§6Farmer님의 마을 수첩",
+        "lore": [
+          "§7쉬프트+F로 언제든 열기",
+          "§7일반 F키는 보조 손 바꾸기"
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GOLD_NUGGET",
+        "name": "§6경제 · 거래",
+        "lore": [
+          "§7지갑 · 송금 · NPC 상점 · 땅"
+        ],
+        "glow": false
+      },
+      {
+        "material": "GOLD_INGOT",
+        "name": "§8내 돈 확인 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:wallet",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "EMERALD",
+        "name": "§8송금 안내 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:transfer",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CHEST",
+        "name": "§6NPC 상점 안내",
+        "lore": [
+          "§7마을의 잡화·농산물·요리 상인을 찾아가세요.",
+          "§7NPC 우클릭으로 구매·판매합니다."
+        ],
+        "model": "tycoon:shop",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GOLDEN_SHOVEL",
+        "name": "§b내 땅 보호",
+        "lore": [
+          "§7땅 보호와 친구 초대 방법"
+        ],
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BOOK",
+        "name": "§b수집 · 농장",
+        "lore": [
+          "§7도감 · 일일 보상 · 거래소 · 농장 · 업적"
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BOOK",
+        "name": "§b아이템 도감",
+        "lore": [
+          "§7등록 0 / 85 · 등록 가능 1종",
+          "§7등록 가능·미보유·등록 완료를 구분합니다.",
+          "§e왼쪽 클릭: 수집 목록"
+        ],
+        "model": "tycoon:ui/codex",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "SUNFLOWER",
+        "name": "§e일일 보상",
+        "lore": [
+          "§7하루에 한 번 보상을 받습니다."
+        ],
+        "model": "tycoon:daily_reward",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ENDER_CHEST",
+        "name": "§8유저 거래소 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:seller_crate",
+        "glow": false
+      },
+      {
+        "material": "WHEAT",
+        "name": "§a커스텀 농사",
+        "lore": [
+          "§7딸기 · 토마토 · 옥수수 · 쌀 · 오이",
+          "§7씨앗은 농산물·잡화 NPC에서 구매",
+          "§e왼쪽 클릭: 농장 안내"
+        ],
+        "model": "tycoon:ui/custom_farm",
+        "glow": false
+      },
+      {
+        "material": "GOLDEN_CHESTPLATE",
+        "name": "§6수집 업적",
+        "lore": [
+          "§7수집 목표와 실제 달성 진행률",
+          "§e왼쪽 클릭: 업적 보기"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "COMPASS",
+        "name": "§a이동 · 생활",
+        "lore": [
+          "§7집 저장 · 귀가 · 스폰 · 도움말"
+        ],
+        "glow": false
+      },
+      {
+        "material": "OAK_DOOR",
+        "name": "§8집 위치 저장 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:home_key",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "RED_BED",
+        "name": "§8집으로 이동 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:home_door",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "COMPASS",
+        "name": "§8스폰으로 이동 §7[준비 중]",
+        "lore": [
+          "§7이 기능이 아직 활성화되지 않았습니다.",
+          "§7운영자에게 확인을 요청하세요."
+        ],
+        "model": "tycoon:city_spawn",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§e서버 도움말",
+        "lore": [
+          "§7거래·텔레포트·기본 명령어"
+        ],
+        "model": "tycoon:help_book",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "EXPERIENCE_BOTTLE",
+        "name": "§d성장 · 직업",
+        "lore": [
+          "§7직업 · 요리 · 강화 · 임무"
+        ],
+        "glow": false
+      },
+      {
+        "material": "WHEAT",
+        "name": "§a직업 선택·숙련도",
+        "lore": [],
+        "model": "tycoon:jobs_case",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CAMPFIRE",
+        "name": "§6요리 만들기",
+        "lore": [],
+        "model": "tycoon:cooking_pan",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ANVIL",
+        "name": "§b도구 강화",
+        "lore": [],
+        "model": "tycoon:upgrade_anvil",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§e오늘의 임무",
+        "lore": [],
+        "model": "tycoon:quest_clipboard",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 메뉴 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "PAINTING",
+        "name": "§b메뉴 리소스팩",
+        "lore": [
+          "§7전용 아이콘으로 기능을 구분합니다.",
+          "§e왼쪽 클릭: 미리보기·팩 받기·설치 확인"
+        ],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      }
+    ]
+  },
+  "codex": {
+    "title": "아이템 도감 | 85종 수집",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BOOK",
+        "name": "§b나의 수집 도감",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 85 §7(0%)",
+          "§a지금 등록 가능: 1종",
+          "§7기본 아이템·정품 수확물 1개 소비 · 영구 등록",
+          "§7분야를 선택하면 보유 수량과 실제 보상을 확인합니다."
+        ],
+        "model": "tycoon:ui/codex",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_SAPLING",
+        "name": "§f숲과 채집",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 1종",
+          "§7주요 효과: 이동 속도",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/forest",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WHEAT",
+        "name": "§f농장과 식량",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 최대 체력",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/crops",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "DIAMOND_PICKAXE",
+        "name": "§f광물과 채굴",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 채굴 속도",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/mining",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "FISHING_ROD",
+        "name": "§f낚시와 바다",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 행운",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/sea",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CRAFTING_TABLE",
+        "name": "§f제작과 생활",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 방어력",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/crafting",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "NETHERRACK",
+        "name": "§f네더 탐사",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 공격력",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/nether",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "END_STONE",
+        "name": "§f엔드 탐험",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 공격 속도",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/end",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "TOTEM_OF_UNDYING",
+        "name": "§f탐험과 전리품",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 넉백 저항",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/treasure",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WHEAT",
+        "name": "§f도시 농장",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 5 §7(0%)",
+          "§a등록 가능 0종",
+          "§7주요 효과: 최대 체력",
+          "§e왼쪽 클릭: 분야 열기"
+        ],
+        "model": "tycoon:ui/custom_farm",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "NETHER_STAR",
+        "name": "§6수집 업적",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 13 §7(0%)",
+          "§7목표별 진행률과 추가 보상"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "APPLE",
+        "name": "§a내 수집 효과",
+        "lore": [
+          "§7현재 적용량·전체 상한·효과 켜기/끄기"
+        ],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      }
+    ]
+  },
+  "category": {
+    "title": "도감 | 숲과 채집 · 전체",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_SAPLING",
+        "name": "§b숲과 채집 · 전체",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7보유 수량은 가방 36칸의 등록 가능한 정품 기준",
+          "§7이름·마법·손상·추가 정보가 없는 기본 아이템"
+        ],
+        "model": "tycoon:ui/forest",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_LOG",
+        "name": "§b[등록 가능] 참나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e3개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§e왼쪽 클릭: 1개 소비·실제 효과 확인"
+        ],
+        "glow": false
+      },
+      {
+        "material": "SPRUCE_LOG",
+        "name": "§7[미보유] 가문비나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "BIRCH_LOG",
+        "name": "§7[미보유] 자작나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "JUNGLE_LOG",
+        "name": "§7[미보유] 정글나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "ACACIA_LOG",
+        "name": "§7[미보유] 아카시아 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GOLD_INGOT",
+        "name": "§6분야 완성 업적",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 이동 속도 +0.42%"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "DARK_OAK_LOG",
+        "name": "§7[미보유] 짙은 참나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "MANGROVE_LOG",
+        "name": "§7[미보유] 맹그로브 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "CHERRY_LOG",
+        "name": "§7[미보유] 벚나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "PALE_OAK_LOG",
+        "name": "§7[미보유] 창백한 참나무 원목",
+        "lore": [
+          "§7희귀도: 희귀",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.48%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "BAMBOO_BLOCK",
+        "name": "§7[미보유] 대나무 블록",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "LIME_DYE",
+        "name": "§b● 전체",
+        "lore": [
+          "§7왼쪽 클릭: 전체 아이템만 보기"
+        ],
+        "model": "tycoon:ui/codex",
+        "glow": true
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 등록 가능",
+        "lore": [
+          "§7왼쪽 클릭: 등록 가능 아이템만 보기"
+        ],
+        "model": "tycoon:ui/ready",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 미보유",
+        "lore": [
+          "§7왼쪽 클릭: 미보유 아이템만 보기"
+        ],
+        "model": "tycoon:ui/missing",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 등록 완료",
+        "lore": [
+          "§7왼쪽 클릭: 등록 완료 아이템만 보기"
+        ],
+        "model": "tycoon:ui/done",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ARROW",
+        "name": "§e전체 도감",
+        "lore": [],
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "APPLE",
+        "name": "§a내 수집 효과",
+        "lore": [],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      }
+    ]
+  },
+  "confirmation": {
+    "title": "도감 등록 | 1개 소비 확인",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BOOK",
+        "name": "§e아이템 소비와 실제 효과를 확인하세요.",
+        "lore": [
+          "§7보유 수량과 상한을 계산한 결과입니다."
+        ],
+        "model": "tycoon:ui/codex",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_LOG",
+        "name": "§f참나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f등록 가능한 보유 수량: §e3개",
+          "§c확인하면 정품 아이템 1개가 소비됩니다.",
+          "§7등록 후 아이템을 돌려주지 않습니다.",
+          "§a실제 증가: 이동 속도 +0.12%"
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "LIME_CONCRETE",
+        "name": "§a확인 · 1개 소비해 영구 등록",
+        "lore": [
+          "§c실제 아이템 1개 소비"
+        ],
+        "model": "tycoon:confirm",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "RED_CONCRETE",
+        "name": "§c취소 · 아이템 유지",
+        "lore": [],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      }
+    ]
+  },
+  "registered": {
+    "title": "도감 | 숲과 채집 · 전체",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_SAPLING",
+        "name": "§b숲과 채집 · 전체",
+        "lore": [
+          "§b■§8■■■■■■■■■ §f1 / 10 §7(10%)",
+          "§7보유 수량은 가방 36칸의 등록 가능한 정품 기준",
+          "§7이름·마법·손상·추가 정보가 없는 기본 아이템"
+        ],
+        "model": "tycoon:ui/forest",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "OAK_LOG",
+        "name": "§a[등록 완료] 참나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e2개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§a이미 등록했습니다. 추가 소비하지 않습니다."
+        ],
+        "glow": true
+      },
+      {
+        "material": "SPRUCE_LOG",
+        "name": "§7[미보유] 가문비나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "BIRCH_LOG",
+        "name": "§7[미보유] 자작나무 원목",
+        "lore": [
+          "§7희귀도: 일반",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.12%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "JUNGLE_LOG",
+        "name": "§7[미보유] 정글나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "ACACIA_LOG",
+        "name": "§7[미보유] 아카시아 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GOLD_INGOT",
+        "name": "§6분야 완성 업적",
+        "lore": [
+          "§b■§8■■■■■■■■■ §f1 / 10 §7(10%)",
+          "§7추가 이동 속도 +0.42%"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "DARK_OAK_LOG",
+        "name": "§7[미보유] 짙은 참나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "MANGROVE_LOG",
+        "name": "§7[미보유] 맹그로브 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "CHERRY_LOG",
+        "name": "§7[미보유] 벚나무 원목",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "PALE_OAK_LOG",
+        "name": "§7[미보유] 창백한 참나무 원목",
+        "lore": [
+          "§7희귀도: 희귀",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.48%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "BAMBOO_BLOCK",
+        "name": "§7[미보유] 대나무 블록",
+        "lore": [
+          "§7희귀도: 고급",
+          "§f가방에 등록 가능한 수량: §e0개",
+          "§7기본 등록 효과: 이동 속도 +0.24%",
+          "§7아이템을 준비한 뒤 다시 확인하세요."
+        ],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "LIME_DYE",
+        "name": "§b● 전체",
+        "lore": [
+          "§7왼쪽 클릭: 전체 아이템만 보기"
+        ],
+        "model": "tycoon:ui/codex",
+        "glow": true
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 등록 가능",
+        "lore": [
+          "§7왼쪽 클릭: 등록 가능 아이템만 보기"
+        ],
+        "model": "tycoon:ui/ready",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 미보유",
+        "lore": [
+          "§7왼쪽 클릭: 미보유 아이템만 보기"
+        ],
+        "model": "tycoon:ui/missing",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_DYE",
+        "name": "§7○ 등록 완료",
+        "lore": [
+          "§7왼쪽 클릭: 등록 완료 아이템만 보기"
+        ],
+        "model": "tycoon:ui/done",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ARROW",
+        "name": "§e전체 도감",
+        "lore": [],
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "APPLE",
+        "name": "§a내 수집 효과",
+        "lore": [],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      }
+    ]
+  },
+  "achievements": {
+    "title": "수집 업적 | 13개 목표",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "NETHER_STAR",
+        "name": "§6수집 업적 달성 현황",
+        "lore": [
+          "§8■■■■■■■■■■ §f0 / 13 §7(0%)",
+          "§7목표 달성 시 보너스가 자동 적용됩니다."
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 수집가 10종",
+        "lore": [
+          "§710종 영구 등록",
+          "§b■§8■■■■■■■■■ §f1 / 10 §7(10%)",
+          "§7추가 이동 속도 +0.07%",
+          "§7추가 채굴 속도 +0.15%",
+          "§7추가 최대 체력 +0.05",
+          "§7추가 공격력 +0.0125",
+          "§7추가 방어력 +0.025",
+          "§7추가 공격 속도 +0.05%",
+          "§7추가 넉백 저항 +0.05%p",
+          "§7추가 행운 +0.0125",
+          "§e달성까지 9종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 수집가 30종",
+        "lore": [
+          "§730종 영구 등록",
+          "§8■■■■■■■■■■ §f1 / 30 §7(3%)",
+          "§7추가 이동 속도 +0.08%",
+          "§7추가 채굴 속도 +0.15%",
+          "§7추가 최대 체력 +0.05",
+          "§7추가 공격력 +0.0125",
+          "§7추가 방어력 +0.025",
+          "§7추가 공격 속도 +0.05%",
+          "§7추가 넉백 저항 +0.05%p",
+          "§7추가 행운 +0.0125",
+          "§e달성까지 29종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 수집가 50종",
+        "lore": [
+          "§750종 영구 등록",
+          "§8■■■■■■■■■■ §f1 / 50 §7(2%)",
+          "§7추가 이동 속도 +0.07%",
+          "§7추가 채굴 속도 +0.15%",
+          "§7추가 최대 체력 +0.05",
+          "§7추가 공격력 +0.0125",
+          "§7추가 방어력 +0.025",
+          "§7추가 공격 속도 +0.05%",
+          "§7추가 넉백 저항 +0.05%p",
+          "§7추가 행운 +0.0125",
+          "§e달성까지 49종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 수집가 80종",
+        "lore": [
+          "§780종 영구 등록",
+          "§8■■■■■■■■■■ §f1 / 80 §7(1%)",
+          "§7추가 이동 속도 +0.08%",
+          "§7추가 채굴 속도 +0.15%",
+          "§7추가 최대 체력 +0.05",
+          "§7추가 공격력 +0.0125",
+          "§7추가 방어력 +0.025",
+          "§7추가 공격 속도 +0.05%",
+          "§7추가 넉백 저항 +0.05%p",
+          "§7추가 행운 +0.0125",
+          "§e달성까지 79종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 숲과 채집 완성",
+        "lore": [
+          "§7숲과 채집 10종 모두 등록",
+          "§b■§8■■■■■■■■■ §f1 / 10 §7(10%)",
+          "§7추가 이동 속도 +0.42%",
+          "§e달성까지 9종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 농장과 식량 완성",
+        "lore": [
+          "§7농장과 식량 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 최대 체력 +0.2002",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 광물과 채굴 완성",
+        "lore": [
+          "§7광물과 채굴 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 채굴 속도 +0.8%",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 낚시와 바다 완성",
+        "lore": [
+          "§7낚시와 바다 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 행운 +0.0521",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 제작과 생활 완성",
+        "lore": [
+          "§7제작과 생활 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 방어력 +0.1008",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 네더 탐사 완성",
+        "lore": [
+          "§7네더 탐사 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 공격력 +0.0524",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 엔드 탐험 완성",
+        "lore": [
+          "§7엔드 탐험 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 공격 속도 +0.4%",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 탐험과 전리품 완성",
+        "lore": [
+          "§7탐험과 전리품 10종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 10 §7(0%)",
+          "§7추가 넉백 저항 +0.3%p",
+          "§e달성까지 10종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "PAPER",
+        "name": "§7[진행 중] 도시 농부",
+        "lore": [
+          "§7농장 수확물 5종 모두 등록",
+          "§8■■■■■■■■■■ §f0 / 5 §7(0%)",
+          "§7추가 이동 속도 +0.1%",
+          "§e달성까지 5종 남음"
+        ],
+        "model": "tycoon:ui/achievements",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ARROW",
+        "name": "§e도감으로",
+        "lore": [],
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "APPLE",
+        "name": "§a내 수집 효과",
+        "lore": [],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      }
+    ]
+  },
+  "effects": {
+    "title": "도감 효과 | 작은 영구 보너스",
+    "slots": [
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "NETHER_STAR",
+        "name": "§a수집 효과 적용 중",
+        "lore": [
+          "§7개인 설정: 켜짐",
+          "§7생존·모험 모드와 서버 효과 설정을 따릅니다."
+        ],
+        "model": "tycoon:ui/effects",
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CYAN_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "FEATHER",
+        "name": "§b이동 속도 +0.12%",
+        "lore": [
+          "§7내 수집량: +0.12%",
+          "§7전체 상한: +3%",
+          "§8■■■■■■■■■■ §f4%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/speed",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "IRON_PICKAXE",
+        "name": "§b채굴 속도 +0%",
+        "lore": [
+          "§7내 수집량: +0%",
+          "§7전체 상한: +6%",
+          "§8■■■■■■■■■■ §f0%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/mining_speed",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "APPLE",
+        "name": "§b최대 체력 +0",
+        "lore": [
+          "§7내 수집량: +0",
+          "§7전체 상한: +2",
+          "§8■■■■■■■■■■ §f0%",
+          "§7체력 2 = 하트 1칸 · 즉시 회복하지 않습니다."
+        ],
+        "model": "tycoon:ui/health",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "IRON_SWORD",
+        "name": "§b공격력 +0",
+        "lore": [
+          "§7내 수집량: +0",
+          "§7전체 상한: +0.5",
+          "§8■■■■■■■■■■ §f0%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/damage",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "IRON_CHESTPLATE",
+        "name": "§b방어력 +0",
+        "lore": [
+          "§7내 수집량: +0",
+          "§7전체 상한: +1",
+          "§8■■■■■■■■■■ §f0%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/armor",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "CLOCK",
+        "name": "§b공격 속도 +0%",
+        "lore": [
+          "§7내 수집량: +0%",
+          "§7전체 상한: +2%",
+          "§8■■■■■■■■■■ §f0%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/attack_speed",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "SHIELD",
+        "name": "§b넉백 저항 +0%p",
+        "lore": [
+          "§7내 수집량: +0%p",
+          "§7전체 상한: +2%p",
+          "§8■■■■■■■■■■ §f0%",
+          "§7기존 장비·물약 효과와 함께 적용"
+        ],
+        "model": "tycoon:ui/knockback",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "RABBIT_FOOT",
+        "name": "§b행운 +0",
+        "lore": [
+          "§7내 수집량: +0",
+          "§7전체 상한: +0.5",
+          "§8■■■■■■■■■■ §f0%",
+          "§7바닐라 낚시 전리품 판정에 사용"
+        ],
+        "model": "tycoon:ui/luck",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "ARROW",
+        "name": "§e도감으로",
+        "lore": [],
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "WRITABLE_BOOK",
+        "name": "§b마을 수첩",
+        "lore": [
+          "§7쉬프트+F의 전체 메뉴로 돌아갑니다."
+        ],
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "BARRIER",
+        "name": "§c닫기",
+        "lore": [
+          "§7왼쪽 클릭: 화면 닫기"
+        ],
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": [],
+        "glow": false
+      },
+      {
+        "material": "LIME_DYE",
+        "name": "§a효과 켜짐 · 클릭하여 끄기",
+        "lore": [
+          "§7등록 기록은 유지합니다."
+        ],
+        "model": "tycoon:ui/ready",
+        "glow": false
+      }
+    ]
+  }
+}

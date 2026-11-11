@@ -1,11 +1,11 @@
-# 아이템 도감·수집 업적 1.1.0
+# 아이템 도감·수집 업적 1.2.0
 
 Windows에 적용된 1.0.1을 이어받아 **도시 농장 5종을 추가한 85종·13업적** 버전입니다. 기존 80종 ID·희귀도·개별 보너스·12업적·능력치 상한·DB 스키마 2·알 수 없는 저장 표식 보호를 유지합니다. 같은 UUID의 등록 기록과 개인 효과 설정도 유지합니다.
 
-- [농장 통합 설치 ZIP](../releases/farming-update/도시농장-통합설치-1.0.0.zip)
+- [농장 통합 설치 ZIP](../releases/ui-update/도시생활-메뉴통합-1.2.0.zip)
 - [설치·작물·요리·NPC·도감 연결 안내](../korean-farming/README.md)
-- [85종 보너스와 13업적 표](../releases/farming-update/아이템별보너스.md)
-- [이번 농장 업데이트의 검증 범위](../releases/farming-update/validation.json)
+- [85종 보너스와 13업적 표](../releases/ui-update/아이템별보너스.md)
+- [이번 농장 업데이트의 검증 범위](../releases/ui-update/validation.json)
 
 기본 80종은 일반 아이템 1개, 새 5종은 KoreanFarming의 **정품 수확물 1개**를 소비해 영구 등록합니다. 씨앗·요리·이름만 같은 기본 사과/종이 등으로 대체 등록할 수 없습니다. 등록 확인창에서 소비와 효과를 확인합니다.
 
@@ -17,6 +17,8 @@ Windows에 적용된 1.0.1을 이어받아 **도시 농장 5종을 추가한 85�
 
 불확실한 등록과 알 수 없는 플레이어 저장 표식은 확인 대기로 잠그며 자동 재소비·환불·확정하지 않습니다. 운영자는 `/도감관리 거래`, `번호 번호`, `조회 닉네임`, `완료|취소 번호 확인`, `표식해제 닉네임 확인`, `백업`으로 실제 아이템·저장 표식을 확인한 뒤 정리합니다. 표식해제는 잠금만 정리하며 아이템·등록·보상을 지급하지 않습니다.
 
-이번 1.1.0은 클라우드에서 실제 Paper API·SQLite·MockBukkit으로 빌드·검증했으며 사용자 Windows에 설치된 상태는 아닙니다. 재현은 `python3 korean-codex/test.py`, `python3 korean-farming/test.py`, `python3 korean-farming/build.py`입니다. 실제 클라이언트·Windows·NBT 저장·히트박스·GP/WG 연동 검증과 구분합니다.
+이번 1.2.0은 클라우드에서 실제 Paper API·SQLite·MockBukkit으로 빌드·검증했으며 사용자 Windows에 설치된 상태는 아닙니다. 재현은 `python3 korean-codex/test.py`, `python3 korean-farming/test.py`, `python3 interface-update/build.py`입니다. 실제 클라이언트·Windows·NBT 저장·히트박스·GP/WG 연동 검증과 구분합니다.
 
 기존 **1.0.1의 실제 Windows 적용·Paper·순정 클라이언트 검증 기록**은 [기존 배포물](../releases/korean-codex/1.0.1/검증결과.md)에 보존합니다. `windows.py` 등 1.0.1 재현 도구는 커밋 `9619383`의 별도 체크아웃에서 사용하며, 이후 소스로 과거 JAR를 덮어쓰지 않도록 버전 검사를 추가했습니다.
+
+메뉴 개선: 상태별 필터·보유 수량·진행률·실제 보상 확인·전용 아이콘은 [UI 업데이트 안내](../interface-update/README.md)를 참고하세요.

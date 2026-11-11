@@ -1,0 +1,12 @@
+{
+  "assertions": 37,
+  "actual_release_jars_used": true,
+  "real_filesystem_sqlite_bytes_hashes_locks_backup_restore_tested": true,
+  "keeps_economy_codex_data": true,
+  "keeps_existing_city_config": true,
+  "repeat_install_does_not_duplicate_jars": true,
+  "corruption_and_newer_version_rejected_before_mutation": true,
+  "platform": "posix",
+  "powershell_or_windows_launcher_tested": false,
+  "real_minecraft_server_started": false
+}
