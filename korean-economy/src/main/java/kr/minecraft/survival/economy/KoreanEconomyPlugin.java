@@ -18,7 +18,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
-    record Product(Material material,String name,double buy,double sell) {}
+    record Product(Material material,String name,double buy,double sell,int limit) {}
     private List<Product> products=List.of();
     private DailyClaims claims;
     private ZoneId zone=ZoneId.of("Asia/Seoul");
@@ -26,6 +26,7 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
     private final Map<UUID,Long> cooldown=new HashMap<>();
     NpcShops npcs;
     Tycoon tycoon;
+    ServerTools serverTools;
 
     static final class Market implements InventoryHolder {
         final UUID owner;
@@ -42,9 +43,9 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         @Override public Inventory getInventory(){return inventory;}
     }
     @Override public void onEnable() {
-        saveDefaultConfig();readSettings();
+        saveDefaultConfig();readSettings();serverTools=new ServerTools(this);
         claims=new DailyClaims(getDataFolder().toPath().resolve("보상기록"));
-        npcs=new NpcShops(this,(player,category,npc)->{if(category==ShopCategory.FOOD)tycoon.safe(player,()->tycoon.foodShop(player,npc));else if(category==ShopCategory.QUESTS)tycoon.safe(player,()->tycoon.quests(player,npc));else open(player,false,category,npc);});
+        npcs=new NpcShops(this,(player,category,npc)->{if(category==ShopCategory.FOOD)tycoon.safe(player,()->tycoon.foodShop(player,npc));else if((category==ShopCategory.QUESTS||category==ShopCategory.QUEST))tycoon.safe(player,()->tycoon.quests(player,npc));else open(player,false,category,npc);});
         try{tycoon=new Tycoon(this);}catch(RuntimeException e){getLogger().log(java.util.logging.Level.SEVERE,"생활경제 초기화 실패",e);getServer().getPluginManager().disablePlugin(this);return;}
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getPluginManager().registerEvents(npcs,this);
@@ -63,13 +64,14 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         daily=validPrice(getConfig().getDouble("일일보상",200));
         Material[] materials={Material.WHEAT,Material.CARROT,Material.POTATO,Material.COBBLESTONE,Material.OAK_LOG,Material.COAL,Material.IRON_INGOT,Material.DIAMOND};
         String[] names={"밀","당근","감자","조약돌","참나무원목","석탄","철주괴","다이아몬드"};
-        double[] buys={10,8,8,4,12,24,80,800}, sells={2,1,1,1,3,6,20,200};
+        double[] buys={10,8,8,4,12,24,80,800}, sells={2,1,1,1,3,6,20,200};int[] limits={128,128,128,128,96,64,48,12};
         List<Product> next=new ArrayList<>();
         for (int i=0;i<materials.length;i++) {
             double buy=validPrice(getConfig().getDouble("상점."+names[i]+".구매가",buys[i]));
             double sell=validPrice(getConfig().getDouble("상점."+names[i]+".판매가",sells[i]));
             if (sell>buy) throw new IllegalArgumentException(names[i]+": 판매가는 구매가보다 클 수 없습니다.");
-            next.add(new Product(materials[i],names[i],buy,sell));
+            int limit=getConfig().getInt("상점."+names[i]+".하루매입한도",limits[i]);if(limit<0||limit>1_000_000)throw new IllegalArgumentException("매입 한도는 0~1000000입니다.");
+            next.add(new Product(materials[i],names[i],buy,sell,limit));
         }
         products=List.copyOf(next);
     }
@@ -85,6 +87,8 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
 
     @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args) {
         String root=command.getName();
+        if(ServerTools.COMMANDS.contains(root)){serverTools.command(sender,root,args);return true;}
+        if(root.equals("경제거래")){sender.sendMessage("§e2.0 거래 기록은 /경제기록 대기 또는 /경제기록 조회 닉네임으로 확인하세요. 1.2 미결 거래는 이전 버전에서 정리한 뒤 업그레이드하세요.");return true;}
         if(root.equals("마을설치"))return npcs.town(sender,args);
         if(root.equals("상인"))return npcs.command(sender,args);
         if(tycoon.command(sender,root,args))return true;
@@ -124,10 +128,10 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         if (!player.isOnline() || !player.hasPermission("koreaneconomy.use")) return;
         Market menu=new Market(this,player,buying,category,npc);
         for(int i=0;i<54;i++) menu.inventory.setItem(i,icon(Material.GRAY_STAINED_GLASS_PANE," "));
-        menu.inventory.setItem(4,icon(Material.BOOK,buying?"§a서버에서 물건 구매":"§6서버에 물건 판매","§7좌클릭 1개 · 쉬프트 클릭 16개 · 우클릭 64개","§7이름·설명·마법이 없는 기본 아이템만 판매됩니다.","§7장비칸·보조 손 제외 / 품목별 하루 매입 256개"));
+        menu.inventory.setItem(4,icon(Material.BOOK,buying?"§a서버에서 물건 구매":"§6서버에 물건 판매","§7좌클릭 1개 · 쉬프트 클릭 16개 · 우클릭 64개","§7이름·설명·마법이 없는 기본 아이템만 판매됩니다.","§7장비칸·보조 손 제외 / 품목별 하루 매입 한도 적용"));
         for(int i=0;i<menu.prices.size();i++) {
             Product p=menu.prices.get(i);
-            menu.inventory.setItem(19+i,icon(p.material,"§e"+p.name,"§7내가 살 때: §a"+money(p.buy),"§7내가 팔 때: §6"+money(p.sell),"§7현재: "+(buying?"구매 모드":"판매 모드")));
+            menu.inventory.setItem(19+i,icon(p.material,"§e"+p.name,"§7내가 살 때: §a"+money(p.buy),"§7내가 팔 때: §6"+money(p.sell),"§7현재: "+(buying?"구매 모드":"판매 모드"),"§7하루 매입 한도: "+p.limit+" / 오늘 판매: "+tycoon.store.used(player.getUniqueId(),tycoon.day(),"raw:"+p.material.name())));
         }
         menu.inventory.setItem(45,icon(Material.EMERALD,"§a구매 모드","§7서버에 돈을 내고 아이템을 받습니다."));
         menu.inventory.setItem(53,icon(Material.GOLD_INGOT,"§6판매 모드","§7아이템을 팔고 돈을 받습니다."));
@@ -164,7 +168,7 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
             ItemStack[] after=ItemPlans.move(before,new ItemStack(product.material),amount,buying);
             if(after==null)throw new kr.minecraft.survival.economy.domain.StateStore.Denied(buying?"가방 공간이 부족합니다.":"판매할 기본 아이템이 부족합니다.");
             long cents=kr.minecraft.survival.economy.domain.Money.total(kr.minecraft.survival.economy.domain.Money.cents(buying?product.buy:product.sell),amount);
-            var cap=buying?null:new kr.minecraft.survival.economy.domain.StateStore.Quota(tycoon.day(),"raw:"+product.material.name(),amount,256);
+            var cap=buying?null:new kr.minecraft.survival.economy.domain.StateStore.Quota(tycoon.day(),"raw:"+product.material.name(),amount,product.limit);
             tycoon.result(player,tycoon.engine.execute(player.getUniqueId(),buying?"BUY":"SELL","market:"+UUID.randomUUID(),cents,buying?kr.minecraft.survival.economy.domain.ActionEngine.Direction.DEBIT:kr.minecraft.survival.economy.domain.ActionEngine.Direction.CREDIT,product.name+" x "+amount,cap,tycoon.change(player,before,after),()->{}),product.name+" "+amount+"개를 "+(buying?"구매":"판매")+"했습니다. "+Tycoon.money(cents));
         });
     }

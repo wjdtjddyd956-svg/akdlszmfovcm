@@ -17,7 +17,7 @@ final class CommandTranslator {
             "땅목록", "koreaneconomy:땅보호 목록", "땅확인", "koreaneconomy:땅보호 확인",
             "땅초대", "koreaneconomy:땅보호 초대", "땅추방", "koreaneconomy:땅보호 추방",
             "땅권한", "koreaneconomy:땅보호 권한", "땅포기", "koreaneconomy:땅보호 포기",
-            "땅구매", "koreaneconomy:땅보호 확장", "땅판매", "koreaneconomy:땅보호 안내",
+            "땅구매", "koreaneconomy:땅보호 블록구매", "땅판매", "koreaneconomy:땅보호 블록판매",
             "돈관리", "essentials:eco", "권한", "luckperms:lp",
             "블록조사", "coreprotect:co inspect", "플러그인목록", "bukkit:plugins", "서버정보", "bukkit:version"
     );

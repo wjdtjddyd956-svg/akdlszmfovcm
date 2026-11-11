@@ -36,6 +36,7 @@ final class LandProtection implements Listener {
     boolean transferAllowed(Inventory source,Inventory destination){for(Location a:locations(source))for(Location b:locations(destination))if(!same(a,b))return false;return true;}
     boolean deny(Player p,Location l){if(allowed(p,l))return false;p.sendMessage("§c다른 사람의 보호 구역입니다.");return true;}
     void command(Player p,String[] a){
+        if(t.plugin.getServer().getPluginManager().isPluginEnabled("GriefPrevention")){t.plugin.serverTools.land(p,a);return;}
         String op=a.length==0?"안내":a[0];Location loc=p.getLocation();String world=p.getWorld().getUID().toString();int x=loc.getBlockX()>>4,z=loc.getBlockZ()>>4;
         switch(op){
             case "생성","확장"->{
@@ -92,7 +93,7 @@ final class LandProtection implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void flow(BlockFromToEvent e){if(!same(e.getBlock().getLocation(),e.getToBlock().getLocation()))e.setCancelled(true);}
     boolean piston(Block base,List<Block> blocks,org.bukkit.block.BlockFace dir){for(Block b:blocks){Location from=b.getLocation(),to=b.getRelative(dir).getLocation();if(!same(base.getLocation(),from)||!same(from,to))return false;}return same(base.getLocation(),base.getRelative(dir).getLocation());}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void push(BlockPistonExtendEvent e){if(!piston(e.getBlock(),e.getBlocks(),e.getDirection()))e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void pull(BlockPistonRetractEvent e){if(!piston(e.getBlock(),e.getBlocks(),e.getDirection().getOppositeFace()))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void pull(BlockPistonRetractEvent e){if(!piston(e.getBlock(),e.getBlocks(),e.getDirection().getOppositeFace())||!piston(e.getBlock(),e.getBlocks(),e.getDirection()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void hopper(InventoryMoveItemEvent e){if(!transferAllowed(e.getSource(),e.getDestination()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void pickup(InventoryPickupItemEvent e){if(locations(e.getInventory()).stream().anyMatch(a->!same(a,e.getItem().getLocation())))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void entityBlock(EntityChangeBlockEvent e){if(land(e.getBlock().getLocation())!=null)e.setCancelled(true);}

@@ -5,8 +5,20 @@ api-version: '26.3'
 description: NPC 우클릭 한글 구매·판매 상점과 일일 보상
 authors: [wjdtjddyd956-svg]
 depend: [Vault]
-softdepend: [Essentials, KoreanCommands, WorldGuard]
+softdepend: [Essentials, KoreanCommands, WorldGuard, GriefPrevention, prism]
 commands:
+  기록조회:
+    description: 기존 생활서버 운영 명령 호환
+    permission: koreaneconomy.operations
+  복구:
+    description: 기존 생활서버 운영 명령 호환
+    permission: koreaneconomy.operations
+  백업:
+    description: 기존 생활서버 운영 명령 호환
+    permission: koreaneconomy.operations
+  경제거래:
+    description: 기존 생활서버 운영 명령 호환
+    permission: koreaneconomy.operations
   마을설치:
     description: 빈 공간에 NPC 다섯 명을 배치합니다.
     permission: koreaneconomy.npc.admin
@@ -43,6 +55,9 @@ commands:
     description: 운영자용 경제 설정 다시 읽기
     usage: /경제설정 새로고침
 permissions:
+  koreaneconomy.operations:
+    default: op
+    description: 기록과 복구 및 전체 백업 요청
   koreaneconomy.use:
     default: true
     description: 상점과 일일 보상 사용

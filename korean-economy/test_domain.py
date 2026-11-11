@@ -18,7 +18,7 @@ subprocess.run([JAVAC,'--release','21','-encoding','UTF-8','-d',str(BUILD)]+[str
 deps=ROOT.parent/'survival-pack/vendor/tycoon'
 cp=os.pathsep.join([str(BUILD)]+[str(deps/n) for n in ['sqlite-jdbc.jar','slf4j-api.jar','slf4j-simple.jar']])
 results={}
-for name in ['DomainTest','ActionTest']:
+for name in ['DomainTest','ActionTest','LegacyTest']:
     run=subprocess.run([JAVA,'--enable-native-access=ALL-UNNAMED','-cp',cp,'kr.minecraft.survival.economy.domain.'+name],capture_output=True,text=True)
     if run.returncode:print(run.stdout);print(run.stderr);run.check_returncode()
     print(run.stdout,end='');results[name]=int(re.search(r'PASS: (\d+)',run.stdout).group(1))

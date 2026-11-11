@@ -29,6 +29,8 @@ final class Tycoon implements Listener {
     final LandProtection lands;
     final AuditLog audit;
     final ServerBackups backups;
+    final Legacy12 legacy;
+    final Set<UUID> registered=new HashSet<>();
     final NamespacedKey dishKey,upgradeKey,toolKey;
     final SecureRandom random=new SecureRandom();
     private final Map<UUID,Long> actions=new HashMap<>();
@@ -39,6 +41,7 @@ final class Tycoon implements Listener {
     }
     Tycoon(KoreanEconomyPlugin plugin){
         this.plugin=plugin;store=new StateStore(plugin.getDataFolder().toPath().resolve("생활경제.db"));
+        legacy=new Legacy12(store,plugin.getDataFolder().toPath().resolve("생활기록"));
         dishKey=new NamespacedKey(plugin,"dish_id");upgradeKey=new NamespacedKey(plugin,"upgrade_level");toolKey=new NamespacedKey(plugin,"tool_id");
         engine=new ActionEngine(store,new Wallet(){
             public boolean credit(UUID id,long c){return plugin.transfer(id,c,true);}
@@ -51,6 +54,7 @@ final class Tycoon implements Listener {
     String day(){return LocalDate.now(plugin.rewardZone()).toString();}
     static String money(long cents){return Money.display(cents);}
     void register(Player p){
+        if(registered.contains(p.getUniqueId()))return;
         store.player(p.getUniqueId(),p.getName());
         if(store.meta("legacy-daily:"+p.getUniqueId())==null){
             Path file=plugin.getDataFolder().toPath().resolve("보상기록").resolve(p.getUniqueId()+".properties");
@@ -59,6 +63,10 @@ final class Tycoon implements Listener {
                 store.importDaily(p.getUniqueId(),data.getProperty("날짜"),data.getProperty("상태"));
             }catch(Exception e){throw new StateStore.Denied("이전 보상 기록을 읽지 못했습니다. 운영자 확인이 필요합니다.");}
         }
+        List<Legacy12.Mission> oldQuests=List.of(new Legacy12.Mission("DELIVERY","밀 납품",plugin.getConfig().getInt("임무.밀 납품.목표",16),Money.cents(plugin.getConfig().getInt("임무.밀 납품.보상",48))),new Legacy12.Mission("MINING","광석 채굴",plugin.getConfig().getInt("임무.광석 채굴.목표",12),Money.cents(plugin.getConfig().getInt("임무.광석 채굴.보상",75))),new Legacy12.Mission("FISHING","물고기 낚기",plugin.getConfig().getInt("임무.물고기 낚기.목표",6),Money.cents(plugin.getConfig().getInt("임무.물고기 낚기.보상",75))));
+        if(legacy.importPlayer(p.getUniqueId(),day(),plugin.getConfig().getInt("직업.레벨당활동",50),oldQuests))p.sendMessage("§a1.2 직업·적립금·오늘의 매입/임무 기록을 안전하게 가져왔습니다.");
+        registered.add(p.getUniqueId());
+
     }
     boolean command(CommandSender sender,String root,String[] a){
         if(root.equals("경제기록")){admin(sender,a);return true;}
@@ -71,7 +79,7 @@ final class Tycoon implements Listener {
     }
     void safe(Player p,Runnable work){
         if(!p.hasPermission("koreaneconomy.use")){p.sendMessage("§c생활 기능 사용 권한이 없습니다.");return;}
-        try{work.run();}catch(StateStore.Denied|IllegalArgumentException e){p.sendMessage("§c"+e.getMessage());}
+        try{register(p);work.run();}catch(StateStore.Denied|IllegalArgumentException e){p.sendMessage("§c"+e.getMessage());}
         catch(RuntimeException e){plugin.getLogger().log(java.util.logging.Level.SEVERE,"생활 기능 처리 실패",e);p.sendMessage("§c저장 중 오류가 발생했습니다. 운영자에게 문의하세요.");}
     }
     void result(Player p,Outcome outcome,String success){p.sendMessage((outcome.status()==Status.DONE?"§a"+success:"§c"+outcome.message()));}
@@ -90,7 +98,9 @@ final class Tycoon implements Listener {
                 long now=System.currentTimeMillis();Outcome out=engine.execute(p.getUniqueId(),"JOB","job:"+UUID.randomUUID(),old==null?0:20000,Direction.DEBIT,j.name(),null,NO_ITEMS,()->store.selectJobInside(p.getUniqueId(),j,now));
                 result(p,out,j.label+" 직업을 선택했습니다.");
             },"§7누적 숙련도: "+progress.xp(),"§7다음 단계: "+(progress.level()==5?"최고 레벨":Rules.nextLevel(progress.xp())),"§7클릭하면 직업을 선택합니다.");slot+=2;
-        }p.openInventory(s.inventory);
+        }
+        button(s,40,Material.GOLD_INGOT,"§6직업 적립금 받기",()->{long owed=store.owed(p.getUniqueId());if(owed<1)throw new StateStore.Denied("적립된 직업 보상이 없습니다.");Outcome out=engine.execute(p.getUniqueId(),"JOB_CLAIM","jobclaim:"+UUID.randomUUID(),owed,Direction.CREDIT,"직업 적립 보상",null,NO_ITEMS,()->store.consumeOwedInside(p.getUniqueId(),owed));result(p,out,"직업 적립금 "+money(owed)+"을 받았습니다.");},"§7받을 돈: "+money(store.owed(p.getUniqueId())),"§7오늘 적립: "+money(store.earned(p.getUniqueId(),day())),"§7하루 한도: "+plugin.getConfig().getInt("직업.하루보상한도",300)+"원");
+        p.openInventory(s.inventory);
     }
     ItemStack dish(Rules.Recipe r){return dish(r,plugin.getConfig().getBoolean("리소스팩-사용",false));}
     ItemStack dish(Rules.Recipe r,boolean model){
@@ -139,12 +149,17 @@ final class Tycoon implements Listener {
         if(level>=5)throw new StateStore.Denied("최고 강화 단계입니다.");Rules.Upgrade rule=Rules.upgrade(level);Screen s=screen(p,"도구 강화 | 비용·확률 확인",null);
         s.inventory.setItem(22,original);button(s,31,Material.ANVIL,"§e+"+rule.nextLevel()+" 강화 시도",()->{
             survival(p);if(slot!=p.getInventory().getHeldItemSlot()||!original.equals(p.getInventory().getItemInMainHand()))throw new StateStore.Denied("손에 든 도구가 바뀌었습니다. 강화 창을 다시 여세요.");
-            boolean success=Rules.succeeds(level,random.nextInt(10000));ItemStack next=original.clone();
-            if(success){ItemMeta meta=next.getItemMeta();meta.getPersistentDataContainer().set(upgradeKey,PersistentDataType.INTEGER,rule.nextLevel());meta.getPersistentDataContainer().set(toolKey,PersistentDataType.STRING,meta.getPersistentDataContainer().getOrDefault(toolKey,PersistentDataType.STRING,UUID.randomUUID().toString()));
-                Enchantment enchant=next.getType()==Material.FISHING_ROD?Enchantment.LURE:Enchantment.EFFICIENCY;int target=Math.min(enchant.getMaxLevel(),rule.nextLevel());if(meta.getEnchantLevel(enchant)<target)meta.addEnchant(enchant,target,false);next.setItemMeta(meta);}
+            boolean success=Rules.succeeds(level,random.nextInt(10000));ItemStack next=success?strengthen(original,rule.nextLevel()):original.clone();
             ItemStack[] before=ItemPlans.copy(p.getInventory().getStorageContents()),after=ItemPlans.copy(before);after[slot]=next;
             result(p,engine.execute(p.getUniqueId(),"UPGRADE","upgrade:"+UUID.randomUUID(),rule.cost(),Direction.DEBIT,"tool="+original.getType()+",slot="+slot+",level="+level+",success="+success,null,change(p,before,after),()->{}),success?"강화 성공! +"+rule.nextLevel()+" 도구가 되었습니다.":"강화 실패. 비용은 사용됐고 도구와 단계는 유지됩니다.");
-        },"§7비용: "+money(rule.cost()),"§7성공 확률: "+rule.chanceBasisPoints()/100.0+"%","§7실패: 비용 소모 / 파괴·단계 하락 없음","§7성공: 단계에 따라 효율 또는 미끼 마법 적용");p.openInventory(s.inventory);
+        },"§7비용: "+money(rule.cost()),"§7성공 확률: "+rule.chanceBasisPoints()/100.0+"%","§7실패: 비용 소모 / 파괴·단계 하락 없음","§7성공: 효율/미끼 + 단계별 내구성 마법 적용");p.openInventory(s.inventory);
+    }
+    ItemStack strengthen(ItemStack original,int nextLevel){
+        if(nextLevel<1||nextLevel>5||!upgradeable(original))throw new IllegalArgumentException("강화 도구 또는 단계 오류");ItemStack next=original.clone();ItemMeta meta=next.getItemMeta();
+        meta.getPersistentDataContainer().set(upgradeKey,PersistentDataType.INTEGER,nextLevel);meta.getPersistentDataContainer().set(toolKey,PersistentDataType.STRING,meta.getPersistentDataContainer().getOrDefault(toolKey,PersistentDataType.STRING,UUID.randomUUID().toString()));
+        Enchantment enchant=next.getType()==Material.FISHING_ROD?Enchantment.LURE:Enchantment.EFFICIENCY;int target=Math.min(enchant.getMaxLevel(),nextLevel);if(meta.getEnchantLevel(enchant)<target)meta.addEnchant(enchant,target,false);
+        int durability=nextLevel==1?0:nextLevel<=3?1:nextLevel-2;if(meta.getEnchantLevel(Enchantment.UNBREAKING)<durability)meta.addEnchant(Enchantment.UNBREAKING,durability,false);
+        List<String> lore=new ArrayList<>(meta.hasLore()?meta.getLore():List.of());lore.removeIf(line->line.startsWith("§b생활 강화 +"));lore.add("§b생활 강화 +"+nextLevel);meta.setLore(lore);next.setItemMeta(meta);return next;
     }
     void quests(Player p,Entity npc){
         Screen s=screen(p,"마을 게시판 | 오늘의 임무",npc);String date=day();int slot=19;Map<String,StateStore.QuestProgress> states=new HashMap<>();for(var v:store.quests(p.getUniqueId(),date))states.put(v.id(),v);
@@ -157,23 +172,35 @@ final class Tycoon implements Listener {
                 Outcome out=engine.execute(p.getUniqueId(),"QUEST","quest:"+date+":"+q.id(),q.reward(),Direction.CREDIT,q.id(),null,change(p,before,after),()->{});result(p,out,"임무 완료! "+money(q.reward())+"을 받았습니다.");
                 if(out.status()==Status.DONE){Rules.Job j=store.job(p.getUniqueId());if(j!=null)xp(p,j,q.xp());quests(p,npc);}
             },"§7보상: "+money(q.reward())+" · 숙련도 "+q.xp(),"§7목표: "+questTarget(q)+" "+q.required()+"회/개",state==null?"§e클릭: 수락 (하루 최대 3개)":state.paid()?"§a보상 수령 완료":q.kind().equals("DELIVER")?"§e클릭: 아이템 납품·보상 수령":"§7진행: "+state.progress()+" / "+q.required()+" · 클릭하여 완료");
+        }
+        int legacySlot=37;
+        for(var old:store.quests(p.getUniqueId(),date))if(old.id().startsWith("legacy12_")){
+            Legacy12.Mission m=legacy.mission(p.getUniqueId(),date,old.id());
+            button(s,legacySlot++,Material.WRITABLE_BOOK,"§d이전 임무 · "+m.label(),()->{
+                survival(p);if(!day().equals(date))throw new StateStore.Denied("날짜가 바뀌었습니다.");var current=store.quests(p.getUniqueId(),date).stream().filter(q->q.id().equals(old.id())).findFirst().orElseThrow();if(current.paid())throw new StateStore.Denied("이미 받은 보상입니다.");
+                ItemStack[] before=ItemPlans.copy(p.getInventory().getStorageContents()),after=before;if(m.key().equals("DELIVERY")){after=ItemPlans.move(before,new ItemStack(Material.WHEAT),m.goal(),false);if(after==null)throw new StateStore.Denied("납품할 기본 밀 "+m.goal()+"개가 필요합니다.");}else if(current.progress()<m.goal())throw new StateStore.Denied("이전 임무 목표를 아직 채우지 않았습니다.");
+                result(p,engine.execute(p.getUniqueId(),"QUEST","quest:"+date+":"+old.id(),m.cents(),Direction.CREDIT,"이전 임무 "+m.label(),null,change(p,before,after),()->{}),"이전 임무 완료: "+money(m.cents()));quests(p,npc);
+            },"§7목표: "+m.goal()+" · 보상: "+money(m.cents()),"§7진행: "+old.progress()+" / "+m.goal(),old.paid()?"§a이미 수령함":"§e클릭: 이전 목표대로 납품/완료");
         }p.openInventory(s.inventory);
     }
     static String questTarget(Rules.Quest q){return switch(q.target()){case "STONE"->"자연 돌 채굴";case "COAL_ORE"->"자연 석탄광석 채굴";case "mill_bread"->"방앗간 밀빵 요리";default->materialName(q.target());};}
     void daily(Player p,long cents){safe(p,()->{register(p);survival(p);result(p,engine.execute(p.getUniqueId(),"DAILY","daily:"+day(),cents,Direction.CREDIT,"일일 보상",null,NO_ITEMS,()->{}),"오늘 보상 "+money(cents)+"을 받았습니다.");});}
     Change change(Player p,ItemStack[] before,ItemStack[] after){return new Change(){public void apply(){if(!Arrays.equals(before,p.getInventory().getStorageContents()))throw new IllegalStateException("거래 도중 가방이 변경됐습니다.");p.getInventory().setStorageContents(ItemPlans.copy(after));p.saveData();}public void restore(){p.getInventory().setStorageContents(ItemPlans.copy(before));p.saveData();}};}
+    boolean legacyPlaced(org.bukkit.block.Block block){int[] marked=block.getChunk().getPersistentDataContainer().get(new NamespacedKey(plugin,"placed_ores"),PersistentDataType.INTEGER_ARRAY);int pos=(block.getY()-block.getWorld().getMinHeight())*256+(block.getZ()&15)*16+(block.getX()&15);return marked!=null&&Arrays.binarySearch(marked,pos)>=0;}
+    void activity(Player p,Rules.Job job,int amount){if(store.job(p.getUniqueId())!=job)return;xp(p,job,amount);int rate=plugin.getConfig().getInt("직업."+job.label+".보상",job==Rules.Job.FARMER?2:job==Rules.Job.MINER?3:5);int cap=plugin.getConfig().getInt("직업.하루보상한도",300);store.accrueJob(p.getUniqueId(),day(),Money.cents(rate),Money.cents(cap));}
     void xp(Player p,Rules.Job job,int amount){if(store.job(p.getUniqueId())!=job)return;int old=store.progress(p.getUniqueId(),job).level();store.grantXp(p.getUniqueId(),job,amount,day(),250);int now=store.progress(p.getUniqueId(),job).level();if(now>old)p.sendMessage("§6"+job.label+" 숙련도 "+now+"레벨! /요리에서 해금된 요리를 확인하세요.");}
     @EventHandler public void join(PlayerJoinEvent e){safe(e.getPlayer(),()->register(e.getPlayer()));}
-    @EventHandler public void quit(PlayerQuitEvent e){actions.remove(e.getPlayer().getUniqueId());}
+    @EventHandler public void quit(PlayerQuitEvent e){actions.remove(e.getPlayer().getUniqueId());registered.remove(e.getPlayer().getUniqueId());}
     @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void place(BlockPlaceEvent e){safe(e.getPlayer(),()->{var b=e.getBlockPlaced();store.markPlaced(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ());});}
-    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void harvest(BlockBreakEvent e){Player p=e.getPlayer();if(p.getGameMode()!=GameMode.SURVIVAL)return;safe(p,()->{
-        var b=e.getBlock();String name=b.getType().name();
-        if(b.getBlockData() instanceof Ageable age&&age.getAge()==age.getMaximumAge()&&Set.of("WHEAT","CARROTS","POTATOES","BEETROOTS").contains(name)){xp(p,Rules.Job.FARMER,2);return;}
-        if((name.equals("STONE")||name.equals("DEEPSLATE")||name.endsWith("_ORE"))&&store.harvestOnce(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ())){
-            xp(p,Rules.Job.MINER,name.endsWith("_ORE")?4:1);store.advance(p.getUniqueId(),day(),"MINE",name.equals("DEEPSLATE")?"STONE":name.replace("DEEPSLATE_",""),1);
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void harvest(BlockDropItemEvent e){Player p=e.getPlayer();if(p.getGameMode()!=GameMode.SURVIVAL||e.getItems().isEmpty())return;safe(p,()->{
+        var b=e.getBlock();String name=e.getBlockState().getType().name();
+        if(e.getBlockState().getBlockData() instanceof Ageable age&&age.getAge()==age.getMaximumAge()&&Set.of("WHEAT","CARROTS","POTATOES","BEETROOTS").contains(name)){activity(p,Rules.Job.FARMER,2);return;}
+        if(legacyPlaced(b))store.markPlaced(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ());
+        if((name.equals("STONE")||name.equals("DEEPSLATE")||(name.endsWith("_ORE")||name.equals("ANCIENT_DEBRIS")))&&store.harvestOnce(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ())){
+            if(name.endsWith("_ORE")||name.equals("ANCIENT_DEBRIS")){activity(p,Rules.Job.MINER,4);legacy.advance(p.getUniqueId(),day(),"MINING",1);}else xp(p,Rules.Job.MINER,1);store.advance(p.getUniqueId(),day(),"MINE",name.equals("DEEPSLATE")?"STONE":name.replace("DEEPSLATE_",""),1);
         }
     });}
-    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void fish(PlayerFishEvent e){if(e.getState()!=PlayerFishEvent.State.CAUGHT_FISH||!(e.getCaught() instanceof Item item)||e.getPlayer().getGameMode()!=GameMode.SURVIVAL)return;safe(e.getPlayer(),()->{xp(e.getPlayer(),Rules.Job.FISHER,8);store.advance(e.getPlayer().getUniqueId(),day(),"FISH",item.getItemStack().getType().name(),item.getItemStack().getAmount());});}
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void fish(PlayerFishEvent e){if(e.getState()!=PlayerFishEvent.State.CAUGHT_FISH||!(e.getCaught() instanceof Item item)||e.getPlayer().getGameMode()!=GameMode.SURVIVAL)return;safe(e.getPlayer(),()->{if(!Set.of(Material.COD,Material.SALMON,Material.TROPICAL_FISH,Material.PUFFERFISH).contains(item.getItemStack().getType()))return;activity(e.getPlayer(),Rules.Job.FISHER,8);legacy.advance(e.getPlayer().getUniqueId(),day(),"FISHING",1);store.advance(e.getPlayer().getUniqueId(),day(),"FISH",item.getItemStack().getType().name(),item.getItemStack().getAmount());});}
     @EventHandler(priority=EventPriority.HIGHEST) public void click(InventoryClickEvent e){if(!(e.getView().getTopInventory().getHolder() instanceof Screen s))return;e.setCancelled(true);if(!(e.getWhoClicked() instanceof Player p)||!s.owner.equals(p.getUniqueId()) )return;Runnable action=s.buttons.get(e.getRawSlot());if(action==null)return;
         var quantity=s.quantities.get(e.getRawSlot());if(quantity!=null){if(!Set.of(ClickType.LEFT,ClickType.RIGHT,ClickType.SHIFT_LEFT,ClickType.SHIFT_RIGHT).contains(e.getClick()))return;int amount=e.isShiftClick()?16:e.isRightClick()?64:1;action=()->quantity.accept(amount);}else if(e.getClick()!=ClickType.LEFT)return;final Runnable chosen=action;
         plugin.getServer().getScheduler().runTask(plugin,()->{if(!p.isOnline()||p.getOpenInventory().getTopInventory()!=s.inventory)return;if(s.source!=null&&!plugin.npcs.usable(p,s.source)){p.closeInventory();return;}Long old=actions.get(p.getUniqueId());long now=System.currentTimeMillis();if(old!=null&&now-old<300)return;actions.put(p.getUniqueId(),now);p.closeInventory();safe(p,chosen);});
@@ -190,6 +217,6 @@ final class Tycoon implements Listener {
     }
     @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void pistonMove(BlockPistonExtendEvent e){trackMoved(e.getBlocks(),e.getDirection());}
     @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void pistonPull(BlockPistonRetractEvent e){trackMoved(e.getBlocks(),e.getDirection().getOppositeFace());}
-    void trackMoved(List<org.bukkit.block.Block> blocks,org.bukkit.block.BlockFace direction){store.transaction(()->{for(var b:blocks){var to=b.getRelative(direction);store.markPlaced(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ());store.markPlaced(to.getWorld().getUID().toString(),to.getX(),to.getY(),to.getZ());}return null;});}
+    void trackMoved(List<org.bukkit.block.Block> blocks,org.bukkit.block.BlockFace direction){store.transaction(()->{for(var b:blocks){var to=b.getRelative(direction);store.markPlaced(b.getWorld().getUID().toString(),b.getX(),b.getY(),b.getZ());store.markPlaced(to.getWorld().getUID().toString(),to.getX(),to.getY(),to.getZ());var other=b.getRelative(direction.getOppositeFace());store.markPlaced(other.getWorld().getUID().toString(),other.getX(),other.getY(),other.getZ());}return null;});}
     void close(){backups.close();audit.close();for(Player p:plugin.getServer().getOnlinePlayers())if(p.getOpenInventory().getTopInventory()!=null && p.getOpenInventory().getTopInventory().getHolder() instanceof Screen)p.closeInventory();store.close();}
 }

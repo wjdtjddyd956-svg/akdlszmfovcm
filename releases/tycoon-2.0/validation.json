@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "target": "Paper 26.3 / Java 25",
+  "production_compile": "real Paper API from unmodified df120fd source",
+  "domain": {
+    "assertions": 121,
+    "suites": {
+      "DomainTest": 73,
+      "ActionTest": 15,
+      "LegacyTest": 33
+    },
+    "real_sqlite": true
+  },
+  "mockbukkit": {
+    "version": "26.3:4.120.0",
+    "test_cases": 31,
+    "failures": 0,
+    "real_essentials_provider": false,
+    "real_player_nbt_saves": false
+  },
+  "setup": {
+    "assertions": 29,
+    "yaml_engine": "SnakeYAML 2.2 (real)",
+    "filesystem_tested": true,
+    "actual_paper_runtime_tested": false
+  },
+  "translator_assertions": 41,
+  "installer": {
+    "assertions": 25,
+    "real_filesystem": true,
+    "real_hash_validation": true,
+    "linux_session_lock_tested": true,
+    "windows_launcher_tested": false,
+    "fixture_plugin_metadata_only": true
+  },
+  "production_embedded_sqlite_smoke_passed": true,
+  "actual_paper_server_booted": false,
+  "minecraft_client_connected": false,
+  "windows_launcher_executed": false,
+  "user_windows_server_applied": false,
+  "official_essentials_dev_jar_included": false,
+  "essentials_dev_download": "reuse installed compatible core/Spawn; otherwise official CI at Windows install time",
+  "resourcepack_client_visual_tested": false,
+  "legacy12_sqlite_migration_tested": true,
+  "existing_gp_prism_backup_commands_preserved": true,
+  "gp_prism_runtime_2_0_tested": false,
+  "previous_server_version": "1.2.0, user confirmed installed"
+}

@@ -42,6 +42,10 @@ with tempfile.TemporaryDirectory(prefix='tycoon-installer-') as tmp:
  with zipfile.ZipFile(plugins/'old-random.jar','w') as z:z.writestr('plugin.yml','name: KoreanMenu\nversion: old\n')
  run('설치',server,payload,'--서버종료확인');check(not (plugins/'old-random.jar').exists());check(len(list(plugins.glob('*.jar')))==8);check((data/'userdata.yml').read_text().startswith('money: 123456'));check((world/'region.mca').read_bytes()==b'original world data')
  run('설치',server,payload,'--서버종료확인');check(len(list(plugins.glob('*.jar')))==8)
+ legacy=data.parent/'KoreanEconomy'/'생활기록';legacy.mkdir(parents=True,exist_ok=True);pending=legacy/'pending-user.properties';pending.write_text('pending.id=unresolved\njob.owed=99\n');run('설치',server,payload,'--서버종료확인',ok=False);check(pending.read_text()=='pending.id=unresolved\njob.owed=99\n');pending.unlink()
+ spawn=payload/'EssentialsSpawn-test.jar';original_spawn=spawn.read_bytes()
+ with zipfile.ZipFile(spawn,'w') as z:z.writestr('plugin.yml','name: EssentialsSpawn\nversion: different-release-version\n')
+ current_manifest=(payload/'SHA256.properties').read_text();(payload/'SHA256.properties').write_text('\n'.join(line if not line.startswith(spawn.name+'=') else spawn.name+'='+hashlib.sha256(spawn.read_bytes()).hexdigest() for line in current_manifest.splitlines()));run('설치',server,payload,'--서버종료확인',ok=False);spawn.write_bytes(original_spawn);(payload/'SHA256.properties').write_text(current_manifest)
  # Corrupt input cannot touch any installed plugins.
  before={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in plugins.glob('*.jar')};(payload/'KoreanMenu-test.jar').write_bytes(b'corrupt');run('설치',server,payload,'--서버종료확인',ok=False);check(before=={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in plugins.glob('*.jar')})
  run('설치',server,payload,ok=False)

@@ -67,8 +67,8 @@ final class NpcShops implements Listener {
         try{
             EntityType type=EntityType.valueOf(appearance.equals("사람")?"MANNEQUIN":"VILLAGER");entity=location.getWorld().spawnEntity(location,type);
             if(!entity.isValid()||!(entity instanceof LivingEntity))throw new IllegalStateException("다른 플러그인 또는 월드 규칙이 NPC 생성을 취소했습니다.");
-            LivingEntity living=(LivingEntity)entity;entity.setPersistent(true);entity.setInvulnerable(true);entity.setSilent(true);entity.setGravity(false);living.setRemoveWhenFarAway(false);living.setCollidable(false);
-            if(living instanceof Mob mob)mob.setAI(false);if(living instanceof Mannequin mannequin){mannequin.setImmovable(true);mannequin.setDescription(null);}
+            LivingEntity living=(LivingEntity)entity;entity.setPersistent(true);entity.setInvulnerable(true);entity.setSilent(true);entity.setGravity(false);living.setCollidable(false);
+            if(living instanceof Mob mob){mob.setRemoveWhenFarAway(false);mob.setAI(false);}if(living instanceof Mannequin mannequin){mannequin.setImmovable(true);mannequin.setDescription(null);}
             entity.setCustomName("§6"+name+" §e["+(category==ShopCategory.QUESTS?"임무":"상점")+" · 우클릭]");entity.setCustomNameVisible(true);entity.getPersistentDataContainer().set(key,PersistentDataType.STRING,category.name());return entity;
         }catch(RuntimeException e){if(entity!=null)entity.remove();throw e;}
     }
@@ -80,7 +80,7 @@ final class NpcShops implements Listener {
         for(int x:new int[]{-4,-2,0,2,4}){Location l=center.clone().add(x,0,2);l.setX(l.getBlockX()+0.5);l.setZ(l.getBlockZ()+0.5);l.setYaw(180);if(!l.getBlock().getType().isAir()||!l.clone().add(0,1,0).getBlock().getType().isAir()||!l.clone().add(0,-1,0).getBlock().getType().isSolid()){sender.sendMessage("§cNPC가 설 평평한 바닥과 두 칸 높이의 빈 공간이 필요합니다. 블록을 고치고 다시 시도하세요.");return true;}locations.add(l);}
         List<Entity> created=new ArrayList<>();ShopCategory[] categories={ShopCategory.ALL,ShopCategory.CROPS,ShopCategory.MINERALS,ShopCategory.FOOD,ShopCategory.QUESTS};String[] names={"잡화상인","농부","광물상","주방장","마을이장"};
         try{for(int i=0;i<5;i++)created.add(spawn(names[i],categories[i],"사람",locations.get(i)));sender.sendMessage("§aNPC 5명을 배치했습니다. 우클릭해 이용하세요. /상인 삭제로 가까운 NPC를 지울 수 있습니다.");}
-        catch(RuntimeException e){for(Entity npc:created)npc.remove();plugin.getLogger().warning("마을 배치 실패: "+e);sender.sendMessage("§c배치를 완료하지 못해 이번에 생성한 NPC를 제거했습니다.");}return true;
+        catch(RuntimeException e){for(Entity npc:created)npc.remove();plugin.getLogger().log(java.util.logging.Level.WARNING,"마을 배치 실패",e);sender.sendMessage("§c배치를 완료하지 못해 이번에 생성한 NPC를 제거했습니다.");}return true;
     }
     private void help(CommandSender sender){
         sender.sendMessage("§6[상인 관리] 현재 서 있는 위치에 생성됩니다.");

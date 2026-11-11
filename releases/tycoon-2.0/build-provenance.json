@@ -14,26 +14,62 @@
     {
       "module": "korean-economy",
       "jar": "KoreanEconomy-2.0.0.jar",
-      "sha256": "f2fbb988e222fcb874951e9ac28cf88ea188506ff109d52f6899808de27afb8e",
-      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+      "sha256": "d5736b8879c2a99c5750d2b619cc867dda600936db076048b5bdd8967eb922d4",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build",
+      "source_sha256": {
+        "korean-economy/src/main/resources/config.yml": "84af397f2dbdc66118e71094062862042ecd2f5ba4534903fc0ba50b4277ff9f",
+        "korean-economy/src/main/resources/plugin.yml": "a4e120ef301b06485664feb88049040288076d63a56be0cc38137f3fbdf020a9",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/KoreanEconomyPlugin.java": "3486471f3de281793f65c1353162df6ed1abb54c128e1a48818c08011a84f44e",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/ServerTools.java": "172a007871a6cd99c0ccd1e17a79b3a9836689db7b8228dd414ee5839a1298e9",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/ServerBackups.java": "1ecf68f1a466368275b65e2c9916d75ca3261d6c4ec63cdb4474b8e85dc1b5e6",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/Tycoon.java": "379639ab4a18eadd7b854ae5d6799b5a64c8f8a7ef86786a4d6b6a378f4825f6",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/LandProtection.java": "bf82983cb366f02a2a7363f081faa3023da54a61c53ab9d0aaa33749bdb51a3e",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/InventoryPlan.java": "6e3d62a515fb20beb0d2c363376b42e954bee8a325a79a5bfe5dbeb2b1bba865",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/AuditLog.java": "1e7cf1cd891f1347ebfcf49e3d03d4c77f9a425c8faddc4fe04eec8ae633c443",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/ItemPlans.java": "a46ca5ef66b0b5c05a57ac4c003be461d17288d59b3a8224466f5d95a56f7bfd",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/DailyClaims.java": "f4c1b4a446f182d3f59154947d9b175ceafc881491519aef676fab7bf4d6ca1b",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/NpcShops.java": "c943519d233d35a004b4b1c018c7dafca4cff51a2cc6aee47eeb89eeb2257dfc",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/ShopCategory.java": "07bea51f62f0cd1497b05b082e1d2966453ef6208899a93b1b445a525fde6a83",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Money.java": "1189f87b6bb5a2c5e5c0a7f88790d4738c09d9dd9aef2826c565ac7dbae818f0",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/ActionEngine.java": "e908995f255fd77e625a5501754a242309bda44f2904f634478af2a50cd8bf49",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Rules.java": "2256cff30aab3f2826230e90d240eb4d4861f909e6272e176bafef829bdb35bc",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Legacy12.java": "edf292d604db5296d4c6bacb28c390a04694a030a2a8dd6ceae4b7f7f4f1c645",
+        "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/StateStore.java": "20bc6d3c23274e22626d175f23f2b89870e398d5b07f5389fd66ad5b9efe8b7e"
+      }
     },
     {
       "module": "korean-menu",
       "jar": "KoreanMenu-2.0.0.jar",
-      "sha256": "7d6562aec00c26d005028ab4d7647c592611d18741681b10727b42a22f9a7c27",
-      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+      "sha256": "ecca0f0b5c39372728084b97c26f8d14629133ffb54d8e6c198b63468d3011ed",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build",
+      "source_sha256": {
+        "korean-menu/src/main/resources/plugin.yml": "ca417785069ac5348e00142b227c38d6ddcc7d95e3b2d42ee844d110ce5539f6",
+        "korean-menu/src/main/java/kr/minecraft/survival/menu/KoreanMenuPlugin.java": "81970cd7fa7267c88a0102bff6ef71bdc4541566b229f4c1b489d35be3bb6373"
+      }
     },
     {
       "module": "korean-commands",
       "jar": "KoreanCommands-2.0.0.jar",
-      "sha256": "25db69931ce160055f45d13adeb21140049c22e62fed640ee9442579912565df",
-      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+      "sha256": "2238811fc9a246612abb7d0d1417541104629101e39db81e77870eb1657ab67c",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build",
+      "source_sha256": {
+        "korean-commands/src/main/resources/config.yml": "369baa32fa7921cbe17a2b9132734baaaf6ab38388daf6a965ed3e5c4a264bc3",
+        "korean-commands/src/main/resources/plugin.yml": "f2ebf7be08c66898123fc2cc43d03133af4b59d90599ad26d85ac85a05db2e7c",
+        "korean-commands/src/main/java/kr/minecraft/rpg/koreancommands/CommandTranslator.java": "fb8e08090e5c1a5708e18f678ea429f6428d9fd57cc26e43fa16952e5068f1eb",
+        "korean-commands/src/main/java/kr/minecraft/rpg/koreancommands/KoreanCommandsPlugin.java": "9386b6d9cb48a56c2bedd233071cf6e52296335ab841aaf95f469ae81f266283"
+      }
     },
     {
       "module": "korean-pack-setup",
       "jar": "KoreanPackSetup-2.0.0.jar",
-      "sha256": "d0ea6b8cbf158f0e89977a728367a96906d192882772e3fdfac9df3f3d98b794",
-      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+      "sha256": "95fe1b95dcf1d508041106d9874c6b3d62d2b6989916a21c66602556693b7ca7",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build",
+      "source_sha256": {
+        "korean-pack-setup/src/main/resources/plugin.yml": "4b32f0c5424e04edf72d57aea1110751778ab2bbb07a1baf634a3b1ebae915ce",
+        "korean-pack-setup/src/main/java/kr/minecraft/survival/setup/KoreanPackSetupPlugin.java": "94a8331c9604daedc13fb279c6da3250a7385936dba1f6a9cb5209dd82ff9e96",
+        "korean-pack-setup/src/main/java/kr/minecraft/survival/setup/SafeFiles.java": "43fd366818d3f527b7fe5cafb0068a3645800b70fe1eadf607175aa84c2a38a8",
+        "korean-pack-setup/src/main/java/kr/minecraft/survival/setup/ConfigPatch.java": "e39b38ac8c9dd2a2ca284ae33a7cf8c8e64ba8863e6d265e046aecdd04de31b5"
+      }
     }
   ]
 }

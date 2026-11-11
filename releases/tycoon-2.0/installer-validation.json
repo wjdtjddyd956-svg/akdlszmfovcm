@@ -1,5 +1,5 @@
 {
-  "assertions": 22,
+  "assertions": 25,
   "real_filesystem": true,
   "real_hash_validation": true,
   "linux_session_lock_tested": true,

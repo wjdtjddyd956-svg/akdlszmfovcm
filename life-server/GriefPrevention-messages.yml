@@ -1,0 +1,91 @@
+Messages:
+  RespectingClaims:
+    Text: '땅 보호 규칙을 다시 적용합니다.'
+  IgnoringClaims:
+    Text: '운영자 땅 보호 우회가 켜졌습니다.'
+  SuccessfulAbandon:
+    Text: '보호를 해제했습니다. 남은 보호 블록: {0}'
+  AbandonSuccess:
+    Text: '보호를 해제했습니다. 남은 보호 블록: {0}'
+  AbandonClaimMissing:
+    Text: '해제하려는 내 땅 안에 서세요.'
+  NotYourClaim:
+    Text: '내 땅이 아닙니다.'
+  TrustListNoClaim:
+    Text: '확인할 땅 안에 서세요.'
+  NoPermissionTrust:
+    Text: '{0}님의 땅에서 권한을 관리할 수 없습니다.'
+  UntrustIndividualSingleClaim:
+    Text: '이 땅에서 {0}님의 권한을 회수했습니다.'
+  UntrustIndividualAllClaims:
+    Text: '내 모든 땅에서 {0}님의 권한을 회수했습니다.'
+  GrantPermissionNoClaim:
+    Text: '친구를 초대할 땅 안에 서세요.'
+  GrantPermissionConfirmation:
+    Text: '{0}님에게 {2} {1} 권한을 부여했습니다.'
+  BuildPermission:
+    Text: '건축'
+  ContainersPermission:
+    Text: '상자와 동물 이용'
+  AccessPermission:
+    Text: '문과 스위치 이용'
+  PermissionsPermission:
+    Text: '권한 관리'
+  LocationCurrentClaim:
+    Text: '이 땅의'
+  LocationAllClaims:
+    Text: '내 모든 땅의'
+  BlockNotClaimed:
+    Text: '보호되지 않은 블록입니다.'
+  BlockClaimed:
+    Text: '{0}님의 땅입니다.'
+  NoCreateClaimPermission:
+    Text: '땅을 지정할 권한이 없습니다.'
+  ClaimStart:
+    Text: '첫 모서리를 지정했습니다. 금 삽으로 반대편 모서리를 우클릭하세요.'
+  ClaimResizeSuccess:
+    Text: '범위를 바꿨습니다. 남은 보호 블록: {0}'
+  ResizeStart:
+    Text: '새 모서리에 금 삽을 사용해 범위를 바꾸세요.'
+  CreateClaimFailOverlap:
+    Text: '기존 내 땅과 겹칩니다. 모서리를 눌러 크기를 조정하세요.'
+  CreateClaimFailOverlapOtherPlayer:
+    Text: '{0}님의 땅과 겹칩니다.'
+  ClaimsDisabledWorld:
+    Text: '이 월드에서는 땅을 지정할 수 없습니다.'
+  NewClaimTooNarrow:
+    Text: '보호 범위의 한 변은 최소 {0}블록이어야 합니다.'
+  CreateClaimInsufficientBlocks:
+    Text: '보호 블록이 {0}개 더 필요합니다.'
+  CreateClaimFailOverlapShort:
+    Text: '기존 보호 범위와 겹칩니다.'
+  CreateClaimSuccess:
+    Text: '땅을 보호했습니다. /땅보호 초대 닉네임으로 친구를 초대하세요.'
+  CreateClaimFailOverlapRegion:
+    Text: 'WorldGuard 보호 구역과 겹쳐 지정할 수 없습니다.'
+  ResizeFailOverlapRegion:
+    Text: 'WorldGuard 보호 구역과 겹쳐 넓힐 수 없습니다.'
+  OnlyOwnersModifyClaims:
+    Text: '{0}님만 이 땅을 바꿀 수 있습니다.'
+  NoBuildPermission:
+    Text: '{0}님의 땅에서 건축할 권한이 없습니다.'
+  NoAccessPermission:
+    Text: '{0}님의 땅에서 사용할 권한이 없습니다.'
+  NoContainersPermission:
+    Text: '{0}님의 상자를 열 권한이 없습니다.'
+  OwnerNameForAdminClaims:
+    Text: '운영진'
+  ShowNearbyClaims:
+    Text: '주변 보호 구역 {0}개를 찾았습니다.'
+  YouHaveNoClaims:
+    Text: '아직 보호한 땅이 없습니다.'
+  ClaimsListHeader:
+    Text: '내 보호 구역 목록'
+  TrustListHeader:
+    Text: '이 땅의 친구 권한 목록'
+  StartBlockMath:
+    Text: '활동 {0} + 추가 {1} = {2}블록'
+  ContinueBlockMath:
+    Text: ' (사용 {0}블록)'
+  EndBlockMath:
+    Text: ' = 남은 보호 블록 {0}개'

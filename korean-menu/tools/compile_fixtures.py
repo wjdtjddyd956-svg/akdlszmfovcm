@@ -6,7 +6,7 @@ Set BUKKIT_API_JAR for a separate build against a real API JAR.
 from pathlib import Path
 
 SOURCES = {
-    'org/bukkit/Material.java': 'public enum Material {GRAY_STAINED_GLASS_PANE,OAK_DOOR,LIME_CONCRETE,RED_CONCRETE,BOOK,GOLD_INGOT,EMERALD,CHEST,GOLDEN_SHOVEL,RED_BED,COMPASS,WRITABLE_BOOK,BARRIER,SUNFLOWER,ENDER_CHEST,WHEAT,CARROT,POTATO,COBBLESTONE,OAK_LOG,COAL,IRON_INGOT,DIAMOND,AIR; public int getMaxStackSize(){return 64;}}',
+    'org/bukkit/Material.java': 'public enum Material {GRAY_STAINED_GLASS_PANE,OAK_DOOR,LIME_CONCRETE,RED_CONCRETE,BOOK,GOLD_INGOT,EMERALD,CHEST,GOLDEN_SHOVEL,GOLDEN_HOE,PAPER,RED_BED,COMPASS,WRITABLE_BOOK,BARRIER,SUNFLOWER,ENDER_CHEST,WHEAT,CARROT,POTATO,COBBLESTONE,OAK_LOG,COAL,IRON_INGOT,DIAMOND,AIR; public int getMaxStackSize(){return 64;}}',
     'org/bukkit/Server.java': '''import java.util.Collection; import org.bukkit.entity.Player; import org.bukkit.inventory.*; import org.bukkit.plugin.PluginManager; import org.bukkit.scheduler.BukkitScheduler;
 public interface Server { PluginManager getPluginManager(); BukkitScheduler getScheduler(); Inventory createInventory(InventoryHolder h,int size,String title); Collection<? extends Player> getOnlinePlayers(); default org.bukkit.plugin.ServicesManager getServicesManager(){return null;} }''',
     'org/bukkit/command/Command.java': 'public class Command {private final String name; public Command(){this("");} public Command(String name){this.name=name;} public String getName(){return name;}}',

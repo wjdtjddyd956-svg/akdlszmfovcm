@@ -1,0 +1,11 @@
+{
+  "intervalHours": 12,
+  "keep": 7,
+  "directory": "",
+  "warningSeconds": 30,
+  "initialHeapMiB": 512,
+  "maxHeapMiB": 2048,
+  "gui": true,
+  "paperJar": "",
+  "javaExe": ""
+}

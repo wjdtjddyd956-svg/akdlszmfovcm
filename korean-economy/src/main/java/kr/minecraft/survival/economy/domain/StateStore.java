@@ -90,6 +90,10 @@ public final class StateStore implements AutoCloseable {
             execute("INSERT INTO job_progress(uuid,job,xp,day,daily_xp) VALUES(?,?,?,?,?) ON CONFLICT(uuid,job) DO UPDATE SET xp=excluded.xp,day=excluded.day,daily_xp=excluded.daily_xp",id,job.name(),Math.addExact(old.xp,grant),day,used+grant);return grant;
         });
     }
+    public long owed(UUID id){String raw=meta("job.owed:"+id);return raw==null?0:Long.parseLong(raw);}
+    public long earned(UUID id,String day){String raw=meta("job.earned:"+id+":"+day);return raw==null?0:Long.parseLong(raw);}
+    public long accrueJob(UUID id,String day,long amount,long cap){if(amount<0||cap<0)throw new IllegalArgumentException("직업 적립 금액 오류");return transaction(()->{long used=earned(id,day),grant=Math.max(0,Math.min(amount,cap-used));meta("job.earned:"+id+":"+day,Long.toString(Math.addExact(used,grant)));meta("job.owed:"+id,Long.toString(Math.addExact(owed(id),grant)));return grant;});}
+    public void consumeOwedInside(UUID id,long amount){requireTransaction();long owed=owed(id);if(amount<0||owed<amount)throw new Denied("직업 적립금 기록이 바뀌었습니다.");meta("job.owed:"+id,Long.toString(owed-amount));}
     public long changedAt(UUID id){return rows("SELECT job_changed FROM players WHERE uuid=?",id).stream().findFirst().map(r->n(r,"job_changed")).orElse(0L);}
     public void selectJobInside(UUID id,Rules.Job job,long now){requireTransaction();if(execute("UPDATE players SET job=?,job_changed=? WHERE uuid=?",job.name(),now,id)!=1)throw new Denied("유저 등록 정보를 찾지 못했습니다.");}
     private void requireTransaction(){if(!inTransaction)throw new IllegalStateException("거래 내부에서 호출해야 합니다.");}
@@ -127,7 +131,7 @@ public final class StateStore implements AutoCloseable {
     public void review(String id,String note){execute("UPDATE receipts SET state='REVIEW',note=? WHERE id=? AND state='PENDING'",note,id);}
     public void resolve(String id,boolean completed,String admin){transaction(()->{
         if(!receipt(id).state.equals("REVIEW"))throw new Denied("확인 대기 상태의 거래만 정리할 수 있습니다.");
-        if(completed){activateLandInside(id);execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","운영자 확인 완료: "+admin,id);}
+        if(completed){Receipt record=receipt(id);if(record.kind.equals("JOB_CLAIM"))consumeOwedInside(UUID.fromString(record.actor),record.cents);if(record.kind.equals("JOB"))selectJobInside(UUID.fromString(record.actor),Rules.Job.valueOf(record.payload),System.currentTimeMillis());activateLandInside(id);execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","운영자 확인 완료: "+admin,id);}
         else rejectInside(id,"운영자 취소 확인: "+admin);return null;
     });}
     public List<Map<String,Object>> receiptLog(UUID actor,int limit){return rows("SELECT * FROM receipts WHERE actor=? ORDER BY created DESC LIMIT ?",actor,Math.min(100,Math.max(1,limit)));}
