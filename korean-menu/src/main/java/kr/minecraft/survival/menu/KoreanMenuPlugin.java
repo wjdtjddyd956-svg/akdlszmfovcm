@@ -99,6 +99,8 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 menu.inventory.setItem(30, icon(Material.RED_BED, "§a집으로 이동", "§7저장한 기본 집으로 이동"));
                 menu.inventory.setItem(32, icon(Material.COMPASS, "§b스폰으로 이동", "§7운영자가 설정한 스폰으로 이동"));
                 menu.inventory.setItem(34, icon(Material.WRITABLE_BOOK, "§e서버 도움말", "§7거래·텔레포트·기본 명령어"));
+                menu.inventory.setItem(38, icon(Material.GOLDEN_HOE, "§a생활 직업", "§7농부·광부·낚시꾼과 적립 보상"));
+                menu.inventory.setItem(42, icon(Material.PAPER, "§e일일 임무", "§7임무 진행도와 완료 상태"));
             }
             menu.inventory.setItem(49, icon(Material.BARRIER, "§c닫기"));
             player.openInventory(menu.inventory);
@@ -139,19 +141,18 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                             "§f/거래소 생성 가격 §7으로 상점을 만듭니다.", "§7안내에 따라 판매/구매 수량을 입력하세요.",
                             "§7예: /거래소 생성 100", "§7상점 거래는 해당 상점의 안내를 따라 진행하세요.");
                 }
-                case 16 -> {
-                    if (!enabled("GriefPrevention") || !enabled("KoreanCommands")) help(player, "§c땅 보호 기능이 설치되거나 활성화되지 않았습니다.", "§7추가 다운로드 안내를 확인하세요.");
-                    else help(player, "§b[내 땅 보호]", "§f금 삽으로 대각선 두 모서리를 우클릭하세요.",
-                            "§f/땅초대 닉네임 §7: 친구에게 건축 권한", "§f/땅추방 닉네임 §7: 권한 회수", "§f/땅목록 §7: 내 땅 목록");
-                }
+                case 16 -> action(player, "KoreanEconomy", "땅보호");
                 case 28 -> {
                     if (enabled("Essentials")) open(player, true);
                     else help(player, "§c집 저장 기능이 활성화되지 않았습니다.");
                 }
                 case 30 -> action(player, "Essentials", "essentials:home default");
                 case 32 -> action(player, "EssentialsSpawn", "essentialsspawn:spawn");
+                case 38 -> action(player, "KoreanEconomy", "직업");
+                case 42 -> action(player, "KoreanEconomy", "임무");
                 case 34 -> help(player, "§6[경제 야생 도움말]", "§f쉬프트+F 또는 /메뉴 §7: 메뉴", "§f/돈 §7: 내 돈",
-                        "§f/송금 닉네임 금액 §7: 송금", "§f/이동요청 닉네임 §7: 이동 요청", "§f/이동수락 §7: 이동 수락", "§f/상점 · /일일보상 · /경제안내", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
+                        "§f/송금 닉네임 금액 §7: 송금", "§f/이동요청 닉네임 §7: 이동 요청", "§f/이동수락 §7: 이동 수락",
+                        "§f/상점 · /일일보상 · /경제안내", "§f/직업 · /임무 · /땅보호", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
                 default -> { }
             }
         }

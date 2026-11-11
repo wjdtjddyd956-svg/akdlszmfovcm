@@ -12,7 +12,7 @@
 python3 korean-menu/build.py
 ```
 
-기본 빌드는 Java 21과 로컬 최소 API 시그니처 fixture를 사용합니다. 실제 서버 모의 구현이 아니며 fixture는 JAR에 포함하지 않습니다. 검사 후 `build/libs/KoreanMenu-1.1.0.jar`를 생성합니다. 공식 Paper 소스에서 InventoryView 등이 인터페이스임을 확인했습니다.
+기본 검사는 Java 21과 로컬 최소 API 시그니처 fixture를 사용합니다. 검사 후 `build/libs/KoreanMenu-1.2.0.jar`를 생성합니다. 실제 Paper API로 컴파일하는 [배포 빌드](../life-server/README.md)를 우선 사용하세요.
 
 실제 Bukkit/Paper API JAR를 확보한 환경에서는 다음 방식으로 추가 컴파일할 수 있습니다. API의 전이 의존성이 필요하면 클래스 경로에 함께 지정합니다.
 

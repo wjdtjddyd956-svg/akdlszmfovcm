@@ -1,0 +1,26 @@
+GriefPrevention:
+  Claims:
+    InitialBlocks: 256
+    PreventTheft: true
+    HoppersRequireBuildTrust: true
+    LockWoodenDoors: true
+    LockTrapDoors: true
+    LockFenceGates: true
+    CreationRequiresWorldGuardBuildPermission: true
+    CommandsRequiringAccessTrust: '/sethome;/집저장'
+    DeliverManuals: false
+    Expiration:
+      ChestClaimDays: 0
+      UnusedClaimDays: 0
+      AllClaims:
+        DaysInactive: 0
+      AutomaticNatureRestoration:
+        SurvivalWorlds: false
+  Spam:
+    Enabled: false
+    LoginCooldownSeconds: 0
+    Logout Message Delay In Seconds: 0
+  AdminsGetWhispers: false
+  AdminsGetSignNotifications: false
+  SmartBan: false
+  Mute New Players Using Banned Words: false

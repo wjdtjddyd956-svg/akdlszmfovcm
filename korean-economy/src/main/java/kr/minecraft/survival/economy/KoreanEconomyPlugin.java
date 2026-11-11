@@ -18,11 +18,14 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
-    record Product(Material material,String name,double buy,double sell) {}
+    record Product(Material material,String name,double buy,double sell,int limit) {}
     private List<Product> products=List.of();
     private DailyClaims claims;
     private ZoneId zone=ZoneId.of("Asia/Seoul");
     private double daily=200;
+    private boolean remoteMarket;
+    private LifeProgress progress;
+    private ServerTools tools;
     private final Map<UUID,Long> cooldown=new HashMap<>();
     NpcShops npcs;
 
@@ -41,68 +44,100 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         @Override public Inventory getInventory(){return inventory;}
     }
     @Override public void onEnable() {
-        saveDefaultConfig();readSettings();
+        saveDefaultConfig();
+        var lifeSettings=LifeProgress.Settings.read(getConfig());
+        readSettings();
+        if(!getConfig().isSet("직업") || !getConfig().isSet("임무")
+                || products.stream().anyMatch(product->!getConfig().isSet("상점."+product.name+".하루매입한도"))) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
+        progress=new LifeProgress(this,lifeSettings);
+        tools=new ServerTools(this);
         claims=new DailyClaims(getDataFolder().toPath().resolve("보상기록"));
-        npcs=new NpcShops(this,(player,category,npc)->open(player,false,category,npc));
+        npcs=new NpcShops(this,(player,category,npc)->{
+            if(category==ShopCategory.QUEST) progress.open(player,false,npc);
+            else open(player,false,category,npc);
+        });
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getPluginManager().registerEvents(npcs,this);
+        getServer().getPluginManager().registerEvents(progress,this);
+        getServer().getPluginManager().registerEvents(new LifeActivity(this,progress),this);
         getLogger().info("NPC 상점 활성화: /상인 생성 잡화상인 전체 · 플레이어는 상인을 우클릭하세요.");
     }
     @Override public void onDisable() {
         closeMarkets();
+        if(progress!=null) {progress.closeMenus();progress.flush();}
         cooldown.clear();
     }
     private void closeMarkets() {
         for (Player player:getServer().getOnlinePlayers()) if (player.getOpenInventory().getTopInventory().getHolder() instanceof Market) player.closeInventory();
     }
     private void readSettings() {
-        zone=ZoneId.of(getConfig().getString("보상-시간대","Asia/Seoul"));
-        daily=validPrice(getConfig().getDouble("일일보상",200));
+        ZoneId nextZone=ZoneId.of(getConfig().getString("보상-시간대","Asia/Seoul"));
+        double nextDaily=validPrice(getConfig().getDouble("일일보상",200));
         Material[] materials={Material.WHEAT,Material.CARROT,Material.POTATO,Material.COBBLESTONE,Material.OAK_LOG,Material.COAL,Material.IRON_INGOT,Material.DIAMOND};
         String[] names={"밀","당근","감자","조약돌","참나무원목","석탄","철주괴","다이아몬드"};
         double[] buys={10,8,8,4,12,24,80,800}, sells={2,1,1,1,3,6,20,200};
+        int[] limits={128,128,128,128,96,64,48,12};
         List<Product> next=new ArrayList<>();
         for (int i=0;i<materials.length;i++) {
             double buy=validPrice(getConfig().getDouble("상점."+names[i]+".구매가",buys[i]));
             double sell=validPrice(getConfig().getDouble("상점."+names[i]+".판매가",sells[i]));
             if (sell>buy) throw new IllegalArgumentException(names[i]+": 판매가는 구매가보다 클 수 없습니다.");
-            next.add(new Product(materials[i],names[i],buy,sell));
+            int limit=LifeProgress.integer(getConfig(),"상점."+names[i]+".하루매입한도",limits[i],0,1_000_000);
+            next.add(new Product(materials[i],names[i],buy,sell,limit));
         }
         products=List.copyOf(next);
+        zone=nextZone;
+        daily=nextDaily;
+        remoteMarket=getConfig().getBoolean("상점-명령어열기",false);
     }
     static double validPrice(double value) {
         if (!Double.isFinite(value) || value<1 || value>1_000_000 || Math.rint(value)!=value) throw new IllegalArgumentException("가격과 보상은 1~1000000 사이 정수여야 합니다.");
         return value;
     }
-    private Economy wallet() {
+    Economy wallet() {
         RegisteredServiceProvider<Economy> registration=getServer().getServicesManager().getRegistration(Economy.class);
         return registration==null?null:registration.getProvider();
     }
-    private String money(double value) {return NumberFormat.getIntegerInstance(Locale.KOREA).format(value)+"원";}
+    String money(double value) {return NumberFormat.getIntegerInstance(Locale.KOREA).format(value)+"원";}
+    ZoneId zone() {return zone;}
 
     @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args) {
         String root=command.getName();
         if(root.equals("상인"))return npcs.command(sender,args);
+        if(root.equals("경제거래")) {progress.review(sender,args);return true;}
+        if(ServerTools.COMMANDS.contains(root)) {tools.command(sender,root,args);return true;}
         if (root.equals("경제설정")) {
             if (!sender.hasPermission("koreaneconomy.admin")) {sender.sendMessage("§c운영자만 경제 설정을 변경할 수 있습니다.");return true;}
             if (args.length!=1 || !args[0].equals("새로고침")) {sender.sendMessage("§e사용법: /경제설정 새로고침");return true;}
-            List<Product> old=products;double oldDaily=daily;ZoneId oldZone=zone;
-            try {reloadConfig();readSettings();closeMarkets();sender.sendMessage("§a경제 설정을 다시 읽었습니다. 바뀐 가격을 적용하려면 상점을 다시 여세요.");}
-            catch (RuntimeException e) {products=old;daily=oldDaily;zone=oldZone;sender.sendMessage("§c설정이 올바르지 않아 기존 설정을 유지합니다.");getLogger().warning(e.toString());}
+            try {
+                reloadConfig();
+                var settings=LifeProgress.Settings.read(getConfig());
+                readSettings();
+                progress.settings=settings;
+                closeMarkets();
+                progress.closeMenus();
+                sender.sendMessage("§a경제 설정을 다시 읽었습니다. 상점과 직업 메뉴를 다시 여세요.");
+            } catch (RuntimeException e) {sender.sendMessage("§c설정이 올바르지 않아 적용을 취소했습니다.");getLogger().warning(e.toString());}
             return true;
         }
         if (!(sender instanceof Player player)) {sender.sendMessage("게임 안에서 사용하세요.");return true;}
         if (!player.hasPermission("koreaneconomy.use")) {player.sendMessage("§c경제 기능을 사용할 권한이 없습니다.");return true;}
         switch(root) {
             case "상점" -> {
-                if(getConfig().getBoolean("상점-명령어열기",false))open(player,false,ShopCategory.ALL,null);
+                if(remoteMarket)open(player,false,ShopCategory.ALL,null);
                 else player.sendMessage("§e마을의 상점 NPC를 우클릭하면 구매·판매 화면이 열립니다.");
             }
             case "일일보상" -> reward(player);
+            case "직업" -> progress.open(player,true,null);
+            case "임무" -> progress.open(player,false,null);
             default -> {
                 player.sendMessage("§6[생활 경제 안내]");
                 player.sendMessage("§e/돈 §f잔액 · §e/송금 닉네임 금액 §f송금");
                 player.sendMessage("§e상점 NPC 우클릭 §f농산물·광물 거래 · §e/일일보상 §f하루 한 번 보상");
+                player.sendMessage("§e/직업 §f생활 직업 · §e/임무 §f일일 임무 · §e/땅보호 §f내 땅 관리");
                 player.sendMessage("§e/거래소 생성 가격 §f유저 상점 · §e/거래소 직원 추가 닉네임");
                 player.sendMessage("§e/집저장 §f집 저장 · §e/집 §f집 이동 · §e/스폰 §f마을 이동");
                 player.sendMessage("§e/이동요청 닉네임 §f이동 요청 · §e/이동수락 §f수락");
@@ -111,7 +146,7 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         }
         return true;
     }
-    private ItemStack icon(Material type,String name,String... lines) {
+    ItemStack icon(Material type,String name,String... lines) {
         ItemStack item=new ItemStack(type);ItemMeta meta=item.getItemMeta();meta.setDisplayName(name);meta.setLore(List.of(lines));item.setItemMeta(meta);return item;
     }
     void open(Player player,boolean buying,ShopCategory category,Entity npc) {
@@ -121,12 +156,17 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         menu.inventory.setItem(4,icon(Material.BOOK,buying?"§a서버에서 물건 구매":"§6서버에 물건 판매","§7좌클릭 1개 · 쉬프트 클릭 16개 · 우클릭 64개","§7이름·설명·마법이 없는 기본 아이템만 판매됩니다.","§7장비칸과 보조 손 아이템은 거래하지 않습니다."));
         for(int i=0;i<menu.prices.size();i++) {
             Product p=menu.prices.get(i);
-            menu.inventory.setItem(19+i,icon(p.material,"§e"+p.name,"§7내가 살 때: §a"+money(p.buy),"§7내가 팔 때: §6"+money(p.sell),"§7현재: "+(buying?"구매 모드":"판매 모드")));
+            menu.inventory.setItem(19+i,productIcon(player,p,buying));
         }
         menu.inventory.setItem(45,icon(Material.EMERALD,"§a구매 모드","§7서버에 돈을 내고 아이템을 받습니다."));
         menu.inventory.setItem(53,icon(Material.GOLD_INGOT,"§6판매 모드","§7아이템을 팔고 돈을 받습니다."));
         menu.inventory.setItem(49,icon(Material.BARRIER,"§c닫기"));
         player.openInventory(menu.inventory);
+    }
+    private ItemStack productIcon(Player player,Product product,boolean buying) {
+        return icon(product.material,"§e"+product.name,"§7내가 살 때: §a"+money(product.buy),"§7내가 팔 때: §6"+money(product.sell),
+                "§7오늘 서버에 팔 수 있는 수량: §e"+progress.remaining(player,product.material,product.limit)+"/"+product.limit+"개",
+                "§7초기화 "+progress.reset(player),"§7현재: "+(buying?"구매 모드":"판매 모드"));
     }
     @EventHandler(priority=EventPriority.HIGHEST)
     public void onClick(InventoryClickEvent event) {
@@ -141,7 +181,11 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
             if(slot==45) open(player,true,menu.category,menu.npc);
             else if(slot==53) open(player,false,menu.category,menu.npc);
             else if(slot==49) player.closeInventory();
-            else if(slot>=19 && slot<19+menu.prices.size()) trade(player,menu.prices.get(slot-19),amount,menu.buying);
+            else if(slot>=19 && slot<19+menu.prices.size()) {
+                Product product=menu.prices.get(slot-19);
+                trade(player,product,amount,menu.buying);
+                menu.inventory.setItem(slot,productIcon(player,product,menu.buying));
+            }
         });
     }
     @EventHandler(priority=EventPriority.HIGHEST)
@@ -151,24 +195,12 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
     private void trade(Player player,Product product,int amount,boolean buying) {
         long now=System.currentTimeMillis();Long last=cooldown.put(player.getUniqueId(),now);
         if(last!=null && now-last<250) return;
-        if(player.getGameMode()==GameMode.CREATIVE || player.getGameMode()==GameMode.SPECTATOR) {player.sendMessage("§c생존 또는 모험 모드에서 거래하세요.");return;}
-        Economy economy=wallet();
-        if(economy==null) {player.sendMessage("§c돈 관리 기능이 연결되지 않았습니다. 운영자에게 문의하세요.");return;}
+        if(!LifeProgress.eligible(player)) {player.sendMessage("§c생존 또는 모험 모드에서 거래하세요.");return;}
         ItemStack[] before=player.getInventory().getStorageContents();
         ItemStack[] after=InventoryPlan.plan(before,product.material,amount,buying);
         if(after==null) {player.sendMessage(buying?"§c가방 공간이 부족합니다.":"§c판매할 기본 아이템이 부족합니다. 이름·설명·마법이 붙은 물건은 제외됩니다.");return;}
         double total=(buying?product.buy:product.sell)*amount;
-        if(buying && !economy.has(player,total)) {player.sendMessage("§c잔액이 부족합니다.");return;}
-        EconomyResponse response=buying?economy.withdrawPlayer(player,total):economy.depositPlayer(player,total);
-        if(response==null || !response.transactionSuccess()) {player.sendMessage("§c거래하지 못했습니다. 잔액과 경제 플러그인 상태를 확인하세요.");return;}
-        try {player.getInventory().setStorageContents(after);}
-        catch(RuntimeException e) {
-            // The Bukkit call ordinarily cannot fail for a same-length storage array.
-            player.getInventory().setStorageContents(before);
-            EconomyResponse refund=buying?economy.depositPlayer(player,total):economy.withdrawPlayer(player,total);
-            getLogger().severe("아이템 거래 적용 실패: "+player.getUniqueId()+" 금액="+total+" 복구="+(refund!=null && refund.transactionSuccess())+" "+e);
-            player.sendMessage("§c거래 적용 중 오류가 발생했습니다. 운영자에게 기록 확인을 요청하세요.");return;
-        }
+        if(!progress.trade(player,product.material,product.name,amount,product.limit,buying,total,before,after))return;
         player.sendMessage("§a"+product.name+" "+amount+"개를 "+(buying?"구매":"판매")+"했습니다. §e"+money(total));
         getLogger().info("상점 거래 | "+player.getUniqueId()+" | "+(buying?"구매":"판매")+" | "+product.name+" | "+amount+" | "+total);
     }

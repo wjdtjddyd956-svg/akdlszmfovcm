@@ -1,6 +1,6 @@
 # 한글 생활 경제
 
-현재 1.1 버전은 **NPC 우클릭 상점**입니다. [NPC 설치·운영 안내](../survival-pack/NPC상점-설치안내.md)를 먼저 보세요. `/상인 생성 농부 농산물`로 사람형 상인을 배치하거나 마지막에 `주민`을 붙일 수 있습니다. 추가 NPC 플러그인은 필요하지 않습니다. 대상 API는 Paper 26.3입니다.
+1.2 버전은 **NPC 우클릭 상점**, 직업, 일일 임무, 매입 한도를 제공합니다. [10인 생활 서버 설치·운영 안내](../life-server/README.md)를 참고하세요. `/상인 생성 농부 농산물`로 사람형 상인을 배치하거나 마지막에 `주민`을 붙일 수 있습니다. 대상 API는 Paper 26.3입니다.
 
 EssentialsX의 잔액을 Vault로 공유하는 서버 상점과 일일 보상 플러그인입니다. 별도 지갑을 만들지 않습니다. Vault와 실제 경제 제공자(EssentialsX 등)가 있어야 거래·보상을 사용할 수 있습니다.
 
@@ -21,10 +21,9 @@ EssentialsX의 잔액을 Vault로 공유하는 서버 상점과 일일 보상 �
 
 ## 빌드와 검사
 
-```bash
-python3 survival-pack/fetch_vendor.py
-python3 korean-economy/build.py
-python3 survival-pack/build_npc_update.py
+```powershell
+./life-server/Build-LifePack.ps1 -PaperServer 'C:\Paper26.3서버' -JavaHome 'C:\Program Files\Java\jdk-25'
+./life-server/Package-LifePack.ps1
 ```
 
-Vault는 실제 공식 JAR의 API로 컴파일합니다. Bukkit/Paper는 로컬 최소 시그니처 fixture를 사용하며 JAR에 API fixture를 넣지 않습니다. 인벤토리·정상 거래·실패·보상 외에 NPC 클릭·품목·권한·거리·보호·삭제를 검사합니다. 실제 Paper 26.3 서버와 월드 저장/재접속 실행은 미검증입니다. 실제 API 클래스 경로가 있으면 `BUKKIT_API_JAR`를 지정해 추가 컴파일할 수 있습니다.
+설치된 서버의 Paper 26.3 build 238, Vault, GriefPrevention 실제 API로 컴파일합니다. `korean-economy/build.py --paper-server ... --java-home ...`도 동일한 빌드를 호출합니다. 실제 서버와 별도 테스트의 검증 범위는 [검증 결과](../life-server/검증.md)에 있습니다.

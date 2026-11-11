@@ -2,6 +2,14 @@
 
 소규모 Paper 기반 RPG 서버를 만들면서 사용하는 설정과 결과물을 보관합니다.
 
+## 10인 한글 생활 경제 서버
+
+Paper 26.3용 1.2.0은 NPC 상점에 매입 한도를 추가하고, 직업·일일 임무·땅 보호·기록 복구·자동 백업을 구성합니다.
+
+- [설치 ZIP](releases/survival-pack/Korean-Life-Server-1.2.0.zip)
+- [Windows 설치와 백업 복원](life-server/README.md) · [한글 명령어표](life-server/명령어.md) · [검증 결과](life-server/검증.md)
+- 현재 배포본은 `life-server/Build-LifePack.ps1`로 실제 Paper 26.3 API에서 빌드하고 `life-server/Package-LifePack.ps1`로 패키징합니다. 예전 배포 파일은 해당 버전의 커밋에서 재빌드할 수 있습니다.
+
 ## 플러그인 한글화
 
 `releases/korean-plugins/`에 WorldEdit 7.4.6 및 WorldGuard 7.0.21 한국어 수정본과 설치 안내가 있습니다.

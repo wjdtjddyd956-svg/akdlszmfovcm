@@ -39,7 +39,8 @@ if os.environ.get('BUKKIT_API_JAR'):
 else:
     print('Offline signature compilation only; real Paper runtime test has not been run.')
 
-jar = BUILD / 'libs/KoreanMenu-1.1.0.jar'
+version = re.search(r'^version: (\S+)$', (ROOT / 'src/main/resources/plugin.yml').read_text(encoding='utf-8'), re.MULTILINE).group(1)
+jar = BUILD / f'libs/KoreanMenu-{version}.jar'
 with zipfile.ZipFile(jar, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted((BUILD / 'main').rglob('*.class')):
         z.write(p, p.relative_to(BUILD / 'main'))
