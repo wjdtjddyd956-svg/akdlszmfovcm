@@ -85,14 +85,17 @@ public final class StateStore implements AutoCloseable {
     }
     public int grantXp(UUID id,Rules.Job job,int amount,String day,int cap){
         if(amount<1||amount>1000||cap<0)throw new IllegalArgumentException("숙련도 값 오류");
-        return transaction(()->{
+        return transaction(()->grantXpInside(id,job,amount,day,cap));
+    }
+    public int grantXpInside(UUID id,Rules.Job job,int amount,String day,int cap){
+        requireTransaction();if(amount<1||amount>1000||cap<0)throw new IllegalArgumentException("숙련도 값 오류");
             Progress old=progress(id,job);int used=old.day.equals(day)?old.dailyXp:0;int grant=Math.max(0,Math.min(amount,cap-used));
             execute("INSERT INTO job_progress(uuid,job,xp,day,daily_xp) VALUES(?,?,?,?,?) ON CONFLICT(uuid,job) DO UPDATE SET xp=excluded.xp,day=excluded.day,daily_xp=excluded.daily_xp",id,job.name(),Math.addExact(old.xp,grant),day,used+grant);return grant;
-        });
     }
     public long owed(UUID id){String raw=meta("job.owed:"+id);return raw==null?0:Long.parseLong(raw);}
     public long earned(UUID id,String day){String raw=meta("job.earned:"+id+":"+day);return raw==null?0:Long.parseLong(raw);}
-    public long accrueJob(UUID id,String day,long amount,long cap){if(amount<0||cap<0)throw new IllegalArgumentException("직업 적립 금액 오류");return transaction(()->{long used=earned(id,day),grant=Math.max(0,Math.min(amount,cap-used));meta("job.earned:"+id+":"+day,Long.toString(Math.addExact(used,grant)));meta("job.owed:"+id,Long.toString(Math.addExact(owed(id),grant)));return grant;});}
+    public long accrueJob(UUID id,String day,long amount,long cap){return transaction(()->accrueJobInside(id,day,amount,cap));}
+    public long accrueJobInside(UUID id,String day,long amount,long cap){requireTransaction();if(amount<0||cap<0)throw new IllegalArgumentException("직업 적립 금액 오류");long used=earned(id,day),grant=Math.max(0,Math.min(amount,cap-used));meta("job.earned:"+id+":"+day,Long.toString(Math.addExact(used,grant)));meta("job.owed:"+id,Long.toString(Math.addExact(owed(id),grant)));return grant;}
     public void consumeOwedInside(UUID id,long amount){requireTransaction();long owed=owed(id);if(amount<0||owed<amount)throw new Denied("직업 적립금 기록이 바뀌었습니다.");meta("job.owed:"+id,Long.toString(owed-amount));}
     public long changedAt(UUID id){return rows("SELECT job_changed FROM players WHERE uuid=?",id).stream().findFirst().map(r->n(r,"job_changed")).orElse(0L);}
     public void selectJobInside(UUID id,Rules.Job job,long now){requireTransaction();if(execute("UPDATE players SET job=?,job_changed=? WHERE uuid=?",job.name(),now,id)!=1)throw new Denied("유저 등록 정보를 찾지 못했습니다.");}
@@ -103,7 +106,8 @@ public final class StateStore implements AutoCloseable {
     private Receipt receipt(Map<String,Object> r){return new Receipt((String)r.get("id"),(String)r.get("actor"),(String)r.get("kind"),(String)r.get("reference"),n(r,"cents"),(String)r.get("state"),(String)r.get("payload"));}
     public Receipt receipt(String id){return rows("SELECT * FROM receipts WHERE id=?",id).stream().findFirst().map(this::receipt).orElseThrow(()->new Denied("거래를 찾을 수 없습니다."));}
     public Receipt reserve(UUID id,String kind,String reference,long cents,String payload,Quota quota){return transaction(()->reserveInside(id,kind,reference,cents,payload,quota));}
-    private Receipt reserveInside(UUID id,String kind,String reference,long cents,String payload,Quota quota){
+    public Receipt reserveInside(UUID id,String kind,String reference,long cents,String payload,Quota quota){
+        requireTransaction();
         if(cents<0)throw new IllegalArgumentException("음수 거래 금액");
         if(unresolved(id))throw new Denied("확인 중인 거래가 있습니다. 운영자에게 /경제기록 확인을 요청하세요.");
         if(!rows("SELECT id FROM receipts WHERE actor=? AND reference=? AND state IN ('PENDING','DONE','REVIEW')",id,reference).isEmpty())throw new Denied("이미 처리했거나 확인 중인 보상입니다.");
@@ -130,9 +134,15 @@ public final class StateStore implements AutoCloseable {
     }
     public void review(String id,String note){execute("UPDATE receipts SET state='REVIEW',note=? WHERE id=? AND state='PENDING'",note,id);}
     public void resolve(String id,boolean completed,String admin){transaction(()->{
+        if(receipt(id).kind.startsWith("FARM_"))throw new Denied("농사 거래는 /농사관리 에서 정리하세요.");
         if(!receipt(id).state.equals("REVIEW"))throw new Denied("확인 대기 상태의 거래만 정리할 수 있습니다.");
         if(completed){Receipt record=receipt(id);if(record.kind.equals("JOB_CLAIM"))consumeOwedInside(UUID.fromString(record.actor),record.cents);if(record.kind.equals("JOB"))selectJobInside(UUID.fromString(record.actor),Rules.Job.valueOf(record.payload),System.currentTimeMillis());activateLandInside(id);execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","운영자 확인 완료: "+admin,id);}
         else rejectInside(id,"운영자 취소 확인: "+admin);return null;
+    });}
+    /** Extension state and the shared receipt commit together; never replays wallet/items. */
+    public void resolveFarm(String id,boolean completed,String admin,Runnable effect){transaction(()->{
+        Receipt r=receipt(id);if(!r.kind.startsWith("FARM_")||!r.state.equals("REVIEW"))throw new Denied("확인 대기 농사 거래만 정리할 수 있습니다.");
+        effect.run();if(completed)execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","농사 운영자 확인: "+admin,id);else rejectInside(id,"농사 운영자 취소: "+admin);return null;
     });}
     public List<Map<String,Object>> receiptLog(UUID actor,int limit){return rows("SELECT * FROM receipts WHERE actor=? ORDER BY created DESC LIMIT ?",actor,Math.min(100,Math.max(1,limit)));}
     public List<Map<String,Object>> unresolvedLog(){return rows("SELECT * FROM receipts WHERE state='REVIEW' ORDER BY created LIMIT 100");}

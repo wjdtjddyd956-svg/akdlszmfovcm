@@ -7,8 +7,11 @@ import org.bukkit.inventory.ItemStack;
 record RegistrationPlan(ItemStack[] before,ItemStack[] after,int slot,int amount,String beforeHash,String afterHash) {
     static ItemStack[] copy(ItemStack[] source){ItemStack[] result=new ItemStack[source.length];for(int i=0;i<source.length;i++)result[i]=source[i]==null?null:source[i].clone();return result;}
     static RegistrationPlan create(ItemStack[] source,Material material){
-        ItemStack[] before=copy(source),after=copy(before);ItemStack plain=new ItemStack(material);
-        for(int i=0;i<after.length;i++)if(after[i]!=null&&after[i].isSimilar(plain)){
+        return create(source,s->s.isSimilar(new ItemStack(material)));
+    }
+    static RegistrationPlan create(ItemStack[] source,java.util.function.Predicate<ItemStack> matches){
+        ItemStack[] before=copy(source),after=copy(before);
+        for(int i=0;i<after.length;i++)if(after[i]!=null&&matches.test(after[i])){
             int amount=after[i].getAmount();if(amount<1)continue;if(amount==1)after[i]=null;else after[i].setAmount(amount-1);return new RegistrationPlan(before,after,i,amount,hash(before),hash(after));
         }throw new CodexStore.Denied("가방에 이름·마법·손상·추가 정보가 없는 기본 아이템 1개가 필요합니다.");
     }

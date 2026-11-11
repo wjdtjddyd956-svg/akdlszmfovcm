@@ -14,6 +14,13 @@
 
 [아이템 도감·수집 업적 1.0.1](korean-codex/README.md)을 전체 백업 후 실제 Windows 서버에 JAR 하나만 추가했습니다. 80종을 1개씩 소비해 UUID별 영구 등록하고 희귀도·12업적에 따라 8종의 작은 보너스를 받습니다. [설치 ZIP](releases/korean-codex/1.0.1/KoreanCodex-Windows-설치-1.0.1.zip) · [80종 보너스 표](releases/korean-codex/1.0.1/아이템별보너스.md) · [실제 Paper·순정 화면·모의 검사 구분](releases/korean-codex/1.0.1/검증결과.md).
 
+[도시 농장 업데이트](korean-farming/README.md)를 추가했습니다. **딸기·토마토·옥수수·쌀·오이** 5종의 씨앗 구매·재배·수확·농부 보상·요리·NPC 판매·도감을 연결합니다. 경제 2.0.2 / 농사 1.0.0 / 도감 1.1.0 조합이며 기존 2.0.1 서버의 데이터를 이어받습니다. 도감은 기존 보상을 유지하며 85종·13업적으로 확장합니다.
+
+- [농장 통합 설치 ZIP](releases/farming-update/도시농장-통합설치-1.0.0.zip) · [설치와 사용법](releases/farming-update/설치·사용안내.md)
+- [작물·씨앗·요리·성장 모델 미리보기](releases/farming-update/농작물-미리보기.png) · [검증 범위](releases/farming-update/validation.json)
+- 새 농장 팩은 기존 도시 아이콘 32종에 농장 아이콘 15종·성장 모델 20종을 합칩니다. 새 작물은 이 통합팩이 필요합니다.
+- 이 농장 업데이트는 클라우드에서 제작·자동 검증했으며 사용자 Windows 서버에 적용된 상태는 아닙니다. 위의 2.0.1 Windows 적용 이력과 구분합니다.
+
 아래는 이전 RPG·경제 야생 자료의 이력입니다.
 
 # 이전 서버 자료

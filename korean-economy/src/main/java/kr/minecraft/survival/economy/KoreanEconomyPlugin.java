@@ -51,6 +51,20 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(npcs,this);
         getLogger().info("NPC 상점 활성화: /상인 생성 잡화상인 전체 · 플레이어는 상인을 우클릭하세요.");
     }
+    // Stable addon surface. All mutations run on the main server thread.
+    public kr.minecraft.survival.economy.domain.StateStore getEconomyStateStore(){return tycoon.store;}
+    public kr.minecraft.survival.economy.domain.ActionEngine getEconomyActionEngine(){return tycoon.engine;}
+    public void prepareFarmingPlayer(Player p){tycoon.register(p);}
+    public boolean isFarmer(Player p){return tycoon.store.job(p.getUniqueId())==kr.minecraft.survival.economy.domain.Rules.Job.FARMER;}
+    public int farmingLevel(Player p){return isFarmer(p)?tycoon.store.progress(p.getUniqueId(),kr.minecraft.survival.economy.domain.Rules.Job.FARMER).level():0;}
+    public boolean canFarmAt(Player p,org.bukkit.Location l){return tycoon.lands.allowed(p,l);}
+    public Entity getShopNpc(Inventory inv){if(inv.getHolder() instanceof Market m)return m.npc;if(inv.getHolder() instanceof Tycoon.Screen s)return s.source;return null;}
+    public String farmingDay(){return tycoon.day();}
+    public void recordFarmHarvestInside(UUID id,boolean wasFarmer){if(!wasFarmer)return;
+        var job=kr.minecraft.survival.economy.domain.Rules.Job.FARMER;
+        tycoon.store.grantXpInside(id,job,2,tycoon.day(),250);
+        tycoon.store.accrueJobInside(id,tycoon.day(),kr.minecraft.survival.economy.domain.Money.cents(getConfig().getInt("직업.농부.보상",2)),kr.minecraft.survival.economy.domain.Money.cents(getConfig().getInt("직업.하루보상한도",300)));
+    }
     @Override public void onDisable() {
         closeMarkets();
         if(tycoon!=null)tycoon.close();

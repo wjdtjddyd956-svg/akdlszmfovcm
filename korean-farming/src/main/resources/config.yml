@@ -1,0 +1,6 @@
+# 작물·거래 데이터는 KoreanEconomy/생활경제.db의 farm_plots에 저장합니다.
+# /서버백업 DB 스냅샷과 Windows 전체 백업에 자동 포함됩니다.
+리소스팩:
+  접속시-요청: true
+  주소: 'https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/farming-update/CityEconomy-Farming-26.3-1.1.0.zip'
+  SHA1: '@FARM_PACK_SHA1@'

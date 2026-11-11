@@ -1,0 +1,17 @@
+{
+  "minecraft": "26.3",
+  "resource_format": [
+    97,
+    1
+  ],
+  "farm_item_icons": 15,
+  "crop_growth_models": 20,
+  "existing_city_icons": 32,
+  "optional_building_textures": 8,
+  "base_sha1": "aed45dd0f7848a43ec674dcb072772260def7882",
+  "source_art_sha256": {
+    "growth-atlas.png": "f3ae32469563c8748242b2e443305f02cc0dab5b7b4fb1c549db4c576cb5c107",
+    "items-atlas.png": "e010c53eb6ac32a211e7bbc0878c0a224e1d0144df618ca23cd58e5fa052d346"
+  },
+  "real_game_visual_tested": false
+}

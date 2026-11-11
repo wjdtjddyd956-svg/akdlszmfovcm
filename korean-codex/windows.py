@@ -4,6 +4,9 @@ import argparse, hashlib, json, os, re, shutil, subprocess, tempfile, zipfile, x
 
 ROOT=Path(__file__).resolve().parents[1];MODULE=ROOT/'korean-codex';OUT=ROOT/'releases/korean-codex/1.0.1'
 p=argparse.ArgumentParser();p.add_argument('action',choices=['build','test','package','probe']);p.add_argument('--server',type=Path,required=True);p.add_argument('--jdk',type=Path,required=True);p.add_argument('--deps',type=Path,default=ROOT/'.build/codex-tools/deps');a=p.parse_args()
+# This reproducer targets the released 1.0.1 source, not later farming updates.
+if not re.search(r"(?m)^version: 1\.0\.1$",(MODULE/'src/main/resources/plugin.yml').read_text(encoding='utf-8')):
+    raise SystemExit('1.0.1 재현은 커밋 9619383의 별도 체크아웃에서 실행하세요. 현재 농장 1.1.0 빌드는 korean-farming/build.py를 사용하세요.')
 WORK=ROOT/'.build/codex-windows';WORK.mkdir(parents=True,exist_ok=True);OUT.mkdir(parents=True,exist_ok=True)
 api=a.server/'libraries/io/papermc/paper/paper-api/26.3.build.238-stable/paper-api-26.3.build.238-stable.jar'
 assert api.is_file(),'Installed Paper build 238 API required'

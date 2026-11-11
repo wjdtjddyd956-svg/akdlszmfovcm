@@ -1,0 +1,18 @@
+name: KoreanFarming
+version: 1.0.0
+main: kr.minecraft.survival.farming.KoreanFarmingPlugin
+api-version: '26.3'
+description: 딸기·토마토·옥수수·쌀·오이, 성장·NPC·요리·농부·도감 연동
+authors: [wjdtjddyd956-svg]
+depend: [KoreanEconomy, Vault]
+softdepend: [KoreanMenu, WorldGuard, WorldEdit, GriefPrevention, CityTextures]
+commands:
+  농사:
+    description: 농장 안내·요리·회수·리소스팩
+  농사관리:
+    description: 농장 목록·미결 거래 조회·확인
+permissions:
+  koreanfarming.use:
+    default: true
+  koreanfarming.admin:
+    default: op

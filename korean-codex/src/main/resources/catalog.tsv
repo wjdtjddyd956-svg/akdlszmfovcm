@@ -78,3 +78,8 @@ treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	rabbit_foot	RABBIT_FOOT	
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	totem_of_undying	TOTEM_OF_UNDYING	불사의 토템	4
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	echo_shard	ECHO_SHARD	메아리 조각	4
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	heavy_core	HEAVY_CORE	무거운 코어	8
+custom_farm	도시 농장	WHEAT	HEALTH	farm_strawberry	APPLE	딸기	1	strawberry
+custom_farm	도시 농장	WHEAT	HEALTH	farm_tomato	BEETROOT	토마토	1	tomato
+custom_farm	도시 농장	WHEAT	HEALTH	farm_corn	BAKED_POTATO	옥수수	1	corn
+custom_farm	도시 농장	WHEAT	HEALTH	farm_rice	PAPER	쌀	1	rice
+custom_farm	도시 농장	WHEAT	HEALTH	farm_cucumber	DRIED_KELP	오이	1	cucumber
