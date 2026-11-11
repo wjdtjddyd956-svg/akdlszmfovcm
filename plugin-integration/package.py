@@ -44,7 +44,12 @@ bundled.append(dict(path='plugins/KoreanServerBridge-1.0.0.jar',sha256=sha(OUT/'
 (OUT/'versions.json').write_text(json.dumps(dict(paper='26.3 build 238',java='27.0.1 actual runtime; target bytecode21',installed_additions=vendor,not_selected={'BetterRTP':'No verified 26.3 release; official binary action blocked and legacy source dependencies unavailable. No paid Addons used.','spark':'Already bundled with Paper; no duplicate JAR.','CoreProtect':'Keep existing Prism records and rollback instead.','Citizens,Quests,JobsReborn,ItemsAdder,Oraxen':'Existing native systems cover these needs; not installed.'}),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 for name in ['설치안내.md','명령어표.md','검증결과.md','46종검토.md','README.md','translation-scope.json','gp-overlay.json','NOTICES.md','LICENSE']:
     file=MOD/name
-    if file.is_file():shutil.copy2(file,OUT/name)
+    if file.is_file():
+        if file.suffix=='.md':
+            text=file.read_text(encoding='utf-8').replace('../releases/plugin-integration/1.0.0/','')
+            text=text.replace('../interface-update/README.md','https://github.com/wjdtjddyd956-svg/akdlszmfovcm/blob/main/interface-update/README.md')
+            (OUT/name).write_text(text,encoding='utf-8')
+        else:shutil.copy2(file,OUT/name)
 entries={}
 for f in OUT.rglob('*'):
     if f.is_file() and f.suffix.lower() not in ['.zip'] and f.name!='SHA256SUMS.txt' and 'vendor-downloads' not in f.parts:

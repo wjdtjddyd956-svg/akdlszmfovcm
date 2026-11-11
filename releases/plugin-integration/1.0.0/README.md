@@ -1,6 +1,6 @@
 # 생활 서버 플러그인 연결 1.0.0
 
-[설치 ZIP](../releases/plugin-integration/1.0.0/생활서버-플러그인연결-1.0.0.zip) · [설치·복원](설치안내.md) · [한글 명령어표](명령어표.md) · [검증과 남은 항목](검증결과.md) · [46종 선택 검토](46종검토.md)
+[설치 ZIP](생활서버-플러그인연결-1.0.0.zip) · [설치·복원](설치안내.md) · [한글 명령어표](명령어표.md) · [검증과 남은 항목](검증결과.md) · [46종 선택 검토](46종검토.md)
 
 기존 경제·직업·NPC·요리·농사·도감을 그대로 사용합니다. 기존 16개 JAR를 바꾸지 않고 LuckPerms 5.5.91, Chunky Paper 1.5.66, PlaceholderAPI 2.12.3, TAB 6.2.1, DecentHolograms 2.10.2와 보조 모듈 KoreanServerBridge 1.0.0을 추가합니다. 설치 후 총 22종이며 Paper 내장 spark는 별도 JAR로 세지 않습니다.
 
@@ -14,7 +14,7 @@ LuckPerms 등급은 **주민(default)**, **단골(resident)**, **운영자(admin
 
 **BetterRTP와 실제 야생 이동은 미완료**입니다. 무료 배포판의 26.3 호환성과 보호·비용·실패 처리를 검증하지 못했습니다. 기존 EssentialsX 이동도 비용 청구 순서 검증이 남았습니다. /야생과 메뉴는 ‘검증 대기’를 알리며 이동·비용 차감을 실행하지 않습니다. 호환 경고를 숨기거나 버전 숫자를 바꾸지 않았습니다.
 
-외부 5개 JAR는 ZIP에서 재배포하지 않습니다. 설치기가 고정 공식 URL에서 다운로드하고 이름·버전·SHA-256을 확인합니다. 무료 배포 조건과 소스/라이선스 링크는 [versions.json](../releases/plugin-integration/1.0.0/versions.json)에 있습니다. 유료 플러그인·구매 파일·개인 데이터·토큰은 포함하지 않습니다.
+외부 5개 JAR는 ZIP에서 재배포하지 않습니다. 설치기가 고정 공식 URL에서 다운로드하고 이름·버전·SHA-256을 확인합니다. 무료 배포 조건과 소스/라이선스 링크는 [versions.json](versions.json)에 있습니다. 유료 플러그인·구매 파일·개인 데이터·토큰은 포함하지 않습니다.
 
 실제 한글화: 자체 연결 메뉴/명령/안내 전체, TAB의 활성 이용자 화면·전환/권한 오류, DecentHolograms의 마을 안내·일반 오류, 기존 GriefPrevention 추가 187문구입니다. LuckPerms/Chunky는 공식 한국어 번들을 사용합니다. TAB·DecentHolograms·PlaceholderAPI의 고급 운영 명령과 로그 일부는 영문입니다. 완전 한글화라고 주장하지 않습니다.
 
