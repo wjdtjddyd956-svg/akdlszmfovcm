@@ -11,7 +11,7 @@ final class Catalog {
         MOVE("이동 속도",300,true),MINING("채굴 속도",600,true),HEALTH("최대 체력",20000,false),DAMAGE("공격력",5000,false),ARMOR("방어력",10000,false),ATTACK_SPEED("공격 속도",200,true),KNOCKBACK("넉백 저항",200,true),LUCK("행운",5000,false);
         final String label;final int cap;final boolean percent;
         Stat(String label,int cap,boolean percent){this.label=label;this.cap=cap;this.percent=percent;}
-        String format(int units){return "+"+BigDecimal.valueOf(units,percent?2:4).stripTrailingZeros().toPlainString()+(percent?"%":"");}
+        String format(int units){return "+"+BigDecimal.valueOf(units,percent?2:4).stripTrailingZeros().toPlainString()+(this==KNOCKBACK?"%p":percent?"%":"");}
     }
     record Entry(String id,String material,String name,int weight,String category){String rarity(){return switch(weight){case 1->"일반";case 2->"고급";case 4->"희귀";case 8->"전설";default->throw new IllegalStateException();};}}
     record Category(String id,String name,String icon,Stat stat,List<Entry> entries){}

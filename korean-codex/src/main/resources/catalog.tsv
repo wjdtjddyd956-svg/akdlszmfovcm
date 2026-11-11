@@ -58,21 +58,21 @@ nether	네더 탐사	NETHERRACK	DAMAGE	ghast_tear	GHAST_TEAR	가스트 눈물	4
 nether	네더 탐사	NETHERRACK	DAMAGE	magma_cream	MAGMA_CREAM	마그마 크림	2
 nether	네더 탐사	NETHERRACK	DAMAGE	wither_skeleton_skull	WITHER_SKELETON_SKULL	위더 스켈레톤 해골	4
 nether	네더 탐사	NETHERRACK	DAMAGE	nether_star	NETHER_STAR	네더의 별	8
-end	엔드 탐험	END_STONE	ATTACK_SPEED	end_stone	END_STONE	엔드 돌	2
-end	엔드 탐험	END_STONE	ATTACK_SPEED	chorus_fruit	CHORUS_FRUIT	후렴과	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	end_stone	END_STONE	엔드 돌	1
+end	엔드 탐험	END_STONE	ATTACK_SPEED	chorus_fruit	CHORUS_FRUIT	후렴과	1
 end	엔드 탐험	END_STONE	ATTACK_SPEED	chorus_flower	CHORUS_FLOWER	후렴화	2
-end	엔드 탐험	END_STONE	ATTACK_SPEED	purpur_block	PURPUR_BLOCK	퍼퍼 블록	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	purpur_block	PURPUR_BLOCK	퍼퍼 블록	1
 end	엔드 탐험	END_STONE	ATTACK_SPEED	end_rod	END_ROD	엔드 막대기	2
 end	엔드 탐험	END_STONE	ATTACK_SPEED	shulker_shell	SHULKER_SHELL	셜커 껍데기	4
 end	엔드 탐험	END_STONE	ATTACK_SPEED	dragon_breath	DRAGON_BREATH	드래곤의 숨결	4
-end	엔드 탐험	END_STONE	ATTACK_SPEED	ender_pearl	ENDER_PEARL	엔더 진주	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	ender_pearl	ENDER_PEARL	엔더 진주	1
 end	엔드 탐험	END_STONE	ATTACK_SPEED	end_crystal	END_CRYSTAL	엔드 수정	4
 end	엔드 탐험	END_STONE	ATTACK_SPEED	elytra	ELYTRA	겉날개	8
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	saddle	SADDLE	안장	2
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	name_tag	NAME_TAG	이름표	2
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	golden_apple	GOLDEN_APPLE	황금 사과	2
-treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	prismarine_shard	PRISMARINE_SHARD	프리즈머린 조각	2
-treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	amethyst_shard	AMETHYST_SHARD	자수정 조각	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	prismarine_shard	PRISMARINE_SHARD	프리즈머린 조각	1
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	amethyst_shard	AMETHYST_SHARD	자수정 조각	1
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	armadillo_scute	ARMADILLO_SCUTE	아르마딜로 인갑	2
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	rabbit_foot	RABBIT_FOOT	토끼발	4
 treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	totem_of_undying	TOTEM_OF_UNDYING	불사의 토템	4

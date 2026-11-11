@@ -1,0 +1,49 @@
+{
+  "version": "1.0.1",
+  "target": "Windows / Paper 26.3 build 238",
+  "production_java": "27.0.1.0.3",
+  "production_jar_sha256": "d1f56e5bd28287fd8aecff00013690a19abbf759d6cad3fb7276b277894d4362",
+  "actual_paper_api": "paper-api-26.3.build.238-stable.jar",
+  "actual_api_sha256": "816c749cc737b9c2eed7e36d492ef3359d79e631449481cedef1a76d6200de12",
+  "catalog_entries": 80,
+  "categories": 8,
+  "achievements": 12,
+  "real_paper_runtime_check_groups": 28,
+  "mockbukkit_jdk25_cases": 33,
+  "mockbukkit_failures": 0,
+  "mockbukkit_player_save_is_test_double": true,
+  "mockbukkit_jdk27_harness": "not passing: No jar file selected; use validated JDK25 harness",
+  "real_sqlite_update_abort_exercised": true,
+  "real_player_nbt_saved_before_sqlite_abort": true,
+  "restart_preservation_tested": true,
+  "native_26_3_screen_and_death_respawn_tested": true,
+  "native_combat_damage_and_mining_timing_measured": false,
+  "user_windows_server_applied": true,
+  "production_jars_added": [
+    "KoreanCodex-1.0.1.jar"
+  ],
+  "existing_jars_replaced": [],
+  "existing_server_files_unchanged_before_first_boot": 620,
+  "full_backup_restored_and_hashed_files": 620,
+  "installation_backup": "전체서버-20261111-140110-222.zip",
+  "production_cold_backup": "life-2EDAB757EB3E-20261111-050747-837.zip",
+  "production_cold_backup_sqlite_quick_check": "ok",
+  "test_probe_or_protocol_adapter_installed_on_production": false,
+  "caps": {
+    "movement_percent": 3,
+    "mining_percent": 6,
+    "health_hp": 2,
+    "attack_damage": 0.5,
+    "armor": 1,
+    "attack_speed_percent": 2,
+    "knockback_percentage_points": 2,
+    "luck": 0.5
+  },
+  "remaining": [
+    "10 simultaneous active players and long-term balance",
+    "real production account end-to-end gameplay",
+    "physical combat/mining/movement timing",
+    "power loss and full disk failure",
+    "all other attribute plugin combinations"
+  ]
+}

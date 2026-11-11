@@ -1,5 +1,5 @@
 name: KoreanCodex
-version: 1.0.0
+version: 1.0.1
 main: kr.minecraft.survival.codex.KoreanCodexPlugin
 api-version: '26.3'
 description: 80종 아이템 영구 도감, 12개 수집 업적과 작은 능력치 보너스
@@ -9,16 +9,12 @@ commands:
   도감:
     aliases: [아이템도감]
     description: 아이템 도감과 1개 소비 등록
-    permission: koreancodex.use
   업적:
     description: 수집 업적 12개와 달성 보상
-    permission: koreancodex.use
   도감효과:
     description: 내 수집 보너스 확인·켜기·끄기
-    permission: koreancodex.use
   도감관리:
     description: 운영자용 도감 조회·거래 정리·DB 백업
-    permission: koreancodex.admin
 permissions:
   koreancodex.use:
     default: true

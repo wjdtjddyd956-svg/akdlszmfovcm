@@ -1,0 +1,2 @@
+d1f56e5bd28287fd8aecff00013690a19abbf759d6cad3fb7276b277894d4362  KoreanCodex-1.0.1.jar
+c2e5dc8bba19033370193c0d8d05ccc4998c2d1fa1c2415a1a540fdf26a91fbe  KoreanCodex-Windows-설치-1.0.1.zip

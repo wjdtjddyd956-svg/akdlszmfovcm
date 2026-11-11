@@ -1,0 +1,20 @@
+{
+  "version": "1.0.1",
+  "api": "paper-api-26.3.build.238-stable.jar",
+  "api_sha256": "816c749cc737b9c2eed7e36d492ef3359d79e631449481cedef1a76d6200de12",
+  "java": "java version \"27.0.1.0.3\" 2026-10-25\nJava(TM) SE Runtime Environment (build 27.0.1.0.3+1-2)\nJava HotSpot(TM) 64-Bit Server VM (build 27.0.1.0.3+1-2, mixed mode, sharing)\n",
+  "fixture_api": false,
+  "sqlite_dependency_carrier_sha256": "d3b149b91ffea91444bba3811aa124240c4a8d8379e838ff7ffd6990ee899e4e",
+  "platform": "Windows; original SQLite DLLs and licenses preserved",
+  "jar_sha256": "d1f56e5bd28287fd8aecff00013690a19abbf759d6cad3fb7276b277894d4362",
+  "source_sha256": {
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Bonuses.java": "9705f08441dac7e6f33f890ae4024437102298ffd0c471af0d0cabc0f2bb1e46",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Catalog.java": "4b28a164577289b6baabc410f34a99646f282dbec2e0574660949d5cd6d54f79",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/CodexStore.java": "944b4e2f682321e3182aca9c61410de49db703e1cc3983cc1d60b36695758fc8",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/KoreanCodexPlugin.java": "f561ee8d78012306aef0331a8d58242fe3e42936ff2253d039869c89b0c063ea",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/RegistrationPlan.java": "a539fb1d8cabdead31018d2d30d295205d7573809048302d7942bc63f26e356d",
+    "korean-codex/src/main/resources/catalog.tsv": "27385e502751a25e70b56e8fafd0dd5bbae92aa4ffb03b79795ab667ac95945c",
+    "korean-codex/src/main/resources/config.yml": "275434034761f29ab9388143c2794f647d8243185b00e559609dea859c93a749",
+    "korean-codex/src/main/resources/plugin.yml": "579945cf49e6acae5b0456c5aebf60b7dadda46699b1038d8484a03b1dbeea68"
+  }
+}

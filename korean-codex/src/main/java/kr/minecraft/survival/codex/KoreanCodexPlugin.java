@@ -35,9 +35,21 @@ public class KoreanCodexPlugin extends JavaPlugin implements Listener {
         if(bonuses!=null)for(Player p:getServer().getOnlinePlayers()){bonuses.remove(p);Inventory top=p.getOpenInventory().getTopInventory();if(top!=null&&top.getHolder() instanceof Screen)p.closeInventory();}
         for(Inventory inventory:new ArrayList<>(injected.keySet()))restoreButtons(inventory);collected.clear();enabled.clear();if(store!=null)store.close();
     }
-    void load(Player p){store.player(p.getUniqueId(),p.getName());collected.put(p.getUniqueId(),store.registered(p.getUniqueId()));enabled.put(p.getUniqueId(),store.enabled(p.getUniqueId()));String marker=p.getPersistentDataContainer().get(pendingKey,PersistentDataType.STRING);
-        if(marker!=null){String rid=marker.split(":",2)[0];try{CodexStore.Receipt receipt=store.receipt(rid);if(Set.of("DONE","CANCELLED").contains(receipt.state()))p.getPersistentDataContainer().remove(pendingKey);}catch(CodexStore.Denied e){getLogger().warning("도감 저장 표식의 거래를 찾지 못했습니다: "+p.getUniqueId()+" "+rid);}}
+    void load(Player p){store.player(p.getUniqueId(),p.getName());collected.put(p.getUniqueId(),store.registered(p.getUniqueId()));enabled.put(p.getUniqueId(),store.enabled(p.getUniqueId()));reconcileMarker(p);
         apply(p);
+    }
+    void reconcileMarker(Player p){
+        String marker=p.getPersistentDataContainer().get(pendingKey,PersistentDataType.STRING);if(marker==null)return;
+        String rid=marker.split(":",2)[0];
+        try{
+            CodexStore.Receipt r=store.receipt(rid);
+            if(!r.player().equals(p.getUniqueId().toString()))throw new CodexStore.Denied("다른 계정의 저장 표식");
+            if(Set.of("DONE","CANCELLED").contains(r.state()))p.getPersistentDataContainer().remove(pendingKey);
+        }catch(CodexStore.Denied unknown){
+            if(store.markerReleased(p.getUniqueId(),marker)){p.getPersistentDataContainer().remove(pendingKey);return;}
+            store.markerReview(p.getUniqueId(),marker);
+            getLogger().warning("확인할 수 없는 도감 저장 표식: "+p.getUniqueId()+" "+rid+". 자동 재소비를 차단합니다.");
+        }
     }
     Set<String> registered(Player p){if(!collected.containsKey(p.getUniqueId()))load(p);return collected.get(p.getUniqueId());}
     void apply(Player p){if(!collected.containsKey(p.getUniqueId()))return;boolean active=getConfig().getBoolean("효과-사용",true)&&enabled.getOrDefault(p.getUniqueId(),true)&&p.hasPermission("koreancodex.use")&&(p.getGameMode()==GameMode.SURVIVAL||p.getGameMode()==GameMode.ADVENTURE);bonuses.apply(p,catalog.bonuses(collected.get(p.getUniqueId())),active);}
@@ -75,6 +87,7 @@ public class KoreanCodexPlugin extends JavaPlugin implements Listener {
         button(s,45,Material.ARROW,"§e도감으로",()->home(p));button(s,53,Material.APPLE,"§a내 수집 효과",()->effects(p));p.openInventory(s.inventory);
     }
     void registerItem(Player p,Catalog.Entry entry){
+        reconcileMarker(p);
         if(!healthy)throw new CodexStore.Denied("저장소 확인 중이라 새 등록을 중지했습니다.");if(!p.hasPermission("koreancodex.use")||(p.getGameMode()!=GameMode.SURVIVAL&&p.getGameMode()!=GameMode.ADVENTURE))throw new CodexStore.Denied("생존 또는 모험 모드에서 등록하세요.");if(registered(p).contains(entry.id()))throw new CodexStore.Denied("이미 등록한 아이템입니다.");
         RegistrationPlan plan=RegistrationPlan.create(p.getInventory().getStorageContents(),Material.valueOf(entry.material()));CodexStore.Receipt receipt=store.reserve(p.getUniqueId(),entry.id(),plan.slot(),plan.amount(),plan.beforeHash(),plan.afterHash());Set<String> awards;
         if(!Arrays.equals(plan.before(),p.getInventory().getStorageContents())){store.cancel(receipt.id(),"가방 변경: 소비 전 취소");throw new CodexStore.Denied("가방이 바뀌었습니다. 다시 확인하세요.");}
@@ -100,12 +113,13 @@ public class KoreanCodexPlugin extends JavaPlugin implements Listener {
     void restoreButtons(Inventory inventory){Map<Integer,ItemStack> old=injected.remove(inventory);if(old==null)return;for(var entry:old.entrySet()){ItemStack current=inventory.getItem(entry.getKey());if(current!=null&&current.hasItemMeta()&&current.getItemMeta().getPersistentDataContainer().has(menuKey,PersistentDataType.STRING))inventory.setItem(entry.getKey(),entry.getValue());}}
     @EventHandler(priority=EventPriority.MONITOR) public void closeMenu(InventoryCloseEvent e){restoreButtons(e.getInventory());}
     void admin(CommandSender sender,String[] args){if(!sender.hasPermission("koreancodex.admin")){sender.sendMessage("§c운영자 전용입니다.");return;}try{
-        if(args.length==1&&args[0].equals("거래")){for(var r:store.unresolved())sender.sendMessage("§e"+r.get("id")+" | "+r.get("player")+" | "+r.get("entry")+" | "+r.get("stage"));sender.sendMessage("§7아이템과 플레이어 저장 표식을 확인한 뒤 완료/취소를 선택하세요. 자동 환불은 없습니다.");}
+        if(args.length==1&&args[0].equals("거래")){for(var r:store.unresolved())sender.sendMessage("§e"+r.get("id")+" | "+r.get("player")+" | "+r.get("entry")+" | "+r.get("stage"));for(var m:store.markerReviews())sender.sendMessage("§c저장 표식 확인 대기 | "+m.get("player")+" | "+m.get("marker"));sender.sendMessage("§7아이템과 플레이어 저장 표식을 확인한 뒤 완료/취소를 선택하세요. 자동 환불은 없습니다.");}
         else if(args.length==2&&args[0].equals("번호")){sender.sendMessage(store.receipt(store.receiptId(args[1])).toString());}
         else if(args.length==2&&args[0].equals("조회")){UUID id=store.playerId(args[1]).orElseThrow(()->new CodexStore.Denied("접속 이력이 없습니다."));sender.sendMessage("§6등록 "+store.registered(id).size()+" / 80 · 업적 "+store.awards(id).size()+" / 12");for(var r:store.log(id))sender.sendMessage("§7"+r.get("id")+" | "+r.get("entry")+" | "+r.get("state")+" | "+r.get("stage"));}
         else if(args.length==3&&Set.of("완료","취소").contains(args[0])&&args[2].equals("확인")){String rid=store.receiptId(args[1]);CodexStore.Receipt r=store.receipt(rid);if(!r.state().equals("REVIEW"))throw new CodexStore.Denied("확인 대기 등록만 정리할 수 있습니다.");if(args[0].equals("완료"))store.finish(rid,catalog,true);else store.cancel(rid,sender.getName());Player p=getServer().getPlayer(UUID.fromString(r.player()));if(p!=null&&p.isOnline()){collected.put(p.getUniqueId(),store.registered(p.getUniqueId()));String marker=p.getPersistentDataContainer().get(pendingKey,PersistentDataType.STRING);if(marker!=null&&marker.startsWith(rid+":"))p.getPersistentDataContainer().remove(pendingKey);apply(p);}sender.sendMessage("§a등록 기록을 정리했습니다. 가방 아이템은 변경하지 않았습니다.");getLogger().info("도감 거래 정리: "+sender.getName()+" "+args[0]+" "+rid);}
+        else if(args.length==3&&args[0].equals("표식해제")&&args[2].equals("확인")){UUID id=store.playerId(args[1]).orElseThrow(()->new CodexStore.Denied("접속 이력이 없습니다."));store.releaseMarkers(id,sender.getName());Player p=getServer().getPlayer(id);if(p!=null&&p.isOnline()){reconcileMarker(p);p.saveData();}sender.sendMessage("§a알 수 없는 저장 표식의 잠금을 정리했습니다. 아이템·등록·보상은 변경하지 않았습니다.");getLogger().info("도감 알 수 없는 표식 정리: "+sender.getName()+" "+id);}
         else if(args.length==1&&args[0].equals("백업")){Path dir=getDataFolder().toPath().resolve("백업");Files.createDirectories(dir);Path file=dir.resolve("도감-"+System.currentTimeMillis()+".db");store.snapshot(file);sender.sendMessage("§a도감 DB 백업 완료: "+file.getFileName());}
-        else sender.sendMessage("§e/도감관리 거래 · 번호 거래번호 · 조회 닉네임 · 완료|취소 번호 확인 · 백업");
+        else sender.sendMessage("§e/도감관리 거래 · 번호 거래번호 · 조회 닉네임 · 완료|취소 번호 확인 · 표식해제 닉네임 확인 · 백업");
     }catch(Exception e){sender.sendMessage("§c"+e.getMessage());getLogger().warning("도감 관리: "+e);}}
-    @Override public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){if(args.length!=1)return List.of();return (command.getName().equals("도감관리")?List.of("거래","번호","조회","완료","취소","백업"):command.getName().equals("도감효과")?List.of("켜기","끄기"):List.of("등록")).stream().filter(s->s.startsWith(args[0])).toList();}
+    @Override public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){if(args.length!=1)return List.of();return (command.getName().equals("도감관리")?List.of("거래","번호","조회","완료","취소","표식해제","백업"):command.getName().equals("도감효과")?List.of("켜기","끄기"):List.of("등록")).stream().filter(s->s.startsWith(args[0])).toList();}
 }

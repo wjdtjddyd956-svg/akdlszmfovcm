@@ -1,0 +1,10 @@
+{
+  "cases": 33,
+  "failures": 0,
+  "skipped": 0,
+  "test_java": "java version \"25.0.2\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 25.0.2+10-LTS-69)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.2+10-LTS-69, mixed mode, sharing)\n",
+  "mockbukkit": "26.3:4.120.0",
+  "real_sqlite": true,
+  "player_saves": "test double: counts and injected failures",
+  "production_jar_sha256": "d1f56e5bd28287fd8aecff00013690a19abbf759d6cad3fb7276b277894d4362"
+}

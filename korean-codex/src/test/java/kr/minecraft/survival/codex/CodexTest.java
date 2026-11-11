@@ -59,4 +59,33 @@ class CodexTest {
     @Test void cancelledReviewAllowsRetryWithoutGrantingAnyCollection(){UUID id=p.getUniqueId();var r=plugin.store.reserve(id,"diamond",0,2,"b","a");plugin.store.review(r.id(),"test");plugin.store.cancel(r.id(),"admin confirmed item not consumed");assertTrue(plugin.store.registered(id).isEmpty());assertNotNull(plugin.store.reserve(id,"diamond",0,2,"b","a"));}
     @Test void databaseSnapshotContainsRegistrationsAndNoReplay()throws Exception {register("oak_log");Path snapshot=Files.createTempDirectory("codex-snapshot-").resolve("copy.db");plugin.store.snapshot(snapshot);try(var copy=new CodexStore(snapshot)){assertEquals(Set.of("oak_log"),copy.registered(p.getUniqueId()));}}
     @Test void permissionsAndCreativeModeRemoveOnlyOurBonusOnSync(){register("oak_log");p.addAttachment(plugin,"koreancodex.use",false);plugin.apply(p);assertNull(p.getAttribute(Attribute.MOVEMENT_SPEED).getModifier(plugin.bonuses.keys.get(Catalog.Stat.MOVE)));p.addAttachment(plugin,"koreancodex.use",true);p.setGameMode(GameMode.CREATIVE);plugin.apply(p);assertNull(p.getAttribute(Attribute.MOVEMENT_SPEED).getModifier(plugin.bonuses.keys.get(Catalog.Stat.MOVE)));}
+    @Test void everyCategoryHasAnActualCommonBaselineAndScarceItemsAreEightTimesIt(){
+        for(var c:plugin.catalog.categories){var common=c.entries().stream().filter(e->e.weight()==1).findFirst().orElseThrow();for(var e:c.entries())assertEquals(plugin.catalog.entryUnits(common)*e.weight(),plugin.catalog.entryUnits(e));}
+        for(String id:List.of("nether_star","elytra","netherite_ingot"))assertEquals(8,entry(id).weight());
+        assertEquals("+2%p",Catalog.Stat.KNOCKBACK.format(200));
+    }
+    @Test void enchantmentAndPersistentDataAreNotPlainItems(){
+        give("elytra",1);ItemStack item=p.getInventory().getItem(0);var meta=item.getItemMeta();meta.addEnchant(org.bukkit.enchantments.Enchantment.UNBREAKING,1,false);item.setItemMeta(meta);p.getInventory().setItem(0,item);assertThrows(CodexStore.Denied.class,()->plugin.registerItem(p,entry("elytra")));assertEquals(item,p.getInventory().getItem(0));
+        give("diamond",2);item=p.getInventory().getItem(0);meta=item.getItemMeta();meta.getPersistentDataContainer().set(new NamespacedKey("other","custom"),org.bukkit.persistence.PersistentDataType.INTEGER,1);item.setItemMeta(meta);p.getInventory().setItem(0,item);assertThrows(CodexStore.Denied.class,()->plugin.registerItem(p,entry("diamond")));assertEquals(item,p.getInventory().getItem(0));
+    }
+    @Test void databaseFailureAfterConsumptionLeavesReviewAndCannotConsumeAgain(){
+        give("diamond",3);plugin.store.execute("CREATE TRIGGER fail_finish BEFORE UPDATE ON registrations WHEN NEW.state='DONE' BEGIN SELECT RAISE(ABORT,'injected commit failure'); END");
+        assertThrows(CodexStore.Denied.class,()->plugin.registerItem(p,entry("diamond")));assertEquals(2,p.getInventory().getItem(0).getAmount());assertEquals(1,plugin.store.unresolved().size());assertTrue(plugin.store.registered(p.getUniqueId()).isEmpty());assertThrows(CodexStore.Denied.class,()->plugin.registerItem(p,entry("diamond")));assertEquals(2,p.getInventory().getItem(0).getAmount());
+    }
+    @Test void missingReceiptMarkerIsPersistentlyQuarantinedAndOnlyAdminCanRelease(){
+        give("diamond",2);String marker=UUID.randomUUID()+":CONSUMED";p.getPersistentDataContainer().set(plugin.pendingKey,org.bukkit.persistence.PersistentDataType.STRING,marker);plugin.load(p);assertTrue(plugin.store.markerHeld(p.getUniqueId()));assertThrows(CodexStore.Denied.class,()->plugin.registerItem(p,entry("diamond")));assertEquals(2,p.getInventory().getItem(0).getAmount());
+        server.dispatchCommand(p,"도감관리 표식해제 Collector 확인");assertTrue(plugin.store.markerHeld(p.getUniqueId()));p.setOp(true);server.dispatchCommand(p,"도감관리 표식해제 Collector 확인");assertFalse(plugin.store.markerHeld(p.getUniqueId()));assertNull(p.getPersistentDataContainer().get(plugin.pendingKey,org.bukkit.persistence.PersistentDataType.STRING));assertEquals(2,p.getInventory().getItem(0).getAmount());assertTrue(plugin.store.registered(p.getUniqueId()).isEmpty());
+    }
+    @Test void markerQuarantineAndOperatorAcknowledgementSurviveRestart()throws Exception{
+        Path path=Files.createTempDirectory("codex-marker-").resolve("codex.db");UUID id=UUID.randomUUID();String marker=UUID.randomUUID()+":BEFORE";
+        try(var db=new CodexStore(path)){db.player(id,"Lost");db.markerReview(id,marker);}
+        try(var db=new CodexStore(path)){assertTrue(db.markerHeld(id));assertThrows(CodexStore.Denied.class,()->db.reserve(id,"diamond",0,2,"b","a"));db.releaseMarkers(id,"Operator");}
+        try(var db=new CodexStore(path)){db.markerReview(id,marker);assertFalse(db.markerHeld(id));assertTrue(db.markerReleased(id,marker));assertTrue(db.registered(id).isEmpty());}
+    }
+    @Test void v1DatabaseMigrationKeepsCollectionPreferenceAndAwards()throws Exception{
+        Path path=Files.createTempDirectory("codex-v1-").resolve("codex.db");UUID id=UUID.randomUUID();
+        try(var db=new CodexStore(path)){db.player(id,"Existing");for(var e:plugin.catalog.categories.getFirst().entries())db.finish(db.reserve(id,e.id(),0,2,"b","a").id(),plugin.catalog,false);db.enabled(id,false);db.execute("DROP TABLE marker_reviews");db.execute("PRAGMA user_version=1");}
+        try(var db=new CodexStore(path)){assertEquals(10,db.registered(id).size());assertEquals(2,db.awards(id).size());assertFalse(db.enabled(id));assertFalse(db.markerHeld(id));}
+    }
+    @Test void injuredPlayerCannotHealByGainingOrTogglingHealthBonus(){p.setHealth(11);register("wheat");assertEquals(11,p.getHealth());for(int i=0;i<3;i++){server.dispatchCommand(p,"도감효과 끄기");server.dispatchCommand(p,"도감효과 켜기");}assertEquals(11,p.getHealth());}
 }
