@@ -19,8 +19,12 @@ public final class CommandTranslatorTest {
         expect(translator, "/거래소 이름 농산물", "/quickshop-hikari:quickshop name 농산물");
         expect(translator, "/거래소 양도 수락", "/quickshop-hikari:quickshop transferownership accept");
         expect(translator, "/권한 사용자 Steve 권한 설정 essentials.pay 참", "/luckperms:lp user Steve permission set essentials.pay true");
-        expect(translator, "/땅초대 Steve", "/griefprevention:trust Steve");
+        expect(translator, "/땅초대 Steve", "/koreaneconomy:땅보호 초대 Steve");
         expect(translator, "/돈관리 지급 Steve 100", "/essentials:eco give Steve 100");
+        expect(translator,"/땅목록","/koreaneconomy:땅보호 목록");
+        expect(translator,"/땅확인","/koreaneconomy:땅보호 확인");
+        expect(translator,"/땅포기 확인","/koreaneconomy:땅보호 포기 확인");
+        if (!"KoreanEconomy".equals(CommandTranslator.requiredPlugin("/koreaneconomy:땅보호 초대 Steve"))) throw new AssertionError("land dependency");
         ignore(translator, "/상점");
         ignore(translator, "/일일보상");
         ignore(translator, "/돈관리자");

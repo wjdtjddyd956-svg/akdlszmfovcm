@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 project_dir="$(cd "$(dirname "$0")" && pwd)"
-build_dir="$project_dir/build"
-
-mkdir -p "$build_dir/stubs" "$build_dir/main" "$build_dir/test" "$build_dir/libs"
-compiler=(java --module jdk.compiler/com.sun.tools.javac.Main)
-find "$project_dir/tools/stubs" -name '*.java' -print0 | xargs -0 "${compiler[@]}" -source 21 -target 21 -encoding UTF-8 -d "$build_dir/stubs"
-find "$project_dir/src/main/java" -name '*.java' -print0 | xargs -0 "${compiler[@]}" -source 21 -target 21 -encoding UTF-8 -cp "$build_dir/stubs" -d "$build_dir/main"
-find "$project_dir/src/test/java" -name '*.java' -print0 | xargs -0 "${compiler[@]}" -source 21 -target 21 -encoding UTF-8 -cp "$build_dir/main" -d "$build_dir/test"
-java -cp "$build_dir/main:$build_dir/test" kr.minecraft.rpg.koreancommands.CommandTranslatorTest | tee "$build_dir/test-results.txt"
-
-cp -R "$project_dir/src/main/resources/." "$build_dir/main/"
-(cd "$build_dir/main" && zip -q -r -FS "$build_dir/libs/KoreanCommands-1.1.0.jar" .)
-echo "Built $build_dir/libs/KoreanCommands-1.1.0.jar"
+repo_dir="$(cd "$project_dir/.." && pwd)"
+java_bin="${TYCOON_JDK:-/workspace/toolchains/jdk-25.0.5.0.3}/bin/java"
+javac_bin="${TYCOON_JDK:-/workspace/toolchains/jdk-25.0.5.0.3}/bin/javac"
+mkdir -p "$project_dir/build/test-current"
+"$javac_bin" --release 21 -encoding UTF-8 -d "$project_dir/build/test-current" "$project_dir/src/main/java/kr/minecraft/rpg/koreancommands/CommandTranslator.java" "$project_dir/src/test/java/kr/minecraft/rpg/koreancommands/CommandTranslatorTest.java"
+"$java_bin" -cp "$project_dir/build/test-current" kr.minecraft.rpg.koreancommands.CommandTranslatorTest | tee "$project_dir/build/test-results.txt"
+python3 "$repo_dir/tools/build_tycoon.py"

@@ -1,0 +1,39 @@
+{
+  "jdk": "/workspace/toolchains/jdk-25.0.5.0.3",
+  "api": "/workspace/toolchains/paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar",
+  "api_notes": {
+    "paper_commit": "df120fd",
+    "minecraft": "26.3",
+    "api_sources_modified": false,
+    "official_published_jar": false,
+    "bungee_compile_dependency": "net.md-5:bungeecord-chat:1.21-R0.4 (Central; replaces deprecated Paper compile fork)",
+    "brigadier_compile_dependency": "Mojang/brigadier master source (local build)",
+    "jar": "/workspace/toolchains/paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar"
+  },
+  "artifacts": [
+    {
+      "module": "korean-economy",
+      "jar": "KoreanEconomy-2.0.0.jar",
+      "sha256": "f2fbb988e222fcb874951e9ac28cf88ea188506ff109d52f6899808de27afb8e",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+    },
+    {
+      "module": "korean-menu",
+      "jar": "KoreanMenu-2.0.0.jar",
+      "sha256": "7d6562aec00c26d005028ab4d7647c592611d18741681b10727b42a22f9a7c27",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+    },
+    {
+      "module": "korean-commands",
+      "jar": "KoreanCommands-2.0.0.jar",
+      "sha256": "25db69931ce160055f45d13adeb21140049c22e62fed640ee9442579912565df",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+    },
+    {
+      "module": "korean-pack-setup",
+      "jar": "KoreanPackSetup-2.0.0.jar",
+      "sha256": "d0ea6b8cbf158f0e89977a728367a96906d192882772e3fdfac9df3f3d98b794",
+      "compile": "real Paper 26.3 API, commit df120fd, local unmodified API source build"
+    }
+  ]
+}

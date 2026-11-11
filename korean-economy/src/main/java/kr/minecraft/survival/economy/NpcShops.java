@@ -34,31 +34,16 @@ final class NpcShops implements Listener {
         if(args.length>=1&&args[0].equals("생성")) {
             if(args.length<3||args.length>4){help(sender);return true;}
             ShopCategory category=ShopCategory.parse(args[2]);
-            if(category==null){sender.sendMessage("§c품목은 전체·농산물·광물·재료 중에서 선택하세요.");return true;}
+            if(category==null){sender.sendMessage("§c품목은 전체·농산물·광물·재료·요리·임무 중에서 선택하세요.");return true;}
             String name=args[1];
             if(name.isBlank()||name.length()>24||name.indexOf('§')>=0){sender.sendMessage("§c상인 이름은 색상 코드 없이 1~24자로 입력하세요.");return true;}
             String appearance=args.length==4?args[3]:"사람";
             if(!appearance.equals("사람")&&!appearance.equals("주민")){sender.sendMessage("§c외형은 사람 또는 주민으로 입력하세요.");return true;}
-            EntityType type;
-            try{type=EntityType.valueOf(appearance.equals("사람")?"MANNEQUIN":"VILLAGER");}
-            catch(IllegalArgumentException e){sender.sendMessage("§c현재 서버는 사람형 상인을 지원하지 않습니다. 마지막에 주민을 붙여 생성하세요.");return true;}
-            Entity entity=null;
             try {
                 Location location=player.getLocation().clone();location.setYaw(location.getYaw()+180);
-                entity=player.getWorld().spawnEntity(location,type);
-                if(!entity.isValid())throw new IllegalStateException("다른 플러그인 또는 월드 규칙이 생성을 취소했습니다.");
-                if(!(entity instanceof LivingEntity living))throw new IllegalStateException("살아있는 NPC 엔티티가 아닙니다.");
-                entity.setPersistent(true);entity.setInvulnerable(true);entity.setSilent(true);entity.setGravity(false);
-                living.setRemoveWhenFarAway(false);living.setCollidable(false);
-                if(living instanceof Mob mob)mob.setAI(false);
-                if(living instanceof Mannequin mannequin){mannequin.setImmovable(true);mannequin.setDescription(null);}
-                entity.setCustomName("§6"+name+" §e[상점 · 우클릭]");entity.setCustomNameVisible(true);
-                entity.getPersistentDataContainer().set(key,PersistentDataType.STRING,category.name());
-                sender.sendMessage("§a"+name+" 상인을 현재 위치에 생성했습니다. 품목: "+category.label+". 한 걸음 물러나 우클릭하세요.");
-            } catch(RuntimeException e) {
-                if(entity!=null)entity.remove();
-                plugin.getLogger().warning("상인 생성 실패: "+e);sender.sendMessage("§c상인을 생성하지 못했습니다. 서버 버전과 콘솔을 확인하세요.");
-            }
+                spawn(name,category,appearance,location);
+                sender.sendMessage("§a"+name+" 상인을 생성했습니다. 품목: "+category.label+". 한 걸음 물러나 우클릭하세요.");
+            }catch(RuntimeException e){plugin.getLogger().warning("상인 생성 실패: "+e);sender.sendMessage("§c상인을 생성하지 못했습니다. 서버 버전과 콘솔을 확인하세요.");}
             return true;
         }
         if(args.length==1&&args[0].equals("삭제")) {
@@ -77,10 +62,30 @@ final class NpcShops implements Listener {
         }
         help(sender);return true;
     }
+    Entity spawn(String name,ShopCategory category,String appearance,Location location){
+        Entity entity=null;
+        try{
+            EntityType type=EntityType.valueOf(appearance.equals("사람")?"MANNEQUIN":"VILLAGER");entity=location.getWorld().spawnEntity(location,type);
+            if(!entity.isValid()||!(entity instanceof LivingEntity))throw new IllegalStateException("다른 플러그인 또는 월드 규칙이 NPC 생성을 취소했습니다.");
+            LivingEntity living=(LivingEntity)entity;entity.setPersistent(true);entity.setInvulnerable(true);entity.setSilent(true);entity.setGravity(false);living.setRemoveWhenFarAway(false);living.setCollidable(false);
+            if(living instanceof Mob mob)mob.setAI(false);if(living instanceof Mannequin mannequin){mannequin.setImmovable(true);mannequin.setDescription(null);}
+            entity.setCustomName("§6"+name+" §e["+(category==ShopCategory.QUESTS?"임무":"상점")+" · 우클릭]");entity.setCustomNameVisible(true);entity.getPersistentDataContainer().set(key,PersistentDataType.STRING,category.name());return entity;
+        }catch(RuntimeException e){if(entity!=null)entity.remove();throw e;}
+    }
+    boolean town(CommandSender sender,String[] args){
+        if(!(sender instanceof Player p)||!sender.hasPermission("koreaneconomy.npc.admin")){sender.sendMessage("§c게임 안에서 운영자만 배치할 수 있습니다.");return true;}
+        if(args.length!=1||!args[0].equals("확인")){sender.sendMessage("§e평평하고 비어 있는 11×5 공간 가운데 서서 /마을설치 확인");sender.sendMessage("§7주변에 잡화·농산물·광물·요리·임무 NPC 5명을 배치합니다. 블록은 바꾸지 않습니다.");return true;}
+        if(p.getNearbyEntities(8,8,8).stream().anyMatch(e->category(e)!=null)){sender.sendMessage("§c주변에 기존 상인이 있습니다. 다른 빈 장소에서 배치하거나 /상인 생성으로 개별 배치하세요.");return true;}
+        List<Location> locations=new ArrayList<>();Location center=p.getLocation();
+        for(int x:new int[]{-4,-2,0,2,4}){Location l=center.clone().add(x,0,2);l.setX(l.getBlockX()+0.5);l.setZ(l.getBlockZ()+0.5);l.setYaw(180);if(!l.getBlock().getType().isAir()||!l.clone().add(0,1,0).getBlock().getType().isAir()||!l.clone().add(0,-1,0).getBlock().getType().isSolid()){sender.sendMessage("§cNPC가 설 평평한 바닥과 두 칸 높이의 빈 공간이 필요합니다. 블록을 고치고 다시 시도하세요.");return true;}locations.add(l);}
+        List<Entity> created=new ArrayList<>();ShopCategory[] categories={ShopCategory.ALL,ShopCategory.CROPS,ShopCategory.MINERALS,ShopCategory.FOOD,ShopCategory.QUESTS};String[] names={"잡화상인","농부","광물상","주방장","마을이장"};
+        try{for(int i=0;i<5;i++)created.add(spawn(names[i],categories[i],"사람",locations.get(i)));sender.sendMessage("§aNPC 5명을 배치했습니다. 우클릭해 이용하세요. /상인 삭제로 가까운 NPC를 지울 수 있습니다.");}
+        catch(RuntimeException e){for(Entity npc:created)npc.remove();plugin.getLogger().warning("마을 배치 실패: "+e);sender.sendMessage("§c배치를 완료하지 못해 이번에 생성한 NPC를 제거했습니다.");}return true;
+    }
     private void help(CommandSender sender){
         sender.sendMessage("§6[상인 관리] 현재 서 있는 위치에 생성됩니다.");
         sender.sendMessage("§e/상인 생성 잡화상인 전체");sender.sendMessage("§e/상인 생성 농부 농산물");
-        sender.sendMessage("§e/상인 생성 광물상 광물 주민");sender.sendMessage("§e/상인 삭제 · /상인 목록");
+        sender.sendMessage("§e/상인 생성 광물상 광물 주민");sender.sendMessage("§e/상인 생성 주방장 요리 · /상인 생성 이장 임무");sender.sendMessage("§e/상인 삭제 · /상인 목록");
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
     public void onInteract(PlayerInteractEntityEvent event){interact(event);}

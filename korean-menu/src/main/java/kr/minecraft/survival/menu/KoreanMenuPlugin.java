@@ -45,7 +45,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
 
     @Override public void onDisable() {
         for (Player p : getServer().getOnlinePlayers()) {
-            if (p.getOpenInventory().getTopInventory().getHolder() instanceof Menu) p.closeInventory();
+            if (p.getOpenInventory().getTopInventory()!=null && p.getOpenInventory().getTopInventory().getHolder() instanceof Menu) p.closeInventory();
         }
         opens.clear();
     }
@@ -98,6 +98,10 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 menu.inventory.setItem(24, icon(Material.ENDER_CHEST, "§6유저 거래소", "§7유저 상점 만들기와 거래 방법"));
                 menu.inventory.setItem(30, icon(Material.RED_BED, "§a집으로 이동", "§7저장한 기본 집으로 이동"));
                 menu.inventory.setItem(32, icon(Material.COMPASS, "§b스폰으로 이동", "§7운영자가 설정한 스폰으로 이동"));
+                menu.inventory.setItem(37, icon(Material.WHEAT,"§a직업 선택·숙련도"));
+                menu.inventory.setItem(39, icon(Material.CAMPFIRE,"§6요리 만들기"));
+                menu.inventory.setItem(41, icon(Material.ANVIL,"§b도구 강화"));
+                menu.inventory.setItem(43, icon(Material.WRITABLE_BOOK,"§e오늘의 임무"));
                 menu.inventory.setItem(34, icon(Material.WRITABLE_BOOK, "§e서버 도움말", "§7거래·텔레포트·기본 명령어"));
             }
             menu.inventory.setItem(49, icon(Material.BARRIER, "§c닫기"));
@@ -121,6 +125,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
         event.setCancelled(true);
         if (!(event.getWhoClicked() instanceof Player player)) return;
         if (!menu.owner.equals(player.getUniqueId()) || !player.hasPermission("koreanmenu.use")) return;
+        if(event.getClick()!=org.bukkit.event.inventory.ClickType.LEFT)return;
         int slot = event.getRawSlot();
         if (slot < 0 || slot >= 54) return;
         if (slot == 49 || (menu.confirmation && slot == 32)) {
@@ -139,10 +144,12 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                             "§f/거래소 생성 가격 §7으로 상점을 만듭니다.", "§7안내에 따라 판매/구매 수량을 입력하세요.",
                             "§7예: /거래소 생성 100", "§7상점 거래는 해당 상점의 안내를 따라 진행하세요.");
                 }
+                case 37 -> action(player, "KoreanEconomy", "직업");
+                case 39 -> action(player, "KoreanEconomy", "요리");
+                case 41 -> action(player, "KoreanEconomy", "강화");
+                case 43 -> action(player, "KoreanEconomy", "임무");
                 case 16 -> {
-                    if (!enabled("GriefPrevention") || !enabled("KoreanCommands")) help(player, "§c땅 보호 기능이 설치되거나 활성화되지 않았습니다.", "§7추가 다운로드 안내를 확인하세요.");
-                    else help(player, "§b[내 땅 보호]", "§f금 삽으로 대각선 두 모서리를 우클릭하세요.",
-                            "§f/땅초대 닉네임 §7: 친구에게 건축 권한", "§f/땅추방 닉네임 §7: 권한 회수", "§f/땅목록 §7: 내 땅 목록");
+                    action(player,"KoreanEconomy","땅보호");
                 }
                 case 28 -> {
                     if (enabled("Essentials")) open(player, true);
@@ -171,8 +178,9 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
     }
 
     private void action(Player player, String dependency, String command) {
+        Inventory expected=player.getOpenInventory().getTopInventory();
         getServer().getScheduler().runTask(this, () -> {
-            if (!player.isOnline() || !player.hasPermission("koreanmenu.use")) return;
+            if (!player.isOnline() || !player.hasPermission("koreanmenu.use") || player.getOpenInventory().getTopInventory()!=expected) return;
             player.closeInventory();
             if (!enabled(dependency)) { player.sendMessage("§c선택한 기능이 활성화되지 않았습니다. 운영자에게 문의하세요."); return; }
             // Player dispatch preserves the target plugin's permissions, cooldowns and fees.

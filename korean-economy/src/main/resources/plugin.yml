@@ -1,12 +1,31 @@
 name: KoreanEconomy
-version: 1.1.0
+version: 2.0.0
 main: kr.minecraft.survival.economy.KoreanEconomyPlugin
 api-version: '26.3'
 description: NPC 우클릭 한글 구매·판매 상점과 일일 보상
 authors: [wjdtjddyd956-svg]
 depend: [Vault]
-softdepend: [Essentials, KoreanCommands]
+softdepend: [Essentials, KoreanCommands, WorldGuard]
 commands:
+  마을설치:
+    description: 빈 공간에 NPC 다섯 명을 배치합니다.
+    permission: koreaneconomy.npc.admin
+  직업:
+    description: 한글 생활 타이쿤 직업 기능
+  요리:
+    description: 한글 생활 타이쿤 요리 기능
+  강화:
+    description: 한글 생활 타이쿤 강화 기능
+  임무:
+    description: 한글 생활 타이쿤 임무 기능
+  땅보호:
+    description: 한글 생활 타이쿤 땅보호 기능
+  경제기록:
+    description: 한글 생활 타이쿤 경제기록 기능
+  생활기록:
+    description: 한글 생활 타이쿤 생활기록 기능
+  서버백업:
+    description: 한글 생활 타이쿤 서버백업 기능
   상점:
     description: NPC 상점 이용 방법을 안내합니다.
     usage: /상점
@@ -33,3 +52,7 @@ permissions:
   koreaneconomy.npc.admin:
     default: op
     description: 상인 생성·삭제·목록
+
+  koreaneconomy.land.bypass:
+    default: op
+    description: 운영자 개인 땅 보호 우회

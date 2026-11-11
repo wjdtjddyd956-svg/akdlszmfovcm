@@ -14,10 +14,10 @@ final class CommandTranslator {
             "이동요청", "essentials:tpa", "이동수락", "essentials:tpaccept", "이동거절", "essentials:tpdeny",
             "소환요청", "essentials:tpahere", "이동취소", "essentials:tpacancel", "이전위치", "essentials:back",
             "귓속말", "essentials:msg", "답장", "essentials:reply", "접속자", "minecraft:list",
-            "땅목록", "griefprevention:claimslist", "땅확인", "griefprevention:claimslist",
-            "땅초대", "griefprevention:trust", "땅추방", "griefprevention:untrust",
-            "땅권한", "griefprevention:trustlist", "땅포기", "griefprevention:abandonclaim",
-            "땅구매", "griefprevention:buyclaimblocks", "땅판매", "griefprevention:sellclaimblocks",
+            "땅목록", "koreaneconomy:땅보호 목록", "땅확인", "koreaneconomy:땅보호 확인",
+            "땅초대", "koreaneconomy:땅보호 초대", "땅추방", "koreaneconomy:땅보호 추방",
+            "땅권한", "koreaneconomy:땅보호 권한", "땅포기", "koreaneconomy:땅보호 포기",
+            "땅구매", "koreaneconomy:땅보호 확장", "땅판매", "koreaneconomy:땅보호 안내",
             "돈관리", "essentials:eco", "권한", "luckperms:lp",
             "블록조사", "coreprotect:co inspect", "플러그인목록", "bukkit:plugins", "서버정보", "bukkit:version"
     );
@@ -197,6 +197,7 @@ final class CommandTranslator {
         if (command.startsWith("/essentials:")) return "Essentials";
         if (command.startsWith("/essentialsspawn:")) return "EssentialsSpawn";
         if (command.startsWith("/quickshop-hikari:")) return "QuickShop-Hikari";
+        if (command.startsWith("/koreaneconomy:")) return "KoreanEconomy";
         if (command.startsWith("/griefprevention:")) return "GriefPrevention";
         if (command.startsWith("/luckperms:")) return "LuckPerms";
         if (command.startsWith("/coreprotect:")) return "CoreProtect";

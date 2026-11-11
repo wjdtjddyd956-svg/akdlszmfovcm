@@ -1,0 +1,8 @@
+{
+  "assertions": 22,
+  "real_filesystem": true,
+  "real_hash_validation": true,
+  "linux_session_lock_tested": true,
+  "windows_launcher_tested": false,
+  "fixture_plugin_metadata_only": true
+}

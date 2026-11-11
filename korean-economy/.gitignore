@@ -1,2 +1,5 @@
 /build/
+/build-domain/
 __pycache__/
+
+/build-real/

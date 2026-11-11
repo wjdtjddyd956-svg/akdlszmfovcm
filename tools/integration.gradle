@@ -1,0 +1,14 @@
+plugins { id 'java' }
+repositories { mavenCentral() }
+java { toolchain { languageVersion = JavaLanguageVersion.of(25) } }
+dependencies {
+ testImplementation('org.mockbukkit.mockbukkit:mockbukkit-v26.3:4.120.0') { exclude group: 'io.papermc.paper' }
+ testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
+ testRuntimeOnly 'org.junit.platform:junit-platform-launcher:6.1.3'
+ testImplementation files('@TOOLCHAINS@/paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar')
+ testImplementation fileTree('@TOOLCHAINS@/paper-api-build/build/deps') { include '*.jar' }
+ testImplementation files('@REPO@/survival-pack/vendor/Vault.jar', '@REPO@/survival-pack/vendor/tycoon/sqlite-jdbc.jar')
+ testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.17'
+}
+test { useJUnitPlatform(); jvmArgs '--enable-native-access=ALL-UNNAMED' }
+tasks.register('copyDeps', Copy) { duplicatesStrategy = DuplicatesStrategy.EXCLUDE; from configurations.testRuntimeClasspath; into layout.buildDirectory.dir('deps') }
