@@ -1,0 +1,80 @@
+forest	숲과 채집	OAK_SAPLING	MOVE	oak_log	OAK_LOG	참나무 원목	1
+forest	숲과 채집	OAK_SAPLING	MOVE	spruce_log	SPRUCE_LOG	가문비나무 원목	1
+forest	숲과 채집	OAK_SAPLING	MOVE	birch_log	BIRCH_LOG	자작나무 원목	1
+forest	숲과 채집	OAK_SAPLING	MOVE	jungle_log	JUNGLE_LOG	정글나무 원목	2
+forest	숲과 채집	OAK_SAPLING	MOVE	acacia_log	ACACIA_LOG	아카시아 원목	2
+forest	숲과 채집	OAK_SAPLING	MOVE	dark_oak_log	DARK_OAK_LOG	짙은 참나무 원목	2
+forest	숲과 채집	OAK_SAPLING	MOVE	mangrove_log	MANGROVE_LOG	맹그로브 원목	2
+forest	숲과 채집	OAK_SAPLING	MOVE	cherry_log	CHERRY_LOG	벚나무 원목	2
+forest	숲과 채집	OAK_SAPLING	MOVE	pale_oak_log	PALE_OAK_LOG	창백한 참나무 원목	4
+forest	숲과 채집	OAK_SAPLING	MOVE	bamboo_block	BAMBOO_BLOCK	대나무 블록	2
+farm	농장과 식량	WHEAT	HEALTH	wheat	WHEAT	밀	1
+farm	농장과 식량	WHEAT	HEALTH	carrot	CARROT	당근	1
+farm	농장과 식량	WHEAT	HEALTH	potato	POTATO	감자	1
+farm	농장과 식량	WHEAT	HEALTH	beetroot	BEETROOT	비트	1
+farm	농장과 식량	WHEAT	HEALTH	sugar_cane	SUGAR_CANE	사탕수수	1
+farm	농장과 식량	WHEAT	HEALTH	cocoa_beans	COCOA_BEANS	코코아 콩	2
+farm	농장과 식량	WHEAT	HEALTH	pumpkin	PUMPKIN	호박	1
+farm	농장과 식량	WHEAT	HEALTH	melon_slice	MELON_SLICE	수박 조각	1
+farm	농장과 식량	WHEAT	HEALTH	honey_bottle	HONEY_BOTTLE	꿀이 든 병	2
+farm	농장과 식량	WHEAT	HEALTH	enchanted_golden_apple	ENCHANTED_GOLDEN_APPLE	마법이 부여된 황금 사과	8
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	coal	COAL	석탄	1
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	raw_iron	RAW_IRON	철 원석	1
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	raw_copper	RAW_COPPER	구리 원석	1
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	redstone	REDSTONE	레드스톤 가루	1
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	lapis_lazuli	LAPIS_LAZULI	청금석	1
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	quartz	QUARTZ	네더 석영	2
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	raw_gold	RAW_GOLD	금 원석	2
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	diamond	DIAMOND	다이아몬드	4
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	emerald	EMERALD	에메랄드	2
+mining	광물과 채굴	DIAMOND_PICKAXE	MINING	netherite_ingot	NETHERITE_INGOT	네더라이트 주괴	8
+sea	낚시와 바다	FISHING_ROD	LUCK	cod	COD	대구	1
+sea	낚시와 바다	FISHING_ROD	LUCK	salmon	SALMON	연어	1
+sea	낚시와 바다	FISHING_ROD	LUCK	tropical_fish	TROPICAL_FISH	열대어	2
+sea	낚시와 바다	FISHING_ROD	LUCK	pufferfish	PUFFERFISH	복어	2
+sea	낚시와 바다	FISHING_ROD	LUCK	ink_sac	INK_SAC	먹물 주머니	1
+sea	낚시와 바다	FISHING_ROD	LUCK	glow_ink_sac	GLOW_INK_SAC	발광 먹물 주머니	2
+sea	낚시와 바다	FISHING_ROD	LUCK	kelp	KELP	켈프	1
+sea	낚시와 바다	FISHING_ROD	LUCK	seagrass	SEAGRASS	해초	1
+sea	낚시와 바다	FISHING_ROD	LUCK	nautilus_shell	NAUTILUS_SHELL	앵무조개 껍데기	4
+sea	낚시와 바다	FISHING_ROD	LUCK	heart_of_the_sea	HEART_OF_THE_SEA	바다의 심장	8
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	crafting_table	CRAFTING_TABLE	제작대	1
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	furnace	FURNACE	화로	1
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	chest	CHEST	상자	1
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	smoker	SMOKER	훈연기	2
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	blast_furnace	BLAST_FURNACE	용광로	2
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	anvil	ANVIL	모루	2
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	enchanting_table	ENCHANTING_TABLE	마법 부여대	4
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	brewing_stand	BREWING_STAND	양조기	2
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	ender_chest	ENDER_CHEST	엔더 상자	4
+craft	제작과 생활	CRAFTING_TABLE	ARMOR	beacon	BEACON	신호기	8
+nether	네더 탐사	NETHERRACK	DAMAGE	netherrack	NETHERRACK	네더랙	1
+nether	네더 탐사	NETHERRACK	DAMAGE	soul_sand	SOUL_SAND	영혼 모래	1
+nether	네더 탐사	NETHERRACK	DAMAGE	magma_block	MAGMA_BLOCK	마그마 블록	2
+nether	네더 탐사	NETHERRACK	DAMAGE	glowstone_dust	GLOWSTONE_DUST	발광석 가루	2
+nether	네더 탐사	NETHERRACK	DAMAGE	nether_wart	NETHER_WART	네더 사마귀	2
+nether	네더 탐사	NETHERRACK	DAMAGE	blaze_rod	BLAZE_ROD	블레이즈 막대	2
+nether	네더 탐사	NETHERRACK	DAMAGE	ghast_tear	GHAST_TEAR	가스트 눈물	4
+nether	네더 탐사	NETHERRACK	DAMAGE	magma_cream	MAGMA_CREAM	마그마 크림	2
+nether	네더 탐사	NETHERRACK	DAMAGE	wither_skeleton_skull	WITHER_SKELETON_SKULL	위더 스켈레톤 해골	4
+nether	네더 탐사	NETHERRACK	DAMAGE	nether_star	NETHER_STAR	네더의 별	8
+end	엔드 탐험	END_STONE	ATTACK_SPEED	end_stone	END_STONE	엔드 돌	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	chorus_fruit	CHORUS_FRUIT	후렴과	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	chorus_flower	CHORUS_FLOWER	후렴화	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	purpur_block	PURPUR_BLOCK	퍼퍼 블록	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	end_rod	END_ROD	엔드 막대기	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	shulker_shell	SHULKER_SHELL	셜커 껍데기	4
+end	엔드 탐험	END_STONE	ATTACK_SPEED	dragon_breath	DRAGON_BREATH	드래곤의 숨결	4
+end	엔드 탐험	END_STONE	ATTACK_SPEED	ender_pearl	ENDER_PEARL	엔더 진주	2
+end	엔드 탐험	END_STONE	ATTACK_SPEED	end_crystal	END_CRYSTAL	엔드 수정	4
+end	엔드 탐험	END_STONE	ATTACK_SPEED	elytra	ELYTRA	겉날개	8
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	saddle	SADDLE	안장	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	name_tag	NAME_TAG	이름표	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	golden_apple	GOLDEN_APPLE	황금 사과	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	prismarine_shard	PRISMARINE_SHARD	프리즈머린 조각	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	amethyst_shard	AMETHYST_SHARD	자수정 조각	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	armadillo_scute	ARMADILLO_SCUTE	아르마딜로 인갑	2
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	rabbit_foot	RABBIT_FOOT	토끼발	4
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	totem_of_undying	TOTEM_OF_UNDYING	불사의 토템	4
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	echo_shard	ECHO_SHARD	메아리 조각	4
+treasure	탐험과 전리품	TOTEM_OF_UNDYING	KNOCKBACK	heavy_core	HEAVY_CORE	무거운 코어	8

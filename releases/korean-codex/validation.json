@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0",
+  "target": "Paper 26.3 / Java 25",
+  "real_api_compile": "unmodified actual Paper df120fd API source build",
+  "collection_entries": 80,
+  "achievements": 12,
+  "small_bonus_stats": 8,
+  "rarity_multipliers": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "consumption": "one plain item per permanent UUID entry",
+  "mockbukkit_cases": 26,
+  "mockbukkit_version": "26.3:4.120.0",
+  "test_failures": 0,
+  "test_skipped": 0,
+  "sqlite": "real SQLite JDBC 3.51.0.0, file persistence and fault cases",
+  "production_jar_sqlite_native_smoke": true,
+  "windows_native_driver_included": true,
+  "player_nbt_saves_tested": false,
+  "player_nbt_test_substitute": "save call counting and injected failure",
+  "mining_attribute_mock_preparation": "real MockBukkit AttributeInstanceMock with vanilla base 1, absent from its default map",
+  "real_minecraft_client_or_native_combat_mining_tested": false,
+  "windows_server_applied": false,
+  "caps": {
+    "movement_percent": 3,
+    "mining_percent": 6,
+    "health_hp": 2,
+    "attack_damage": 0.5,
+    "armor": 1,
+    "attack_speed_percent": 2,
+    "knockback_resistance_percentage_points": 2,
+    "luck": 0.5
+  },
+  "source_sha256": {
+    "korean-codex/src/main/resources/config.yml": "65524e90dabdf8456aaabc1df5c65a81a0e421d8834b8ad7894ad30a42114358",
+    "korean-codex/src/main/resources/catalog.tsv": "5f3325ceaced37ac2f4ae50fe283f9b93437434faa97ef8a28a01afa0d9db07e",
+    "korean-codex/src/main/resources/plugin.yml": "603326440638f9828c2fc7d587ba4e229d77e9a6298c5fc3425eda8d893dc128",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Catalog.java": "2b055a241b4f55b289b29635f2135afc66e5e09fcefcad5d7901ea11360716e3",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/KoreanCodexPlugin.java": "0a0da4478b1d0498c2239912033271f941bdcf1e91abbc772d22239e3b1aa8f6",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Bonuses.java": "2f68396248a55884eda0390e1256d02618bb38cef5d7f3b97a269ff2d723a10b",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/RegistrationPlan.java": "f4ea609341f223dbff0317474aecaf4fb41b0b33e5155fbf4c8856fef4918a0d",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/CodexStore.java": "28a9bf8b81c9da8c62bc9455c4fd2fb329944fe2a5fbf14245dd670b309a5ff4"
+  }
+}

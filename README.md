@@ -12,6 +12,8 @@
 
 현실적인 도시·경제풍의 [시티 이코노미 리소스팩](city-resourcepack/README.md)도 제공합니다. 요리·경제·직업·메뉴 아이콘 32종(64x), 선택 건축 재질 8종(128x), 기존 메뉴에 연결하는 CityTextures 보조 플러그인과 [미리보기](releases/city-resourcepack/미리보기.png)를 포함합니다. [전체 다운로드](releases/city-resourcepack/CityEconomy-Package-1.0.0.zip).
 
+[아이템 도감·수집 업적](korean-codex/README.md)을 추가했습니다. 80종을 1개씩 소비해 영구 등록하고 희귀도·업적에 따라 이동·채굴·체력 등 8종의 작은 보너스를 받습니다. [설치 파일](releases/korean-codex/)과 [80종 보너스 표](releases/korean-codex/아이템별보너스.md)를 제공합니다.
+
 아래는 이전 RPG·경제 야생 자료의 이력입니다.
 
 # 이전 서버 자료
