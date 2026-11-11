@@ -1,0 +1,538 @@
+# Use a YAML editor like NotepadPlusPlus to edit this file.
+# After editing, back up your changes before reloading the server in case you made a syntax error.
+# Use dollar signs ($) for formatting codes, which are documented here: http://minecraft.gamepedia.com/Formatting_codes
+
+Messages:
+  RespectingClaims:
+    Text: 땅 보호 규칙을 다시 적용합니다.
+  IgnoringClaims:
+    Text: 운영자 땅 보호 우회가 켜졌습니다.
+  SuccessfulAbandon:
+    Text: '보호를 해제했습니다. 남은 보호 블록: {0}'
+    Notes: '0: remaining blocks'
+  AbandonSuccess:
+    Text: '보호를 해제했습니다. 남은 보호 블록: {0}'
+    Notes: '0: remaining claim blocks'
+  AbandonClaimMissing:
+    Text: 해제하려는 내 땅 안에 서세요.
+  NotYourClaim:
+    Text: 내 땅이 아닙니다.
+  TrustListNoClaim:
+    Text: 확인할 땅 안에 서세요.
+  NoPermissionTrust:
+    Text: '{0}님의 땅에서 권한을 관리할 수 없습니다.'
+    Notes: '0: claim owner''s name'
+  UntrustIndividualSingleClaim:
+    Text: 이 땅에서 {0}님의 권한을 회수했습니다.
+    Notes: '0: untrusted player'
+  UntrustIndividualAllClaims:
+    Text: 내 모든 땅에서 {0}님의 권한을 회수했습니다.
+    Notes: '0: untrusted player'
+  GrantPermissionNoClaim:
+    Text: 친구를 초대할 땅 안에 서세요.
+  GrantPermissionConfirmation:
+    Text: '{0}님에게 {2} {1} 권한을 부여했습니다.'
+    Notes: '0: target player; 1: permission description; 2: scope (changed claims)'
+  BuildPermission:
+    Text: 건축
+  ContainersPermission:
+    Text: 상자와 동물 이용
+  AccessPermission:
+    Text: 문과 스위치 이용
+  PermissionsPermission:
+    Text: 권한 관리
+  LocationCurrentClaim:
+    Text: 이 땅의
+  LocationAllClaims:
+    Text: 내 모든 땅의
+  BlockNotClaimed:
+    Text: 보호되지 않은 블록입니다.
+  BlockClaimed:
+    Text: '{0}님의 땅입니다.'
+    Notes: '0: claim owner'
+  NoCreateClaimPermission:
+    Text: 땅을 지정할 권한이 없습니다.
+  ClaimStart:
+    Text: 첫 모서리를 지정했습니다. 금 삽으로 반대편 모서리를 우클릭하세요.
+  ClaimResizeSuccess:
+    Text: '범위를 바꿨습니다. 남은 보호 블록: {0}'
+    Notes: '0: remaining blocks'
+  ResizeStart:
+    Text: 새 모서리에 금 삽을 사용해 범위를 바꾸세요.
+  CreateClaimFailOverlap:
+    Text: 기존 내 땅과 겹칩니다. 모서리를 눌러 크기를 조정하세요.
+  CreateClaimFailOverlapOtherPlayer:
+    Text: '{0}님의 땅과 겹칩니다.'
+    Notes: '0: other claim owner'
+  ClaimsDisabledWorld:
+    Text: 이 월드에서는 땅을 지정할 수 없습니다.
+  NewClaimTooNarrow:
+    Text: 보호 범위의 한 변은 최소 {0}블록이어야 합니다.
+    Notes: '0: minimum claim width'
+  CreateClaimInsufficientBlocks:
+    Text: 보호 블록이 {0}개 더 필요합니다.
+    Notes: '0: additional blocks needed'
+  CreateClaimFailOverlapShort:
+    Text: 기존 보호 범위와 겹칩니다.
+  CreateClaimSuccess:
+    Text: 땅을 보호했습니다. /땅보호 초대 닉네임으로 친구를 초대하세요.
+  CreateClaimFailOverlapRegion:
+    Text: WorldGuard 보호 구역과 겹쳐 지정할 수 없습니다.
+  ResizeFailOverlapRegion:
+    Text: WorldGuard 보호 구역과 겹쳐 넓힐 수 없습니다.
+  OnlyOwnersModifyClaims:
+    Text: '{0}님만 이 땅을 바꿀 수 있습니다.'
+    Notes: '0: owner name'
+  NoBuildPermission:
+    Text: '{0}님의 땅에서 건축할 권한이 없습니다.'
+    Notes: '0: owner name'
+  NoAccessPermission:
+    Text: '{0}님의 땅에서 사용할 권한이 없습니다.'
+    Notes: '0: owner name.  access permission controls buttons, levers, and beds'
+  NoContainersPermission:
+    Text: '{0}님의 상자를 열 권한이 없습니다.'
+    Notes: '0: owner''s name.  containers also include crafting blocks'
+  OwnerNameForAdminClaims:
+    Text: 운영진
+    Notes: as in 'You don't have an administrator's permission to build here.'
+  ShowNearbyClaims:
+    Text: 주변 보호 구역 {0}개를 찾았습니다.
+    Notes: '0: Number of claims found.'
+  YouHaveNoClaims:
+    Text: 아직 보호한 땅이 없습니다.
+  ClaimsListHeader:
+    Text: 내 보호 구역 목록
+  TrustListHeader:
+    Text: 이 땅의 친구 권한 목록
+    Notes: '0: The claim''s owner'
+  StartBlockMath:
+    Text: 활동 {0} + 추가 {1} = {2}블록
+  ContinueBlockMath:
+    Text: ' (사용 {0}블록)'
+  EndBlockMath:
+    Text: ' = 남은 보호 블록 {0}개'
+  RestoreNatureActivate:
+    Text: "자연 복원 준비가 끝났습니다. 우클릭하면 복원합니다. 일반 땅 보호로 돌아가려면 /basicclaims 를 사용하세요."
+  RestoreNatureAggressiveActivate:
+    Text: "강력 자연 복원 모드입니다. 보존할 건물 아래에서 사용하지 마세요!"
+  FillModeActive:
+    Text: "반경 {0}의 채우기 모드입니다. 채울 곳을 우클릭하세요."
+    Notes: '0: fill radius'
+  TransferClaimPermission:
+    Text: "관리 구역을 다룰 권한이 필요합니다."
+  TransferClaimMissing:
+    Text: "이곳에는 보호 구역이 없습니다. 이전할 관리 구역 안에 서세요."
+  TransferClaimAdminOnly:
+    Text: "관리 구역만 플레이어에게 이전할 수 있습니다."
+  PlayerNotFound2:
+    Text: "최근 접속 기록에서 해당 이용자를 찾지 못했습니다."
+  TransferTopLevel:
+    Text: "하위 구역은 이전할 수 없습니다. 하위 구역 밖의 상위 보호 구역에 서세요."
+  TransferSuccess:
+    Text: "땅 소유권을 이전했습니다."
+  ClearPermsOwnerOnly:
+    Text: "모든 권한 회수는 땅 주인만 할 수 있습니다."
+  UntrustEveryoneAllClaims:
+    Text: "내 모든 땅의 공유 권한을 회수했습니다. 한 땅만 관리하려면 해당 땅 안에서 실행하세요."
+  ClearPermissionsOneClaim:
+    Text: "이 땅의 공유 권한을 회수했습니다. 내 모든 땅을 관리하려면 땅 밖에서 실행하세요."
+  OnlySellBlocks:
+    Text: "보호 블록은 판매만 가능하며 구매할 수 없습니다."
+  BlockPurchaseCost:
+    Text: "보호 블록 한 개의 가격은 {0}입니다. 내 잔액: {1}"
+    Notes: '0: cost of one block; 1: player''s account balance'
+  ClaimBlockLimit:
+    Text: "보호 블록 보유 한도에 도달하여 더 구매할 수 없습니다."
+  InsufficientFunds:
+    Text: "잔액이 부족합니다. 필요 금액: {0} · 내 잔액: {1}"
+    Notes: '0: total cost; 1: player''s account balance'
+  MaxBonusReached:
+    Text: "보호 블록 {0}개를 더 구매할 수 없습니다. 추가 보호 블록 한도는 {1}개입니다."
+    Notes: '0: block count; 1: bonus claims limit'
+  PurchaseConfirmation:
+    Text: "{0}을 지불했습니다. 사용 가능한 보호 블록: {1}개"
+    Notes: '0: total cost; 1: remaining blocks'
+  OnlyPurchaseBlocks:
+    Text: "보호 블록은 구매만 가능하며 판매할 수 없습니다."
+  BlockSaleValue:
+    Text: "보호 블록 한 개의 판매가는 {0}입니다. 판매 가능 수량: {1}개"
+    Notes: '0: block value; 1: available blocks'
+  NotEnoughBlocksForSale:
+    Text: "판매할 수 있는 보호 블록이 부족합니다."
+  BlockSaleConfirmation:
+    Text: "{0}을 받았습니다. 사용 가능한 보호 블록: {1}개"
+    Notes: '0: amount deposited; 1: remaining blocks'
+  AdminClaimsMode:
+    Text: "관리 구역 지정 모드입니다. 생성하는 구역은 무료이며 운영자가 관리합니다."
+  BasicClaimsMode:
+    Text: "일반 땅 보호 모드로 돌아왔습니다."
+  SubdivisionMode:
+    Text: "하위 구역 모드입니다. 기존 내 땅 안에서 금 삽으로 하위 구역을 지정하세요."
+  SubdivisionVideo2:
+    Text: "하위 구역 도움말: {0}"
+    Notes: 0:video URL
+  DeleteClaimMissing:
+    Text: "이곳에는 보호 구역이 없습니다."
+  DeletionSubdivisionWarning:
+    Text: "하위 구역이 있는 땅입니다. 삭제하려면 /deleteclaim 을 한 번 더 입력하세요."
+  DeleteSuccess:
+    Text: "보호 구역을 삭제했습니다."
+  CantDeleteAdminClaim:
+    Text: "관리 구역을 삭제할 권한이 없습니다."
+  DeleteAllSuccess:
+    Text: "{0}님의 모든 보호 구역을 삭제했습니다."
+    Notes: '0: owner''s name'
+  NoDeletePermission:
+    Text: "보호 구역을 삭제할 권한이 없습니다."
+  AllAdminDeleted:
+    Text: "모든 관리 구역을 삭제했습니다."
+  AdjustBlocksSuccess:
+    Text: "{0}님의 추가 보호 블록을 {1}개 조정했습니다. 새 합계: {2}개"
+    Notes: '0: player; 1: adjustment; 2: new total'
+  NotTrappedHere:
+    Text: "이곳은 직접 블록을 설치할 수 있습니다. 이동할 길을 만들어 나가세요."
+  RescuePending:
+    Text: "10초 동안 움직이지 않으면 밖으로 이동합니다. 잠시 기다려 주세요."
+  NonSiegeWorld:
+    Text: "이 월드에서는 공성 기능을 사용할 수 없습니다."
+  AlreadySieging:
+    Text: "이미 공성에 참여하고 있습니다."
+  NotSiegableThere:
+    Text: "{0}님은 이곳에서 보호받고 있지 않습니다."
+    Notes: '0: defending player'
+  SiegeTooFarAway:
+    Text: "공성 대상에서 너무 멀리 떨어져 있습니다."
+  NoSiegeYourself:
+    Text: "자기 자신을 공성 대상으로 삼을 수 없습니다."
+  NoSiegeDefenseless:
+    Text: "무방비 상태의 이용자는 공성 대상으로 삼을 수 없습니다."
+  AlreadyUnderSiegePlayer:
+    Text: "{0}님은 이미 공성 중입니다."
+    Notes: '0: defending player'
+  AlreadyUnderSiegeArea:
+    Text: "이 구역은 이미 공성 중입니다."
+  NoSiegeAdminClaim:
+    Text: "이 구역에서는 공성을 사용할 수 없습니다."
+  SiegeOnCooldown:
+    Text: "이 이용자 또는 구역에 대한 공성 재사용 대기시간이 남아 있습니다."
+  SiegeAlert:
+    Text: "공격받고 있습니다! 지금 나가면 사망합니다. {0}님을 물리치세요."
+    Notes: '0: attacker name'
+  SiegeConfirmed:
+    Text: "공성을 시작했습니다! 지금 나가면 사망합니다. {0}님을 물리치세요."
+    Notes: '0: defender name'
+  DeleteTopLevelClaim:
+    Text: "하위 구역을 해제하려면 그 안에 서세요. 상위 땅 전체 해제는 /abandontoplevelclaim 을 사용하세요."
+  ConfirmAbandonAllClaims:
+    Text: "내 모든 땅 보호를 해제하려면 /abandonallclaims confirm 을 입력하세요."
+  CantGrantThatPermission:
+    Text: "내가 갖고 있지 않은 권한은 다른 사람에게 줄 수 없습니다."
+  ManageUniversalPermissionsInstruction:
+    Text: "내 모든 땅의 권한은 땅 밖에서 관리하세요."
+  ManageOneClaimPermissionsInstruction:
+    Text: "한 땅의 권한은 해당 땅 안에서 관리하세요."
+  CollectivePublic:
+    Text: "모든 이용자"
+    Notes: as in 'granted the public permission to...'
+  PvPImmunityStart:
+    Text: "가방이 비어 있는 동안 다른 이용자의 공격으로부터 보호받습니다."
+  SiegeNoDrop:
+    Text: "공성 중에는 아이템을 넘겨줄 수 없습니다."
+  DonateItemsInstruction:
+    Text: "손의 아이템을 기부하려면 상자를 한 번 더 왼쪽 클릭하세요."
+  ChestFull:
+    Text: "상자가 가득 찼습니다."
+  DonationSuccess:
+    Text: "아이템을 상자에 넣었습니다."
+  PlayerTooCloseForFire2:
+    Text: "다른 이용자와 너무 가까워 불을 붙일 수 없습니다."
+  TooDeepToClaim:
+    Text: "상자가 너무 깊은 곳에 있어 자동 보호할 수 없습니다. 지상에 상자를 두거나 땅 보호 범위를 확장하세요."
+  ChestClaimConfirmation:
+    Text: "이 상자는 보호받고 있습니다."
+  AutomaticClaimNotification:
+    Text: "이 상자와 주변 블록을 도난·파괴로부터 보호했습니다."
+  AutomaticClaimOtherClaimTooClose:
+    Text: "가까운 곳에 다른 보호 구역이 있어 상자 주변을 자동 보호하지 못했습니다."
+  UnprotectedChestWarning:
+    Text: "이 상자는 보호되지 않았습니다! 금 삽으로 기존 땅을 확장하거나 새 땅을 지정하세요."
+  ThatPlayerPvPImmune:
+    Text: "무방비 상태의 이용자를 공격할 수 없습니다."
+  CantFightWhileImmune:
+    Text: "공격 보호를 받고 있는 동안 다른 이용자를 공격할 수 없습니다."
+  NoDamageClaimedEntity:
+    Text: "{0}님의 소유물입니다."
+    Notes: '0: owner name'
+  ShovelBasicClaimMode:
+    Text: "금 삽을 일반 땅 보호 모드로 바꿨습니다."
+  RemainingBlocks:
+    Text: "보호 블록 {0}개를 더 사용할 수 있습니다."
+    Notes: '0: remaining blocks'
+  CreativeBasicsVideo2:
+    Text: "땅 보호 도움말: {0}"
+    Notes: '{0}: video URL'
+  SurvivalBasicsVideo2:
+    Text: "땅 보호 도움말: {0}"
+    Notes: '{0}: video URL'
+  TrappedChatKeyword:
+    Text: trapped;stuck
+    Notes: When mentioned in chat, players get information about the /trapped command
+      (multiple words can be separated with semi-colons)
+  TrappedInstructions:
+    Text: "다른 사람의 땅에 갇혔다면 /trapped 를 사용하세요."
+  PvPNoDrop:
+    Text: "이용자와 전투 중에는 아이템을 버릴 수 없습니다."
+  SiegeNoTeleport:
+    Text: "공성 중인 구역 밖으로 이동할 수 없습니다."
+  BesiegedNoTeleport:
+    Text: "공성 중인 구역 안으로 이동할 수 없습니다."
+  SiegeNoContainers:
+    Text: "공성 중에는 상자를 열 수 없습니다."
+  PvPNoContainers:
+    Text: "이용자와 전투 중에는 상자를 열 수 없습니다."
+  PvPImmunityEnd:
+    Text: "공격 보호가 끝났습니다. 이제 다른 이용자와 전투할 수 있습니다."
+  NoBedPermission:
+    Text: "{0}님이 이 침대를 사용할 권한을 주지 않았습니다."
+    Notes: '0: claim owner'
+  NoWildernessBuckets:
+    Text: "양동이의 내용물은 내 땅 안이나 지하에만 놓을 수 있습니다."
+  NoLavaNearOtherPlayer:
+    Text: "{0}님과 너무 가까워 용암을 놓을 수 없습니다."
+    Notes: '0: nearby player'
+  TooFarAway:
+    Text: "너무 멀리 떨어져 있습니다."
+  SiegeNoShovel:
+    Text: "공성 중에는 땅 보호 도구를 사용할 수 없습니다."
+  RestoreNaturePlayerInChunk:
+    Text: "{0}님이 해당 청크에 있어 자연 복원을 진행하지 못했습니다."
+    Notes: '0: nearby player'
+  ResizeNeedMoreBlocks:
+    Text: "이 크기로 확장하려면 보호 블록이 {0}개 더 필요합니다."
+    Notes: '0: how many needed'
+  NoCreativeUnClaim:
+    Text: "이 땅은 보호를 해제할 수 없습니다. 범위를 넓히거나 다른 땅을 지정하세요."
+  ResizeFailOverlap:
+    Text: "다른 보호 구역과 겹쳐 범위를 바꿀 수 없습니다."
+  ResizeFailOverlapSubdivision:
+    Text: "다른 하위 구역과 겹칩니다. 기존 하위 구역의 크기를 조정하세요."
+  SubdivisionStart:
+    Text: "하위 구역의 첫 모서리를 지정했습니다. 금 삽으로 반대편 모서리를 선택하세요."
+  CreateSubdivisionOverlap:
+    Text: "선택한 범위가 다른 하위 구역과 겹칩니다."
+  SubdivisionSuccess:
+    Text: "하위 구역을 만들었습니다. /땅보호 메뉴에서 친구에게 권한을 주세요."
+  AbandonClaimAdvertisement:
+    Text: "다른 땅의 보호를 해제하여 보호 블록을 돌려받으려면 /abandonclaim 을 사용하세요."
+  SiegeWinDoorsOpen:
+    Text: "공성에 승리했습니다! 버튼과 레버가 잠시 열립니다."
+  RescueAbortedMoved:
+    Text: "움직여서 구조를 취소했습니다."
+  SiegeDoorsLockedEjection:
+    Text: "전리품 수집 시간이 끝나 보호 구역 밖으로 이동했습니다."
+  NoModifyDuringSiege:
+    Text: "공성 중에는 땅 보호 설정을 바꿀 수 없습니다."
+  NoBuildUnderSiege:
+    Text: "{0}님의 공성 중이므로 이곳에 블록을 설치할 수 없습니다."
+    Notes: '0: attacker name'
+  NoBuildPvP:
+    Text: "이용자와 전투 중에는 보호 구역에 블록을 설치할 수 없습니다."
+  NonSiegeMaterial:
+    Text: "이 재료는 공성 중에 부술 수 없습니다."
+  NoOwnerBuildUnderSiege:
+    Text: "공성 중에는 블록을 바꿀 수 없습니다."
+  NoContainersSiege:
+    Text: "{0}님의 공성 중이므로 상자를 열 수 없습니다."
+    Notes: '0: attacker name'
+  UnknownPlayerName:
+    Text: "이용자"
+    Notes: 'Name used for unknown players. UUID will be appended if available: "someone
+      (01234567-0123-0123-0123-0123456789ab)"'
+  ClaimTooSmallForEntities:
+    Text: "이 땅은 개체를 더 수용하기에 작습니다. 땅을 넓혀 주세요."
+  TooManyEntitiesInClaim:
+    Text: "이 땅의 개체 수가 너무 많습니다. 땅을 넓히거나 개체 수를 줄여 주세요."
+  ConfirmFluidRemoval:
+    Text: "보호를 해제하면 이 땅의 용암이 제거됩니다. 계속하려면 /abandonclaim 을 한 번 더 입력하세요."
+  AutoBanNotify:
+    Text: "{0}({1}) 이용자를 자동 차단했습니다. 자세한 내용은 서버 기록을 확인하세요."
+  AdjustGroupBlocksSuccess:
+    Text: "{0} 권한 보유자의 추가 보호 블록을 {1}개 조정했습니다. 새 합계: {2}개"
+    Notes: '0: permission; 1: adjustment amount; 2: new total bonus'
+  InvalidPermissionID:
+    Text: "이용자 이름 또는 [대괄호로 묶은 권한]을 입력하세요."
+  HowToClaimRegex:
+    Text: (^|.*\W)how\W.*\W(claim|protect|lock)(\W.*|$)
+    Notes: This is a Java Regular Expression.  Look it up before editing!  It's used
+      to tell players about the demo video when they ask how to claim land.
+  NoBuildOutsideClaims:
+    Text: "먼저 내 땅을 지정해야 이곳에 블록을 설치할 수 있습니다."
+  PlayerOfflineTime:
+    Text: "마지막 접속: {0}일 전"
+    Notes: '0: number of full days since last login'
+  BuildingOutsideClaims:
+    Text: "이곳은 다른 이용자도 블록을 바꿀 수 있습니다. /땅보호 메뉴로 내 땅을 지정하세요."
+  TrappedWontWorkHere:
+    Text: "안전한 구조 위치를 찾지 못했습니다. 운영자에게 문의하세요."
+  CommandBannedInPvP:
+    Text: "이용자와 전투 중에는 이 명령을 사용할 수 없습니다."
+  UnclaimCleanupWarning:
+    Text: "보호를 해제한 땅은 다른 이용자가 변경하거나 서버 정리 대상이 될 수 있습니다."
+  BuySellNotConfigured:
+    Text: "이 서버에서는 보호 블록 구매·판매를 사용할 수 없습니다."
+  NoTeleportPvPCombat:
+    Text: "이용자와 전투 중에는 이동할 수 없습니다."
+  NoTNTDamageAboveSeaLevel:
+    Text: "주의: 해수면 위에서는 TNT가 블록을 파괴하지 않습니다."
+  NoTNTDamageClaims:
+    Text: "주의: TNT는 보호된 땅의 블록을 파괴하지 않습니다."
+  IgnoreClaimsAdvertisement:
+    Text: "운영자 우회가 필요하면 /ignoreclaims 를 사용하세요. 해당 권한이 필요합니다."
+  NoPermissionForCommand:
+    Text: "이 명령을 사용할 권한이 없습니다."
+  ClaimsListNoPermission:
+    Text: "다른 이용자의 땅 정보를 조회할 권한이 없습니다."
+  ExplosivesDisabled:
+    Text: "이 땅의 폭발 피해를 막았습니다. /claimexplosions 로 다시 전환할 수 있습니다."
+  ExplosivesEnabled:
+    Text: "이 땅에서 폭발이 블록을 파괴할 수 있습니다. /claimexplosions 로 다시 전환할 수 있습니다."
+  ClaimExplosivesAdvertisement:
+    Text: "이 땅의 폭발 피해 허용 여부는 /claimexplosions 로 전환합니다."
+  PlayerInPvPSafeZone:
+    Text: "해당 이용자는 공격 보호 구역에 있습니다."
+  NoPistonsOutsideClaims:
+    Text: "주의: 보호 구역 밖의 블록은 피스톤으로 움직일 수 없습니다."
+  SoftMuted:
+    Text: "{0}님을 숨김 채팅 차단 상태로 바꿨습니다."
+    Notes: '0: The changed player''s name.'
+  UnSoftMuted:
+    Text: "{0}님의 숨김 채팅 차단을 해제했습니다."
+    Notes: '0: The changed player''s name.'
+  DropUnlockAdvertisement:
+    Text: "내가 떨어뜨린 아이템은 보호됩니다. 다른 사람에게 줍기를 허용하려면 /unlockdrops 를 사용하세요."
+  PickupBlockedExplanation:
+    Text: "{0}님이 /unlockdrops 로 허용해야 이 아이템을 주울 수 있습니다."
+    Notes: '0: The item stack''s owner.'
+  DropUnlockConfirmation:
+    Text: "떨어뜨린 아이템의 보호를 해제했습니다. 다음 사망 전까지 다른 이용자도 주울 수 있습니다."
+  DropUnlockOthersConfirmation:
+    Text: "{0}님이 떨어뜨린 아이템의 보호를 해제했습니다."
+    Notes: '0: The owner of the unlocked drops.'
+  AdvertiseACandACB:
+    Text: "권한이 있는 운영자는 /acb 로 보호 블록을 추가하거나 /adminclaims 로 관리 구역을 지정할 수 있습니다."
+  AdvertiseAdminClaims:
+    Text: "권한이 있는 운영자는 /adminclaims 로 관리 구역을 지정할 수 있습니다."
+  AdvertiseACB:
+    Text: "권한이 있는 운영자는 /acb 로 보호 블록을 추가할 수 있습니다."
+  NotYourPet:
+    Text: "/givepet 으로 양도되기 전까지 {0}님의 동물입니다."
+    Notes: '0: owner name'
+  PetGiveawayConfirmation:
+    Text: "동물 소유권을 이전했습니다."
+  PetTransferCancellation:
+    Text: "동물 소유권 이전을 취소했습니다."
+  ReadyToTransferPet:
+    Text: "양도할 동물을 우클릭하세요. /givepet 으로 취소할 수 있습니다."
+  AvoidGriefClaimLand:
+    Text: "땅을 지정하면 도난과 파괴를 막을 수 있습니다. /땅보호 메뉴를 확인하세요."
+  BecomeMayor:
+    Text: "내 땅에 하위 구역을 만들어 이웃과 함께 생활해 보세요."
+  ClaimCreationFailedOverClaimCountLimit:
+    Text: "땅 개수 한도에 도달했습니다. /abandonclaim 으로 기존 땅을 해제해야 새 땅을 지정할 수 있습니다."
+  NoChatUntilMove:
+    Text: "조금 이동한 뒤 채팅할 수 있습니다. 자동 도배 방지를 위한 제한입니다."
+  SiegeImmune:
+    Text: "이 이용자는 공성 대상이 될 수 없습니다."
+  SetClaimBlocksSuccess:
+    Text: "누적 보호 블록 수를 변경했습니다."
+  IgnoreConfirmation:
+    Text: "해당 이용자의 채팅을 숨겼습니다."
+  NotIgnoringPlayer:
+    Text: "해당 이용자의 채팅을 숨기고 있지 않습니다."
+  UnIgnoreConfirmation:
+    Text: "해당 이용자의 채팅을 다시 표시합니다."
+  SeparateConfirmation:
+    Text: "두 이용자가 서로의 채팅을 보지 않게 했습니다."
+  UnSeparateConfirmation:
+    Text: "두 이용자가 서로의 채팅을 다시 볼 수 있게 했습니다."
+  NotIgnoringAnyone:
+    Text: "채팅을 숨긴 이용자가 없습니다."
+  Manage:
+    Text: "권한 관리"
+  Build:
+    Text: "건축"
+  Containers:
+    Text: "상자"
+  Access:
+    Text: "출입"
+  HasSubclaimRestriction:
+    Text: "이 하위 구역은 상위 땅의 권한을 물려받지 않습니다."
+  NoClaimDuringPvP:
+    Text: "이용자와 전투 중에는 땅을 지정할 수 없습니다."
+  UntrustAllOwnerOnly:
+    Text: "모든 공유 권한을 회수하는 작업은 땅 주인만 할 수 있습니다."
+  ManagersDontUntrustManagers:
+    Text: "관리자의 권한 회수는 땅 주인만 할 수 있습니다."
+  BookAuthor:
+    Text: BigScary
+  BookTitle:
+    Text: "처음 시작하는 땅 보호"
+  BookIntro:
+    Text: "내 땅을 지정하여 소중한 물건을 지키세요! 위 링크에서 보호 방법을 확인할 수 있습니다."
+  BookDisabledChestClaims:
+    Text: "이 서버는 상자를 놓는 것만으로 땅이 자동 지정되지 않습니다."
+  BookUsefulCommands:
+    Text: "도움이 되는 명령어:"
+  BookLink:
+    Text: "도움말 열기: {0}"
+    Notes: '{0}: video URL'
+  BookTools:
+    Text: "땅 보호 도구는 {0} 및 {1}입니다."
+    Notes: '0: claim modification tool name; 1:claim information tool name'
+  ResizeClaimTooNarrow:
+    Text: "너무 좁습니다. 땅의 너비는 최소 {0}블록이어야 합니다."
+    Notes: '0: minimum claim width'
+  ResizeClaimInsufficientArea:
+    Text: "너무 작습니다. 땅의 넓이는 최소 {0}블록이어야 합니다."
+    Notes: '0: minimum claim area'
+  NoProfanity:
+    Text: "다른 이용자를 배려하는 말을 사용해 주세요."
+  PlayerNotIgnorable:
+    Text: "해당 이용자의 채팅은 숨길 수 없습니다."
+  NoEnoughBlocksForChestClaim:
+    Text: "보호 블록이 부족하여 상자 주변을 자동 보호하지 못했습니다."
+  IsIgnoringYou:
+    Text: "상대 이용자가 내 채팅을 숨기고 있습니다."
+  MustHoldModificationToolForThat:
+    Text: "손에 금 삽을 들어야 사용할 수 있습니다."
+  StandInClaimToResize:
+    Text: "범위를 바꾸려는 내 땅 안에 서세요."
+  ClaimsExtendToSky:
+    Text: "보호 구역은 최대 건축 높이까지 이어집니다."
+  ClaimsAutoExtendDownward:
+    Text: "보호 구역 아래에 블록을 놓으면 아래쪽 보호 범위가 자동 확장됩니다."
+  MinimumRadius:
+    Text: "최소 반경은 {0}블록입니다."
+    Notes: '0: minimum radius'
+  ClaimTooSmallForActiveBlocks:
+    Text: "호퍼·생성기·신호기 등을 설치하기에 땅이 작습니다. 땅을 넓혀 주세요."
+  TooManyActiveBlocksInClaim:
+    Text: "호퍼·생성기·신호기 등의 설치 한도에 도달했습니다. 땅을 넓히거나 해당 블록을 줄여 주세요."
+  ConsoleOnlyCommand:
+    Text: "서버 콘솔에서만 사용할 수 있는 명령입니다."
+  WorldNotFound:
+    Text: "월드를 찾지 못했습니다."
+  AdjustBlocksAllSuccess:
+    Text: "접속 중인 모든 이용자의 추가 보호 블록을 {0}개 조정했습니다."
+    Notes: '0: adjustment amount'
+  TooMuchIpOverlap:
+    Text: "같은 IP에서 접속한 이용자가 너무 많습니다. 운영자에게 문의하세요."
+  StandInSubclaim:
+    Text: "권한 상속을 바꾸려는 하위 구역 안에 서세요."
+  SubclaimRestricted:
+    Text: "이 하위 구역은 이제 상위 땅의 권한을 물려받지 않습니다."
+  SubclaimUnrestricted:
+    Text: "이 하위 구역은 이제 상위 땅의 권한을 물려받습니다."
+  NetherPortalTrapDetectionMessage:
+    Text: "네더 포털 안에 갇힌 것으로 보입니다. 잠시 후 구조합니다. 다시 갇히면 /trapped 를 사용하세요."
+    Notes: Sent to player on join, if they left while inside a nether portal.

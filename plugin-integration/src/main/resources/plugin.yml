@@ -1,0 +1,26 @@
+name: KoreanServerBridge
+version: 1.0.0
+main: kr.minecraft.survival.bridge.KoreanServerBridge
+api-version: '26.3'
+description: 기존 생활 데이터의 정보 표시와 한국어 관리 연결
+authors: [wjdtjddyd956-svg]
+depend: [Vault, KoreanEconomy, PlaceholderAPI, LuckPerms]
+softdepend: [KoreanCodex, KoreanFarming, KoreanMenu, CityTextures, TAB, DecentHolograms, Chunky]
+commands:
+  마을정보:
+    description: 실제 생활 기록과 서버 안내
+  정보표시:
+    description: 나의 정보판 켜기·끄기
+  야생:
+    description: 야생 이동의 현재 준비 상태
+  권한관리:
+    description: 운영자용 등급 관리
+  지형생성:
+    description: 운영자용 Chunky 한국어 연결
+  안내판관리:
+    description: 운영자용 마을 안내판 연결
+permissions:
+  koreanbridge.use:
+    default: true
+  koreanbridge.admin:
+    default: op

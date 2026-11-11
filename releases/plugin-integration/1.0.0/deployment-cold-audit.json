@@ -1,0 +1,12 @@
+{
+  "cold_backup": "전체서버-20261111-163653-442.zip",
+  "full_restore_files": 638,
+  "original_files_changed": [
+    "GriefPreventionData/messages.yml (187 additional Text translations; original saved)"
+  ],
+  "original_plugin_jars_unchanged": 16,
+  "installed_plugin_jars": 22,
+  "database_integrity": "ok",
+  "private_world_user_data_in_git": false,
+  "database_tables_checked": 17
+}

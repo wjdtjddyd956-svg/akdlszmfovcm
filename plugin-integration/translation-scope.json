@@ -1,0 +1,29 @@
+{
+  "source_defaults": "official exact-version first boot on isolated Paper 26.3 build 238",
+  "korean_player_messages": [
+    "only_player",
+    "no_perm",
+    "prefix",
+    "reloaded",
+    "unknown_sub_command",
+    "usage",
+    "use_help"
+  ],
+  "partial_admin_translation": [
+    "TAB/messages.yml",
+    "DecentHolograms/lang.yml"
+  ],
+  "luckperms": "official auto-installed ko_KR.properties; client ko_kr",
+  "chunky": "bundled official ko.json",
+  "files": {
+    "Chunky/config.yml": "9ea4dffd428a186dd67774354482d92a5aa301b4479725934aff2d1df7fa78a0",
+    "DecentHolograms/config.yml": "05c2de6e1593ccda80ebc0639410f1d6f6e43c62fbded6c15b7bc723f773a61a",
+    "DecentHolograms/lang.yml": "e56e41a5f15d03799a939bbe5af3e84ff889c5d38b21e7b951b5823ff917c481",
+    "GriefPreventionData/messages.yml": "e7e92d24d805b32178e3257d86e8391071d9df421c2efe18e1bffb09633f08e0",
+    "LuckPerms/config.yml": "51fb0a3899bdcff5f29ede7062ef2a5040fa58d804887ce81adb8d9098eafeaf",
+    "PlaceholderAPI/config.yml": "e89cd351c06e3278b57f5aed95b8d9a781b448e44e22d9780d79eb7f1ea6e66c",
+    "TAB/config.yml": "a9c61c300451753d905d37ddd06bc10d112118142a3a32ce3ce5cd866334dfe8",
+    "TAB/groups.yml": "83c965c822d67f0d60ed4778c306a9f3124a318c013d9520b7fa4550b289836c",
+    "TAB/messages.yml": "f28eca7cf813e4eaf799f9787cc2c5ccd941815f2eac319e1d87948cbbe76438"
+  }
+}

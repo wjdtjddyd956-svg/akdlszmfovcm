@@ -1,0 +1,48 @@
+{
+  "actual_windows_server": true,
+  "paper": "26.3 build238",
+  "installed_plugins": 22,
+  "original_jars_preserved": 16,
+  "added_official_plugins": 5,
+  "added_bridge": 1,
+  "managed_cold_backup_verified": true,
+  "managed_backup_sha256": "5d0e7c0a176d8ec271ec0e8f7ad56f39c143679930f28501ccd4a37c0ebc5485",
+  "managed_archive_files": 595,
+  "managed_archive_contains_lp_h2_and_22_jars": true,
+  "manager_cold_restart_completed": true,
+  "database_tables_unchanged": 17,
+  "database_integrity": "ok",
+  "owned_holograms_after_restart": 1,
+  "papi_internal_expansion_registered": true,
+  "world_border_saved": {
+    "WorldBorder": {
+      "center_x": 0.5,
+      "lerp_time": 0,
+      "warning_blocks": 5,
+      "lerp_target": 4096.0,
+      "warning_time": 300,
+      "damage_per_block": 0.2,
+      "size": 4096.0,
+      "safe_zone": 5.0,
+      "center_z": 0.5
+    }
+  },
+  "pregen": {
+    "world": "overworld",
+    "center": [
+      0,
+      0
+    ],
+    "radius": 512,
+    "shape": "square",
+    "chunks": 4225,
+    "completed": true,
+    "elapsed_seconds": 20,
+    "whole_border_generated": false
+  },
+  "online_auth_unchanged": true,
+  "resource_pack_optional": true,
+  "no_test_adapters_or_probes_in_production": true,
+  "actual_authenticated_gameplay_on_production": false,
+  "real_26_3_gameplay_on_copy": true
+}

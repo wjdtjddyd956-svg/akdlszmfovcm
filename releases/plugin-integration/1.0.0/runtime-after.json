@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-11T07:32:48.866Z",
+  "phase": "after-restart",
+  "server": "actual Paper 26.3 build238",
+  "client": "mineflayer26.1 through test-only ViaVersion/ViaBackwards5.12.2",
+  "actual_game_client": false,
+  "simulated": [
+    "farm resource-pack readiness for fixture setup"
+  ],
+  "checks": [
+    "actual single merged pack request; client decline stays connected",
+    "PAPI reads actual Vault balance4321.25, farmer level3, earned2, codex1/85, awards0/13, actual online count",
+    "actual TAB scoreboard protocol packets contain Korean title or real balance",
+    "existing ShiftF menu slot47 opens same real values without replacing original buttons",
+    "right click does not transfer GUI item or execute action",
+    "bridge to existing codex menu and return to main are connected",
+    "pending wilderness action is honest Korean status, no money mutation",
+    "non-OP denied all three administrative Korean aliases",
+    "actual Bukkit permissions: normal rank has no economy creation, rollback, claim bypass or rank editing permission",
+    "Korean scoreboard toggle works with real TAB and permission",
+    "DecentHolograms actual permission-denial message is Korean",
+    "resident rank changes real Korean display, inherits normal rights without operating rights",
+    "explicit admin rank has bounded operations rights, no OP, money creation, permission-edit or promotion bypass",
+    "rank removal takes effect without rejoin and leaves baseline gameplay rights",
+    "repeat linking and denied commands preserve exact profile values"
+  ],
+  "profile": "4,321.25원|농부|3|3|2원|1/85|0/13|1|주민",
+  "packRequests": 1
+}

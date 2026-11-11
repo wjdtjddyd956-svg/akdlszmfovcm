@@ -1,0 +1,9 @@
+{
+  "_DEFAULT_": {
+    "tabprefix": "%koreanlife_prefix%",
+    "tagprefix": "%koreanlife_prefix%",
+    "customtabname": "%player%",
+    "tabsuffix": "",
+    "tagsuffix": ""
+  }
+}

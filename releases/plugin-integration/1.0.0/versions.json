@@ -1,0 +1,67 @@
+{
+  "paper": "26.3 build 238",
+  "java": "27.0.1 actual runtime; target bytecode21",
+  "installed_additions": [
+    {
+      "name": "LuckPerms",
+      "version": "5.5.91",
+      "file": "LuckPerms-Bukkit-5.5.91.jar",
+      "url": "https://download.luckperms.net/1678/bukkit/loader/LuckPerms-Bukkit-5.5.91.jar",
+      "sha256": "2a6834c51830b133ec8763703391b20240f7a3b4748746503251a45d70cf1b39",
+      "size": 1509565,
+      "source": "https://github.com/LuckPerms/LuckPerms",
+      "license": "MIT",
+      "release": "https://luckperms.net/download"
+    },
+    {
+      "name": "Chunky",
+      "version": "1.5.66",
+      "file": "Chunky-Paper-1.5.66.jar",
+      "url": "https://cdn.modrinth.com/data/fALzjamp/versions/RBuKjN4k/Chunky-Paper-1.5.66.jar",
+      "sha256": "a2c7877eaacf52605f5d2b08000656fbc43f7bec1eaf6ef9e71b6b9103a9c14f",
+      "size": 396960,
+      "source": "https://github.com/pop4959/Chunky",
+      "license": "GPL-3.0",
+      "release": "https://modrinth.com/plugin/chunky/version/RBuKjN4k"
+    },
+    {
+      "name": "PlaceholderAPI",
+      "version": "2.12.3",
+      "file": "PlaceholderAPI-2.12.3.jar",
+      "url": "https://github.com/PlaceholderAPI/PlaceholderAPI/releases/download/2.12.3/PlaceholderAPI-2.12.3.jar",
+      "sha256": "fde03259f5af6938f3c33eeb4d814000a1adabf1d2304ce14970be81f609a437",
+      "size": 1160690,
+      "source": "https://github.com/PlaceholderAPI/PlaceholderAPI/tree/2.12.3",
+      "license": "GPL-3.0",
+      "release": "https://github.com/PlaceholderAPI/PlaceholderAPI/releases/tag/2.12.3"
+    },
+    {
+      "name": "TAB",
+      "version": "6.2.1",
+      "file": "TAB-6.2.1.jar",
+      "url": "https://github.com/NEZNAMY/TAB/releases/download/6.2.1/TAB.v6.2.1.jar",
+      "sha256": "0b6a21af6fd3b113c05821daaed00ff92234a84ca94b29b3aec0ef1bd313b8a9",
+      "size": 8483627,
+      "source": "https://github.com/NEZNAMY/TAB/tree/6.2.1",
+      "license": "Apache-2.0",
+      "release": "https://github.com/NEZNAMY/TAB/releases/tag/6.2.1"
+    },
+    {
+      "name": "DecentHolograms",
+      "version": "2.10.2",
+      "file": "DecentHolograms-2.10.2.jar",
+      "url": "https://github.com/DecentSoftware-eu/DecentHolograms/releases/download/2.10.2/DecentHolograms-2.10.2.jar",
+      "sha256": "99bc2b7b0af7846cc45d5800ea0acfae6846d479e048b8e5995c5afa53df27be",
+      "size": 4014227,
+      "source": "https://github.com/DecentSoftware-eu/DecentHolograms/tree/2.10.2",
+      "license": "GPL-3.0",
+      "release": "https://github.com/DecentSoftware-eu/DecentHolograms/releases/tag/2.10.2"
+    }
+  ],
+  "not_selected": {
+    "BetterRTP": "No verified 26.3 release; official binary action blocked and legacy source dependencies unavailable. No paid Addons used.",
+    "spark": "Already bundled with Paper; no duplicate JAR.",
+    "CoreProtect": "Keep existing Prism records and rollback instead.",
+    "Citizens,Quests,JobsReborn,ItemsAdder,Oraxen": "Existing native systems cover these needs; not installed."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "Windows PowerShell preflight on synthetic fixture, not gameplay",
+  "cases": [
+    "valid exact-version preflight; no stop, write or backup",
+    "duplicate plugin identity rejected before stop",
+    "custom configuration preserved and conflict rejected",
+    "different installed build rejected rather than downgraded",
+    "corrupt incoming artifact rejected before any server action"
+  ],
+  "unexpected_stop": false,
+  "private_server_files_published": false
+}

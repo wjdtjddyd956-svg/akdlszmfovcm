@@ -1,0 +1,13 @@
+{
+  "api": "paper-api-26.3.build.238-stable.jar",
+  "api_sha256": "816c749cc737b9c2eed7e36d492ef3359d79e631449481cedef1a76d6200de12",
+  "jar_sha256": "70e918a6466955f155dc87b10d170019c6eb2577b6ea7154c3094fd551dc7881",
+  "java": "java version \"27.0.1.0.3\" 2026-10-25\nJava(TM) SE Runtime Environment (build 27.0.1.0.3+1-2)\nJava HotSpot(TM) 64-Bit Server VM (build 27.0.1.0.3+1-2, mixed mode, sharing)\n",
+  "sources": {
+    "plugin-integration/src/main/resources/config.yml": "6cf6e46e6bb99aa1a5cf13fb393d16d0b86f0ad27815f36aa02efbcd517970ce",
+    "plugin-integration/src/main/resources/plugin.yml": "662752da3a4b9d8cb74252cc8f2566aa2f9cb4829306f65e25ba170256ed0159",
+    "plugin-integration/src/main/java/kr/minecraft/survival/bridge/DisplayProfile.java": "0dc4487c0f6093fd5f0d34f6f0ad2b8869e6cf249dba456d07f31222ad1f4a77",
+    "plugin-integration/src/main/java/kr/minecraft/survival/bridge/KoreanServerBridge.java": "b5d8cdbb8d3e871543cda14df2ced43fbd62964a1d0bb9b7b737610db17a456b"
+  },
+  "bundled_api_classes": false
+}

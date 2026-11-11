@@ -1,0 +1,8 @@
+{
+  "actualServer": "Paper26.3build238",
+  "client": "automatic26.1 through adapters",
+  "checks": [
+    "actual GriefPrevention first-join PvP immunity message uses Korean Text value"
+  ],
+  "all_187_messages_executed": false
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "pure Java contract test, not game or MockBukkit",
+  "java": "27.0.1",
+  "cases": 13,
+  "failures": 0,
+  "artifact_sha256": "70e918a6466955f155dc87b10d170019c6eb2577b6ea7154c3094fd551dc7881"
+}
