@@ -1,0 +1,35 @@
+{
+  "java": "java version \"25.0.2\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 25.0.2+10-LTS-69)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.2+10-LTS-69, mixed mode, sharing)\n",
+  "suites": {
+    "kr.minecraft.survival.farming.FarmingTest": {
+      "cases": 45,
+      "failures": 0,
+      "skipped": 0
+    },
+    "kr.minecraft.survival.codex.CodexTest": {
+      "cases": 42,
+      "failures": 0,
+      "skipped": 0
+    },
+    "kr.minecraft.survival.economy.TycoonIntegrationTest": {
+      "cases": 31,
+      "failures": 0,
+      "skipped": 0
+    },
+    "kr.minecraft.survival.citytextures.CityTexturesTest": {
+      "cases": 23,
+      "failures": 0,
+      "skipped": 0
+    }
+  },
+  "domain_assertions": 121,
+  "mock_player_nbt_save": true,
+  "mock_entity_visibility_defaults": true,
+  "artifact_sha256": {
+    "KoreanEconomy-2.0.2.jar": "02716d2e46529f61dd3dda4129d6f0947cf2e17b00a5595a931d0c3a10ab3930",
+    "KoreanFarming-1.0.2.jar": "f475b8e1156454068029bd29c38ba649e5a5c9254cfc1c80868d583105bd23ee",
+    "KoreanCodex-1.2.1.jar": "665f564cd61ac6cbbc69217c7a152d6f36c16e08b9e3f6ed9b3bfed427307fb1",
+    "KoreanMenu-2.1.0.jar": "e6218ee09f540a98176d3602594876a24db501c97d500aab43296aec2f3d98d1",
+    "CityTextures-1.1.1.jar": "d46572817b97b6795be42077d531775877d2713154a95b7b4dbd6133882561a0"
+  }
+}

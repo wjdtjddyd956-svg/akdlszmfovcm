@@ -2,10 +2,10 @@
 """Render real MockBukkit inventory snapshots; this is not a native game screenshot."""
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
-import json,zipfile,base64,io,re,html
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'releases/ui-update';snapshots=json.loads((ROOT/'interface-resourcepack/build/snapshots.json').read_text());(OUT/'menu-snapshots.json').write_text(json.dumps(snapshots,ensure_ascii=False,indent=2)+'\n')
-with zipfile.ZipFile(OUT/'CityEconomy-Interface-26.3-1.2.0.zip') as z:icons={n.removeprefix('assets/tycoon/textures/item/').removesuffix('.png'):z.read(n) for n in z.namelist() if n.startswith('assets/tycoon/textures/item/') and n.endswith('.png')}
-fontpath='/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc';font=lambda n:ImageFont.truetype(fontpath,n,index=1)
+import json,zipfile,base64,io,re,html,os
+ROOT=Path(__file__).resolve().parents[2];OUT=Path(os.environ.get('UI_PREVIEW_OUTPUT',str(ROOT/'releases/ui-update')));OUT.mkdir(parents=True,exist_ok=True);snapshots=json.loads((ROOT/'interface-resourcepack/build/snapshots.json').read_text());(OUT/'menu-snapshots.json').write_text(json.dumps(snapshots,ensure_ascii=False,indent=2)+'\n')
+with zipfile.ZipFile(ROOT/'releases/ui-update/CityEconomy-Interface-26.3-1.2.0.zip') as z:icons={n.removeprefix('assets/tycoon/textures/item/').removesuffix('.png'):z.read(n) for n in z.namelist() if n.startswith('assets/tycoon/textures/item/') and n.endswith('.png')}
+fontpath=os.environ.get('UI_PREVIEW_FONT','C:/Windows/Fonts/malgun.ttf' if os.name=='nt' else '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc');font=lambda n:ImageFont.truetype(fontpath,n,index=0 if os.name=='nt' else 1)
 def plain(text):return re.sub('§.','',text)
 def short(text):return re.sub(r'^\[[^]]+\]\s*','',plain(text))[:3]
 board=Image.new('RGB',(1800,1160),'#101c24');d=ImageDraw.Draw(board);d.text((40,26),'도시 생활 수첩',font=font(38),fill='#eef4ec');d.text((42,86),'쉬프트+F · 도감 진행률 · 보유 수량 · 상태 필터 · 실제 보상 확인',font=font(21),fill='#68cdbb')

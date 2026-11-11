@@ -1,8 +1,10 @@
-> 최신 농장 1.0.1과 메뉴·도감 개선은 [도시 생활 수첩 통합 업데이트](../interface-update/README.md)를 사용하세요. 아래는 기존 농장 1.0.0의 기능·설치 이력입니다.
+# 도시 농장 1.0.2
 
-# 도시 농장 1.0.0
+[최신 통합 UI 안내](../interface-update/README.md)도 함께 제공합니다.
 
-Paper 26.3 / Java 25용입니다. **KoreanEconomy 2.0.2 · KoreanFarming 1.0.0 · KoreanCodex 1.1.0**을 함께 설치합니다. 기존 생활타이쿤 2.0.1·도감 1.0.1과 데이터가 있는 서버에 추가하는 업데이트입니다. 도감 1.0.1의 DB 스키마 2·알 수 없는 저장 표식 보호·희귀도·보상을 유지합니다.
+[최신 Windows 메뉴·농장 통합 설치](../releases/ui-update/1.2.1/설치안내.md) · [초기 농장 Windows1.0.1 검증 이력](../releases/farming-update/1.0.1/설치안내.md)
+
+Paper 26.3 / Java 25 이상용입니다. **KoreanEconomy 2.0.2 · KoreanFarming 1.0.2 · KoreanCodex 1.2.1**을 함께 설치합니다. 기존 생활타이쿤 2.0.1·도감 1.0.1과 데이터가 있는 서버에 추가하는 업데이트입니다. 도감 1.0.1의 DB 스키마 2·알 수 없는 저장 표식 보호·희귀도·보상을 유지합니다.
 
 딸기·토마토·옥수수·쌀·오이의 씨앗 구매 → 심기 → 4단계 성장 → 수확 → 농부 숙련도·적립금 → 전용 요리 → NPC 매입 → 도감 등록을 연결합니다. 모든 이용자 명령어와 안내는 한국어입니다.
 
@@ -20,15 +22,9 @@ Paper 26.3 / Java 25용입니다. **KoreanEconomy 2.0.2 · KoreanFarming 1.0.0 �
 
 ## 설치
 
-1. ZIP을 **서버 폴더 바깥**에 풉니다. 기존 `ServerStop.cmd`로 서버와 자동 백업 관리자를 정상 종료합니다. 없으면 콘솔에서 `stop`하고 완전히 종료합니다.
-2. 압축을 푼 폴더의 `Install-Farming.cmd`를 실행하고 `server.properties`가 있는 서버 폴더를 지정합니다. 설치기는 종료 확인을 받은 뒤 잠금과 JAR 해시·버전을 검사하고, 전체 서버를 백업·검증한 후 플러그인 3개를 이름으로 교체합니다. **플러그인 데이터 폴더·잔액·직업·땅·도감 기록을 삭제하지 않습니다.**
-3. 기존 `ServerStart.cmd`로 시작합니다. `/plugins`에 KoreanEconomy 2.0.2, KoreanFarming 1.0.0, KoreanCodex 1.1.0이 켜졌는지 확인합니다. `/reload`는 사용하지 않습니다.
-4. 접속 시 농장 통합 리소스팩 다운로드를 허용합니다. 직접 설치하려면 `resourcepacks/CityEconomy-Farming-26.3-1.1.0.zip`을 게임의 리소스팩 폴더에 넣고 활성화한 뒤 `/농사 팩확인`을 입력합니다. 이 확인은 수동 설치를 사용자가 확인하는 명령이며 클라이언트 파일을 자동 검사하지 않습니다.
-5. `/농사`, 쉬프트+F → **커스텀 농사**, 기존 농산물/잡화 NPC → **농장 상점**을 사용합니다.
+현재 농사1.0.2는 [최신 Windows UI1.2.1 설치 묶음](../releases/ui-update/1.2.1/설치안내.md)에 포함됩니다. 설치기가 기존 ServerStop.cmd로 서버/관리자를 종료하고 전체 백업·SHA-256 검증 후 필요한 JAR를 교체합니다. 데이터 폴더는 유지하고 동일한 경제JAR는 재사용합니다. 새 통합팩은 도시·농장·도감 UI 모델을 모두 포함합니다.
 
-수동 설치: 전체 백업을 만든 뒤 `plugins/` 안의 새 JAR 3개를 복사하고 이전 KoreanEconomy·KoreanCodex·KoreanFarming JAR만 서버 밖으로 옮겨 같은 이름의 플러그인이 한 개씩 남게 합니다. 기존 데이터 폴더는 유지합니다. Vault·Essentials·QuickShop·GriefPrevention·Prism·WorldEdit·WorldGuard·도시팩 보조 플러그인은 이 업데이트에서 교체하지 않습니다.
-
-기존 1.2 서버나 더 새로운 미확인 버전을 설치기로 덮어쓰지 않습니다. 별도 `KoreanFarming/config.yml`이 이미 있다면 기존 설정을 보존합니다. 팩이 바뀌면 아래 주소와 SHA1도 함께 맞춰야 합니다.
+이전 [농장 Windows1.0.1](../releases/farming-update/1.0.1/설치안내.md)은 초기 적용·검증 이력입니다. 현재 UI1.2.1 서버에 이전 묶음을 다시 설치해 도감을 내리지 마세요.
 
 ## 팩 구성
 

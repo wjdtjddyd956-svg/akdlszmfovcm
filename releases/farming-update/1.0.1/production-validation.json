@@ -1,0 +1,40 @@
+{
+  "database_integrity": "ok",
+  "original_tables_unchanged": [
+    "economy:players",
+    "economy:job_progress",
+    "economy:daily_use",
+    "economy:receipts",
+    "economy:lands",
+    "economy:trusts",
+    "economy:placed",
+    "economy:harvested",
+    "economy:quests",
+    "economy:audit",
+    "economy:meta",
+    "codex:players",
+    "codex:receipts",
+    "codex:registrations",
+    "codex:achievements",
+    "codex:marker_reviews"
+  ],
+  "new_production_plots": 0,
+  "plugin_versions": {
+    "Essentials": "2.22.1-dev+28-f8724e2",
+    "EssentialsSpawn": "2.22.1-dev+28-f8724e2",
+    "GriefPrevention": "16.18.8",
+    "NBTAPI": "2.16.1",
+    "KoreanCodex": "1.1.0",
+    "KoreanCommands": "2.0.0",
+    "KoreanEconomy": "2.0.2",
+    "KoreanFarming": "1.0.1",
+    "KoreanMenu": "2.0.0",
+    "KoreanPackSetup": "2.0.0",
+    "prism": "4.5",
+    "QuickShop-Hikari": "6.3.0.4",
+    "Vault": "1.7.3-b131",
+    "WorldEdit": "7.4.6+7648-00664b0",
+    "WorldGuard": "7.0.21+2424-da30a99"
+  },
+  "no_duplicate_or_test_plugins": true
+}

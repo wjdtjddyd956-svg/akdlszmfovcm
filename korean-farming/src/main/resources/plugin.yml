@@ -1,5 +1,5 @@
 name: KoreanFarming
-version: 1.0.1
+version: 1.0.2
 main: kr.minecraft.survival.farming.KoreanFarmingPlugin
 api-version: '26.3'
 description: 딸기·토마토·옥수수·쌀·오이, 성장·NPC·요리·농부·도감 연동

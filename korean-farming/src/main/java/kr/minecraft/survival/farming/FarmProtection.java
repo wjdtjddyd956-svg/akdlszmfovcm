@@ -31,7 +31,7 @@ final class FarmProtection implements Listener {
         build(player,p.location(plot));build(player,p.location(plot).subtract(0,1,0));
     }
     boolean reserved(Block b){return p.touching(b)!=null;}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blockBreak(BlockBreakEvent e){if(reserved(e.getBlock())){e.setCancelled(true);e.getPlayer().sendMessage("§e커스텀 작물은 우클릭으로 수확하고 /농사 회수로 치우세요.");}}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blockBreak(BlockBreakEvent e){if(reserved(e.getBlock())){e.setCancelled(true);e.getPlayer().sendMessage("§e작물은 우클릭으로 수확하고 쉬프트+우클릭으로 회수하세요.");}}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void place(BlockPlaceEvent e){if(reserved(e.getBlock())||(e instanceof BlockMultiPlaceEvent m&&m.getReplacedBlockStates().stream().anyMatch(b->reserved(b.getBlock()))))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void change(EntityChangeBlockEvent e){if(reserved(e.getBlock()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void fade(BlockFadeEvent e){if(reserved(e.getBlock()))e.setCancelled(true);}

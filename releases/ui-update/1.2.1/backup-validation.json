@@ -1,0 +1,11 @@
+{
+  "archive": "life-2EDAB757EB3E-20261111-063827-915.zip",
+  "sha256": "e2a375823af43f0eb2b635bcc362cb15a04efb8b3ad7f21d0eb37dadf6ee1294",
+  "entry_count": 494,
+  "sidecar_sha256_and_zip_crc": true,
+  "all_five_payload_jars_exact": true,
+  "world_and_city_ui_config_included": true,
+  "both_databases_integrity": "ok",
+  "farming_table_preserved": true,
+  "cold_manager_backup_and_restart": "success"
+}

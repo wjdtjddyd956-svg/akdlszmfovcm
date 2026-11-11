@@ -1,0 +1,50 @@
+{
+  "paper": "26.3 build238",
+  "test_copy": "localhost/offline-mode only",
+  "automated_real_paper_checks": {
+    "features": [
+      "one actual optional merged-pack network request; declining retains connection and vanilla controls",
+      "real GUI counts storage3 only, excluding named8/offhand64/helmet64",
+      "ready filter maps correct slot; actual-delta confirmation and cancellation consume nothing",
+      "simultaneous real confirm packets consume one and refresh exact category/global progress",
+      "completed/missing filters, achievement remaining9, effect cap and return-to-main all use matching buttons",
+      "simulated success/failure statuses restyle current real menu without kick or button meaning changes",
+      "farm/job/pack preview return buttons navigate without granting or modifying inventory items",
+      "actual pending receipt is waiting rather than ready; inventory stays untouched",
+      "preserved old80 cap fixture shows no promised extra health; cancel retains custom produce"
+    ],
+    "after": [
+      "actual restart retains one registration, remaining item2 and exact filter/progress state",
+      "pending receipt stays blocked after actual restart without auto consumption"
+    ],
+    "limits": [
+      "full storage registration consumes one and preserves every other full stack",
+      "creative mode reports waiting rather than claiming available registrations",
+      "permission denial hides ready count, refuses entry and leaves items intact"
+    ]
+  },
+  "automated_real_paper_total": 14,
+  "bot_protocol": "26.1 via test-only ViaVersion/ViaBackwards; pack response UUID written explicitly because Mineflayer feature flag did not match year-version protocol",
+  "native_client": "Minecraft26.3, installed Java27 -Xint diagnostic mode",
+  "native_flow": [
+    "Shift+F",
+    "codex category",
+    "ready filter",
+    "real available count3 excluding named8/offhand64/helmet64",
+    "one-item confirm",
+    "progress1/10 and global2/85",
+    "achievements2/10 with8remaining",
+    "speed0.12% with3%cap",
+    "return to main"
+  ],
+  "native_inventory_after_registration": {
+    "plain_oak": 2,
+    "health": 20,
+    "maxHealth": 20.02
+  },
+  "actual_download_and_render": true,
+  "simulated_pack_status_checks_separate": true,
+  "production_authenticated_user_flow": false,
+  "normal_jvm_resource_pack_switch": "earlier LWJGL/FFM JVM native crash; ordinary launcher profile not validated",
+  "ten_player_load": false
+}

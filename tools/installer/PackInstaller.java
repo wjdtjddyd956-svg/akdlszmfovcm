@@ -53,24 +53,26 @@ public final class PackInstaller {
         Properties hashes=properties(Files.newInputStream(payload.resolve("SHA256.properties")));if(hashes.isEmpty())throw new IOException("설치 파일 목록이 비어 있습니다.");
         Map<String,Path> incoming=new LinkedHashMap<>();for(String rel:new TreeSet<>(hashes.stringPropertyNames())){Path p=safe(payload,rel);if(!p.getFileName().toString().endsWith(".jar")||!sha(p).equalsIgnoreCase(hashes.getProperty(rel)))throw new IOException("플러그인 파일 검증 실패: "+rel);String name=name(p);if(name==null||incoming.put(name,p)!=null)throw new IOException("중복 또는 잘못된 플러그인: "+rel);}
         if(mode.equals("ui")){
-            Map<String,String> targets=Map.of("KoreanEconomy","2.0.2","KoreanMenu","2.1.0","KoreanFarming","1.0.1","KoreanCodex","1.2.0","CityTextures","1.1.0");
+            Map<String,String> targets=Map.of("KoreanEconomy","2.0.2","KoreanMenu","2.1.0","KoreanFarming","1.0.2","KoreanCodex","1.2.1","CityTextures","1.1.1");
             if(!incoming.keySet().equals(targets.keySet()))throw new IOException("메뉴 통합 업데이트의 플러그인 5개가 필요합니다.");
             for(var target:targets.entrySet())if(!version(incoming.get(target.getKey())).equals(target.getValue()))throw new IOException("메뉴 통합 버전이 다릅니다: "+target.getKey());
-            Map<String,Set<String>> allowed=Map.of("KoreanEconomy",Set.of("2.0.1","2.0.2"),"KoreanMenu",Set.of("2.0.0","2.1.0"),"KoreanFarming",Set.of("1.0.0","1.0.1"),"KoreanCodex",Set.of("1.0.0","1.0.1","1.1.0","1.2.0"),"CityTextures",Set.of("1.0.0","1.1.0"));
+            Map<String,Set<String>> allowed=Map.of("KoreanEconomy",Set.of("2.0.1","2.0.2"),"KoreanMenu",Set.of("2.0.0","2.1.0"),"KoreanFarming",Set.of("1.0.0","1.0.1","1.0.2"),"KoreanCodex",Set.of("1.0.0","1.0.1","1.1.0","1.2.0","1.2.1"),"CityTextures",Set.of("1.0.0","1.1.0","1.1.1"));
             Set<String> found=new HashSet<>();try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);if(n==null||!allowed.containsKey(n)&&!n.equals("Vault"))continue;if(!found.add(n))throw new IOException("중복된 기존 플러그인: "+n);if(allowed.containsKey(n)&&!allowed.get(n).contains(version(file)))throw new IOException("확인되지 않은 새 버전을 덮어쓰지 않습니다: "+n);}}
             if(!found.containsAll(Set.of("KoreanEconomy","Vault")))throw new IOException("기존 생활타이쿤 2.0.1 이상과 Vault가 필요합니다.");
         }else if(mode.equals("farm")){
             if(!incoming.keySet().equals(Set.of("KoreanEconomy","KoreanFarming","KoreanCodex")))throw new IOException("농장 업그레이드는 경제·농사·도감 3개 JAR만 설치합니다.");
-            if(!version(incoming.get("KoreanEconomy")).equals("2.0.2")||!version(incoming.get("KoreanFarming")).equals("1.0.0")||!version(incoming.get("KoreanCodex")).equals("1.1.0"))throw new IOException("농장 업그레이드 버전 조합이 다릅니다.");
+            if(!version(incoming.get("KoreanEconomy")).equals("2.0.2")||!version(incoming.get("KoreanFarming")).equals("1.0.1")||!version(incoming.get("KoreanCodex")).equals("1.1.0"))throw new IOException("농장 업그레이드 버전 조합이 다릅니다.");
             Map<String,Path> installed=new HashMap<>();try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);if(n!=null&&Set.of("KoreanEconomy","KoreanFarming","KoreanCodex","Vault").contains(n)&&installed.put(n,file)!=null)throw new IOException("중복된 기존 JAR를 먼저 확인하세요: "+n);}}
             if(!installed.containsKey("Vault")||!installed.containsKey("KoreanEconomy")||!Set.of("2.0.1","2.0.2").contains(version(installed.get("KoreanEconomy"))))throw new IOException("기존 생활타이쿤 2.0.1/2.0.2와 Vault가 필요합니다. 먼저 기존 생활서버를 업그레이드하세요.");
             if(installed.containsKey("KoreanCodex")&&!Set.of("1.0.0","1.0.1","1.1.0").contains(version(installed.get("KoreanCodex"))))throw new IOException("새로운 도감을 이전 버전으로 덮어쓰지 않습니다.");
-            if(installed.containsKey("KoreanFarming")&&!version(installed.get("KoreanFarming")).equals("1.0.0"))throw new IOException("새로운 농장을 이전 버전으로 덮어쓰지 않습니다.");
+            if(installed.containsKey("KoreanFarming")&&!Set.of("1.0.0","1.0.1","1.0.2").contains(version(installed.get("KoreanFarming"))))throw new IOException("새로운 농장을 이전 버전으로 덮어쓰지 않습니다.");
         }else{
         if(!incoming.keySet().containsAll(Set.of("KoreanEconomy","KoreanMenu","KoreanCommands","KoreanPackSetup","Vault","Essentials","EssentialsSpawn","QuickShop-Hikari")))throw new IOException("필수 플러그인이 누락되었습니다. 공식 EssentialsX 다운로드 단계를 먼저 완료하세요.");
         if(version(incoming.get("Essentials")).isEmpty()||!version(incoming.get("Essentials")).equals(version(incoming.get("EssentialsSpawn"))))throw new IOException("Essentials 본체와 Spawn 버전이 다릅니다.");
         try(ZipFile core=new ZipFile(incoming.get("Essentials").toFile())){var e=core.getEntry("com/earth2me/essentials/utils/VersionUtil.class");if(e==null||!new String(core.getInputStream(e).readAllBytes(),java.nio.charset.StandardCharsets.ISO_8859_1).contains("v26_3_R01"))throw new IOException("Paper 26.3 지원 EssentialsX가 필요합니다. 미지원 2.22.0을 재설치하지 않습니다.");}
         }
+        // Identical dependencies already installed are verified above and reused in place.
+        if(mode.equals("ui"))try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);Path target=incoming.get(n);if(target!=null&&sha(file).equals(sha(target)))incoming.remove(n);}}
         Path backup=backup(root);Path plugins=root.resolve("plugins");Files.createDirectories(plugins);Path retired=root.resolve(BACKUPS).resolve("교체전-JAR-"+stamp());Files.createDirectories(retired);List<Path> moved=new ArrayList<>(),added=new ArrayList<>();
         try{try(var files=Files.list(plugins)){for(Path p:files.filter(f->f.getFileName().toString().endsWith(".jar")).toList())if(incoming.containsKey(name(p))){Files.move(p,retired.resolve(p.getFileName()));moved.add(p);}}
             for(Path p:incoming.values()){Path dest=plugins.resolve(p.getFileName());if(Files.exists(dest))throw new IOException("동일 파일명 충돌: "+dest);Files.copy(p,dest);added.add(dest);}

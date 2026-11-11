@@ -1,0 +1,22 @@
+import java.util.*;
+import java.lang.reflect.*;
+import org.bukkit.*;
+import org.bukkit.command.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
+import org.bukkit.event.player.*;
+import org.bukkit.plugin.java.JavaPlugin;
+/** Localhost/offline RCON-only instrumentation. Never ship in the installation payload. */
+public final class UIProbe extends JavaPlugin {
+ @Override public void onEnable(){if(!getServer().getIp().equals("127.0.0.1")||getServer().getPort()!=25566||getServer().getOnlineMode())getServer().getPluginManager().disablePlugin(this);}
+ Object field(Object o,String name)throws Exception{var f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
+ Object call(Object o,String n,Class<?>[] types,Object...a)throws Exception{var m=o.getClass().getDeclaredMethod(n,types);m.setAccessible(true);return m.invoke(o,a);}
+ @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args){if(!(sender instanceof RemoteConsoleCommandSender))return true;try{Player p=getServer().getPlayerExact(args[1]);if(p==null)throw new IllegalArgumentException("synthetic player offline");var codex=getServer().getPluginManager().getPlugin("KoreanCodex");switch(args[0]){
+ case "mixed"->{p.getInventory().clear();p.getInventory().setItem(0,new ItemStack(Material.OAK_LOG,3));ItemStack named=new ItemStack(Material.OAK_LOG,8);var m=named.getItemMeta();m.setDisplayName("기념품 참나무");named.setItemMeta(m);p.getInventory().setItem(1,named);p.getInventory().setItemInOffHand(new ItemStack(Material.OAK_LOG,64));p.getInventory().setHelmet(new ItemStack(Material.OAK_LOG,64));p.getInventory().setHeldItemSlot(0);p.saveData();}
+ case "full"->{p.getInventory().clear();for(int i=0;i<36;i++)p.getInventory().setItem(i,new ItemStack(Material.STONE,64));p.getInventory().setItem(0,new ItemStack(Material.OAK_LOG,2));p.getInventory().setHeldItemSlot(0);p.saveData();}
+ case "permission"->p.addAttachment(this,"koreancodex.use",Boolean.parseBoolean(args[2]));
+ case "status"->{var city=getServer().getPluginManager().getPlugin("CityTextures");UUID id=(UUID)city.getClass().getField("PACK_ID").get(null);getServer().getPluginManager().callEvent(new PlayerResourcePackStatusEvent(p,id,PlayerResourcePackStatusEvent.Status.valueOf(args[2])));sender.sendMessage("simulated_pack_status="+args[2]);return true;}
+ case "pending"->{var store=field(codex,"store");call(store,"reserve",new Class[]{UUID.class,String.class,int.class,int.class,String.class,String.class},p.getUniqueId(),"diamond",0,1,"fixture-before","fixture-after");}
+ case "view"->{Map<String,Object> result=new LinkedHashMap<>();result.put("title",p.getOpenInventory().getTitle());Inventory inv=p.getOpenInventory().getTopInventory();List<Object> slots=new ArrayList<>();if(inv!=null)for(int i=0;i<inv.getSize();i++){var item=inv.getItem(i);Map<String,Object> row=new LinkedHashMap<>();row.put("slot",i);if(item!=null){row.put("type",item.getType().toString());row.put("amount",item.getAmount());if(item.hasItemMeta()){var m=item.getItemMeta();row.put("name",m.hasDisplayName()?m.getDisplayName():"");row.put("lore",m.getLore()==null?List.of():m.getLore());row.put("model",m.getItemModel()==null?null:m.getItemModel().toString());row.put("glow",m.hasEnchantmentGlintOverride()&&Boolean.TRUE.equals(m.getEnchantmentGlintOverride()));}}slots.add(row);}result.put("slots",slots);result.put("summary",codex.getClass().getMethod("collectionSummary",Player.class).invoke(codex,p));result.put("health",p.getHealth());result.put("maxHealth",p.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue());result.put("storagePlainOak",Arrays.stream(p.getInventory().getStorageContents()).filter(s->s!=null&&s.isSimilar(new ItemStack(Material.OAK_LOG))).mapToInt(ItemStack::getAmount).sum());result.put("storageStone",Arrays.stream(p.getInventory().getStorageContents()).filter(s->s!=null&&s.isSimilar(new ItemStack(Material.STONE))).mapToInt(ItemStack::getAmount).sum());result.put("offhand",p.getInventory().getItemInOffHand().getAmount());var city=getServer().getPluginManager().getPlugin("CityTextures");result.put("uiReady",((Set<?>)field(field(city,"ui"),"ready")).contains(p.getUniqueId()));sender.sendMessage(new com.google.gson.Gson().toJson(result));return true;}
+ default->throw new IllegalArgumentException("unknown instrumentation");}sender.sendMessage("probe-ok="+args[0]);}catch(Exception e){sender.sendMessage("probe-error="+(e instanceof InvocationTargetException?e.getCause():e));}return true;}
+}

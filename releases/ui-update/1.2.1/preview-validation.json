@@ -1,0 +1,8 @@
+{
+  "current_mock_snapshot_equals_previously_rendered_preview": true,
+  "screens": 7,
+  "slots_each": 54,
+  "rendered_preview_reused": true,
+  "native_current_build_screenshots_available": true,
+  "browser_test_provenance": "61c7e2f ui-update/preview-validation.json; same rendered HTML and snapshots, not re-run in Windows"
+}

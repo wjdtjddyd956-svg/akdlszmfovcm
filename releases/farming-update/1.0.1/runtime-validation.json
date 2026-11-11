@@ -1,0 +1,42 @@
+{
+  "server": "Paper26.3 build238",
+  "jdk": "27.0.1.0.3",
+  "synthetic_players": true,
+  "protocol": "26.1 bots via test-only ViaVersion/ViaBackwards on actual 26.3",
+  "automated_checks": {
+    "features": [
+      "existing main menu retains codex and achievements; farming manual-pack confirmation uses GUI",
+      "existing NPC right-click -> farm seed button charges exact Vault price",
+      "real 10-second scheduler grows wet, lit, loaded farmland",
+      "dry soil pauses actual scheduler without offline catch-up",
+      "darkness below level 9 pauses growth",
+      "real ItemDisplay entities use all four growth models",
+      "real protection listeners cancel break on planted farmland",
+      "full storage refuses harvest before plot or item mutation",
+      "perennial harvest gives authentic produce, shared farmer XP/accrual once; immediate replay pays nothing",
+      "all five crops harvest; tomato/cucumber regrow, corn/rice return exactly one seed",
+      "five real GUI recipes consume exact genuine/plain ingredients; corn soup returns bucket",
+      "existing chef NPC accepts new custom dishes through actual Vault",
+      "per-item personal daily sale cap64 persists in shared database and rejects overflow without charge",
+      "five permanent authentic codex registrations consume one each, give +0.1HP/+0.1% speed and never heal/re-register"
+    ],
+    "faults": [
+      "real SQLite final-commit abort preserves already-saved items and REVIEW locked plot without automatic replay or farmer payment"
+    ],
+    "after": [
+      "actual restart retains plot IDs/progress, farmer XP/accrual, sale quotas and all five codex rewards without stacking",
+      "review survives restart; explicit operator settlement removes locked annual plot and pays job once without item reissue"
+    ],
+    "protection": [
+      "another non-OP cannot harvest an unclaimed-wilderness crop",
+      "WorldGuard spawn protection rejects planting without consuming seed",
+      "GriefPrevention other-owner claim rejects planting without consuming seed",
+      "unloaded crop chunks stay paused without forced loads"
+    ]
+  },
+  "total": 21,
+  "growth_and_recipe_level_acceleration": true,
+  "native_client": "Minecraft26.3 with existing Java27 -Xint; genuine mouse/NPC/plant/harvest/sell/codex flow",
+  "normal_jvm_client_pack_switch": "two JVM native crashes; unresolved, not hidden",
+  "production_plugins_test_only": false
+}

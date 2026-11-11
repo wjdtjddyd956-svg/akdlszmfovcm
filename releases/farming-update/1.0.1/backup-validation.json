@@ -1,0 +1,10 @@
+{
+  "archive": "life-2EDAB757EB3E-20261111-060230-026.zip",
+  "sha256": "1a267b3c3c1d3976dc1ab84d4be4bdd2f91dc3b39620c06bdc707180b92bfce9",
+  "zip_entries": 491,
+  "sha256_sidecar_matches": true,
+  "sqlite_integrity": "ok",
+  "farm_plots_in_economy_db": true,
+  "world_and_codex_included": true,
+  "manager_status": "backup success; production server restarted normally"
+}

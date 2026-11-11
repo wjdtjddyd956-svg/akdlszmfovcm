@@ -20,7 +20,7 @@ with zipfile.ZipFile(VENDOR/'sqlite-jdbc.jar') as driver:
     for n in driver.namelist():
         if n.endswith('/') or n.upper().endswith(('.SF','.RSA','.DSA')) or n=='META-INF/MANIFEST.MF':continue
         assert n not in entries;entries[n]=driver.read(n)
-jar=OUT/'KoreanCodex-1.2.0.jar';zip_write(jar,entries)
+jar=OUT/'KoreanCodex-1.2.1.jar';zip_write(jar,entries)
 with zipfile.ZipFile(jar) as z:
     assert z.testzip() is None
     assert not any(n.startswith(('org/bukkit/','io/papermc/','org/mockbukkit/','net/milkbowl/','org/slf4j/')) for n in z.namelist())
@@ -47,13 +47,13 @@ table='# 아이템별 등록 보너스\n\n같은 분야 안에서 고급 2배·�
 table+=''.join('| '+category+' | '+name+' | '+rarity+' | '+stat+' '+value+' |\n' for category,name,rarity,material,stat,value in items)
 table+='\n## 업적 추가 보상\n\n| 업적 | 목표 | 추가 효과 |\n| --- | --- | --- |\n'+''.join('| '+' | '.join(row)+' |\n' for row in awards)
 (OUT/'아이템별보너스.md').write_text(table,encoding='utf-8');shutil.copyfile(MODULE/'README.md',OUT/'설치·사용안내.md')
-report={'version':'1.2.0','target':'Paper 26.3 / Java 25','real_api_compile':'unmodified actual Paper df120fd API source build','collection_entries':85,'achievements':13,'small_bonus_stats':8,'rarity_multipliers':[1,2,4,8],'consumption':'one plain item or canonical custom farm item per permanent UUID entry','mockbukkit_cases':int(tests.get('tests')),'mockbukkit_version':'26.3:4.120.0','test_failures':0,'test_skipped':0,'sqlite':'real SQLite JDBC 3.51.2.0, file persistence and fault cases','production_jar_sqlite_native_smoke':True,'windows_native_driver_included':True,'player_nbt_saves_tested':False,'player_nbt_test_substitute':'save call counting and injected failure','mining_attribute_mock_preparation':'real MockBukkit AttributeInstanceMock with vanilla base 1, absent from its default map','real_minecraft_client_or_native_combat_mining_tested':False,'windows_server_applied':False,'caps':{'movement_percent':3,'mining_percent':6,'health_hp':2,'attack_damage':0.5,'armor':1,'attack_speed_percent':2,'knockback_resistance_percentage_points':2,'luck':0.5},'source_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (MODULE/'src/main').rglob('*') if p.is_file()}}
+report={'version':'1.2.1','target':'Paper 26.3 / Java 25','real_api_compile':'unmodified actual Paper df120fd API source build','collection_entries':85,'achievements':13,'small_bonus_stats':8,'rarity_multipliers':[1,2,4,8],'consumption':'one plain item or canonical custom farm item per permanent UUID entry','mockbukkit_cases':int(tests.get('tests')),'mockbukkit_version':'26.3:4.120.0','test_failures':0,'test_skipped':0,'sqlite':'real SQLite JDBC 3.51.2.1, file persistence and fault cases','production_jar_sqlite_native_smoke':True,'windows_native_driver_included':True,'player_nbt_saves_tested':False,'player_nbt_test_substitute':'save call counting and injected failure','mining_attribute_mock_preparation':'real MockBukkit AttributeInstanceMock with vanilla base 1, absent from its default map','real_minecraft_client_or_native_combat_mining_tested':False,'windows_server_applied':False,'caps':{'movement_percent':3,'mining_percent':6,'health_hp':2,'attack_damage':0.5,'armor':1,'attack_speed_percent':2,'knockback_resistance_percentage_points':2,'luck':0.5},'source_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in (MODULE/'src/main').rglob('*') if p.is_file()}}
 (OUT/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 bundle={'plugins/'+jar.name:jar.read_bytes(),'설치·사용안내.md':(OUT/'설치·사용안내.md').read_bytes(),'아이템별보너스.md':(OUT/'아이템별보너스.md').read_bytes(),'validation.json':(OUT/'validation.json').read_bytes(),'LICENSE.txt':(MODULE/'LICENSE.txt').read_bytes()}
 for p in MODULE.rglob('*'):
     if p.is_file() and 'build' not in p.relative_to(MODULE).parts and '__pycache__' not in p.parts:bundle['소스/'+str(p.relative_to(ROOT))]=p.read_bytes()
 bundle['SHA256SUMS.txt']='\n'.join(hashlib.sha256(data).hexdigest()+'  '+name for name,data in sorted(bundle.items())).encode()
-archive=OUT/'KoreanCodex-설치묶음-1.2.0.zip';zip_write(archive,bundle)
+archive=OUT/'KoreanCodex-설치묶음-1.2.1.zip';zip_write(archive,bundle)
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None
 (OUT/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name for p in [jar,archive])+'\n')
 print('Built',jar,'and',archive);print('PASS: 85 entries, 13 awards, 8 exact caps, packaged native SQLite restart/snapshot smoke')

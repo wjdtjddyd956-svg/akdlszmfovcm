@@ -1,0 +1,28 @@
+{
+  "java": "java version \"25.0.2\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 25.0.2+10-LTS-69)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.2+10-LTS-69, mixed mode, sharing)\n",
+  "suites": {
+    "kr.minecraft.survival.farming.FarmingTest": {
+      "cases": 39,
+      "failures": 0,
+      "skipped": 0
+    },
+    "kr.minecraft.survival.codex.CodexTest": {
+      "cases": 36,
+      "failures": 0,
+      "skipped": 0
+    },
+    "kr.minecraft.survival.economy.TycoonIntegrationTest": {
+      "cases": 31,
+      "failures": 0,
+      "skipped": 0
+    }
+  },
+  "domain_assertions": 121,
+  "mock_player_nbt_save": true,
+  "mock_entity_visibility_defaults": true,
+  "artifact_sha256": {
+    "KoreanEconomy-2.0.2.jar": "02716d2e46529f61dd3dda4129d6f0947cf2e17b00a5595a931d0c3a10ab3930",
+    "KoreanFarming-1.0.1.jar": "c1a643c2288540372421e22eba26910d4e03ecf799fb6de3a5ae30d46bcf0148",
+    "KoreanCodex-1.1.0.jar": "6acf3d8ecd112522b55d3bb5b56e77ef34e763ffb35e2a66d5c47ec59030bd48"
+  }
+}

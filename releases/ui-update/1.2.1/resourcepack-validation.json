@@ -1,0 +1,13 @@
+{
+  "pack": "CityEconomy-Interface-26.3-1.2.0.zip",
+  "sha1": "e76e2c98f7659c07cea00050ca87edf88267af7e",
+  "all_old_city_and_farm_assets_preserved_byte_for_byte": true,
+  "preserved_asset_files": 201,
+  "new_ui_icons": 24,
+  "ui_icon_size": [
+    64,
+    64
+  ],
+  "native_ui_download_and_render_tested": true,
+  "native_test_jvm_mode": "Java27 -Xint; regular JVM had earlier native crash"
+}

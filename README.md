@@ -1,5 +1,7 @@
 # 한글 생활 타이쿤 서버
 
+최신 추가 업데이트는 **[도시 생활 수첩 UI 1.2.1](interface-update/README.md)**입니다. 쉬프트+F·도감 필터·정품 수량·실제 보상·업적/효과·화면 복귀·농장을 통합하고 Windows에 백업 후 적용했습니다. [설치 ZIP](releases/ui-update/1.2.1/도시생활-Windows-메뉴통합-1.2.1.zip) · [실제 화면](releases/ui-update/1.2.1/실제화면-마을수첩.png) · [검증·남은 범위](releases/ui-update/1.2.1/검증결과.md).
+
 **[플러그인 전체 한글 정리 — 46종](plugin-catalog/README.md)** · [정리·기존 자체 플러그인 묶음 ZIP](releases/plugin-catalog/한글플러그인-정리묶음-1.0.0.zip) · [설치 순서](plugin-catalog/설치순서.md) · [연결·한글화 현황](plugin-catalog/연결·한글화.md)
 
 기존 구성과 추가 후보를 나누고 기능·우선순위·공식 자료·버전·검증 범위를 한국어로 정리했습니다. 묶음에는 기존 자체 플러그인 7개와 통합팩·설치 도구가 들어 있으며, 추가 후보의 신규 JAR·내부 전체 한글화·Windows 설치는 미포함입니다.
@@ -18,12 +20,12 @@
 
 [아이템 도감·수집 업적 1.0.1](korean-codex/README.md)을 전체 백업 후 실제 Windows 서버에 JAR 하나만 추가했습니다. 80종을 1개씩 소비해 UUID별 영구 등록하고 희귀도·12업적에 따라 8종의 작은 보너스를 받습니다. [설치 ZIP](releases/korean-codex/1.0.1/KoreanCodex-Windows-설치-1.0.1.zip) · [80종 보너스 표](releases/korean-codex/1.0.1/아이템별보너스.md) · [실제 Paper·순정 화면·모의 검사 구분](releases/korean-codex/1.0.1/검증결과.md).
 
-[도시 농장 업데이트](korean-farming/README.md)를 추가했습니다. **딸기·토마토·옥수수·쌀·오이** 5종의 씨앗 구매·재배·수확·농부 보상·요리·NPC 판매·도감을 연결합니다. 경제 2.0.2 / 농사 1.0.0 / 도감 1.1.0 조합이며 기존 2.0.1 서버의 데이터를 이어받습니다. 도감은 기존 보상을 유지하며 85종·13업적으로 확장합니다.
+[도시 농장 Windows 1.0.1](korean-farming/README.md)은 **딸기·토마토·옥수수·쌀·오이** 5종의 씨앗 구매·재배·수확·농부 보상·요리·NPC 판매·도감을 연결합니다. 경제 2.0.2 / 농사 1.0.1 / 도감 1.1.0 조합이며 기존 2.0.1 서버의 데이터를 이어받습니다. 도감은 기존 보상을 유지하며 85종·13업적으로 확장합니다. NPC 우클릭과 쉬프트+F 메뉴로 시작하며 `/농사`는 보조 안내입니다.
 
-- [농장 통합 설치 ZIP](releases/farming-update/도시농장-통합설치-1.0.0.zip) · [설치와 사용법](releases/farming-update/설치·사용안내.md)
-- [작물·씨앗·요리·성장 모델 미리보기](releases/farming-update/농작물-미리보기.png) · [검증 범위](releases/farming-update/validation.json)
+- [농장 Windows 설치 ZIP](releases/farming-update/1.0.1/도시농장-Windows-설치-1.0.1.zip) · [설치와 사용법](releases/farming-update/1.0.1/설치안내.md)
+- [작물·씨앗·요리·성장 모델 미리보기](releases/farming-update/농작물-미리보기.png) · [Windows·실제 Paper·모의 검사 구분](releases/farming-update/1.0.1/검증결과.md)
 - 새 농장 팩은 기존 도시 아이콘 32종에 농장 아이콘 15종·성장 모델 20종을 합칩니다. 새 작물은 이 통합팩이 필요합니다.
-- 이 농장 업데이트는 클라우드에서 제작·자동 검증했으며 사용자 Windows 서버에 적용된 상태는 아닙니다. 위의 2.0.1 Windows 적용 이력과 구분합니다.
+- 2026-11-11 최신 main의 기존 농장 구현을 이어서 보완하고 실제 Windows 전체 백업·627파일 복원 검증 후 적용했습니다. 운영 서버 이용자의 실계정 플레이와 10명 동시 부하 검증은 별도입니다.
 
 [쉬프트+F 메뉴·도감 UI 개선](interface-update/README.md)을 추가했습니다. 기능별 구분·등록 가능/미보유/완료 필터·보유 수량·업적 진행률·상한을 반영한 실제 보상 확인과 전용 아이콘 24종을 제공합니다. 기존 85종·13업적의 보상과 데이터는 유지합니다.
 
