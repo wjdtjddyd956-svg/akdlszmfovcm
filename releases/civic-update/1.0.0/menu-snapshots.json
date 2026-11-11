@@ -1,0 +1,2412 @@
+{
+  "town": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6마을·땅 거래",
+        "lore": [
+          "§7필지 1개 = 16×16, 모든 높이",
+          "§7현재 청크: 0, 0",
+          "§7F3+G로 청크 경계를 확인하세요."
+        ],
+        "amount": 1,
+        "material": "MAP",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a마을 설립",
+        "lore": [
+          "§7첫 필지 포함 · 10000원",
+          "§7한 사람당 설립 마을 1개",
+          "§7기본 이름: Seller마을",
+          "§7이름 지정: /마을 설립 이름"
+        ],
+        "amount": 1,
+        "material": "OAK_SAPLING",
+        "model": "tycoon:city_spawn",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b현재 청크로 영역 확장",
+        "lore": [
+          "§7마을 설립자만 확장 가능",
+          "§7한 변이 맞닿은 필지 · 2500원",
+          "§7마을당 최대 16필지"
+        ],
+        "amount": 1,
+        "material": "GOLDEN_SHOVEL",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e내 필지 · 판매 관리",
+        "lore": [
+          "§7분양 가격 설정 · 판매 취소",
+          "§7구매한 땅도 다시 판매할 수 있습니다."
+        ],
+        "amount": 1,
+        "material": "WRITABLE_BOOK",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a분양·판매 중인 필지",
+        "lore": [
+          "§7가격·위치·소유자를 확인하고 구매"
+        ],
+        "amount": 1,
+        "material": "EMERALD",
+        "model": "tycoon:transfer",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6도시마을",
+        "lore": [
+          "§7내가 설립한 마을의 전체 필지",
+          "§7등록 필지 1 / 16"
+        ],
+        "amount": 1,
+        "material": "FILLED_MAP",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6개인상점",
+        "lore": [],
+        "amount": 1,
+        "material": "CHEST",
+        "model": "tycoon:seller_crate",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e판매대금 받기",
+        "lore": [
+          "§7필지·물품 판매 적립: 0원"
+        ],
+        "amount": 1,
+        "material": "GOLD_INGOT",
+        "model": "tycoon:wallet",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b마을 수첩으로",
+        "lore": [
+          "§7왼쪽 클릭으로 선택합니다."
+        ],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      }
+    ],
+    "title": "마을 | 설립·필지 매매"
+  },
+  "plots": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6필지 1개 · 1 / 1",
+        "lore": [
+          "§7소유자·위치·묶음 가격을 확인하세요."
+        ],
+        "amount": 1,
+        "material": "MAP",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e도시마을 · 필지",
+        "lore": [
+          "§7소유자: Seller",
+          "§7world 청크 0, 0",
+          "§7블록 X 0~15 / Z 0~15",
+          "§a판매가: 500원",
+          "§e왼쪽 클릭: 상세·구매·판매 관리"
+        ],
+        "amount": 1,
+        "material": "FILLED_MAP",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b마을 수첩으로",
+        "lore": [
+          "§7왼쪽 클릭으로 선택합니다."
+        ],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      }
+    ],
+    "title": "필지 | 분양·판매 1"
+  },
+  "plot_editor": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6판매가: 500원",
+        "lore": [
+          "§7청크 0, 0 전체 가격",
+          "§7다른 이용자가 구매하면 소유권이 이전됩니다.",
+          "§7커스텀 농작물은 먼저 수확·회수하세요."
+        ],
+        "amount": 1,
+        "material": "MAP",
+        "model": "tycoon:land_deed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c-1000원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": "§c-100원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": "§c-10원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a+10원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": "§a+100원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": "§a+1000원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a판매 등록 확인",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_CONCRETE",
+        "model": "tycoon:confirm",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c판매 취소",
+        "lore": [
+          "§7소유권은 유지하고 분양 목록에서 내립니다."
+        ],
+        "amount": 1,
+        "material": "RED_CONCRETE",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b마을 수첩으로",
+        "lore": [
+          "§7왼쪽 클릭으로 선택합니다."
+        ],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      }
+    ],
+    "title": "필지 | 분양·재판매 설정"
+  },
+  "market": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§6개인상점 · 1건",
+        "lore": [
+          "§7가격은 표시된 수량 전체의 가격입니다.",
+          "§7등록자 접속 여부와 관계없이 구매할 수 있습니다."
+        ],
+        "amount": 1,
+        "material": "ENDER_CHEST",
+        "model": "tycoon:seller_crate",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b특별한 다이아몬드",
+        "lore": [
+          "§8────────────",
+          "§7판매자: Seller",
+          "§e3개 전체 50원",
+          "§c왼쪽 클릭: 회수 확인"
+        ],
+        "amount": 3,
+        "material": "DIAMOND",
+        "model": "tycoon:farm/strawberry_seed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": "§a손에 든 물품 등록",
+        "lore": [
+          "§7등록하면 물건을 보관합니다.",
+          "§7묶음 전체 가격을 정합니다."
+        ],
+        "amount": 1,
+        "material": "CHEST",
+        "model": "tycoon:seller_crate",
+        "glow": false
+      },
+      {
+        "name": "§e내 판매 관리",
+        "lore": [],
+        "amount": 1,
+        "material": "BOOK",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e판매대금 받기",
+        "lore": [
+          "§7받을 금액: 0원"
+        ],
+        "amount": 1,
+        "material": "GOLD_INGOT",
+        "model": "tycoon:wallet",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b새로고침",
+        "lore": [],
+        "amount": 1,
+        "material": "CLOCK",
+        "glow": false
+      }
+    ],
+    "title": "개인상점 | 전체 물품 1"
+  },
+  "listing": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e3개 전체 가격: 50원",
+        "lore": [
+          "§7개당 가격이 아닌 선택한 묶음 전체 가격입니다.",
+          "§7가격 직접 지정: /개인상점 등록 가격 수량"
+        ],
+        "amount": 1,
+        "material": "BOOK",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c-1000원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": "§c-100원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": "§c-10원",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a+10원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": "§a+100원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": "§a+1000원",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b특별한 다이아몬드",
+        "lore": [],
+        "amount": 3,
+        "material": "DIAMOND",
+        "model": "tycoon:farm/strawberry_seed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c수량 -1",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a판매 등록 확인",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_CONCRETE",
+        "model": "tycoon:confirm",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a수량 +1",
+        "lore": [],
+        "amount": 1,
+        "material": "LIME_DYE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e손에 든 수량 전부",
+        "lore": [],
+        "amount": 1,
+        "material": "CHEST",
+        "model": "tycoon:seller_crate",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b마을 수첩으로",
+        "lore": [
+          "§7왼쪽 클릭으로 선택합니다."
+        ],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      }
+    ],
+    "title": "개인상점 | 물품 등록 설정"
+  },
+  "confirmation": {
+    "slots": [
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e거래 내용을 확인하세요",
+        "lore": [
+          "§f판매자: Seller",
+          "§f3개 전체 가격: 50원",
+          "§7판매를 취소하고 원래 물건을 가방으로 돌려받습니다."
+        ],
+        "amount": 1,
+        "material": "BOOK",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b특별한 다이아몬드",
+        "lore": [],
+        "amount": 3,
+        "material": "DIAMOND",
+        "model": "tycoon:farm/strawberry_seed",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§a확인 · 거래 진행",
+        "lore": [
+          "§7왼쪽 클릭 한 번으로 확정합니다."
+        ],
+        "amount": 1,
+        "material": "LIME_CONCRETE",
+        "model": "tycoon:confirm",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c취소",
+        "lore": [],
+        "amount": 1,
+        "material": "RED_CONCRETE",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§e뒤로",
+        "lore": [],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:ui/back",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§b마을 수첩으로",
+        "lore": [
+          "§7왼쪽 클릭으로 선택합니다."
+        ],
+        "amount": 1,
+        "material": "ARROW",
+        "model": "tycoon:business_ledger",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": "§c닫기",
+        "lore": [],
+        "amount": 1,
+        "material": "BARRIER",
+        "model": "tycoon:close",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      },
+      {
+        "name": " ",
+        "lore": [],
+        "amount": 1,
+        "material": "GRAY_STAINED_GLASS_PANE",
+        "glow": false
+      }
+    ],
+    "title": "개인상점 | 물품 회수 확인"
+  }
+}

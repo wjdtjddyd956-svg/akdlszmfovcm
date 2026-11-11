@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse,hashlib,json,os,shutil,subprocess,tempfile,zipfile,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'releases/ui-update/1.2.1';WORK=ROOT/'.build/interface-windows'
+if 'version: 2.1.0\n' not in (ROOT/'korean-menu/src/main/resources/plugin.yml').read_text():raise SystemExit('Historical UI builder: use civic-update/build.py for the current source.')
 p=argparse.ArgumentParser();p.add_argument('action',choices=['build','test','package']);p.add_argument('--server',type=Path,required=True);p.add_argument('--jdk',type=Path,required=True);a=p.parse_args();OUT.mkdir(parents=True,exist_ok=True);WORK.mkdir(parents=True,exist_ok=True)
 api=a.server/'libraries/io/papermc/paper/paper-api/26.3.build.238-stable/paper-api-26.3.build.238-stable.jar';assert api.is_file()
 dependencies=[api]+[f for f in sorted((a.server/'libraries').rglob('*.jar')) if 'paper-api' not in f.parts]+[a.server/'plugins'/n for n in ['Vault.jar','worldedit-bukkit-7.4.6-ko.jar','worldguard-bukkit-7.0.21-ko.jar']]

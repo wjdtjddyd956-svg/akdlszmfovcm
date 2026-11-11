@@ -8,6 +8,7 @@ from urllib.parse import quote,urlparse
 ROOT=Path(__file__).resolve().parents[2];HERE=ROOT/'plugin-catalog';OUT=ROOT/'releases/plugin-catalog';OUT.mkdir(parents=True,exist_ok=True)
 REPO='https://github.com/wjdtjddyd956-svg/akdlszmfovcm';RAW='https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/'
 data=json.loads((HERE/'플러그인목록.json').read_text());rows=data['플러그인'];assert len(rows)==46;assert len({r['식별자'] for r in rows})==len(rows)
+if data.get("마을상점모듈"):raise SystemExit("Historical catalog builder: use civic-update/update_catalog.py for the current civic release.")
 def sha(b):return hashlib.sha256(b).hexdigest()
 def link(path,raw=False):return (RAW if raw else REPO+'/blob/main/')+quote(path,safe='/')
 def md(s):return str(s).replace('|',' / ').replace('\n',' ')

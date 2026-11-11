@@ -3,6 +3,7 @@
 from pathlib import Path
 import os, shutil, subprocess, zipfile, hashlib, json
 ROOT=Path(__file__).resolve().parents[1]
+if 'version: 2.0.0\n' not in (ROOT/'korean-economy/src/main/resources/plugin.yml').read_text():raise SystemExit('Historical tycoon 2.0.0 builder: use civic-update/build.py for current source.')
 BASE=Path(os.environ.get('TYCOON_TOOLCHAINS','/workspace/toolchains'))
 JDK=Path(os.environ.get('TYCOON_JDK',str(BASE/'jdk-25.0.5.0.3')))
 API=Path(os.environ.get('PAPER_API_JAR',str(BASE/'paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar')))

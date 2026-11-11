@@ -1,5 +1,5 @@
 name: KoreanEconomy
-version: 2.0.2
+version: 2.0.3
 main: kr.minecraft.survival.economy.KoreanEconomyPlugin
 api-version: '26.3'
 description: NPC 우클릭 한글 구매·판매 상점과 일일 보상

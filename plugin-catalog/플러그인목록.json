@@ -1,9 +1,9 @@
 {
-  "문서버전": "1.1.0",
+  "문서버전": "1.2.0",
   "기준일": "2026-11-11",
   "대상": "Windows · Paper 26.3 · 약 10명 생활 경제 서버",
-  "최신통합설치": "releases/ui-update/1.2.1/도시생활-Windows-메뉴통합-1.2.1.zip",
-  "설명": "46종의 선택 검토. 기존 16종 유지, 공식 추가 5종 선정, 별도 자체 연결 모듈 1종. 무조건 전체 설치하지 않음. 실제 적용·검증 범위는 plugin-integration/검증결과.md 참조.",
+  "최신통합설치": "releases/civic-update/1.0.0/도시생활-마을상점-1.0.0.zip",
+  "설명": "기존 46종 선택 검토와 별도 연결 모듈은 유지. 신규 KoreanCivic와 경제·메뉴·도시팩 업데이트는 마을상점모듈에 구분. 이번 새 버전은 클라우드 검증·설치 파일 준비 상태, Windows 운영 미적용.",
   "플러그인": [
     {
       "식별자": "korean_economy",
@@ -12,54 +12,55 @@
       "기능": "기존 화폐·NPC 상점·직업·요리·임무",
       "분류": "기존 구성",
       "우선순위": "유지",
-      "버전": "2.0.2",
-      "저장소JAR": "releases/ui-update/1.2.1/KoreanEconomy-2.0.2.jar",
+      "버전": "2.0.3",
+      "저장소JAR": "releases/civic-update/1.0.0/KoreanEconomy-2.0.3.jar",
       "공식자료": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
       "한글화상태": "자체 기능의 이용자 안내·메뉴·명령을 한글로 제공",
       "연결작업": "기존 Vault 경제 제공자와 연동",
-      "선택시참고": "실제 Windows 서버 설치 파일 확인. 기존 데이터·설정·JAR 유지.",
-      "검증범위": "실제 Windows 설치 식별자·버전·SHA-256·시작 로그 확인. 기존 16개 JAR 유지. 새 조합의 일반 이용자 연결은 실제 Paper 복제 서버와 일부 실제 게임 확인. 10인 전체 플레이 미검증.",
+      "선택시참고": "마을·개인상점 설치기로 전체 백업 후 함께 업데이트. 운영 적용 전 기존 서버 복제본에서 확인.",
+      "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
       "연결대상": [
         "Vault",
         "EssentialsX"
       ],
       "링크확인": "정상 응답",
-      "파일SHA256": "c53f09242c039c8468a88b8969c09384c4e6f759de653032a7cf086b54f719e0",
-      "파일크기": 14513197,
-      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/KoreanEconomy-2.0.2.jar",
+      "파일SHA256": "a2e9f68e836787c00541f55f5ec6b4a26fbbadf33313d724809918b8e4ed9fcc",
+      "파일크기": 14519660,
+      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/civic-update/1.0.0/KoreanEconomy-2.0.3.jar",
       "필수의존성": [
         "Vault"
       ],
       "의존성출처": "위 배포 JAR의 plugin.yml depend 선언. 연결대상은 별도 선택 기능을 포함",
-      "선정상태": "기존 운영 구성 유지"
+      "선정상태": "최신 업데이트 준비 · 이번 운영 미적용"
     },
     {
       "식별자": "korean_menu",
       "공식이름": "KoreanMenu",
       "한글이름": "마을 수첩",
-      "기능": "쉬프트+F 기능별 메뉴·도감·농장 입구",
+      "기능": "쉬프트+F 마을·땅 거래·개인상점·도감·농장 입구",
       "분류": "기존 구성",
       "우선순위": "유지",
-      "버전": "2.1.0",
-      "저장소JAR": "releases/ui-update/1.2.1/KoreanMenu-2.1.0.jar",
+      "버전": "2.2.0",
+      "저장소JAR": "releases/civic-update/1.0.0/KoreanMenu-2.2.0.jar",
       "공식자료": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
       "한글화상태": "자체 기능의 이용자 안내·메뉴·명령을 한글로 제공",
       "연결작업": "최신 메뉴 통합팩과 도감 연결",
-      "선택시참고": "실제 Windows 서버 설치 파일 확인. 기존 데이터·설정·JAR 유지.",
-      "검증범위": "실제 Windows 설치 식별자·버전·SHA-256·시작 로그 확인. 기존 16개 JAR 유지. 새 조합의 일반 이용자 연결은 실제 Paper 복제 서버와 일부 실제 게임 확인. 10인 전체 플레이 미검증.",
+      "선택시참고": "마을·개인상점 설치기로 전체 백업 후 함께 업데이트. 운영 적용 전 기존 서버 복제본에서 확인.",
+      "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
       "연결대상": [
         "KoreanEconomy",
         "KoreanCodex",
         "KoreanFarming",
-        "CityTextures"
+        "CityTextures",
+        "KoreanCivic"
       ],
       "링크확인": "정상 응답",
-      "파일SHA256": "73516f92567afb22a791c365d4e4068faabfcd8828c0d0cfabe326da695441d4",
-      "파일크기": 11231,
-      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/KoreanMenu-2.1.0.jar",
+      "파일SHA256": "09fbf0a71a6a08ad2f69a1b9007a3961ea455c8e890ba7f218ccd8fd1a7ef0f7",
+      "파일크기": 11518,
+      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/civic-update/1.0.0/KoreanMenu-2.2.0.jar",
       "필수의존성": [],
       "의존성출처": "위 배포 JAR의 plugin.yml depend 선언. 연결대상은 별도 선택 기능을 포함",
-      "선정상태": "기존 운영 구성 유지"
+      "선정상태": "최신 업데이트 준비 · 이번 운영 미적용"
     },
     {
       "식별자": "korean_codex",
@@ -69,24 +70,24 @@
       "분류": "기존 구성",
       "우선순위": "유지",
       "버전": "1.2.1",
-      "저장소JAR": "releases/ui-update/1.2.1/KoreanCodex-1.2.1.jar",
+      "저장소JAR": "releases/civic-update/1.0.0/KoreanCodex-1.2.1.jar",
       "공식자료": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
       "한글화상태": "자체 기능의 이용자 안내·메뉴·명령을 한글로 제공",
       "연결작업": "기존 도감 DB와 상한을 유지",
-      "선택시참고": "실제 Windows 서버 설치 파일 확인. 기존 데이터·설정·JAR 유지.",
-      "검증범위": "실제 Windows 설치 식별자·버전·SHA-256·시작 로그 확인. 기존 16개 JAR 유지. 새 조합의 일반 이용자 연결은 실제 Paper 복제 서버와 일부 실제 게임 확인. 10인 전체 플레이 미검증.",
+      "선택시참고": "마을·개인상점 설치기로 전체 백업 후 함께 업데이트. 운영 적용 전 기존 서버 복제본에서 확인.",
+      "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
       "연결대상": [
         "KoreanFarming",
         "KoreanMenu",
         "CityTextures"
       ],
       "링크확인": "정상 응답",
-      "파일SHA256": "91d7e84da460a94e72cb0417e2d51dfc4aee244ed5fd55773ade0caacbaad9bb",
-      "파일크기": 14433743,
-      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/KoreanCodex-1.2.0.jar",
+      "파일SHA256": "665f564cd61ac6cbbc69217c7a152d6f36c16e08b9e3f6ed9b3bfed427307fb1",
+      "파일크기": 2625538,
+      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/civic-update/1.0.0/KoreanCodex-1.2.1.jar",
       "필수의존성": [],
       "의존성출처": "위 배포 JAR의 plugin.yml depend 선언. 연결대상은 별도 선택 기능을 포함",
-      "선정상태": "기존 운영 구성 유지"
+      "선정상태": "최신 업데이트 준비 · 이번 운영 미적용"
     },
     {
       "식별자": "korean_farming",
@@ -96,12 +97,12 @@
       "분류": "기존 구성",
       "우선순위": "유지",
       "버전": "1.0.2",
-      "저장소JAR": "releases/ui-update/1.2.1/KoreanFarming-1.0.2.jar",
+      "저장소JAR": "releases/civic-update/1.0.0/KoreanFarming-1.0.2.jar",
       "공식자료": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
       "한글화상태": "자체 기능의 이용자 안내·메뉴·명령을 한글로 제공",
       "연결작업": "한 번의 통합팩 요청으로 농장과 메뉴 준비",
-      "선택시참고": "실제 Windows 서버 설치 파일 확인. 기존 데이터·설정·JAR 유지.",
-      "검증범위": "실제 Windows 설치 식별자·버전·SHA-256·시작 로그 확인. 기존 16개 JAR 유지. 새 조합의 일반 이용자 연결은 실제 Paper 복제 서버와 일부 실제 게임 확인. 10인 전체 플레이 미검증.",
+      "선택시참고": "마을·개인상점 설치기로 전체 백업 후 함께 업데이트. 운영 적용 전 기존 서버 복제본에서 확인.",
+      "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
       "연결대상": [
         "KoreanEconomy",
         "Vault",
@@ -109,15 +110,15 @@
         "CityTextures"
       ],
       "링크확인": "정상 응답",
-      "파일SHA256": "7a544c61490b479694c68a63ef9b5edb3362337640e1df3ab4dd0f3737a9b0aa",
-      "파일크기": 57220,
-      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/KoreanFarming-1.0.1.jar",
+      "파일SHA256": "f475b8e1156454068029bd29c38ba649e5a5c9254cfc1c80868d583105bd23ee",
+      "파일크기": 57811,
+      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/civic-update/1.0.0/KoreanFarming-1.0.2.jar",
       "필수의존성": [
         "KoreanEconomy",
         "Vault"
       ],
       "의존성출처": "위 배포 JAR의 plugin.yml depend 선언. 연결대상은 별도 선택 기능을 포함",
-      "선정상태": "기존 운영 구성 유지"
+      "선정상태": "최신 업데이트 준비 · 이번 운영 미적용"
     },
     {
       "식별자": "city_textures",
@@ -126,25 +127,25 @@
       "기능": "도시 아이콘·메뉴·도감·능력치 전용 아이콘과 팩 요청",
       "분류": "기존 구성",
       "우선순위": "유지",
-      "버전": "1.1.1",
-      "저장소JAR": "releases/ui-update/1.2.1/CityTextures-1.1.1.jar",
+      "버전": "1.2.0",
+      "저장소JAR": "releases/civic-update/1.0.0/CityTextures-1.2.0.jar",
       "공식자료": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
       "한글화상태": "자체 기능의 이용자 안내·메뉴·명령을 한글로 제공",
       "연결작업": "CityTextures/ui.yml에서 통합팩 주소·SHA1 관리",
-      "선택시참고": "실제 Windows 서버 설치 파일 확인. 기존 데이터·설정·JAR 유지.",
-      "검증범위": "실제 Windows 설치 식별자·버전·SHA-256·시작 로그 확인. 기존 16개 JAR 유지. 새 조합의 일반 이용자 연결은 실제 Paper 복제 서버와 일부 실제 게임 확인. 10인 전체 플레이 미검증.",
+      "선택시참고": "마을·개인상점 설치기로 전체 백업 후 함께 업데이트. 운영 적용 전 기존 서버 복제본에서 확인.",
+      "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
       "연결대상": [
         "KoreanMenu",
         "KoreanCodex",
         "KoreanFarming"
       ],
       "링크확인": "정상 응답",
-      "파일SHA256": "ba7a5046ed1a4c6fb6fbb811497a50c27d84bbaa878d17e5551eb5a5c4cd2e89",
-      "파일크기": 24864,
-      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/ui-update/CityTextures-1.1.0.jar",
+      "파일SHA256": "d5a0edd5f9467b2699a46af906e10c9a6858563b9e78b5fc88e87cdf90e90429",
+      "파일크기": 26602,
+      "배포파일링크": "https://raw.githubusercontent.com/wjdtjddyd956-svg/akdlszmfovcm/main/releases/civic-update/1.0.0/CityTextures-1.2.0.jar",
       "필수의존성": [],
       "의존성출처": "위 배포 JAR의 plugin.yml depend 선언. 연결대상은 별도 선택 기능을 포함",
-      "선정상태": "기존 운영 구성 유지"
+      "선정상태": "최신 업데이트 준비 · 이번 운영 미적용"
     },
     {
       "식별자": "korean_commands",
@@ -998,5 +999,21 @@
     "공식이름": "KoreanServerBridge",
     "버전": "1.0.0",
     "기능": "기존 저장 데이터를 읽는 koreanlife 표시 확장·한국어 연결·고정 안내판. 경제·NPC·도감 구현을 복제하지 않음."
+  },
+  "마을상점모듈": {
+    "공식이름": "KoreanCivic",
+    "한글이름": "마을·필지 매매 / 개인상점",
+    "버전": "1.0.0",
+    "저장소JAR": "releases/civic-update/1.0.0/KoreanCivic-1.0.0.jar",
+    "파일SHA256": "4365e3d9f584fb0fa01ba7463f3c765594f308735ccea2ab9d7384c163343418",
+    "필수의존성": [
+      "KoreanEconomy 2.0.3",
+      "Vault"
+    ],
+    "메뉴연결": "KoreanMenu 2.2.0 / CityTextures 1.2.0",
+    "기능": "마을 설립·인접 확장·분양·땅 재판매·물품 보관형 개인상점·판매대금",
+    "검증범위": "이번 마을·상점 조합: 실제 Paper API 컴파일·MockBukkit·SQLite·설치기 검증. 이번 Windows 적용·실게임·10인 부하는 미검증. civic-update/거래·검증.md 참조.",
+    "설치안내": "civic-update/README.md",
+    "설치상태": "배포 준비 · 이번 Windows 운영 미적용"
   }
 }

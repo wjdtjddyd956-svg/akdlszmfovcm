@@ -25,7 +25,7 @@ public final class StateStore implements AutoCloseable {
             Class.forName("org.sqlite.JDBC");connection=DriverManager.getConnection("jdbc:sqlite:"+this.file);
             execute("PRAGMA foreign_keys=ON");execute("PRAGMA busy_timeout=5000");execute("PRAGMA journal_mode=WAL");execute("PRAGMA synchronous=FULL");
             int version=((Number)rows("PRAGMA user_version").get(0).values().iterator().next()).intValue();
-            if(version>1)throw new IllegalStateException("더 새로운 저장소입니다. 플러그인 버전을 내리지 마세요.");
+            if(version>2)throw new IllegalStateException("더 새로운 저장소입니다. 플러그인 버전을 내리지 마세요.");
             transaction(()->{
                 execute("CREATE TABLE IF NOT EXISTS players(uuid TEXT PRIMARY KEY,name TEXT NOT NULL,job TEXT,job_changed INTEGER NOT NULL DEFAULT 0,starter_used INTEGER NOT NULL DEFAULT 0)");
                 execute("CREATE UNIQUE INDEX IF NOT EXISTS player_names ON players(name COLLATE NOCASE)");
@@ -35,6 +35,7 @@ public final class StateStore implements AutoCloseable {
                 execute("CREATE UNIQUE INDEX IF NOT EXISTS receipt_once ON receipts(actor,reference) WHERE state IN ('PENDING','DONE','REVIEW')");
                 execute("CREATE INDEX IF NOT EXISTS receipt_player ON receipts(actor,state,created)");
                 execute("CREATE TABLE IF NOT EXISTS lands(id TEXT PRIMARY KEY,world TEXT NOT NULL,x INTEGER NOT NULL,z INTEGER NOT NULL,owner TEXT NOT NULL,state TEXT NOT NULL,receipt TEXT,UNIQUE(world,x,z))");
+                execute("CREATE TABLE IF NOT EXISTS land_tags(land TEXT PRIMARY KEY REFERENCES lands(id) ON DELETE CASCADE,kind TEXT NOT NULL,reference TEXT NOT NULL)");
                 execute("CREATE TABLE IF NOT EXISTS trusts(owner TEXT NOT NULL,member TEXT NOT NULL,PRIMARY KEY(owner,member))");
                 execute("CREATE TABLE IF NOT EXISTS placed(world TEXT NOT NULL,x INTEGER NOT NULL,y INTEGER NOT NULL,z INTEGER NOT NULL,PRIMARY KEY(world,x,y,z))");
                 execute("CREATE TABLE IF NOT EXISTS harvested(world TEXT NOT NULL,x INTEGER NOT NULL,y INTEGER NOT NULL,z INTEGER NOT NULL,PRIMARY KEY(world,x,y,z))");
@@ -42,7 +43,7 @@ public final class StateStore implements AutoCloseable {
                 execute("CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY AUTOINCREMENT,at INTEGER NOT NULL,actor TEXT NOT NULL,world TEXT NOT NULL,x INTEGER NOT NULL,y INTEGER NOT NULL,z INTEGER NOT NULL,kind TEXT NOT NULL,before_data BLOB,after_data BLOB,details TEXT NOT NULL DEFAULT '',reverted INTEGER NOT NULL DEFAULT 0)");
                 execute("CREATE INDEX IF NOT EXISTS audit_area ON audit(world,at,x,z)");
                 execute("CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY,value TEXT NOT NULL)");
-                execute("PRAGMA user_version=1");return null;
+                execute("PRAGMA user_version=2");return null;
             });
             execute("UPDATE receipts SET state='REVIEW',note='처리 도중 서버 종료: 잔액과 아이템을 운영자가 확인해야 합니다.' WHERE state='PENDING'");
         } catch(Exception e){throw new StorageFailure(e);}
@@ -99,7 +100,7 @@ public final class StateStore implements AutoCloseable {
     public void consumeOwedInside(UUID id,long amount){requireTransaction();long owed=owed(id);if(amount<0||owed<amount)throw new Denied("직업 적립금 기록이 바뀌었습니다.");meta("job.owed:"+id,Long.toString(owed-amount));}
     public long changedAt(UUID id){return rows("SELECT job_changed FROM players WHERE uuid=?",id).stream().findFirst().map(r->n(r,"job_changed")).orElse(0L);}
     public void selectJobInside(UUID id,Rules.Job job,long now){requireTransaction();if(execute("UPDATE players SET job=?,job_changed=? WHERE uuid=?",job.name(),now,id)!=1)throw new Denied("유저 등록 정보를 찾지 못했습니다.");}
-    private void requireTransaction(){if(!inTransaction)throw new IllegalStateException("거래 내부에서 호출해야 합니다.");}
+    public void requireTransaction(){if(!inTransaction)throw new IllegalStateException("거래 내부에서 호출해야 합니다.");}
     public int used(UUID id,String day,String product){return rows("SELECT quantity FROM daily_use WHERE uuid=? AND day=? AND product=?",id,day,product).stream().findFirst().map(r->(int)n(r,"quantity")).orElse(0);}
     public boolean unresolved(UUID id){return !rows("SELECT id FROM receipts WHERE actor=? AND state IN ('PENDING','REVIEW') LIMIT 1",id).isEmpty();}
     public boolean paid(UUID id,String reference){return !rows("SELECT id FROM receipts WHERE actor=? AND reference=? AND state='DONE'",id,reference).isEmpty();}
@@ -129,11 +130,12 @@ public final class StateStore implements AutoCloseable {
         List<Map<String,Object>> rs=rows("SELECT * FROM receipts WHERE id=?",id);if(rs.isEmpty())throw new Denied("거래 없음");Map<String,Object> row=rs.get(0);
         if(!Set.of("PENDING","REVIEW").contains(row.get("state")))throw new Denied("이미 정리한 거래입니다.");
         if(n(row,"quota_amount")>0)execute("UPDATE daily_use SET quantity=MAX(0,quantity-?) WHERE uuid=? AND day=? AND product=?",n(row,"quota_amount"),row.get("actor"),row.get("quota_day"),row.get("quota_product"));
-        execute("DELETE FROM lands WHERE receipt=? AND state='RESERVED'",id);
+        execute("DELETE FROM lands WHERE receipt=? AND state='RESERVED' AND NOT EXISTS(SELECT 1 FROM land_tags WHERE land=lands.id AND kind='CIVIC')",id);
         execute("UPDATE receipts SET state='REJECTED',note=? WHERE id=?",note,id);
     }
     public void review(String id,String note){execute("UPDATE receipts SET state='REVIEW',note=? WHERE id=? AND state='PENDING'",note,id);}
     public void resolve(String id,boolean completed,String admin){transaction(()->{
+        if(receipt(id).kind.startsWith("CIVIC_"))throw new Denied("마을·개인상점 거래는 /마을거래 에서 정리하세요.");
         if(receipt(id).kind.startsWith("FARM_"))throw new Denied("농사 거래는 /농사관리 에서 정리하세요.");
         if(!receipt(id).state.equals("REVIEW"))throw new Denied("확인 대기 상태의 거래만 정리할 수 있습니다.");
         if(completed){Receipt record=receipt(id);if(record.kind.equals("JOB_CLAIM"))consumeOwedInside(UUID.fromString(record.actor),record.cents);if(record.kind.equals("JOB"))selectJobInside(UUID.fromString(record.actor),Rules.Job.valueOf(record.payload),System.currentTimeMillis());activateLandInside(id);execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","운영자 확인 완료: "+admin,id);}
@@ -144,6 +146,10 @@ public final class StateStore implements AutoCloseable {
         Receipt r=receipt(id);if(!r.kind.startsWith("FARM_")||!r.state.equals("REVIEW"))throw new Denied("확인 대기 농사 거래만 정리할 수 있습니다.");
         effect.run();if(completed)execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","농사 운영자 확인: "+admin,id);else rejectInside(id,"농사 운영자 취소: "+admin);return null;
     });}
+    public void resolveCivic(String id,boolean completed,String admin,Runnable effect){transaction(()->{
+        Receipt r=receipt(id);if(!r.kind.startsWith("CIVIC_")||!r.state.equals("REVIEW"))throw new Denied("확인 대기 마을·개인상점 거래만 정리할 수 있습니다.");
+        effect.run();if(completed)execute("UPDATE receipts SET state='DONE',note=? WHERE id=?","마을 운영자 확인: "+admin,id);else rejectInside(id,"마을 운영자 취소: "+admin);return null;
+    });}
     public List<Map<String,Object>> receiptLog(UUID actor,int limit){return rows("SELECT * FROM receipts WHERE actor=? ORDER BY created DESC LIMIT ?",actor,Math.min(100,Math.max(1,limit)));}
     public List<Map<String,Object>> unresolvedLog(){return rows("SELECT * FROM receipts WHERE state='REVIEW' ORDER BY created LIMIT 100");}
     public String receiptId(String prefix){
@@ -153,7 +159,7 @@ public final class StateStore implements AutoCloseable {
     }
     public List<Land> lands(){return rows("SELECT * FROM lands").stream().map(this::land).toList();}
     private Land land(Map<String,Object> r){return new Land((String)r.get("id"),(String)r.get("world"),(int)n(r,"x"),(int)n(r,"z"),(String)r.get("owner"),(String)r.get("state"),(String)r.get("receipt"));}
-    public List<Land> lands(UUID owner){return rows("SELECT * FROM lands WHERE owner=?",owner).stream().map(this::land).toList();}
+    public List<Land> lands(UUID owner){return rows("SELECT * FROM lands WHERE owner=? AND NOT EXISTS(SELECT 1 FROM land_tags WHERE land=lands.id AND kind='CIVIC')",owner).stream().map(this::land).toList();}
     public Land land(String world,int x,int z){return rows("SELECT * FROM lands WHERE world=? AND x=? AND z=?",world,x,z).stream().findFirst().map(this::land).orElse(null);}
     public Set<String> trusted(String owner){Set<String> set=new HashSet<>();for(Map<String,Object> r:rows("SELECT member FROM trusts WHERE owner=?",owner))set.add((String)r.get("member"));return set;}
     public void trust(UUID owner,UUID member,boolean allow){
@@ -175,7 +181,7 @@ public final class StateStore implements AutoCloseable {
         if(!rows.isEmpty()){execute("UPDATE players SET starter_used=1 WHERE uuid=?",rows.get(0).get("owner"));execute("UPDATE lands SET state='ACTIVE' WHERE receipt=?",receipt);}
     }
     public void abandon(UUID owner,String world,int x,int z){transaction(()->{
-        Land land=land(world,x,z);if(land==null||!land.owner.equals(owner.toString()))throw new Denied("현재 구역은 내 땅이 아닙니다.");
+        Land land=land(world,x,z);if(land!=null&&!rows("SELECT 1 FROM land_tags WHERE land=? AND kind='CIVIC'",land.id).isEmpty())throw new Denied("마을 필지는 /마을 메뉴에서 관리하세요.");if(land==null||!land.owner.equals(owner.toString()))throw new Denied("현재 구역은 내 땅이 아닙니다.");
         if(!land.state.equals("ACTIVE"))throw new Denied("처리 중인 땅은 운영자 확인이 필요합니다.");
         execute("DELETE FROM lands WHERE id=?",land.id);return null;
     });}

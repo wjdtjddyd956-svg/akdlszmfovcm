@@ -1,5 +1,7 @@
 # 한글 플러그인 선택·연결 목록 — 46종
 
+**신규 마을·개인상점 업데이트:** [설치 ZIP](../releases/civic-update/1.0.0/도시생활-마을상점-1.0.0.zip) · [새 구성·버전](마을·개인상점.md) · [설치·사용법](../civic-update/README.md). KoreanCivic 1.0.0, 경제 2.0.3, 메뉴 2.2.0, 도시팩 1.2.0을 준비했습니다. 농사 1.0.2·도감 1.2.1은 검증된 파일을 재사용합니다. **이번 버전은 클라우드 검증·배포 준비 상태이며 Windows 운영 미적용입니다.** 아래 기존 운영 기록과 구분합니다.
+
 2026-11-11 실제 Windows 설치 파일과 최신 main을 확인했습니다. 기존 16종 유지 + 공식 추가 5종 + 자체 연결 모듈 1종 구성입니다. 46종 전체 설치 목록이 아닙니다.
 
 [최신 추가 기능 설치 ZIP](../releases/plugin-integration/1.0.0/생활서버-플러그인연결-1.0.0.zip) · [설치·백업·복원](../plugin-integration/설치안내.md) · [검증·미완료](../plugin-integration/검증결과.md) · [46종 검토 이유](../plugin-integration/46종검토.md) · [버전·공식 배포·SHA-256](../releases/plugin-integration/1.0.0/versions.json)
@@ -8,11 +10,11 @@
 
 | 플러그인 | 버전 | 선택 | 공식 자료 |
 | --- | --- | --- | --- |
-| KoreanEconomy | 2.0.2 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
-| KoreanMenu | 2.1.0 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
+| KoreanEconomy | 2.0.3 | 업데이트 준비 · 이번 운영 미적용 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
+| KoreanMenu | 2.2.0 | 업데이트 준비 · 이번 운영 미적용 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
 | KoreanCodex | 1.2.1 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
 | KoreanFarming | 1.0.2 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
-| CityTextures | 1.1.1 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
+| CityTextures | 1.2.0 | 업데이트 준비 · 이번 운영 미적용 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
 | KoreanCommands | 2.0.0 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
 | KoreanPackSetup | 2.0.0 | 기존 운영 구성 유지 | [공식 자료](https://github.com/wjdtjddyd956-svg/akdlszmfovcm) |
 | EssentialsX | 2.22.1-dev+28-f8724e2 사용 기록 | 기존 운영 구성 유지 | [공식 자료](https://github.com/EssentialsX/Essentials) |

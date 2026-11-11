@@ -22,6 +22,7 @@ public final class ActionEngine {
         return finish(receipt,direction,items,databaseEffect);
     }
     public synchronized Outcome reserved(StateStore.Receipt receipt,Direction direction,Change items,Runnable databaseEffect){checkReady();return finish(receipt,direction,items,databaseEffect);}
+    public synchronized void assertReady(){checkReady();}
     private void checkReady(){if(!healthy)throw new StateStore.Denied("저장소 확인이 필요해 경제 기능을 일시 중지했습니다. 운영자에게 문의하세요.");if(executing)throw new StateStore.Denied("다른 거래를 처리 중입니다. 잠시 후 다시 시도하세요.");}
     private Outcome finish(StateStore.Receipt receipt,Direction direction,Change items,Runnable databaseEffect){
         if(!store.receipt(receipt.id()).state().equals("PENDING"))throw new StateStore.Denied("이미 처리한 거래입니다.");

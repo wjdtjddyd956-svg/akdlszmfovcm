@@ -59,6 +59,11 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
     public int farmingLevel(Player p){return isFarmer(p)?tycoon.store.progress(p.getUniqueId(),kr.minecraft.survival.economy.domain.Rules.Job.FARMER).level():0;}
     public boolean canFarmAt(Player p,org.bukkit.Location l){return tycoon.lands.allowed(p,l);}
     public Entity getShopNpc(Inventory inv){if(inv.getHolder() instanceof Market m)return m.npc;if(inv.getHolder() instanceof Tycoon.Screen s)return s.source;return null;}
+    public void refreshLandProtection(){tycoon.lands.reload();}
+    public void assertChunkAvailable(Player player,org.bukkit.World world,int x,int z){tycoon.lands.ensureFree(player,world,x,z);}
+    public void assertExternalLandClear(org.bukkit.World world,int x,int z){tycoon.lands.externalClear(world,x,z);}
+    public void holdLand(UUID token,String world,int x,int z){tycoon.lands.hold(token,world,x,z);}
+    public void releaseLand(UUID token){tycoon.lands.release(token);}
     public String farmingDay(){return tycoon.day();}
     public void recordFarmHarvestInside(UUID id,boolean wasFarmer){if(!wasFarmer)return;
         var job=kr.minecraft.survival.economy.domain.Rules.Job.FARMER;

@@ -52,7 +52,14 @@ public final class PackInstaller {
         Path legacy=root.resolve("plugins/KoreanEconomy/생활기록");if(Files.isDirectory(legacy))try(var files=Files.list(legacy)){for(Path f:files.filter(p->p.toString().endsWith(".properties")).toList()){Properties old=new Properties();try(Reader reader=Files.newBufferedReader(f,java.nio.charset.StandardCharsets.UTF_8)){old.load(reader);}if(old.containsKey("pending.id"))throw new IOException("1.2 미결 거래가 있습니다. 기존 1.2에서 /경제거래 "+f.getFileName().toString().replace(".properties","")+" 확인 으로 정리한 뒤 업그레이드하세요.");}}
         Properties hashes=properties(Files.newInputStream(payload.resolve("SHA256.properties")));if(hashes.isEmpty())throw new IOException("설치 파일 목록이 비어 있습니다.");
         Map<String,Path> incoming=new LinkedHashMap<>();for(String rel:new TreeSet<>(hashes.stringPropertyNames())){Path p=safe(payload,rel);if(!p.getFileName().toString().endsWith(".jar")||!sha(p).equalsIgnoreCase(hashes.getProperty(rel)))throw new IOException("플러그인 파일 검증 실패: "+rel);String name=name(p);if(name==null||incoming.put(name,p)!=null)throw new IOException("중복 또는 잘못된 플러그인: "+rel);}
-        if(mode.equals("ui")){
+        if(mode.equals("civic")){
+            Map<String,String> targets=Map.of("KoreanEconomy","2.0.3","KoreanMenu","2.2.0","KoreanFarming","1.0.2","KoreanCodex","1.2.1","CityTextures","1.2.0","KoreanCivic","1.0.0");
+            if(!incoming.keySet().equals(targets.keySet()))throw new IOException("마을·개인상점 업데이트의 플러그인 6개가 필요합니다.");
+            for(var target:targets.entrySet())if(!version(incoming.get(target.getKey())).equals(target.getValue()))throw new IOException("마을 업데이트 버전이 다릅니다: "+target.getKey());
+            Map<String,Set<String>> allowed=Map.of("KoreanEconomy",Set.of("2.0.1","2.0.2","2.0.3"),"KoreanMenu",Set.of("2.0.0","2.1.0","2.2.0"),"KoreanFarming",Set.of("1.0.0","1.0.1","1.0.2"),"KoreanCodex",Set.of("1.0.0","1.0.1","1.1.0","1.2.0","1.2.1"),"CityTextures",Set.of("1.0.0","1.1.0","1.1.1","1.2.0"),"KoreanCivic",Set.of("1.0.0"));
+            Set<String> found=new HashSet<>();try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);if(n==null||!allowed.containsKey(n)&&!n.equals("Vault"))continue;if(!found.add(n))throw new IOException("중복된 기존 플러그인: "+n);if(allowed.containsKey(n)&&!allowed.get(n).contains(version(file)))throw new IOException("확인되지 않은 새 버전을 덮어쓰지 않습니다: "+n);}}
+            if(!found.containsAll(Set.of("KoreanEconomy","Vault")))throw new IOException("기존 생활타이쿤 2.0.1 이상과 Vault가 필요합니다.");
+        }else if(mode.equals("ui")){
             Map<String,String> targets=Map.of("KoreanEconomy","2.0.2","KoreanMenu","2.1.0","KoreanFarming","1.0.2","KoreanCodex","1.2.1","CityTextures","1.1.1");
             if(!incoming.keySet().equals(targets.keySet()))throw new IOException("메뉴 통합 업데이트의 플러그인 5개가 필요합니다.");
             for(var target:targets.entrySet())if(!version(incoming.get(target.getKey())).equals(target.getValue()))throw new IOException("메뉴 통합 버전이 다릅니다: "+target.getKey());
@@ -72,7 +79,7 @@ public final class PackInstaller {
         try(ZipFile core=new ZipFile(incoming.get("Essentials").toFile())){var e=core.getEntry("com/earth2me/essentials/utils/VersionUtil.class");if(e==null||!new String(core.getInputStream(e).readAllBytes(),java.nio.charset.StandardCharsets.ISO_8859_1).contains("v26_3_R01"))throw new IOException("Paper 26.3 지원 EssentialsX가 필요합니다. 미지원 2.22.0을 재설치하지 않습니다.");}
         }
         // Identical dependencies already installed are verified above and reused in place.
-        if(mode.equals("ui"))try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);Path target=incoming.get(n);if(target!=null&&sha(file).equals(sha(target)))incoming.remove(n);}}
+        if(mode.equals("ui")||mode.equals("civic"))try(var files=Files.list(root.resolve("plugins"))){for(Path file:files.filter(f->f.toString().endsWith(".jar")).toList()){String n=name(file);Path target=incoming.get(n);if(target!=null&&sha(file).equals(sha(target)))incoming.remove(n);}}
         Path backup=backup(root);Path plugins=root.resolve("plugins");Files.createDirectories(plugins);Path retired=root.resolve(BACKUPS).resolve("교체전-JAR-"+stamp());Files.createDirectories(retired);List<Path> moved=new ArrayList<>(),added=new ArrayList<>();
         try{try(var files=Files.list(plugins)){for(Path p:files.filter(f->f.getFileName().toString().endsWith(".jar")).toList())if(incoming.containsKey(name(p))){Files.move(p,retired.resolve(p.getFileName()));moved.add(p);}}
             for(Path p:incoming.values()){Path dest=plugins.resolve(p.getFileName());if(Files.exists(dest))throw new IOException("동일 파일명 충돌: "+dest);Files.copy(p,dest);added.add(dest);}
@@ -91,9 +98,9 @@ public final class PackInstaller {
     }
     static void deleteTree(Path root)throws IOException {if(!Files.exists(root))return;try(var files=Files.walk(root)){for(Path p:files.sorted(Comparator.reverseOrder()).toList())Files.delete(p);}}
     public static void main(String[] args)throws Exception {
-        if(args.length<2){System.out.println("사용법: java -jar 설치도구.jar 설치|농장설치|메뉴설치|백업|검증|복원 서버폴더 [파일폴더/백업ZIP] --서버종료확인");return;}
+        if(args.length<2){System.out.println("사용법: java -jar 설치도구.jar 설치|농장설치|메뉴설치|마을설치|백업|검증|복원 서버폴더 [파일폴더/백업ZIP] --서버종료확인");return;}
         String op=args[0];Path root=Path.of(args[1]).toAbsolutePath().normalize();if(op.equals("검증")){verify(root);System.out.println("백업 SHA-256 검증 통과");return;}
         if(!Arrays.asList(args).contains("--서버종료확인"))throw new IOException("콘솔 stop 후 Java 프로세스가 종료됐는지 확인하고 --서버종료확인을 붙이세요.");server(root);
-        try(FileChannel installChannel=FileChannel.open(root.resolve(".tycoon-install.lock"),StandardOpenOption.CREATE,StandardOpenOption.WRITE);FileLock installLock=installChannel.tryLock()){if(installLock==null)throw new IOException("다른 설치 도구가 실행 중입니다.");try(Locks locks=new Locks(root)){}switch(op){case "설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize());case "농장설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize(),true);case "메뉴설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize(),"ui");case "백업"->backup(root);case "복원"->restore(root,Path.of(args[2]).toAbsolutePath().normalize());default->throw new IllegalArgumentException("알 수 없는 작업");}}
+        try(FileChannel installChannel=FileChannel.open(root.resolve(".tycoon-install.lock"),StandardOpenOption.CREATE,StandardOpenOption.WRITE);FileLock installLock=installChannel.tryLock()){if(installLock==null)throw new IOException("다른 설치 도구가 실행 중입니다.");try(Locks locks=new Locks(root)){}switch(op){case "설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize());case "농장설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize(),true);case "마을설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize(),"civic");case "메뉴설치"->install(root,Path.of(args[2]).toAbsolutePath().normalize(),"ui");case "백업"->backup(root);case "복원"->restore(root,Path.of(args[2]).toAbsolutePath().normalize());default->throw new IllegalArgumentException("알 수 없는 작업");}}
     }
 }

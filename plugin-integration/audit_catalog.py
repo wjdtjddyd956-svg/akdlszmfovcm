@@ -3,6 +3,7 @@ from pathlib import Path
 import json,csv
 ROOT=Path(__file__).resolve().parents[1]
 file=ROOT/'plugin-catalog/플러그인목록.json';data=json.loads(file.read_text(encoding='utf-8'))
+if data.get("마을상점모듈"):raise SystemExit("Historical catalog builder: use civic-update/update_catalog.py for the current civic release.")
 assert len(data['플러그인'])==46
 reasons={
 'spark':'Paper 자체 제공 확인. 별도 JAR를 중복 설치하지 않음.',

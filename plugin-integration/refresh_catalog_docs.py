@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 ROOT=Path(__file__).resolve().parents[1];folder=ROOT/'plugin-catalog';data=json.loads((folder/'플러그인목록.json').read_text(encoding='utf-8'));rows=data['플러그인']
+if data.get("마을상점모듈"):raise SystemExit("Historical catalog builder: use civic-update/update_catalog.py for the current civic release.")
 header='# 한글 플러그인 선택·연결 목록 — 46종\n\n2026-11-11 실제 Windows 설치 파일과 최신 main을 확인했습니다. 기존 16종 유지 + 공식 추가 5종 + 자체 연결 모듈 1종 구성입니다. 46종 전체 설치 목록이 아닙니다.\n\n[최신 추가 기능 설치 ZIP](../releases/plugin-integration/1.0.0/생활서버-플러그인연결-1.0.0.zip) · [설치·백업·복원](../plugin-integration/설치안내.md) · [검증·미완료](../plugin-integration/검증결과.md) · [46종 검토 이유](../plugin-integration/46종검토.md) · [버전·공식 배포·SHA-256](../releases/plugin-integration/1.0.0/versions.json)\n\n기존 UI·도감·농장 1.2.1은 유지합니다. 예전 정리 묶음 1.0.0은 역사 자료이며 현재 적용 상태를 나타내지 않습니다. 유료 파일·개인 데이터·토큰은 배포하지 않습니다. BetterRTP·야생 랜덤 이동은 검증 대기이고 실제로 활성화하지 않았습니다. 내장 spark·기존 Prism·NPC·임무·작물 구현과 중복되는 후보는 설치하지 않습니다.\n\n'
 table='| 플러그인 | 버전 | 선택 | 공식 자료 |\n| --- | --- | --- | --- |\n'
 for r in rows:table+='| '+r['공식이름']+' | '+r['버전']+' | '+r['선정상태']+' | [공식 자료]('+r['공식자료']+') |\n'

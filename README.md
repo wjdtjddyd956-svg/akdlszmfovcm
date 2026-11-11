@@ -1,6 +1,12 @@
 # 한글 생활 타이쿤 서버
 
-최신 추가 업데이트는 **[도시 생활 수첩 UI 1.2.1](interface-update/README.md)**입니다. 쉬프트+F·도감 필터·정품 수량·실제 보상·업적/효과·화면 복귀·농장을 통합하고 Windows에 백업 후 적용했습니다. [설치 ZIP](releases/ui-update/1.2.1/도시생활-Windows-메뉴통합-1.2.1.zip) · [실제 화면](releases/ui-update/1.2.1/실제화면-마을수첩.png) · [검증·남은 범위](releases/ui-update/1.2.1/검증결과.md).
+최신 기능은 **[마을·필지 매매 + 개인상점 1.0.0](civic-update/README.md)**입니다. 쉬프트+F에서 마을 설립·인접 영역 확장·필지 분양·땅 구매·재판매와 유저 물품 등록·구매·회수를 이용합니다. 자체 메뉴와 이용자 명령은 한글이며 기존 경제·농사·도감 데이터를 이어갑니다.
+
+[**마을·개인상점 설치 ZIP 받기**](releases/civic-update/1.0.0/도시생활-마을상점-1.0.0.zip) · [메뉴 미리보기](releases/civic-update/1.0.0/메뉴-미리보기.png) · [설치·설정](civic-update/README.md) · [거래·검증 범위](civic-update/거래·검증.md)
+
+이번 새 버전은 실제 Paper 26.3 API·MockBukkit 테스트 178개, 기존 데이터/거래 검사 121개, 설치·백업·복원 검사 39개와 배포 JAR의 SQLite 검사까지 완료했습니다. **이번 버전의 Windows 운영 적용·실제 클라이언트 플레이는 아직 수행하지 않았습니다.** 이전 버전의 적용 기록은 아래에 구분합니다.
+
+이전 메뉴 업데이트는 **[도시 생활 수첩 UI 1.2.1](interface-update/README.md)**입니다. 쉬프트+F·도감 필터·정품 수량·실제 보상·업적/효과·화면 복귀·농장을 통합하고 Windows에 백업 후 적용했습니다. [설치 ZIP](releases/ui-update/1.2.1/도시생활-Windows-메뉴통합-1.2.1.zip) · [실제 화면](releases/ui-update/1.2.1/실제화면-마을수첩.png) · [검증·남은 범위](releases/ui-update/1.2.1/검증결과.md).
 
 **[플러그인 전체 한글 정리 — 46종](plugin-catalog/README.md)** · [정리·기존 자체 플러그인 묶음 ZIP](releases/plugin-catalog/한글플러그인-정리묶음-1.0.0.zip) · [설치 순서](plugin-catalog/설치순서.md) · [연결·한글화 현황](plugin-catalog/연결·한글화.md)
 

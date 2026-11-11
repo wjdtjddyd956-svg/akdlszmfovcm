@@ -96,10 +96,10 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 menu.inventory.setItem(10, icon(Material.GOLD_INGOT, "§e내 돈 확인", "§7현재 잔액을 확인합니다."));
                 menu.inventory.setItem(12, icon(Material.EMERALD, "§a송금 안내", "§7/송금 닉네임 금액", "§7예: /송금 Steve 100"));
                 menu.inventory.setItem(14, icon(Material.CHEST, "§6NPC 상점 안내", "§7마을의 잡화·농산물·요리 상인을 찾아가세요.","§7NPC 우클릭으로 구매·판매합니다."));
-                menu.inventory.setItem(16, icon(Material.GOLDEN_SHOVEL, "§b내 땅 보호", "§7땅 보호와 친구 초대 방법"));
+                menu.inventory.setItem(16, icon(Material.GOLDEN_SHOVEL, "§b마을·땅 거래", "§7마을 설립 · 확장 · 필지 분양·매매"));
                 menu.inventory.setItem(28, icon(Material.OAK_DOOR, "§a집 위치 저장", "§7확인 화면을 거쳐 저장합니다."));
                 menu.inventory.setItem(22, icon(Material.SUNFLOWER, "§e일일 보상", "§7하루에 한 번 보상을 받습니다."));
-                menu.inventory.setItem(24, icon(Material.ENDER_CHEST, "§6유저 거래소", "§7유저 상점 만들기와 거래 방법"));
+                menu.inventory.setItem(24, icon(Material.ENDER_CHEST, "§6개인상점", "§7유저가 등록한 물품 구매 · 내 물품 판매"));
                 menu.inventory.setItem(30, icon(Material.RED_BED, "§a집으로 이동", "§7저장한 기본 집으로 이동"));
                 menu.inventory.setItem(32, icon(Material.COMPASS, "§b스폰으로 이동", "§7운영자가 설정한 스폰으로 이동"));
                 menu.inventory.setItem(37, icon(Material.WHEAT,"§a직업 선택·숙련도"));
@@ -115,13 +115,14 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 menu.inventory.setItem(25,icon(Material.WHEAT,"§a커스텀 농사","§7딸기 · 토마토 · 옥수수 · 쌀 · 오이","§7씨앗은 농산물·잡화 NPC에서 구매","§e왼쪽 클릭: 농장 안내"));
                 for(int row:new int[]{9,18,27,36})for(int column:new int[]{0,8})if(row+column!=26)menu.inventory.setItem(row+column,icon(Material.CYAN_STAINED_GLASS_PANE," "));
                 menu.inventory.setItem(9,icon(Material.GOLD_NUGGET,"§6경제 · 거래","§7지갑 · 송금 · NPC 상점 · 땅"));
-                menu.inventory.setItem(18,icon(Material.BOOK,"§b수집 · 농장","§7도감 · 일일 보상 · 거래소 · 농장 · 업적"));
+                menu.inventory.setItem(18,icon(Material.BOOK,"§b수집 · 농장","§7도감 · 일일 보상 · 개인상점 · 농장 · 업적"));
                 menu.inventory.setItem(27,icon(Material.COMPASS,"§a이동 · 생활","§7집 저장 · 귀가 · 스폰 · 도움말"));
                 menu.inventory.setItem(36,icon(Material.EXPERIENCE_BOTTLE,"§d성장 · 직업","§7직업 · 요리 · 강화 · 임무"));
+                menu.inventory.setItem(45,icon(Material.GOLDEN_SHOVEL,"§7기존 개인 땅 보호","§7/땅보호 안내와 친구 초대"));
                 menu.inventory.setItem(51,icon(Material.PAINTING,"§b메뉴 리소스팩","§7전용 아이콘으로 기능을 구분합니다.","§e왼쪽 클릭: 미리보기·팩 받기·설치 확인"));
-                Map<Integer,String> models=Map.ofEntries(Map.entry(4,"business_ledger"),Map.entry(10,"wallet"),Map.entry(12,"transfer"),Map.entry(14,"shop"),Map.entry(16,"land_deed"),Map.entry(20,"ui/codex"),Map.entry(22,"daily_reward"),Map.entry(24,"seller_crate"),Map.entry(25,"ui/custom_farm"),Map.entry(26,"ui/achievements"),Map.entry(28,"home_key"),Map.entry(30,"home_door"),Map.entry(32,"city_spawn"),Map.entry(34,"help_book"),Map.entry(37,"jobs_case"),Map.entry(39,"cooking_pan"),Map.entry(41,"upgrade_anvil"),Map.entry(43,"quest_clipboard"),Map.entry(49,"close"),Map.entry(51,"ui/effects"));
+                Map<Integer,String> models=Map.ofEntries(Map.entry(4,"business_ledger"),Map.entry(10,"wallet"),Map.entry(12,"transfer"),Map.entry(14,"shop"),Map.entry(16,"land_deed"),Map.entry(20,"ui/codex"),Map.entry(22,"daily_reward"),Map.entry(24,"seller_crate"),Map.entry(25,"ui/custom_farm"),Map.entry(26,"ui/achievements"),Map.entry(28,"home_key"),Map.entry(30,"home_door"),Map.entry(32,"city_spawn"),Map.entry(34,"help_book"),Map.entry(37,"jobs_case"),Map.entry(39,"cooking_pan"),Map.entry(41,"upgrade_anvil"),Map.entry(43,"quest_clipboard"),Map.entry(45,"land_deed"),Map.entry(49,"close"),Map.entry(51,"ui/effects"));
                 models.forEach((slot,id)->tag(menu.inventory,slot,id));
-                Map<Integer,String> dependencies=Map.ofEntries(Map.entry(10,"Essentials"),Map.entry(12,"Essentials"),Map.entry(14,"KoreanEconomy"),Map.entry(16,"KoreanEconomy"),Map.entry(20,"KoreanCodex"),Map.entry(22,"KoreanEconomy"),Map.entry(24,"QuickShop-Hikari"),Map.entry(25,"KoreanFarming"),Map.entry(26,"KoreanCodex"),Map.entry(28,"Essentials"),Map.entry(30,"Essentials"),Map.entry(32,"EssentialsSpawn"),Map.entry(37,"KoreanEconomy"),Map.entry(39,"KoreanEconomy"),Map.entry(41,"KoreanEconomy"),Map.entry(43,"KoreanEconomy"),Map.entry(51,"CityTextures"));
+                Map<Integer,String> dependencies=Map.ofEntries(Map.entry(10,"Essentials"),Map.entry(12,"Essentials"),Map.entry(14,"KoreanEconomy"),Map.entry(16,"KoreanCivic"),Map.entry(20,"KoreanCodex"),Map.entry(22,"KoreanEconomy"),Map.entry(24,"KoreanCivic"),Map.entry(25,"KoreanFarming"),Map.entry(26,"KoreanCodex"),Map.entry(28,"Essentials"),Map.entry(30,"Essentials"),Map.entry(32,"EssentialsSpawn"),Map.entry(37,"KoreanEconomy"),Map.entry(39,"KoreanEconomy"),Map.entry(41,"KoreanEconomy"),Map.entry(43,"KoreanEconomy"),Map.entry(51,"CityTextures"));
                 dependencies.forEach((slot,dependency)->{if(!enabled(dependency)){ItemStack item=menu.inventory.getItem(slot);ItemMeta m=item.getItemMeta();m.setDisplayName("§8"+org.bukkit.ChatColor.stripColor(m.getDisplayName())+" §7[준비 중]");m.setLore(List.of("§7이 기능이 아직 활성화되지 않았습니다.","§7운영자에게 확인을 요청하세요."));item.setItemMeta(m);menu.inventory.setItem(slot,item);}});
             }else{tag(menu.inventory,30,"confirm");tag(menu.inventory,32,"close");tag(menu.inventory,49,"close");}
             player.openInventory(menu.inventory);
@@ -163,18 +164,14 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 case 26 -> action(player,"KoreanCodex","업적");
                 case 51 -> action(player,"CityTextures","도시팩 메뉴미리보기");
                 case 22 -> action(player, "KoreanEconomy", "일일보상");
-                case 24 -> {
-                    if (!enabled("QuickShop-Hikari") || !enabled("KoreanCommands")) help(player, "§c유저 거래소 기능이 설치되거나 활성화되지 않았습니다.");
-                    else help(player, "§6[유저 상점]", "§f판매할 아이템을 손에 들고 상자를 바라보세요.",
-                            "§f/거래소 생성 가격 §7으로 상점을 만듭니다.", "§7안내에 따라 판매/구매 수량을 입력하세요.",
-                            "§7예: /거래소 생성 100", "§7상점 거래는 해당 상점의 안내를 따라 진행하세요.");
-                }
+                case 24 -> action(player,"KoreanCivic","개인상점");
+                case 45 -> action(player,"KoreanEconomy","땅보호");
                 case 37 -> action(player, "KoreanEconomy", "직업");
                 case 39 -> action(player, "KoreanEconomy", "요리");
                 case 41 -> action(player, "KoreanEconomy", "강화");
                 case 43 -> action(player, "KoreanEconomy", "임무");
                 case 16 -> {
-                    action(player,"KoreanEconomy","땅보호");
+                    action(player,"KoreanCivic","마을");
                 }
                 case 28 -> {
                     if (enabled("Essentials")) open(player, true);
@@ -183,7 +180,7 @@ public class KoreanMenuPlugin extends JavaPlugin implements Listener {
                 case 30 -> action(player, "Essentials", "essentials:home default");
                 case 32 -> action(player, "EssentialsSpawn", "essentialsspawn:spawn");
                 case 34 -> help(player, "§6[경제 야생 도움말]", "§f쉬프트+F 또는 /메뉴 §7: 메뉴", "§f/돈 §7: 내 돈",
-                        "§f/송금 닉네임 금액 §7: 송금", "§f/이동요청 닉네임 §7: 이동 요청", "§f/이동수락 §7: 이동 수락", "§f/상점 · /일일보상 · /경제안내", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
+                        "§f/송금 닉네임 금액 §7: 송금", "§f/이동요청 닉네임 §7: 이동 요청", "§f/이동수락 §7: 이동 수락", "§f/마을 · /개인상점 · /상점 · /일일보상", "§7스폰·관리 지역에서는 운영 규칙을 따라주세요.");
                 default -> { }
             }
         }

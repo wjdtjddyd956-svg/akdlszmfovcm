@@ -94,7 +94,7 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     void refreshPreview(Player p){Inventory top=p.getOpenInventory().getTopInventory();if(top!=null&&top.getHolder() instanceof Preview screen){if(screen.uiPage)previewUI(p);else preview(p);}}
     boolean trusted(Inventory inventory){
         if(inventory==null||inventory.getHolder()==null)return false;Class<?> holder=inventory.getHolder().getClass();String name=holder.getName();
-        String owner=switch(name){case "kr.minecraft.survival.menu.KoreanMenuPlugin$Menu"->"KoreanMenu";case "kr.minecraft.survival.codex.KoreanCodexPlugin$Screen"->"KoreanCodex";case "kr.minecraft.survival.farming.FarmMenus$Screen"->"KoreanFarming";case "kr.minecraft.survival.economy.KoreanEconomyPlugin$Market","kr.minecraft.survival.economy.Tycoon$Screen","kr.minecraft.survival.economy.LifeProgress$Menu"->"KoreanEconomy";default->null;};
+        String owner=switch(name){case "kr.minecraft.survival.civic.CivicMenus$Screen"->"KoreanCivic";case "kr.minecraft.survival.menu.KoreanMenuPlugin$Menu"->"KoreanMenu";case "kr.minecraft.survival.codex.KoreanCodexPlugin$Screen"->"KoreanCodex";case "kr.minecraft.survival.farming.FarmMenus$Screen"->"KoreanFarming";case "kr.minecraft.survival.economy.KoreanEconomyPlugin$Market","kr.minecraft.survival.economy.Tycoon$Screen","kr.minecraft.survival.economy.LifeProgress$Menu"->"KoreanEconomy";default->null;};
         if(owner==null)return false;Plugin plugin=getServer().getPluginManager().getPlugin(owner);if(plugin==null||!plugin.isEnabled())return false;try{return Class.forName(plugin.getDescription().getMain(),false,holder.getClassLoader()).isInstance(plugin);}catch(ClassNotFoundException e){return false;}
     }
     void returnToMenu(Player p){var menu=getServer().getPluginManager().getPlugin("KoreanMenu");if(menu==null||!menu.isEnabled()||!p.hasPermission("koreanmenu.use")){p.sendMessage("§e마을 수첩을 사용할 수 없습니다.");return;}try{menu.getClass().getMethod("openFromNavigation",Player.class).invoke(menu,p);}catch(ReflectiveOperationException e){p.performCommand("메뉴");}}
@@ -103,7 +103,7 @@ public class CityTexturesPlugin extends JavaPlugin implements Listener {
     String model(String title,int slot,ItemStack item){
         if(item!=null&&item.hasItemMeta()){String farm=item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey("tycoon","farm_preview"),PersistentDataType.STRING);if(farm!=null&&farm.matches("[a-z_]+"))return "farm/"+farm;}
         if(item==null||!item.hasItemMeta())return null;ItemMeta meta=item.getItemMeta();if(!meta.hasDisplayName())return null;String explicit=meta.getPersistentDataContainer().get(new NamespacedKey("tycoon","ui_icon"),PersistentDataType.STRING);if(explicit!=null&&(icons.containsKey(explicit)||ui!=null&&ui.icons.containsKey(explicit)))return explicit;
-        if(title.startsWith("도감")||title.startsWith("아이템 도감")||title.startsWith("수집 업적")||title.startsWith("농장")||title.startsWith("도시 농장"))return null;
+        if(title.startsWith("마을 |")||title.startsWith("필지 |")||title.startsWith("개인상점 |")||title.startsWith("판매대금 |")||title.startsWith("도감")||title.startsWith("아이템 도감")||title.startsWith("수집 업적")||title.startsWith("농장")||title.startsWith("도시 농장"))return null;
         String name=ChatColor.stripColor(meta.getDisplayName());
         // The upgrade slot contains a copy of the actual tool. Only decorate interface controls.
         if(title.contains("도구 강화")&&slot==22)return null;

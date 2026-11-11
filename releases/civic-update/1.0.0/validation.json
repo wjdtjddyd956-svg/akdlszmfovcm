@@ -1,0 +1,132 @@
+{
+  "versions": {
+    "KoreanEconomy": "2.0.3",
+    "KoreanMenu": "2.2.0",
+    "CityTextures": "1.2.0",
+    "KoreanCivic": "1.0.0",
+    "KoreanFarming": "1.0.2",
+    "KoreanCodex": "1.2.1"
+  },
+  "target": "Paper 26.3 build238 df120fd / Java 25+",
+  "api_sha256": "2436dd7d3ffb383c518d00c87ca99959486f42d304ba0074d92873d678361063",
+  "api_provenance": {
+    "paper_commit": "df120fd",
+    "minecraft": "26.3",
+    "api_sources_modified": false,
+    "official_published_jar": false,
+    "bungee_compile_dependency": "net.md-5:bungeecord-chat:1.21-R0.4 (Central; replaces deprecated Paper compile fork)",
+    "brigadier_compile_dependency": "Mojang/brigadier master source (local build)",
+    "jar": "/workspace/toolchains/paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar"
+  },
+  "bytecode": 21,
+  "mockbukkit": "26.3:4.120.0",
+  "suites": {
+    "civic": {
+      "tests": 37,
+      "failures": 0,
+      "skipped": 0
+    },
+    "economy": {
+      "tests": 31,
+      "failures": 0,
+      "skipped": 0
+    },
+    "farming": {
+      "tests": 45,
+      "failures": 0,
+      "skipped": 0
+    },
+    "codex": {
+      "tests": 42,
+      "failures": 0,
+      "skipped": 0
+    },
+    "textures": {
+      "tests": 23,
+      "failures": 0,
+      "skipped": 0
+    }
+  },
+  "total_tests": 178,
+  "domain_assertions": 121,
+  "embedded_sqlite_smoke": true,
+  "farm_codex_reused_with_complete_source_and_artifact_proof": true,
+  "reused_source_verification": "published ZIP source hashes checked exactly; current source equality checked after Windows CRLF normalization",
+  "resourcepack_unchanged_sha256": "c6734e987adcb573a91733e3b5e3127e38af3370500500eb8274fba62327e6a4",
+  "core_schema": 2,
+  "civic_schema": 1,
+  "windows_server_applied": false,
+  "real_gp_worldguard_event_combination_tested": false,
+  "native_minecraft_client_play_tested": false,
+  "actual_player_nbt_disk_tested": false,
+  "ten_player_load_tested": false,
+  "preview": "real MockBukkit inventory data and actual pack PNGs, not a native game screenshot",
+  "test_substitutions": [
+    "MockBukkit player NBT save counting/fault injection",
+    "Existing farming suite: missing entity visibility defaults and BLOCK_BREAK_SPEED attribute",
+    "Resource-pack status simulation, no native client download/renderer"
+  ],
+  "source_sha256": {
+    "korean-economy/src/main/resources/config.yml": "7c012f4b9fa00cfcae70efa012ab3dac2be192f1abc60123102ee75469504c89",
+    "korean-economy/src/main/resources/plugin.yml": "b0ef8e39c94eb33afb0f2366b085f1d35c31071104efc634a6ba6cff018d10f3",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/KoreanEconomyPlugin.java": "2b340b36625516f72b8a9a731243623a068aed5a6e522e72fb80f6f3e4565425",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/ServerTools.java": "172a007871a6cd99c0ccd1e17a79b3a9836689db7b8228dd414ee5839a1298e9",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/ServerBackups.java": "1ecf68f1a466368275b65e2c9916d75ca3261d6c4ec63cdb4474b8e85dc1b5e6",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/Tycoon.java": "0d8a2ceafa2f641682104c2f902f222ecee809565ab8e00259d448b8c6f2407e",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/LandProtection.java": "c24dae7a58acb75f3b14b87740b3354aee37dd71df72c5f0b0e4640386180ce9",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/InventoryPlan.java": "6e3d62a515fb20beb0d2c363376b42e954bee8a325a79a5bfe5dbeb2b1bba865",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/AuditLog.java": "1e7cf1cd891f1347ebfcf49e3d03d4c77f9a425c8faddc4fe04eec8ae633c443",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/ItemPlans.java": "a46ca5ef66b0b5c05a57ac4c003be461d17288d59b3a8224466f5d95a56f7bfd",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/ClaimBridge.java": "c8ced7eec65411e9cb0f29d97704a66fbed406b6f93a1761801c6b602c9e5b54",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/DailyClaims.java": "f4c1b4a446f182d3f59154947d9b175ceafc881491519aef676fab7bf4d6ca1b",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/NpcShops.java": "16aada336dda50aaa2b09609630587f6656ef3861915ca6aee81dbeeb7ec00a7",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/ShopCategory.java": "07bea51f62f0cd1497b05b082e1d2966453ef6208899a93b1b445a525fde6a83",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Money.java": "1189f87b6bb5a2c5e5c0a7f88790d4738c09d9dd9aef2826c565ac7dbae818f0",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/ActionEngine.java": "f7e46aacbe8c124ed47ed1c445c2cef7eb27fab48468b9cde929b7fc98286daf",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Rules.java": "2256cff30aab3f2826230e90d240eb4d4861f909e6272e176bafef829bdb35bc",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/Legacy12.java": "edf292d604db5296d4c6bacb28c390a04694a030a2a8dd6ceae4b7f7f4f1c645",
+    "korean-economy/src/main/java/kr/minecraft/survival/economy/domain/StateStore.java": "0f510970892bd9c92a7ada33d05d40a92f3537e32f2713625b051971fb952bbd",
+    "korean-menu/src/main/resources/plugin.yml": "6b624faee5d6223a980aa5f982634c6bf8a0f2fcf204c0b83f7f05e6fc0c9ca3",
+    "korean-menu/src/main/java/kr/minecraft/survival/menu/KoreanMenuPlugin.java": "d792ffcc1933b785fa54e6c9f54621204677a45fc280c0aaa1e3a6fb542ba196",
+    "city-textures/src/main/resources/icons.tsv": "0687a7abd1829269bb989f5059bf07c41568f35e7b2005730e62db40700f5d95",
+    "city-textures/src/main/resources/ui-icons.tsv": "4dba3a1e06f53153d42b8eb6dc179f84a05bd2a8b7f2041bfcb0150ead202595",
+    "city-textures/src/main/resources/config.yml": "a824e85897b1c61805382b50acc6e70007c3c37dcb175911d7b70522ffb4328a",
+    "city-textures/src/main/resources/plugin.yml": "1d46271be731cbe2f28c359eaa27cb944fdc86e279b2095e218dbeb8eee33a8b",
+    "city-textures/src/main/resources/ui.yml": "0c116aec228951b6d0bbd4a7aca824e391232fdafb123d9761e72d3143e9d0c2",
+    "city-textures/src/main/java/kr/minecraft/survival/citytextures/CityTexturesPlugin.java": "7ff6a3cf3bc94d4c9bc6f440ea5cf0bb852c7bb00fff04ebfc2eee2fa0beddf2",
+    "city-textures/src/main/java/kr/minecraft/survival/citytextures/InterfacePack.java": "63468f037d1105aa5fb2e4bcd0a53ef6acd53579c910719ae5abe39b4320013e",
+    "korean-civic/src/main/resources/config.yml": "ccb822d4efe59ec86c6bad4cf5627d97ee6561db2747f8ba7c4b7ab8edd6932b",
+    "korean-civic/src/main/resources/plugin.yml": "79be53ee388f6bae2e0788cf1417540f057be8716dc4716e19f32fe1edfe349c",
+    "korean-civic/src/main/java/kr/minecraft/survival/civic/CivicMenus.java": "acb0711061cb7dd142ba52fe10b3fefbcb698acaec6a7ecd17e09659704f55f1",
+    "korean-civic/src/main/java/kr/minecraft/survival/civic/KoreanCivicPlugin.java": "4f646e1d35c9f11a34534a1a8da994d405ca8fd7ec2e5dc66e7ef06e7fbca2b3",
+    "korean-civic/src/main/java/kr/minecraft/survival/civic/CivicStore.java": "e6530cc14808185ba57a36df118b7d951355fb15de8c00ff374b496773425551",
+    "korean-civic/src/main/java/kr/minecraft/survival/civic/InventoryChange.java": "e27073fcf97451481eb33a20cb402c7f35451eb849ae6156778aac4589564cf9",
+    "korean-farming/src/main/resources/config.yml": "7e1ba3397528c4add9295eb0efccbd8c4e572fec94f3cc4d540288159fda652e",
+    "korean-farming/src/main/resources/plugin.yml": "7ce3d3df1ec2bb61c90c3c0920f2c4b944ab5e64d9a2f987b53b08a59b6cd6cb",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmProtection.java": "571307850889e9b5486676a39aee754c595014e7061608e2a72578973f666652",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmRenderer.java": "aa7f74a6c3a782b118585137e796262eb5c33b1949d29c32f2045369ddfeebe2",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmRules.java": "33916330252e1961986bd0865ae7c01f85e275bb5474ad2a079b3771bfbec85b",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmMenus.java": "265901db93d133f37f9370d15648bf0c9a6e8458d801ba7adf8e20d269e7dd80",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmItems.java": "3496215a27f6fa97f4dfe2bb79e29b7f923c3da1faa2cf042baa3e1445bd9909",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/KoreanFarmingPlugin.java": "17bb2fc31760a8f61cbb2ae4facdf90b789f5252d6caae97ac2914943f3d7d03",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/InventoryPlan.java": "3b893d24239bd84117ba0e9e0d43e867689be8a28d9c7dfda084580505aff8b6",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/FarmStore.java": "39a89810031f4bf252f5a6daa9dbbeae5600938e4245e82fde7e5c64975dc5a5",
+    "korean-farming/src/main/java/kr/minecraft/survival/farming/WgAccess.java": "c5d08dcab9ecb207c2c0f46658bfb62be646293258ce2763a97fd2aa870ee793",
+    "korean-codex/src/main/resources/config.yml": "65524e90dabdf8456aaabc1df5c65a81a0e421d8834b8ad7894ad30a42114358",
+    "korean-codex/src/main/resources/catalog.tsv": "cd8e6bbd89bcdcf762a73fb33418e3e31089b12fee710ea14a8b9caa97bb0ec9",
+    "korean-codex/src/main/resources/plugin.yml": "be9c19d18cc50b165aa6e1b0c1f2387d61202f2ba4631045da4894ff5a912d9d",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Catalog.java": "80de5fe354f74fb38cd361a1a69aaf6a1eee820dfef27e3d4cc01b7e6a895a77",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/KoreanCodexPlugin.java": "03ed090a181a198540a641032620435edb76bc5894708acd3f467dee072d209d",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/Bonuses.java": "2f68396248a55884eda0390e1256d02618bb38cef5d7f3b97a269ff2d723a10b",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/RegistrationPlan.java": "60e80594b841e098df583915dcdad457924d449b62bdc34563e645b77eca83e8",
+    "korean-codex/src/main/java/kr/minecraft/survival/codex/CodexStore.java": "a6c57312d20727c8d78fbcad8050d3ca1aeff576e7d876ce7c7898afb40dabf1"
+  },
+  "artifacts": {
+    "KoreanEconomy-2.0.3.jar": "a2e9f68e836787c00541f55f5ec6b4a26fbbadf33313d724809918b8e4ed9fcc",
+    "KoreanMenu-2.2.0.jar": "09fbf0a71a6a08ad2f69a1b9007a3961ea455c8e890ba7f218ccd8fd1a7ef0f7",
+    "CityTextures-1.2.0.jar": "d5a0edd5f9467b2699a46af906e10c9a6858563b9e78b5fc88e87cdf90e90429",
+    "KoreanCivic-1.0.0.jar": "4365e3d9f584fb0fa01ba7463f3c765594f308735ccea2ab9d7384c163343418",
+    "KoreanFarming-1.0.2.jar": "f475b8e1156454068029bd29c38ba649e5a5c9254cfc1c80868d583105bd23ee",
+    "KoreanCodex-1.2.1.jar": "665f564cd61ac6cbbc69217c7a152d6f36c16e08b9e3f6ed9b3bfed427307fb1"
+  }
+}

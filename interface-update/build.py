@@ -3,6 +3,7 @@
 from pathlib import Path
 import subprocess,os,json,zipfile,shutil,hashlib,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];BASE=Path('/workspace/toolchains');OUT=ROOT/'releases/ui-update/1.2.1';WORK=ROOT/'.build/interface-release';OUT.mkdir(parents=True,exist_ok=True);WORK.mkdir(parents=True,exist_ok=True)
+if 'version: 2.1.0\n' not in (ROOT/'korean-menu/src/main/resources/plugin.yml').read_text():raise SystemExit('Historical UI builder: use civic-update/build.py for the current source.')
 JDK=BASE/'jdk-25.0.5.0.3/bin';API=BASE/'paper-api-build/build/libs/paper-api-26.3-df120fd-local.jar';DEPS=BASE/'paper-api-build/build/deps'
 def run(args,**kw):return subprocess.run(list(map(str,args)),check=True,**kw)
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()

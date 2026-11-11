@@ -1,0 +1,21 @@
+name: KoreanCivic
+version: 1.0.0
+main: kr.minecraft.survival.civic.KoreanCivicPlugin
+api-version: '26.3'
+depend: [KoreanEconomy, Vault]
+softdepend: [KoreanMenu, GriefPrevention, WorldGuard, CityTextures]
+commands:
+  마을:
+    description: 마을 설립·영역 확장·필지 매매
+    permission: koreancivic.use
+  개인상점:
+    description: 유저 물품 등록·구매·판매대금 수령
+    permission: koreancivic.use
+  마을거래:
+    description: 마을·개인상점 미확정 거래 확인
+    permission: koreancivic.admin
+permissions:
+  koreancivic.use:
+    default: true
+  koreancivic.admin:
+    default: op

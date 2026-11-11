@@ -17,13 +17,27 @@ import static kr.minecraft.survival.economy.domain.ActionEngine.*;
 
 /** Chunk claims apply at every height. Other plugins' cancellations are never reversed. */
 final class LandProtection implements Listener {
-    final Tycoon t;private Map<String,StateStore.Land> claims=Map.of();private final Map<String,Set<String>> trusts=new HashMap<>();
-    LandProtection(Tycoon t){this.t=t;reload();}
+    final Tycoon t;final Map<UUID,String> leases=new HashMap<>();final ClaimBridge claimBridge;private Map<String,StateStore.Land> claims=Map.of();private final Map<String,Set<String>> trusts=new HashMap<>();
+    LandProtection(Tycoon t){this.t=t;reload();claimBridge=new ClaimBridge(this);}
     static String key(Location l){return l.getWorld().getUID()+":"+(l.getBlockX()>>4)+":"+(l.getBlockZ()>>4);}
     void reload(){Map<String,StateStore.Land> map=new HashMap<>();trusts.clear();for(var l:t.store.lands()){map.put(l.world()+":"+l.x()+":"+l.z(),l);trusts.computeIfAbsent(l.owner(),t.store::trusted);}claims=Map.copyOf(map);}
     StateStore.Land land(Location l){return claims.get(key(l));}
-    boolean allowed(Player p,Location location){var l=land(location);return l==null||p.hasPermission("koreaneconomy.land.bypass")||l.owner().equals(p.getUniqueId().toString())||("ACTIVE".equals(l.state())&&trusts.getOrDefault(l.owner(),Set.of()).contains(p.getUniqueId().toString()));}
-    boolean same(Location a,Location b){var x=land(a);var y=land(b);return x==null?y==null:y!=null&&x.owner().equals(y.owner())&&x.state().equals(y.state());}
+    boolean protectedAt(Location l){return land(l)!=null||leases.containsValue(key(l));}
+    void hold(UUID token,String world,int x,int z){leases.put(token,world+":"+x+":"+z);}
+    void release(UUID token){leases.remove(token);}
+    boolean allowed(Player p,Location location){if(p.hasPermission("koreaneconomy.land.bypass"))return true;if(leases.containsValue(key(location)))return false;var l=land(location);return l==null||("ACTIVE".equals(l.state())&&(l.owner().equals(p.getUniqueId().toString())||trusts.getOrDefault(l.owner(),Set.of()).contains(p.getUniqueId().toString())));}
+    boolean same(Location a,Location b){if(leases.containsValue(key(a))||leases.containsValue(key(b)))return key(a).equals(key(b));var x=land(a);var y=land(b);return x==null?y==null:y!=null&&x.owner().equals(y.owner())&&x.state().equals(y.state());}
+    void ensureFree(Player player,World world,int x,int z){
+        if(Math.abs((long)x)>1_875_000||Math.abs((long)z)>1_875_000)throw new StateStore.Denied("허용된 월드 범위를 벗어났습니다.");
+        if(t.plugin.getConfig().getStringList("땅보호-금지월드").contains(world.getName()))throw new StateStore.Denied("이 월드에서는 마을 땅을 만들 수 없습니다.");
+        if(t.store.land(world.getUID().toString(),x,z)!=null||leases.containsValue(world.getUID()+":"+x+":"+z))throw new StateStore.Denied("기존 땅 또는 처리 중인 필지와 겹칩니다.");
+        externalClear(world,x,z);
+    }
+    void externalClear(World world,int x,int z){
+        for(double dx:new double[]{.001,15.999})for(double dz:new double[]{.001,15.999})if(!world.getWorldBorder().isInside(new Location(world,x*16.0+dx,world.getMinHeight()+1,z*16.0+dz)))throw new StateStore.Denied("월드 경계 안의 필지를 선택하세요.");
+        if(worldGuardOverlap(world,x,z))throw new StateStore.Denied("WorldGuard 관리 영역과 겹치는 필지입니다.");
+        if(claimBridge.collides(world,x,z))throw new StateStore.Denied("기존 개인 땅 보호와 겹칩니다. 보호되지 않은 곳을 선택하세요.");
+    }
     List<Location> locations(Inventory inventory){
         InventoryHolder holder=inventory.getHolder();
         if(holder instanceof Player||holder instanceof Tycoon.Screen||holder instanceof KoreanEconomyPlugin.Market)return List.of();
@@ -40,9 +54,10 @@ final class LandProtection implements Listener {
         String op=a.length==0?"안내":a[0];Location loc=p.getLocation();String world=p.getWorld().getUID().toString();int x=loc.getBlockX()>>4,z=loc.getBlockZ()>>4;
         switch(op){
             case "생성","확장"->{
-                t.survival(p);if(a.length!=2||!a[1].equals("확인")){long cost=t.store.landCost(p.getUniqueId(),250000);p.sendMessage("§e현재 청크(16×16, 모든 높이)를 "+Tycoon.money(cost)+"에 보호합니다. 최대 3청크.");p.sendMessage("§e/땅보호 "+op+" 확인 §7으로 확정하세요. 포기 시 환불하지 않습니다.");return;}
+                t.survival(p);t.engine.assertReady();if(a.length!=2||!a[1].equals("확인")){long cost=t.store.landCost(p.getUniqueId(),250000);p.sendMessage("§e현재 청크(16×16, 모든 높이)를 "+Tycoon.money(cost)+"에 보호합니다. 최대 3청크.");p.sendMessage("§e/땅보호 "+op+" 확인 §7으로 확정하세요. 포기 시 환불하지 않습니다.");return;}
                 if(t.plugin.getConfig().getStringList("땅보호-금지월드").contains(p.getWorld().getName()))throw new StateStore.Denied("이 월드에서는 개인 땅을 만들 수 없습니다.");
                 if(worldGuardOverlap(p.getWorld(),x,z))throw new StateStore.Denied("WorldGuard 관리 영역과 겹치는 청크입니다.");
+                if(leases.containsValue(world+":"+x+":"+z))throw new StateStore.Denied("확인 중인 마을 필지입니다. 운영자에게 문의하세요.");
                 StateStore.Receipt r=t.store.reserveLand(p.getUniqueId(),world,x,z,3,250000);reload();
                 Outcome outcome=t.engine.reserved(r,Direction.DEBIT,NO_ITEMS,()->t.store.activateLandInside(r.id()));reload();t.result(p,outcome,"현재 청크를 보호했습니다. /땅보호 초대 닉네임으로 친구를 초대하세요.");
             }
@@ -73,34 +88,34 @@ final class LandProtection implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void breakBlock(BlockBreakEvent e){if(deny(e.getPlayer(),e.getBlock().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void place(BlockPlaceEvent e){if(deny(e.getPlayer(),e.getBlock().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void multi(BlockMultiPlaceEvent e){for(BlockState b:e.getReplacedBlockStates())if(deny(e.getPlayer(),b.getLocation())){e.setCancelled(true);break;}}
-    @EventHandler(priority=EventPriority.HIGHEST) public void interact(PlayerInteractEvent e){if(e.getClickedBlock()!=null&&!allowed(e.getPlayer(),e.getClickedBlock().getLocation())){e.setUseInteractedBlock(Event.Result.DENY);e.setUseItemInHand(Event.Result.DENY);}}
+    @EventHandler(priority=EventPriority.HIGHEST) public void interact(PlayerInteractEvent e){if(claimBridge.blockTool(e)){e.setUseInteractedBlock(Event.Result.DENY);e.setUseItemInHand(Event.Result.DENY);return;}if(e.getClickedBlock()!=null&&!allowed(e.getPlayer(),e.getClickedBlock().getLocation())){e.setUseInteractedBlock(Event.Result.DENY);e.setUseItemInHand(Event.Result.DENY);}}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void bucket(PlayerBucketEmptyEvent e){if(deny(e.getPlayer(),e.getBlock().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void fill(PlayerBucketFillEvent e){if(deny(e.getPlayer(),e.getBlock().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void entity(PlayerInteractEntityEvent e){if(t.plugin.npcs.category(e.getRightClicked())==null&&deny(e.getPlayer(),e.getRightClicked().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void entityAt(PlayerInteractAtEntityEvent e){entity(e);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void damage(EntityDamageByEntityEvent e){if(e.getEntity() instanceof Player)return;Entity attacker=e.getDamager();if(attacker instanceof Projectile projectile&&projectile.getShooter() instanceof Entity source)attacker=source;if(attacker instanceof Player p){if(deny(p,e.getEntity().getLocation()))e.setCancelled(true);}else if(land(e.getEntity().getLocation())!=null)e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void hanging(HangingBreakEvent e){if(land(e.getEntity().getLocation())==null)return;if(e instanceof HangingBreakByEntityEvent by&&by.getRemover() instanceof Player p&&allowed(p,e.getEntity().getLocation()))return;e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void damage(EntityDamageByEntityEvent e){if(e.getEntity() instanceof Player)return;Entity attacker=e.getDamager();if(attacker instanceof Projectile projectile&&projectile.getShooter() instanceof Entity source)attacker=source;if(attacker instanceof Player p){if(deny(p,e.getEntity().getLocation()))e.setCancelled(true);}else if(protectedAt(e.getEntity().getLocation()))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void hanging(HangingBreakEvent e){if(!protectedAt(e.getEntity().getLocation()))return;if(e instanceof HangingBreakByEntityEvent by&&by.getRemover() instanceof Player p&&allowed(p,e.getEntity().getLocation()))return;e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void hangingPlace(HangingPlaceEvent e){if(e.getPlayer()!=null&&deny(e.getPlayer(),e.getEntity().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void armor(PlayerArmorStandManipulateEvent e){if(deny(e.getPlayer(),e.getRightClicked().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void leash(PlayerLeashEntityEvent e){if(deny(e.getPlayer(),e.getEntity().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void open(InventoryOpenEvent e){if(e.getPlayer() instanceof Player p&&!allowed(p,e.getInventory()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void containerClick(InventoryClickEvent e){if(e.getWhoClicked() instanceof Player p&&!allowed(p,e.getView().getTopInventory()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void containerDrag(InventoryDragEvent e){if(e.getWhoClicked() instanceof Player p&&!allowed(p,e.getView().getTopInventory()))e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void explode(EntityExplodeEvent e){e.blockList().removeIf(b->land(b.getLocation())!=null);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blockExplode(BlockExplodeEvent e){e.blockList().removeIf(b->land(b.getLocation())!=null);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void burn(BlockBurnEvent e){if(land(e.getBlock().getLocation())!=null)e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void ignite(BlockIgniteEvent e){if(land(e.getBlock().getLocation())!=null&&(e.getPlayer()==null||!allowed(e.getPlayer(),e.getBlock().getLocation())))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void explode(EntityExplodeEvent e){e.blockList().removeIf(b->protectedAt(b.getLocation()));}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blockExplode(BlockExplodeEvent e){e.blockList().removeIf(b->protectedAt(b.getLocation()));}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void burn(BlockBurnEvent e){if(protectedAt(e.getBlock().getLocation()))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void ignite(BlockIgniteEvent e){if(protectedAt(e.getBlock().getLocation())&&(e.getPlayer()==null||!allowed(e.getPlayer(),e.getBlock().getLocation())))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void flow(BlockFromToEvent e){if(!same(e.getBlock().getLocation(),e.getToBlock().getLocation()))e.setCancelled(true);}
     boolean piston(Block base,List<Block> blocks,org.bukkit.block.BlockFace dir){for(Block b:blocks){Location from=b.getLocation(),to=b.getRelative(dir).getLocation();if(!same(base.getLocation(),from)||!same(from,to))return false;}return same(base.getLocation(),base.getRelative(dir).getLocation());}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void push(BlockPistonExtendEvent e){if(!piston(e.getBlock(),e.getBlocks(),e.getDirection()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void pull(BlockPistonRetractEvent e){if(!piston(e.getBlock(),e.getBlocks(),e.getDirection().getOppositeFace())||!piston(e.getBlock(),e.getBlocks(),e.getDirection()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void hopper(InventoryMoveItemEvent e){if(!transferAllowed(e.getSource(),e.getDestination()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void pickup(InventoryPickupItemEvent e){if(locations(e.getInventory()).stream().anyMatch(a->!same(a,e.getItem().getLocation())))e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void entityBlock(EntityChangeBlockEvent e){if(land(e.getBlock().getLocation())!=null)e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void entityBlock(EntityChangeBlockEvent e){if(protectedAt(e.getBlock().getLocation()))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void grow(StructureGrowEvent e){if(e.getPlayer()!=null){for(BlockState b:e.getBlocks())if(!allowed(e.getPlayer(),b.getLocation())){e.setCancelled(true);return;}}else if(e.getBlocks().stream().anyMatch(b->!same(e.getLocation(),b.getLocation())))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void fertilize(BlockFertilizeEvent e){if(e.getPlayer()!=null&&e.getBlocks().stream().anyMatch(b->!allowed(e.getPlayer(),b.getLocation())))e.setCancelled(true);}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void spread(BlockSpreadEvent e){if(!same(e.getSource().getLocation(),e.getBlock().getLocation()))e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void vehicle(org.bukkit.event.vehicle.VehicleDamageEvent e){if(land(e.getVehicle().getLocation())!=null&&(!(e.getAttacker() instanceof Player p)||!allowed(p,e.getVehicle().getLocation())))e.setCancelled(true);}
-    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void vehicleDestroy(org.bukkit.event.vehicle.VehicleDestroyEvent e){if(land(e.getVehicle().getLocation())!=null&&(!(e.getAttacker() instanceof Player p)||!allowed(p,e.getVehicle().getLocation())))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void vehicle(org.bukkit.event.vehicle.VehicleDamageEvent e){if(protectedAt(e.getVehicle().getLocation())&&(!(e.getAttacker() instanceof Player p)||!allowed(p,e.getVehicle().getLocation())))e.setCancelled(true);}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void vehicleDestroy(org.bukkit.event.vehicle.VehicleDestroyEvent e){if(protectedAt(e.getVehicle().getLocation())&&(!(e.getAttacker() instanceof Player p)||!allowed(p,e.getVehicle().getLocation())))e.setCancelled(true);}
 
 }

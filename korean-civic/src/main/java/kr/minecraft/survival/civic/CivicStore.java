@@ -1,0 +1,78 @@
+package kr.minecraft.survival.civic;
+
+import java.util.*;
+import java.text.Normalizer;
+import com.google.gson.Gson;
+import kr.minecraft.survival.economy.domain.StateStore;
+
+/** Escrow, proceeds and title deeds share the existing economy SQLite connection. */
+public final class CivicStore {
+    public record Town(String id,String name,String owner,String world,String state){}
+    public record Plot(String id,String town,String land,String world,int x,int z,String owner,long price,String state,String receipt){}
+    public record Listing(String id,String seller,byte[] item,long price,String state,String receipt,String material,int amount){}
+    public record Operation(String target,String seller,long amount,String details){}
+    private static final Gson JSON=new Gson();final StateStore db;
+    public CivicStore(StateStore db){this.db=db;String old=db.meta("civic.schema");if(old!=null&&!old.equals("1"))throw new StateStore.Denied("더 새로운 마을·개인상점 저장소입니다.");db.transaction(()->{
+        db.execute("CREATE TABLE IF NOT EXISTS civic_towns(id TEXT PRIMARY KEY,name TEXT NOT NULL,name_key TEXT NOT NULL UNIQUE,owner TEXT NOT NULL UNIQUE,world TEXT NOT NULL,state TEXT NOT NULL,receipt TEXT)");
+        db.execute("CREATE TABLE IF NOT EXISTS civic_plots(id TEXT PRIMARY KEY,town TEXT NOT NULL REFERENCES civic_towns(id),land TEXT NOT NULL UNIQUE,world TEXT NOT NULL,x INTEGER NOT NULL,z INTEGER NOT NULL,owner TEXT NOT NULL,price INTEGER NOT NULL DEFAULT 0 CHECK(price>=0),state TEXT NOT NULL,receipt TEXT,UNIQUE(world,x,z))");
+        db.execute("CREATE INDEX IF NOT EXISTS civic_plot_owner ON civic_plots(owner,state)");
+        db.execute("CREATE TABLE IF NOT EXISTS civic_items(id TEXT PRIMARY KEY,seller TEXT NOT NULL,item BLOB NOT NULL,price INTEGER NOT NULL CHECK(price>0),state TEXT NOT NULL,receipt TEXT,material TEXT NOT NULL,amount INTEGER NOT NULL CHECK(amount>0),created INTEGER NOT NULL)");
+        db.execute("CREATE INDEX IF NOT EXISTS civic_item_state ON civic_items(state,created)");
+        db.execute("CREATE TABLE IF NOT EXISTS civic_credits(owner TEXT PRIMARY KEY,cents INTEGER NOT NULL DEFAULT 0 CHECK(cents>=0))");db.meta("civic.schema","1");return null;
+    });cleanupRejected();}
+    static String id(){return UUID.randomUUID().toString();}
+    public static String townName(String input){String name=Normalizer.normalize(input.strip().replaceAll(" +"," "),Normalizer.Form.NFC);if(name.codePointCount(0,name.length())<2||name.codePointCount(0,name.length())>16||!name.matches("[\\p{L}\\p{N}_ -]+"))throw new StateStore.Denied("마을 이름은 한글·영문·숫자·공백·밑줄·붙임표 2~16자로 입력하세요.");return name;}
+    static String payload(String target,String seller,long amount,String details){return JSON.toJson(new Operation(target,seller,amount,details));}
+    public static Operation operation(StateStore.Receipt receipt){return JSON.fromJson(receipt.payload(),Operation.class);}
+    static long n(Map<String,Object> r,String k){return ((Number)r.get(k)).longValue();}
+    Town town(Map<String,Object> r){return new Town((String)r.get("id"),(String)r.get("name"),(String)r.get("owner"),(String)r.get("world"),(String)r.get("state"));}
+    Plot plot(Map<String,Object> r){return new Plot((String)r.get("id"),(String)r.get("town"),(String)r.get("land"),(String)r.get("world"),(int)n(r,"x"),(int)n(r,"z"),(String)r.get("owner"),n(r,"price"),(String)r.get("state"),(String)r.get("receipt"));}
+    Listing listing(Map<String,Object> r){return new Listing((String)r.get("id"),(String)r.get("seller"),(byte[])r.get("item"),n(r,"price"),(String)r.get("state"),(String)r.get("receipt"),(String)r.get("material"),(int)n(r,"amount"));}
+    public List<Town> towns(){return db.rows("SELECT * FROM civic_towns WHERE state='ACTIVE' ORDER BY name_key,id").stream().map(this::town).toList();}
+    public Town town(String id){return db.rows("SELECT * FROM civic_towns WHERE id=?",id).stream().findFirst().map(this::town).orElse(null);}
+    public Town founded(UUID owner){return db.rows("SELECT * FROM civic_towns WHERE owner=?",owner).stream().findFirst().map(this::town).orElse(null);}
+    public List<Plot> plots(){return db.rows("SELECT * FROM civic_plots ORDER BY town,x,z,id").stream().map(this::plot).toList();}
+    public Plot plot(String id){return db.rows("SELECT * FROM civic_plots WHERE id=?",id).stream().findFirst().map(this::plot).orElseThrow(()->new StateStore.Denied("필지를 찾지 못했습니다."));}
+    public List<Listing> listings(UUID seller){String filter=seller==null?"":" AND seller=?";return db.rows("SELECT * FROM civic_items WHERE state='ACTIVE'"+filter+" ORDER BY created DESC,id",seller==null?new Object[]{}:new Object[]{seller}).stream().map(this::listing).toList();}
+    public Listing listing(String id){return db.rows("SELECT * FROM civic_items WHERE id=?",id).stream().findFirst().map(this::listing).orElseThrow(()->new StateStore.Denied("판매 등록을 찾지 못했습니다."));}
+    public long credit(UUID owner){return db.rows("SELECT cents FROM civic_credits WHERE owner=?",owner).stream().findFirst().map(r->n(r,"cents")).orElse(0L);}
+    void creditInside(String owner,long cents){db.requireTransaction();if(cents<0)throw new IllegalArgumentException("음수 판매대금");long old=credit(UUID.fromString(owner));db.execute("INSERT INTO civic_credits(owner,cents) VALUES(?,?) ON CONFLICT(owner) DO UPDATE SET cents=excluded.cents",owner,Math.addExact(old,cents));}
+    void consumeCreditInside(String owner,long cents){db.requireTransaction();if(cents<1||db.execute("UPDATE civic_credits SET cents=cents-? WHERE owner=? AND cents>=?",cents,owner,cents)!=1)throw new StateStore.Denied("받을 판매대금 기록이 바뀌었습니다.");}
+    public StateStore.Receipt reserveTown(UUID owner,String world,int x,int z,String input,long fee,int serverLimit){String name=townName(input);if(fee<0||serverLimit<1)throw new IllegalArgumentException("마을 설정 오류");return db.transaction(()->{
+        if(founded(owner)!=null)throw new StateStore.Denied("설립할 수 있는 마을은 한 사람당 1개입니다.");if(!db.rows("SELECT id FROM civic_towns WHERE name_key=?",name.toLowerCase(Locale.ROOT)).isEmpty())throw new StateStore.Denied("이미 사용 중인 마을 이름입니다.");if(db.rows("SELECT id FROM civic_towns").size()>=serverLimit)throw new StateStore.Denied("서버 마을 개수 한도에 도달했습니다.");
+        assertVacant(world,x,z);String town=id(),plot=id(),land=id();var r=db.reserveInside(owner,"CIVIC_TOWN","civic:town:"+town,fee,payload(plot,"",0,town),null);
+        db.execute("INSERT INTO civic_towns(id,name,name_key,owner,world,state,receipt) VALUES(?,?,?,?,?,'RESERVED',?)",town,name,name.toLowerCase(Locale.ROOT),owner,world,r.id());insertPlot(plot,town,land,world,x,z,owner,r.id());return r;
+    });}
+    void assertVacant(String world,int x,int z){if(db.land(world,x,z)!=null||!db.rows("SELECT id FROM civic_plots WHERE world=? AND x=? AND z=?",world,x,z).isEmpty())throw new StateStore.Denied("이미 보호되거나 예약된 필지입니다.");}
+    void insertPlot(String plot,String town,String land,String world,int x,int z,UUID owner,String receipt){db.requireTransaction();db.execute("INSERT INTO lands(id,world,x,z,owner,state,receipt) VALUES(?,?,?,?,?,'RESERVED',?)",land,world,x,z,owner,receipt);db.execute("INSERT INTO land_tags(land,kind,reference) VALUES(?,'CIVIC',?)",land,town);db.execute("INSERT INTO civic_plots(id,town,land,world,x,z,owner,state,receipt) VALUES(?,?,?,?,?,?,?,'RESERVED',?)",plot,town,land,world,x,z,owner,receipt);}
+    public StateStore.Receipt reserveExpansion(UUID owner,String townId,String world,int x,int z,long fee,int maximum){return db.transaction(()->{
+        Town town=town(townId);if(town==null||!town.state.equals("ACTIVE")||!town.owner.equals(owner.toString())||!town.world.equals(world))throw new StateStore.Denied("내가 설립한 마을의 같은 월드에서 확장하세요.");List<Map<String,Object>> existing=db.rows("SELECT x,z FROM civic_plots WHERE town=?",townId);if(existing.size()>=maximum)throw new StateStore.Denied("마을 필지 한도에 도달했습니다.");if(existing.stream().noneMatch(p->Math.abs(n(p,"x")-x)+Math.abs(n(p,"z")-z)==1))throw new StateStore.Denied("기존 마을 필지의 한 변과 맞닿은 청크를 선택하세요.");assertVacant(world,x,z);String plot=id(),land=id();var r=db.reserveInside(owner,"CIVIC_EXPAND","civic:expand:"+plot,fee,payload(plot,"",0,townId),null);insertPlot(plot,townId,land,world,x,z,owner,r.id());return r;
+    });}
+    public void setPlotPrice(UUID owner,String plotId,long cents){if(cents<0)throw new IllegalArgumentException("음수 가격");db.transaction(()->{if(db.unresolved(owner))throw new StateStore.Denied("확인 중인 거래를 먼저 정리하세요.");Plot plot=plot(plotId);if(cents>0)assertFarmClear(plot);if(!plot.owner.equals(owner.toString())||!plot.state.equals("ACTIVE"))throw new StateStore.Denied("내 소유의 정상 필지만 분양·판매할 수 있습니다.");db.execute("UPDATE civic_plots SET price=? WHERE id=?",cents,plotId);return null;});}
+    void assertFarmClear(Plot plot){if(db.rows("SELECT name FROM sqlite_master WHERE type='table' AND name='farm_plots'").isEmpty())return;if(!db.rows("SELECT 1 FROM farm_plots WHERE world=? AND x>=? AND x<=? AND z>=? AND z<=? LIMIT 1",plot.world,(long)plot.x*16,(long)plot.x*16+15,(long)plot.z*16,(long)plot.z*16+15).isEmpty())throw new StateStore.Denied("필지 안의 커스텀 농작물을 먼저 수확·회수한 뒤 판매하세요.");}
+    public StateStore.Receipt reservePlotBuy(UUID buyer,String id,long expected){return db.transaction(()->{Plot plot=plot(id);if(!plot.state.equals("ACTIVE")||plot.price<1||plot.price!=expected)throw new StateStore.Denied("필지의 가격·상태가 바뀌었습니다. 다시 확인하세요.");assertFarmClear(plot);if(plot.owner.equals(buyer.toString()))throw new StateStore.Denied("내 필지는 구매할 수 없습니다.");var land=db.land(plot.world,plot.x,plot.z);if(land==null||!land.id().equals(plot.land)||!land.state().equals("ACTIVE")||!land.owner().equals(plot.owner))throw new StateStore.Denied("필지 소유권 기록 확인이 필요합니다.");
+        var r=db.reserveInside(buyer,"CIVIC_PLOT_BUY","civic:plot-buy:"+id+":"+UUID.randomUUID(),plot.price,payload(id,plot.owner,plot.price,""),null);db.execute("UPDATE civic_plots SET state='LOCKED',receipt=? WHERE id=?",r.id(),id);db.execute("UPDATE lands SET state='RESERVED',receipt=? WHERE id=?",r.id(),plot.land);return r;
+    });}
+    public StateStore.Receipt reserveListing(UUID seller,byte[] item,long cents,String material,int amount,int perPlayer,int serverLimit){if(item==null||item.length==0||item.length>65_536||cents<1||amount<1||amount>64)throw new StateStore.Denied("판매 등록 데이터·수량·가격을 확인하세요.");return db.transaction(()->{
+        if(db.rows("SELECT id FROM civic_items WHERE seller=? AND state IN ('ACTIVE','RESERVED','LOCKED')",seller).size()>=perPlayer)throw new StateStore.Denied("개인 판매 등록 수 한도에 도달했습니다.");if(db.rows("SELECT id FROM civic_items WHERE state IN ('ACTIVE','RESERVED','LOCKED')").size()>=serverLimit)throw new StateStore.Denied("서버 판매 등록 수 한도에 도달했습니다.");String id=id();var r=db.reserveInside(seller,"CIVIC_ITEM_LIST","civic:item-list:"+id,0,payload(id,"",0,material+":"+amount),null);db.execute("INSERT INTO civic_items(id,seller,item,price,state,receipt,material,amount,created) VALUES(?,?,?,?,'RESERVED',?,?,?,?)",id,seller,item,cents,r.id(),material,amount,System.currentTimeMillis());return r;
+    });}
+    public StateStore.Receipt reserveItem(UUID actor,String id,long expected,boolean cancel){return db.transaction(()->{Listing listing=listing(id);if(!listing.state.equals("ACTIVE")||listing.price!=expected)throw new StateStore.Denied("판매가 끝났거나 가격이 바뀌었습니다.");if(cancel?!listing.seller.equals(actor.toString()):listing.seller.equals(actor.toString()))throw new StateStore.Denied(cancel?"내 판매 등록만 회수할 수 있습니다.":"내 물건은 구매할 수 없습니다.");var r=db.reserveInside(actor,cancel?"CIVIC_ITEM_RETURN":"CIVIC_ITEM_BUY","civic:item:"+id+":"+(cancel?"return":"buy"),cancel?0:listing.price,payload(id,listing.seller,listing.price,listing.material+":"+listing.amount),null);db.execute("UPDATE civic_items SET state='LOCKED',receipt=? WHERE id=?",r.id(),id);return r;});}
+    public StateStore.Receipt reserveCollection(UUID actor){return db.transaction(()->{long amount=credit(actor);if(amount<1)throw new StateStore.Denied("받을 판매대금이 없습니다.");return db.reserveInside(actor,"CIVIC_COLLECT","civic:collect:"+UUID.randomUUID(),amount,payload(actor.toString(),"",amount,""),null);});}
+    public void completeInside(StateStore.Receipt r){db.requireTransaction();Operation o=operation(r);switch(r.kind()){
+        case "CIVIC_TOWN","CIVIC_EXPAND"->{Plot plot=plot(o.target);if(!plot.state.equals("RESERVED")||!r.id().equals(plot.receipt))throw new StateStore.Denied("필지 예약을 찾지 못했습니다.");db.execute("UPDATE civic_plots SET state='ACTIVE',receipt=NULL WHERE id=?",plot.id);if(db.execute("UPDATE lands SET state='ACTIVE',receipt=NULL WHERE id=? AND state='RESERVED' AND receipt=?",plot.land,r.id())!=1)throw new StateStore.Denied("필지 보호 예약을 찾지 못했습니다.");if(r.kind().equals("CIVIC_TOWN"))db.execute("UPDATE civic_towns SET state='ACTIVE',receipt=NULL WHERE id=? AND receipt=?",plot.town,r.id());}
+        case "CIVIC_PLOT_BUY"->{Plot plot=plot(o.target);if(!plot.state.equals("LOCKED")||!r.id().equals(plot.receipt)||!plot.owner.equals(o.seller))throw new StateStore.Denied("필지 거래 잠금을 찾지 못했습니다.");db.execute("UPDATE civic_plots SET owner=?,price=0,state='ACTIVE',receipt=NULL WHERE id=?",r.actor(),plot.id);if(db.execute("UPDATE lands SET owner=?,state='ACTIVE',receipt=NULL WHERE id=? AND receipt=?",r.actor(),plot.land,r.id())!=1)throw new StateStore.Denied("필지 보호 기록이 바뀌었습니다.");creditInside(o.seller,o.amount);}
+        case "CIVIC_ITEM_LIST"->{if(db.execute("UPDATE civic_items SET state='ACTIVE',receipt=NULL WHERE id=? AND receipt=? AND state='RESERVED'",o.target,r.id())!=1)throw new StateStore.Denied("물품 보관 예약을 찾지 못했습니다.");}
+        case "CIVIC_ITEM_BUY","CIVIC_ITEM_RETURN"->{if(db.execute("UPDATE civic_items SET state=?,receipt=NULL WHERE id=? AND receipt=? AND state='LOCKED'",r.kind().equals("CIVIC_ITEM_BUY")?"SOLD":"RETURNED",o.target,r.id())!=1)throw new StateStore.Denied("물품 거래 잠금을 찾지 못했습니다.");if(r.kind().equals("CIVIC_ITEM_BUY"))creditInside(o.seller,o.amount);}
+        case "CIVIC_COLLECT"->consumeCreditInside(r.actor(),o.amount);
+        default->throw new StateStore.Denied("지원하지 않는 마을 거래입니다.");
+    }}
+    public void cancelInside(String receipt){db.requireTransaction();var r=db.receipt(receipt);Operation o=operation(r);switch(r.kind()){
+        case "CIVIC_TOWN","CIVIC_EXPAND"->{db.execute("DELETE FROM civic_plots WHERE receipt=? AND state='RESERVED'",receipt);db.execute("DELETE FROM lands WHERE receipt=? AND state='RESERVED'",receipt);if(r.kind().equals("CIVIC_TOWN"))db.execute("DELETE FROM civic_towns WHERE receipt=? AND state='RESERVED'",receipt);}
+        case "CIVIC_PLOT_BUY"->{Plot plot=plot(o.target);if(receipt.equals(plot.receipt)){db.execute("UPDATE civic_plots SET state='ACTIVE',receipt=NULL WHERE id=?",plot.id);db.execute("UPDATE lands SET state='ACTIVE',receipt=NULL WHERE id=?",plot.land);}}
+        case "CIVIC_ITEM_LIST"->db.execute("DELETE FROM civic_items WHERE receipt=? AND state='RESERVED'",receipt);
+        case "CIVIC_ITEM_BUY","CIVIC_ITEM_RETURN"->db.execute("UPDATE civic_items SET state='ACTIVE',receipt=NULL WHERE receipt=? AND state='LOCKED'",receipt);
+        case "CIVIC_COLLECT"->{}default->throw new StateStore.Denied("마을 거래가 아닙니다.");
+    }}
+    public void cleanupRejected(){db.transaction(()->{for(var r:db.rows("SELECT id FROM receipts WHERE kind LIKE 'CIVIC_%' AND state='REJECTED' AND id IN(SELECT receipt FROM civic_plots WHERE receipt IS NOT NULL UNION SELECT receipt FROM civic_items WHERE receipt IS NOT NULL UNION SELECT receipt FROM civic_towns WHERE receipt IS NOT NULL)"))cancelInside((String)r.get("id"));return null;});}
+    public void cleanupRejected(String id){if(db.receipt(id).state().equals("REJECTED"))db.transaction(()->{cancelInside(id);return null;});}
+}

@@ -1,0 +1,7 @@
+# 한글 마을·개인상점
+
+[설치·사용법](../civic-update/README.md) · [거래 설계·검증](../civic-update/거래·검증.md)
+
+KoreanEconomy 2.0.3 / Vault에 연결하는 확장입니다. 마을 16×16 필지, 땅 분양·재판매, 실제 아이템 보관형 개인상점과 오프라인 판매 적립금을 제공합니다. 기존 경제 DB 연결을 공유하고 직접 닫지 않습니다. 명령어는 `/마을`, `/개인상점`, 운영자는 `/마을거래`입니다.
+
+실제 Paper API/MockBukkit 검사: `python3 korean-civic/test.py`. 전체 배포: 각 회귀 검사 후 `python3 civic-update/build.py`. 역사 배포 파일에 새 소스를 덮어쓰지 않습니다. 테스트 도구 경로는 `/workspace/toolchains`이며 기존 경제 프로젝트와 같습니다.

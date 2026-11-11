@@ -1,5 +1,5 @@
 name: KoreanMenu
-version: 2.1.0
+version: 2.2.0
 main: kr.minecraft.survival.menu.KoreanMenuPlugin
 api-version: '1.21'
 description: 쉬프트+F로 여는 경제 야생 한글 메뉴
