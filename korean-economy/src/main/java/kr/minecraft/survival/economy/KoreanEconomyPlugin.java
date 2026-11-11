@@ -88,7 +88,7 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
     @Override public boolean onCommand(CommandSender sender,Command command,String label,String[] args) {
         String root=command.getName();
         if(ServerTools.COMMANDS.contains(root)){serverTools.command(sender,root,args);return true;}
-        if(root.equals("경제거래")){sender.sendMessage("§e2.0 거래 기록은 /경제기록 대기 또는 /경제기록 조회 닉네임으로 확인하세요. 1.2 미결 거래는 이전 버전에서 정리한 뒤 업그레이드하세요.");return true;}
+        if(root.equals("경제거래")){if(!sender.isOp()){sender.sendMessage("§c운영자만 사용할 수 있습니다.");return true;}sender.sendMessage("§e2.0 거래 기록은 /경제기록 대기 또는 /경제기록 조회 닉네임으로 확인하세요. 1.2 미결 거래는 이전 버전에서 정리한 뒤 업그레이드하세요.");return true;}
         if(root.equals("마을설치"))return npcs.town(sender,args);
         if(root.equals("상인"))return npcs.command(sender,args);
         if(tycoon.command(sender,root,args))return true;
@@ -131,7 +131,7 @@ public class KoreanEconomyPlugin extends JavaPlugin implements Listener {
         menu.inventory.setItem(4,icon(Material.BOOK,buying?"§a서버에서 물건 구매":"§6서버에 물건 판매","§7좌클릭 1개 · 쉬프트 클릭 16개 · 우클릭 64개","§7이름·설명·마법이 없는 기본 아이템만 판매됩니다.","§7장비칸·보조 손 제외 / 품목별 하루 매입 한도 적용"));
         for(int i=0;i<menu.prices.size();i++) {
             Product p=menu.prices.get(i);
-            menu.inventory.setItem(19+i,icon(p.material,"§e"+p.name,"§7내가 살 때: §a"+money(p.buy),"§7내가 팔 때: §6"+money(p.sell),"§7현재: "+(buying?"구매 모드":"판매 모드"),"§7하루 매입 한도: "+p.limit+" / 오늘 판매: "+tycoon.store.used(player.getUniqueId(),tycoon.day(),"raw:"+p.material.name())));
+            menu.inventory.setItem(19+i,icon(p.material,"§e"+p.name,"§7내가 살 때: §a"+money(p.buy),"§7내가 팔 때: §6"+money(p.sell),"§7현재: "+(buying?"구매 모드":"판매 모드"),"§7남은 매입: "+Math.max(0,p.limit-tycoon.store.used(player.getUniqueId(),tycoon.day(),"raw:"+p.material.name()))+" / "+p.limit,"§7초기화: "+tycoon.resetLabel()));
         }
         menu.inventory.setItem(45,icon(Material.EMERALD,"§a구매 모드","§7서버에 돈을 내고 아이템을 받습니다."));
         menu.inventory.setItem(53,icon(Material.GOLD_INGOT,"§6판매 모드","§7아이템을 팔고 돈을 받습니다."));

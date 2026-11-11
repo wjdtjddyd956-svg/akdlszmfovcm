@@ -1,5 +1,5 @@
 name: KoreanEconomy
-version: 2.0.0
+version: 2.0.1
 main: kr.minecraft.survival.economy.KoreanEconomyPlugin
 api-version: '26.3'
 description: NPC 우클릭 한글 구매·판매 상점과 일일 보상
@@ -9,19 +9,14 @@ softdepend: [Essentials, KoreanCommands, WorldGuard, GriefPrevention, prism]
 commands:
   기록조회:
     description: 기존 생활서버 운영 명령 호환
-    permission: koreaneconomy.operations
   복구:
     description: 기존 생활서버 운영 명령 호환
-    permission: koreaneconomy.operations
   백업:
     description: 기존 생활서버 운영 명령 호환
-    permission: koreaneconomy.operations
   경제거래:
     description: 기존 생활서버 운영 명령 호환
-    permission: koreaneconomy.operations
   마을설치:
     description: 빈 공간에 NPC 다섯 명을 배치합니다.
-    permission: koreaneconomy.npc.admin
   직업:
     description: 한글 생활 타이쿤 직업 기능
   요리:

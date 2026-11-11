@@ -30,6 +30,21 @@ final class NpcShops implements Listener {
     boolean usable(Player player,Entity npc){return category(npc)!=null&&nearby(player,npc);}
     boolean command(CommandSender sender,String[] args) {
         if(!sender.hasPermission("koreaneconomy.npc.admin")){sender.sendMessage("§c운영자만 상인을 배치하거나 삭제할 수 있습니다.");return true;}
+        if(args.length>=1&&args[0].equals("배치")){
+            if(args.length!=7&&args.length!=8){sender.sendMessage("§e/상인 배치 이름 품목 월드 x y z [사람|주민]");return true;}
+            try{
+                ShopCategory category=ShopCategory.parse(args[2]);World world=plugin.getServer().getWorld(args[3]);String appearance=args.length==8?args[7]:"사람";
+                if(category==null||world==null||args[1].isBlank()||args[1].length()>24||args[1].indexOf('§')>=0||!Set.of("사람","주민").contains(appearance))throw new IllegalArgumentException("이름·품목·월드·외형을 확인하세요.");
+                double x=Double.parseDouble(args[4]),y=Double.parseDouble(args[5]),z=Double.parseDouble(args[6]);
+                if(!Double.isFinite(x)||!Double.isFinite(y)||!Double.isFinite(z)||Math.abs(x)>29_000_000||Math.abs(z)>29_000_000||y<world.getMinHeight()+1||y>=world.getMaxHeight()-2)throw new IllegalArgumentException("좌표 범위가 올바르지 않습니다.");
+                Location location=new Location(world,x,y,z,180,0);location.getChunk().load();
+                if(world.getNearbyEntities(location,0.9,2,0.9).stream().anyMatch(e->category(e)!=null)){sender.sendMessage("§e같은 위치에 기존 상인이 있어 중복 생성하지 않았습니다.");return true;}
+                if(!location.getBlock().getType().isAir()||!location.clone().add(0,1,0).getBlock().getType().isAir()||!location.clone().add(0,-1,0).getBlock().getType().isSolid())throw new IllegalArgumentException("단단한 바닥과 두 칸 높이의 빈 공간이 필요합니다.");
+                spawn(args[1],category,appearance,location);sender.sendMessage("§a"+args[1]+" 상인을 배치했습니다. 기존 상인은 유지했습니다.");
+            }catch(IllegalArgumentException e){sender.sendMessage("§c"+e.getMessage());}
+            catch(RuntimeException e){plugin.getLogger().log(java.util.logging.Level.WARNING,"좌표 상인 배치 실패",e);sender.sendMessage("§c상인 배치 실패. 콘솔 기록을 확인하세요.");}
+            return true;
+        }
         if(!(sender instanceof Player player)){sender.sendMessage("게임 안에서 상인을 배치하세요.");return true;}
         if(args.length>=1&&args[0].equals("생성")) {
             if(args.length<3||args.length>4){help(sender);return true;}

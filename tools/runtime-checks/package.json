@@ -1,0 +1,1 @@
+{"private":true,"description":"Isolated Paper 26.3 runtime regression checks, not production plugins","dependencies":{"mineflayer":"4.39.0","minecraft-protocol":"1.68.0","minecraft-data":"3.119.0"}}

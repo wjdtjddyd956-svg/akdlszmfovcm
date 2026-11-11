@@ -127,7 +127,11 @@ try {
         if ($null -eq $compression -and ((Test-Path -LiteralPath $backupRequest) -or [DateTime]::UtcNow -ge $next)) {
             if (Test-Path -LiteralPath $backupRequest) { [IO.File]::Delete($backupRequest) }
             if ($options.warningSeconds -gt 0) {
-                Send-Paper "say $($options.warningSeconds)초 후 월드 백업을 위해 잠시 서버를 재시작합니다."
+                # Console stdin can use the Windows legacy encoding even on a UTF-8 JVM.
+                # ASCII JSON escapes keep Korean notices intact on either input encoding.
+                $notice = "$($options.warningSeconds)초 후 월드 백업을 위해 잠시 서버를 재시작합니다."
+                $escaped = -join ($notice.ToCharArray() | ForEach-Object { '\u{0:x4}' -f [int]$_ })
+                Send-Paper ('tellraw @a {"text":"' + $escaped + '","color":"yellow"}')
                 $deadline = [DateTime]::UtcNow.AddSeconds($options.warningSeconds)
                 while ([DateTime]::UtcNow -lt $deadline -and !$javaProcess.HasExited -and !(Test-Path -LiteralPath $stopRequest)) {
                     Start-Sleep -Milliseconds 500

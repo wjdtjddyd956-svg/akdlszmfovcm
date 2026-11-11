@@ -1,13 +1,14 @@
 # 한글 생활 타이쿤 서버
 
-현재 배포는 **생활타이쿤 2.0.0**, Paper 26.3용입니다. NPC 상점·직업·요리·강화·임무·땅 보호·기록·백업과 쉬프트+F 한글 메뉴를 포함합니다.
+현재 Windows 업그레이드는 **생활타이쿤 2.0.1**, Paper 26.3 build 238용입니다. NPC 상점·직업·요리·강화·임무·기존 GriefPrevention 땅 보호·Prism 기록·Windows 백업과 쉬프트+F 한글 메뉴를 포함합니다.
 
-- [통합 설치 ZIP](releases/tycoon-2.0/생활타이쿤-통합설치-2.0.0.zip)
-- [설치·이용·운영 안내](tycoon/시작안내.md)
-- [개발·검증 범위](tycoon/개발검증.md)
-- [파일·검증 결과](releases/tycoon-2.0/)
+- [기존 1.2/2.0용 Windows 설치 ZIP](releases/tycoon-2.0.1/생활타이쿤-Windows-업그레이드-2.0.1.zip)
+- [설치·명령어·백업·복원 안내](releases/tycoon-2.0.1/설치·운영안내.md)
+- [실제 Windows/Paper 검증 범위와 한계](releases/tycoon-2.0.1/검증결과.md)
+- [JAR·체크섬·빌드 출처](releases/tycoon-2.0.1/)
+- [이전 2.0.0 전체 설치 자료](releases/tycoon-2.0/)
 
-이미 설치한 1.2의 EssentialsX·GriefPrevention·Prism·전체 자동 백업을 유지하고 직업·임무 데이터를 가져오는 업그레이드입니다. 26.3 지원 EssentialsX가 없을 때만 공식 개발 빌드를 Windows 설치 시 받습니다. 클라우드에서 사용자 Windows 서버에 직접 설치한 상태는 아닙니다. 기존 잔액·집·월드·NPC 데이터를 보존하고 종료 상태의 전체 백업 후 JAR를 교체합니다. 실제 Paper 서버·Windows 실행기·클라이언트 접속 검증은 아직 하지 못했습니다.
+2026-11-11 실제 Windows 서버가 1.2.0임을 확인하고, 기존 데이터의 전체 백업·복원 검증 후 2.0.1을 적용했습니다. 실제 Paper 복사본과 순정 26.3 클라이언트에서도 검증했습니다. 운영 서버의 로그인한 실제 이용자 플레이와 10명 동시 활동 부하 검증은 별도입니다. 설치된 호환 EssentialsX `2.22.1-dev+28-f8724e2` 본체·Spawn, GP·Prism·WorldGuard와 기존 백업 관리자를 유지했습니다. 새 ZIP은 이미 설치된 이 플러그인들을 재사용하며 미지원 버전으로 교체하지 않습니다.
 
 아래는 이전 RPG·경제 야생 자료의 이력입니다.
 

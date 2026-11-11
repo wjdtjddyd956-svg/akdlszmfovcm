@@ -52,6 +52,13 @@ final class Tycoon implements Listener {
         for(Player p:plugin.getServer().getOnlinePlayers())register(p);
     }
     String day(){return LocalDate.now(plugin.rewardZone()).toString();}
+    String resetLabel(){return LocalDate.now(plugin.rewardZone()).plusDays(1)+" 00:00 ("+plugin.rewardZone()+")";}
+    Rules.Recipe configured(Rules.Recipe r){
+        long price=plugin.getConfig().getLong("요리."+r.id()+".매입가",r.sell()/100);
+        int limit=plugin.getConfig().getInt("요리."+r.id()+".하루매입한도",r.dailyLimit());
+        if(price<1||price>1_000_000||limit<0||limit>1_000_000)throw new StateStore.Denied("요리 매입가·한도 설정을 확인하세요.");
+        return new Rules.Recipe(r.id(),r.name(),r.job(),r.level(),r.result(),r.amount(),r.ingredients(),Money.cents(price),limit);
+    }
     static String money(long cents){return Money.display(cents);}
     void register(Player p){
         if(registered.contains(p.getUniqueId()))return;
@@ -111,7 +118,7 @@ final class Tycoon implements Listener {
     }
     void recipes(Player p){
         Screen s=screen(p,"마을 주방 | 요리 10종",null);int slot=10;
-        for(Rules.Recipe r:Rules.RECIPES){
+        for(Rules.Recipe base:Rules.RECIPES){Rules.Recipe r=configured(base);
             List<String> lore=new ArrayList<>(List.of("§7필요 숙련도: "+r.job().label+" "+r.level()+"레벨","§7결과: "+r.amount()+"개 · 개당 매입 "+money(r.sell())));
             for(Rules.Ingredient i:r.ingredients())lore.add("§7재료: "+materialName(i.material())+" × "+i.amount());
             lore.add("§e클릭: 1회 만들기 (이름 없는 기본 재료만)");
@@ -129,7 +136,7 @@ final class Tycoon implements Listener {
         result(p,out,r.name()+" "+r.amount()+"개를 만들었습니다.");if(out.status()==Status.DONE)recipes(p);
     }
     void foodShop(Player p,Entity npc){Screen s=screen(p,"요리 상인 | 완성 요리 매입",npc);int slot=10;
-        for(Rules.Recipe r:Rules.RECIPES){final int target=slot;button(s,slot,Material.valueOf(r.result()),"§e"+r.name(),()->{},"§7매입 가격: "+money(r.sell())+" / 1개","§7개인 하루 매입 한도: "+r.dailyLimit(),"§7오늘 판매: "+store.used(p.getUniqueId(),day(),"food:"+r.id()),"§e좌클릭 1개 · 쉬프트 16개 · 우클릭 64개");
+        for(Rules.Recipe base:Rules.RECIPES){Rules.Recipe r=configured(base);final int target=slot;button(s,slot,Material.valueOf(r.result()),"§e"+r.name(),()->{},"§7매입 가격: "+money(r.sell())+" / 1개","§7남은 매입: "+Math.max(0,r.dailyLimit()-store.used(p.getUniqueId(),day(),"food:"+r.id()))+" / "+r.dailyLimit(),"§7초기화: "+resetLabel(),"§e좌클릭 1개 · 쉬프트 16개 · 우클릭 64개");
             s.quantities.put(target,amount->{sellFood(p,r,amount);foodShop(p,npc);});slot++;if(slot%9==8)slot+=2;
         }p.openInventory(s.inventory);
     }
@@ -146,10 +153,14 @@ final class Tycoon implements Listener {
     void upgradeMenu(Player p){
         ItemStack held=p.getInventory().getItemInMainHand();if(!upgradeable(held)||held.getAmount()!=1)throw new StateStore.Denied("강화할 도구 하나를 주 손에 들고 /강화를 입력하세요.");
         ItemStack original=held.clone();int slot=p.getInventory().getHeldItemSlot();int level=held.getItemMeta().getPersistentDataContainer().getOrDefault(upgradeKey,PersistentDataType.INTEGER,0);
-        if(level>=5)throw new StateStore.Denied("최고 강화 단계입니다.");Rules.Upgrade rule=Rules.upgrade(level);Screen s=screen(p,"도구 강화 | 비용·확률 확인",null);
+        if(level>=5)throw new StateStore.Denied("최고 강화 단계입니다.");Rules.Upgrade defaults=Rules.upgrade(level);
+        long cost=plugin.getConfig().getLong("강화."+(level+1)+".비용",defaults.cost()/100);
+        int chance=plugin.getConfig().getInt("강화."+(level+1)+".성공확률만분율",defaults.chanceBasisPoints());
+        if(cost<1||cost>1_000_000||chance<0||chance>10000)throw new StateStore.Denied("강화 비용·확률 설정을 확인하세요.");
+        Rules.Upgrade rule=new Rules.Upgrade(level+1,Money.cents(cost),chance);Screen s=screen(p,"도구 강화 | 비용·확률 확인",null);
         s.inventory.setItem(22,original);button(s,31,Material.ANVIL,"§e+"+rule.nextLevel()+" 강화 시도",()->{
             survival(p);if(slot!=p.getInventory().getHeldItemSlot()||!original.equals(p.getInventory().getItemInMainHand()))throw new StateStore.Denied("손에 든 도구가 바뀌었습니다. 강화 창을 다시 여세요.");
-            boolean success=Rules.succeeds(level,random.nextInt(10000));ItemStack next=success?strengthen(original,rule.nextLevel()):original.clone();
+            boolean success=random.nextInt(10000)<rule.chanceBasisPoints();ItemStack next=success?strengthen(original,rule.nextLevel()):original.clone();
             ItemStack[] before=ItemPlans.copy(p.getInventory().getStorageContents()),after=ItemPlans.copy(before);after[slot]=next;
             result(p,engine.execute(p.getUniqueId(),"UPGRADE","upgrade:"+UUID.randomUUID(),rule.cost(),Direction.DEBIT,"tool="+original.getType()+",slot="+slot+",level="+level+",success="+success,null,change(p,before,after),()->{}),success?"강화 성공! +"+rule.nextLevel()+" 도구가 되었습니다.":"강화 실패. 비용은 사용됐고 도구와 단계는 유지됩니다.");
         },"§7비용: "+money(rule.cost()),"§7성공 확률: "+rule.chanceBasisPoints()/100.0+"%","§7실패: 비용 소모 / 파괴·단계 하락 없음","§7성공: 효율/미끼 + 단계별 내구성 마법 적용");p.openInventory(s.inventory);
