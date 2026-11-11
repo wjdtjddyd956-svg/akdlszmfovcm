@@ -1,0 +1,9 @@
+{
+  "artwork": "Original atlas artwork generated for this project with OpenAI image generation",
+  "style_chosen_by_user": "현실적인 도시·경제풍",
+  "date": "2026-11-11",
+  "atlases": ["food-jobs-atlas.png", "menu-atlas.png", "blocks-atlas.png"],
+  "processing": "Atlas cell extraction, exclusion of neighboring cell bleed, alpha-aware fit, nearest-neighbor sizing, and specimen layout only",
+  "source_images_retained": true,
+  "third_party_game_textures_bundled": false
+}

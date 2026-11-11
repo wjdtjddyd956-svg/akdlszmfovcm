@@ -1,0 +1,49 @@
+package kr.minecraft.survival.citytextures;
+
+import java.nio.file.*;
+import java.util.*;
+import org.bukkit.*;
+import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.*;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.mockbukkit.mockbukkit.*;
+import org.mockbukkit.mockbukkit.entity.PlayerMock;
+import kr.minecraft.survival.menu.KoreanMenuPlugin;
+
+class CityTexturesTest {
+    ServerMock server;CityTexturesPlugin city;KoreanMenuPlugin menu;PackPlayer p;
+    /** MockBukkit has no network pack delivery; capture the real API call's parameters. */
+    static class PackPlayer extends PlayerMock {
+        UUID requested;String url;byte[] hash;boolean forced;
+        PackPlayer(ServerMock server){super(server,"CityPlayer");}
+        @Override public void addResourcePack(UUID id,String url,byte[] hash,String prompt,boolean force){requested=id;this.url=url;this.hash=hash;forced=force;}
+    }
+    @BeforeEach void start(){server=MockBukkit.mock();server.addSimpleWorld("world");city=MockBukkit.load(CityTexturesPlugin.class);
+        menu=MockBukkit.loadWith(KoreanMenuPlugin.class,Path.of(System.getProperty("city.repo"),"korean-menu/src/main/resources/plugin.yml").toFile());
+        // loadWith omits MockBukkit.load's permission-registration step.
+        server.getPluginManager().addPermissions(menu.getDescription().getPermissions());p=new PackPlayer(server);server.addPlayer(p);p.recalculatePermissions();
+    }
+    @AfterEach void stop(){MockBukkit.unmock();}
+    void enable(){assertTrue(server.dispatchCommand(p,"도시팩 켜기"));}
+    void openMenu(){p.setSneaking(true);var event=new PlayerSwapHandItemsEvent(p,new ItemStack(Material.AIR),new ItemStack(Material.AIR));server.getPluginManager().callEvent(event);assertTrue(event.isCancelled());server.getScheduler().performTicks(3);assertTrue(p.getOpenInventory().getTitle().contains("마을 수첩"));}
+    Inventory top(){return p.getOpenInventory().getTopInventory();}
+    @Test void defaultUsersKeepVanillaIcons(){openMenu();assertNull(top().getItem(10).getItemMeta().getItemModel());}
+    @Test void enabledExistingMenuUsesWalletAndCookingIconsWithoutChangingInventory(){ItemStack gift=new ItemStack(Material.DIAMOND,7);p.getInventory().setItem(0,gift);enable();openMenu();assertEquals(new NamespacedKey("tycoon","wallet"),top().getItem(10).getItemMeta().getItemModel());assertEquals(new NamespacedKey("tycoon","cooking_pan"),top().getItem(39).getItemMeta().getItemModel());assertEquals(7,p.getInventory().getItem(0).getAmount());assertEquals(Material.DIAMOND,p.getInventory().getItem(0).getType());assertFalse(p.isOp());}
+    @Test void turningOffRestoresOnlyModelAndLeavesCurrentLoreAmount(){enable();openMenu();ItemStack original=top().getItem(10).clone();assertTrue(server.dispatchCommand(p,"도시팩 끄기"));ItemStack restored=top().getItem(10);assertNull(restored.getItemMeta().getItemModel());assertEquals(original.getType(),restored.getType());assertEquals(original.getAmount(),restored.getAmount());assertEquals(original.getItemMeta().getLore(),restored.getItemMeta().getLore());assertEquals(original.getItemMeta().getDisplayName(),restored.getItemMeta().getDisplayName());}
+    @Test void preexistingModelRestoresExactlyAfterRepeatedDecorating(){openMenu();ItemStack item=top().getItem(10);ItemMeta meta=item.getItemMeta();meta.setItemModel(new NamespacedKey("otherpack","bank"));item.setItemMeta(meta);top().setItem(10,item);enable();city.decorate(p,top(),p.getOpenInventory().getTitle());server.dispatchCommand(p,"도시팩 끄기");assertEquals(new NamespacedKey("otherpack","bank"),top().getItem(10).getItemMeta().getItemModel());}
+    @Test void titleAloneCannotAuthorizeAChestOrAnotherPlugin(){enable();Inventory fake=server.createInventory(null,54,"경제 야생 | 마을 수첩");ItemStack item=new ItemStack(Material.GOLD_INGOT);ItemMeta meta=item.getItemMeta();meta.setDisplayName("§e내 돈 확인");item.setItemMeta(meta);fake.setItem(10,item);p.openInventory(fake);server.getScheduler().performTicks(3);assertFalse(city.trusted(fake));assertNull(fake.getItem(10).getItemMeta().getItemModel());}
+    @Test void sameNamedPersonalItemIsNeverDecorated(){ItemStack item=new ItemStack(Material.GOLD_INGOT);ItemMeta meta=item.getItemMeta();meta.setDisplayName("내 돈 확인");item.setItemMeta(meta);p.getInventory().setItem(0,item);enable();openMenu();assertNull(p.getInventory().getItem(0).getItemMeta().getItemModel());}
+    @Test void previewCannotGiveItemsThroughClicksOrHotbar(){server.dispatchCommand(p,"도시팩 미리보기");for(ClickType click:List.of(ClickType.LEFT,ClickType.SHIFT_LEFT,ClickType.DOUBLE_CLICK)){var event=new InventoryClickEvent(p.getOpenInventory(),InventoryType.SlotType.CONTAINER,10,click,InventoryAction.PICKUP_ALL);server.getPluginManager().callEvent(event);assertTrue(event.isCancelled());}var hotbar=new InventoryClickEvent(p.getOpenInventory(),InventoryType.SlotType.CONTAINER,10,ClickType.NUMBER_KEY,InventoryAction.HOTBAR_SWAP,0);server.getPluginManager().callEvent(hotbar);assertTrue(hotbar.isCancelled());assertTrue(p.getInventory().isEmpty());assertEquals(33,Arrays.stream(top().getContents()).filter(Objects::nonNull).count());}
+    @Test void previewRejectsDraggingIntoTop(){server.dispatchCommand(p,"도시팩 미리보기");var event=new InventoryDragEvent(p.getOpenInventory(),new ItemStack(Material.AIR),new ItemStack(Material.PAPER),false,Map.of(10,new ItemStack(Material.PAPER)));server.getPluginManager().callEvent(event);assertTrue(event.isCancelled());}
+    @Test void onlyOurSuccessfullyLoadedPackEnablesIcons(){openMenu();server.getPluginManager().callEvent(new PlayerResourcePackStatusEvent(p,UUID.randomUUID(),PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED));assertNull(top().getItem(10).getItemMeta().getItemModel());server.getPluginManager().callEvent(new PlayerResourcePackStatusEvent(p,CityTexturesPlugin.PACK_ID,PlayerResourcePackStatusEvent.Status.ACCEPTED));assertNull(top().getItem(10).getItemMeta().getItemModel());server.getPluginManager().callEvent(new PlayerResourcePackStatusEvent(p,CityTexturesPlugin.PACK_ID,PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED));assertEquals(new NamespacedKey("tycoon","wallet"),top().getItem(10).getItemMeta().getItemModel());}
+    @Test void downloadFailureRestoresVanillaAndDoesNotKickPlayer(){enable();openMenu();server.getPluginManager().callEvent(new PlayerResourcePackStatusEvent(p,CityTexturesPlugin.PACK_ID,PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD));assertNull(top().getItem(10).getItemMeta().getItemModel());assertTrue(p.isOnline());}
+    @Test void requestsAddOneOptionalPackWithItsOwnIdAndTwentyByteHash(){city.getConfig().set("팩-주소","https://example.com/city.zip");city.getConfig().set("체크섬-SHA1","a".repeat(40));city.request(p);assertEquals(CityTexturesPlugin.PACK_ID,p.requested);assertEquals("https://example.com/city.zip",p.url);assertEquals(20,p.hash.length);assertFalse(p.forced);}
+    @Test void invalidUrlOrChecksumCannotSendRequest(){city.getConfig().set("팩-주소","http://example.com/city.zip");city.getConfig().set("체크섬-SHA1","a".repeat(40));assertThrows(IllegalArgumentException.class,()->city.request(p));assertNull(p.requested);city.getConfig().set("팩-주소","https://example.com/city.zip");city.getConfig().set("체크섬-SHA1","bad");assertThrows(IllegalArgumentException.class,()->city.request(p));}
+    @Test void manualSettingPersistsAndCanBeRevoked(){enable();assertTrue(city.getConfig().getStringList("수동-이용자").contains(p.getUniqueId().toString()));server.dispatchCommand(p,"도시팩 끄기");assertFalse(city.getConfig().getStringList("수동-이용자").contains(p.getUniqueId().toString()));}
+    @Test void permissionDenialDoesNotDecorate(){p.addAttachment(city,"citytextures.use",false);server.dispatchCommand(p,"도시팩 켜기");openMenu();assertNull(top().getItem(10).getItemMeta().getItemModel());}
+    @Test void actualToolPreviewIsExcludedEvenWithMatchingName(){ItemStack tool=new ItemStack(Material.IRON_PICKAXE);ItemMeta meta=tool.getItemMeta();meta.setDisplayName("도구 강화");tool.setItemMeta(meta);assertNull(city.model("도구 강화 | 비용·확률 확인",22,tool));assertEquals("upgrade_anvil",city.model("도구 강화 | 비용·확률 확인",31,tool));}
+    @Test void disablingBridgeRestoresOpenCoreMenu(){enable();openMenu();server.getPluginManager().disablePlugin(city);assertNull(top().getItem(10).getItemMeta().getItemModel());assertTrue(menu.isEnabled());}
+}

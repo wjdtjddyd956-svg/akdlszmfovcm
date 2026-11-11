@@ -1,0 +1,20 @@
+{
+  "pack_checks": 444,
+  "bridge_mockbukkit_cases": 16,
+  "mockbukkit_version": "26.3:4.120.0",
+  "actual_core_menu_tested": "KoreanMenu 2.0 source",
+  "legacy_1_2_name_mapping": "compatibility names included; no 1.2 runtime loaded here",
+  "download_api_test": "captured Player.addResourcePack parameters, no real Minecraft download",
+  "browser": {
+    "passed": true,
+    "checks": 9,
+    "engine": "system Chromium / Playwright",
+    "desktop_width": 1280,
+    "mobile_width": 390,
+    "local_preview_only": true,
+    "served_over_loopback_http": true
+  },
+  "actual_minecraft_client_rendered": false,
+  "actual_windows_server_installed": false,
+  "original_atlas_images_retained": true
+}

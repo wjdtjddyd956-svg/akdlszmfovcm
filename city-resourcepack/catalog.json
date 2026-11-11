@@ -1,0 +1,313 @@
+{
+  "name": "시티 이코노미",
+  "version": "1.0.0",
+  "minecraft": "26.3",
+  "resource_format": [
+    97,
+    1
+  ],
+  "namespace": "tycoon",
+  "icon_resolution": 64,
+  "block_resolution": 128,
+  "items": [
+    {
+      "id": "mill_bread",
+      "label": "방앗간 밀빵",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 0,
+      "base": "BREAD",
+      "group": "요리"
+    },
+    {
+      "id": "carrot_salad",
+      "label": "당근 샐러드",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 1,
+      "base": "BEETROOT_SOUP",
+      "group": "요리"
+    },
+    {
+      "id": "roast_potato",
+      "label": "숯불 감자",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 2,
+      "base": "BAKED_POTATO",
+      "group": "요리"
+    },
+    {
+      "id": "mushroom_soup",
+      "label": "숲속 버섯수프",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 3,
+      "base": "MUSHROOM_STEW",
+      "group": "요리"
+    },
+    {
+      "id": "pumpkin_pie",
+      "label": "농장 호박파이",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 4,
+      "base": "PUMPKIN_PIE",
+      "group": "요리"
+    },
+    {
+      "id": "apple_jam",
+      "label": "달콤한 사과잼",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 5,
+      "base": "HONEY_BOTTLE",
+      "group": "요리"
+    },
+    {
+      "id": "sweet_cookie",
+      "label": "수제 초코쿠키",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 6,
+      "base": "COOKIE",
+      "group": "요리",
+      "trim_right": 24
+    },
+    {
+      "id": "roast_cod",
+      "label": "어부의 구운 대구",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 7,
+      "base": "COOKED_COD",
+      "group": "요리"
+    },
+    {
+      "id": "salmon_meal",
+      "label": "연어 정식",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 8,
+      "base": "COOKED_SALMON",
+      "group": "요리"
+    },
+    {
+      "id": "golden_meal",
+      "label": "황금 농장 만찬",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 9,
+      "base": "GOLDEN_CARROT",
+      "group": "요리"
+    },
+    {
+      "id": "job_farmer",
+      "label": "도시 농부",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 10,
+      "base": "WHEAT",
+      "group": "직업"
+    },
+    {
+      "id": "job_miner",
+      "label": "광부 안전모",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 11,
+      "base": "IRON_PICKAXE",
+      "group": "직업"
+    },
+    {
+      "id": "job_fisher",
+      "label": "낚시 장비",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 12,
+      "base": "FISHING_ROD",
+      "group": "직업"
+    },
+    {
+      "id": "coin",
+      "label": "경제 코인",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 13,
+      "base": "GOLD_NUGGET",
+      "group": "경제"
+    },
+    {
+      "id": "upgrade_token",
+      "label": "강화 토큰",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 14,
+      "base": "PRISMARINE_CRYSTALS",
+      "group": "성장"
+    },
+    {
+      "id": "business_ledger",
+      "label": "마을 경제 수첩",
+      "sheet": "food-jobs-atlas.png",
+      "cell": 15,
+      "base": "BOOK",
+      "group": "안내"
+    },
+    {
+      "id": "wallet",
+      "label": "내 지갑",
+      "sheet": "menu-atlas.png",
+      "cell": 0,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "transfer",
+      "label": "은행 송금",
+      "sheet": "menu-atlas.png",
+      "cell": 1,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "shop",
+      "label": "마을 편의점",
+      "sheet": "menu-atlas.png",
+      "cell": 2,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "land_deed",
+      "label": "부동산·내 땅",
+      "sheet": "menu-atlas.png",
+      "cell": 3,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "daily_reward",
+      "label": "출석 보상",
+      "sheet": "menu-atlas.png",
+      "cell": 4,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "seller_crate",
+      "label": "유저 거래소",
+      "sheet": "menu-atlas.png",
+      "cell": 5,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "home_key",
+      "label": "집 위치 저장",
+      "sheet": "menu-atlas.png",
+      "cell": 6,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "home_door",
+      "label": "집으로 이동",
+      "sheet": "menu-atlas.png",
+      "cell": 7,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "city_spawn",
+      "label": "도시 스폰",
+      "sheet": "menu-atlas.png",
+      "cell": 8,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "help_book",
+      "label": "서버 도움말",
+      "sheet": "menu-atlas.png",
+      "cell": 9,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "jobs_case",
+      "label": "직업 안내소",
+      "sheet": "menu-atlas.png",
+      "cell": 10,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "cooking_pan",
+      "label": "식당 주방",
+      "sheet": "menu-atlas.png",
+      "cell": 11,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "upgrade_anvil",
+      "label": "장비 강화",
+      "sheet": "menu-atlas.png",
+      "cell": 12,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "quest_clipboard",
+      "label": "오늘의 임무",
+      "sheet": "menu-atlas.png",
+      "cell": 13,
+      "base": "PAPER",
+      "group": "메뉴"
+    },
+    {
+      "id": "confirm",
+      "label": "확인",
+      "sheet": "menu-atlas.png",
+      "cell": 14,
+      "base": "PAPER",
+      "group": "조작"
+    },
+    {
+      "id": "close",
+      "label": "닫기·취소",
+      "sheet": "menu-atlas.png",
+      "cell": 15,
+      "base": "PAPER",
+      "group": "조작"
+    }
+  ],
+  "blocks": [
+    {
+      "id": "black_concrete",
+      "label": "아스팔트",
+      "cell": 0
+    },
+    {
+      "id": "gray_concrete",
+      "label": "노출 콘크리트",
+      "cell": 1
+    },
+    {
+      "id": "light_gray_concrete",
+      "label": "도시 보도",
+      "cell": 2
+    },
+    {
+      "id": "white_concrete",
+      "label": "아이보리 외벽",
+      "cell": 3
+    },
+    {
+      "id": "bricks",
+      "label": "도심 적벽돌",
+      "cell": 4
+    },
+    {
+      "id": "polished_andesite",
+      "label": "화강석 바닥",
+      "cell": 5
+    },
+    {
+      "id": "smooth_stone",
+      "label": "대형 석재 포장",
+      "cell": 6
+    },
+    {
+      "id": "iron_block",
+      "label": "철제 설비 패널",
+      "cell": 7
+    }
+  ]
+}

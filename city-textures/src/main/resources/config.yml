@@ -1,0 +1,9 @@
+# 기본은 각자 클라이언트에서 ZIP 적용 후 /도시팩 켜기입니다.
+자동요청: false
+# public HTTPS ZIP 직접 주소가 필요합니다. GitHub 저장소가 비공개이면 별도 공개 호스팅을 사용하세요.
+팩-주소: https://github.com/wjdtjddyd956-svg/akdlszmfovcm/raw/refs/heads/main/releases/city-resourcepack/CityEconomy-26.3-1.0.0.zip
+체크섬-SHA1: '@CITY_PACK_SHA1@'
+요청-문구: '도시 경제 아이콘 32종을 적용할까요? 거절해도 접속할 수 있습니다.'
+# 수동으로 켠 이용자는 다음 접속에도 기억합니다. 팩을 지우면 /도시팩 끄기를 사용하세요.
+수동설정-기억: true
+수동-이용자: []

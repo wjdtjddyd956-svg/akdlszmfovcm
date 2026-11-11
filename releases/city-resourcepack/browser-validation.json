@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": 9,
+  "engine": "system Chromium / Playwright",
+  "desktop_width": 1280,
+  "mobile_width": 390,
+  "local_preview_only": true,
+  "served_over_loopback_http": true
+}

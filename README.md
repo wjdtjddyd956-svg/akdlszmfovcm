@@ -10,6 +10,8 @@
 
 2026-11-11 실제 Windows 서버가 1.2.0임을 확인하고, 기존 데이터의 전체 백업·복원 검증 후 2.0.1을 적용했습니다. 실제 Paper 복사본과 순정 26.3 클라이언트에서도 검증했습니다. 운영 서버의 로그인한 실제 이용자 플레이와 10명 동시 활동 부하 검증은 별도입니다. 설치된 호환 EssentialsX `2.22.1-dev+28-f8724e2` 본체·Spawn, GP·Prism·WorldGuard와 기존 백업 관리자를 유지했습니다. 새 ZIP은 이미 설치된 이 플러그인들을 재사용하며 미지원 버전으로 교체하지 않습니다.
 
+현실적인 도시·경제풍의 [시티 이코노미 리소스팩](city-resourcepack/README.md)도 제공합니다. 요리·경제·직업·메뉴 아이콘 32종(64x), 선택 건축 재질 8종(128x), 기존 메뉴에 연결하는 CityTextures 보조 플러그인과 [미리보기](releases/city-resourcepack/미리보기.png)를 포함합니다. [전체 다운로드](releases/city-resourcepack/CityEconomy-Package-1.0.0.zip).
+
 아래는 이전 RPG·경제 야생 자료의 이력입니다.
 
 # 이전 서버 자료

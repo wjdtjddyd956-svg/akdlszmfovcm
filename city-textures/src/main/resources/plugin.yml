@@ -1,0 +1,18 @@
+name: CityTextures
+version: 1.0.0
+main: kr.minecraft.survival.citytextures.CityTexturesPlugin
+api-version: '26.3'
+description: 도시 경제 리소스팩 미리보기와 기존 한글 메뉴 아이콘 연결
+authors: [wjdtjddyd956-svg]
+softdepend: [KoreanMenu, KoreanEconomy]
+commands:
+  도시팩:
+    description: 도시 경제 리소스팩 안내·미리보기·켜기·끄기·받기
+    permission: citytextures.use
+permissions:
+  citytextures.use:
+    default: true
+    description: 내 화면의 도시 메뉴 아이콘과 미리보기 사용
+  citytextures.admin:
+    default: op
+    description: 배포 설정 확인과 다시 읽기

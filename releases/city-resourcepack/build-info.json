@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "minecraft": "26.3",
+  "resource_format": [
+    97,
+    1
+  ],
+  "icon_count": 32,
+  "block_count": 8,
+  "icon_resolution": 64,
+  "block_resolution": 128,
+  "base_sha1": "f8a801cc22b633cbaa6496176a3b660c715331c1",
+  "source_atlases": {
+    "menu-atlas.png": "7d44ea523a1525110001f7510328332dad07d5765215fa8e5a47854d2fa7fd90",
+    "blocks-atlas.png": "d199c99f5b90651a227a9e8dc2a00594582a939a1f79fc944220a7d9731e55a2",
+    "food-jobs-atlas.png": "403dfe34d653c48684be0ae4a222465691e38c23a1355e214b38e06709f24dad"
+  },
+  "bridge_compile": "unmodified actual Paper 26.3 df120fd local API, Java 25 compiler, release 21",
+  "real_game_client_visual_verified": false
+}
