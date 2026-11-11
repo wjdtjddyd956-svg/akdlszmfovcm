@@ -1,5 +1,9 @@
 # 한글 생활 타이쿤 서버
 
+**[플러그인 전체 한글 정리 — 46종](plugin-catalog/README.md)** · [정리·기존 자체 플러그인 묶음 ZIP](releases/plugin-catalog/한글플러그인-정리묶음-1.0.0.zip) · [설치 순서](plugin-catalog/설치순서.md) · [연결·한글화 현황](plugin-catalog/연결·한글화.md)
+
+기존 구성과 추가 후보를 나누고 기능·우선순위·공식 자료·버전·검증 범위를 한국어로 정리했습니다. 묶음에는 기존 자체 플러그인 7개와 통합팩·설치 도구가 들어 있으며, 추가 후보의 신규 JAR·내부 전체 한글화·Windows 설치는 미포함입니다.
+
 현재 Windows 업그레이드는 **생활타이쿤 2.0.1**, Paper 26.3 build 238용입니다. NPC 상점·직업·요리·강화·임무·기존 GriefPrevention 땅 보호·Prism 기록·Windows 백업과 쉬프트+F 한글 메뉴를 포함합니다.
 
 - [기존 1.2/2.0용 Windows 설치 ZIP](releases/tycoon-2.0.1/생활타이쿤-Windows-업그레이드-2.0.1.zip)

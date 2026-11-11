@@ -1,0 +1,88 @@
+{
+  "기준일": "2026-11-11",
+  "전체플러그인수": 46,
+  "분류별수": {
+    "기존 구성": 16,
+    "추가 후보": 14,
+    "콘텐츠 확장": 11,
+    "접속 확장": 4,
+    "대체 후보": 1
+  },
+  "저장소에서확인한JAR수": 11,
+  "묶음에포함한자체JAR수": 7,
+  "확인한기존배포파일": {
+    "releases/ui-update/KoreanEconomy-2.0.2.jar": {
+      "플러그인": "KoreanEconomy",
+      "버전": "2.0.2",
+      "SHA256": "c53f09242c039c8468a88b8969c09384c4e6f759de653032a7cf086b54f719e0",
+      "바이트": 14513197
+    },
+    "releases/ui-update/KoreanMenu-2.1.0.jar": {
+      "플러그인": "KoreanMenu",
+      "버전": "2.1.0",
+      "SHA256": "73516f92567afb22a791c365d4e4068faabfcd8828c0d0cfabe326da695441d4",
+      "바이트": 11231
+    },
+    "releases/ui-update/KoreanCodex-1.2.0.jar": {
+      "플러그인": "KoreanCodex",
+      "버전": "1.2.0",
+      "SHA256": "91d7e84da460a94e72cb0417e2d51dfc4aee244ed5fd55773ade0caacbaad9bb",
+      "바이트": 14433743
+    },
+    "releases/ui-update/KoreanFarming-1.0.1.jar": {
+      "플러그인": "KoreanFarming",
+      "버전": "1.0.1",
+      "SHA256": "7a544c61490b479694c68a63ef9b5edb3362337640e1df3ab4dd0f3737a9b0aa",
+      "바이트": 57220
+    },
+    "releases/ui-update/CityTextures-1.1.0.jar": {
+      "플러그인": "CityTextures",
+      "버전": "1.1.0",
+      "SHA256": "ba7a5046ed1a4c6fb6fbb811497a50c27d84bbaa878d17e5551eb5a5c4cd2e89",
+      "바이트": 24864
+    },
+    "releases/tycoon-2.0.1/KoreanCommands-2.0.0.jar": {
+      "플러그인": "KoreanCommands",
+      "버전": "2.0.0",
+      "SHA256": "258ae12e142fae7b9a1232abfb4faebcf0f8a1b6ae4941aa030ab22e57835809",
+      "바이트": 15728
+    },
+    "releases/tycoon-2.0.1/KoreanPackSetup-2.0.0.jar": {
+      "플러그인": "KoreanPackSetup",
+      "버전": "2.0.0",
+      "SHA256": "0b8a1c07401a7a523dbe58522301ce483a1874d4968117227e781167facd64cb",
+      "바이트": 75688
+    },
+    "survival-pack/vendor/Vault.jar": {
+      "플러그인": "Vault",
+      "버전": "1.7.3-b131",
+      "SHA256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+      "바이트": 272259
+    },
+    "survival-pack/vendor/QuickShop-Hikari-6.3.0.4.jar": {
+      "플러그인": "QuickShop-Hikari",
+      "버전": "6.3.0.4",
+      "SHA256": "ce1e36d4bd6081b1258a9943ed28416b3e26c3bf0bbca6ec69cf0a397e320b5d",
+      "바이트": 4660403
+    },
+    "releases/korean-plugins/worldedit-bukkit-7.4.6-ko.jar": {
+      "플러그인": "WorldEdit",
+      "버전": "7.4.6+7648-00664b0",
+      "SHA256": "4bc8ace3e0f97ecf3da7deae201eefd9c1064f77262880ee591e92df7bb2b089",
+      "바이트": 7819421
+    },
+    "releases/korean-plugins/worldguard-bukkit-7.0.21-ko.jar": {
+      "플러그인": "WorldGuard",
+      "버전": "7.0.21+2424-da30a99",
+      "SHA256": "980a435bc8515d32ee52fa8bf55adb5f06b4dcc7c320cdff380759e698944ab7",
+      "바이트": 1194313
+    }
+  },
+  "추가후보JAR다운로드": false,
+  "추가후보Paper26_3실행검증": false,
+  "추가후보내부전체한글화": false,
+  "Windows설치상태조회": false,
+  "Windows신규설치": false,
+  "공식링크검사설명": "정상 응답은 자료 주소 확인이며 설치·호환·완전 한글화 보증이 아님",
+  "그대로포함한UI설치ZIP_SHA256": "01e8196d239fd613b21513056060385204a70a05f0f808d7c2eb18532d681bcc"
+}

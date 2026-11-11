@@ -1,0 +1,42 @@
+[
+  {
+    "파일": "GriefPrevention.jar",
+    "당시버전": "16.18.8",
+    "당시다운로드주소": "https://cdn.modrinth.com/data/O4o4mKaq/versions/MtwPHMAS/GriefPrevention.jar",
+    "해시방식": "SHA512",
+    "당시해시": "248edc681e94fe333aa4262b4e8858e9e8f79e7e4872a76348ff6df213cc56e6069eea9916c5c4e6476b1513575f0d45db76c91526f5dc032e02b8806341b9e9",
+    "상태": "기존 의존성 기록. 이번 다운로드·설치·현재 접속 가능 여부 미확인"
+  },
+  {
+    "파일": "prism-paper-v4.5.jar",
+    "당시버전": "4.5",
+    "당시다운로드주소": "https://cdn.modrinth.com/data/oLV8Vvxy/versions/K6DsX6Ko/prism-paper-v4.5.jar",
+    "해시방식": "SHA512",
+    "당시해시": "eefa51f1a6b0d09e8f42eee0c5670369090f154581866a0839f5c936524849373f27565cad0e35104014ead87736acd54de9f346d8137c9aff8ca0922e25a090",
+    "상태": "기존 의존성 기록. 이번 다운로드·설치·현재 접속 가능 여부 미확인"
+  },
+  {
+    "파일": "item-nbt-api-plugin-2.16.1.jar",
+    "당시버전": "2.16.1",
+    "당시다운로드주소": "https://cdn.modrinth.com/data/nfGCP9fk/versions/h7feK39u/item-nbt-api-plugin-2.16.1.jar",
+    "해시방식": "SHA512",
+    "당시해시": "1957deb03d07109b0cbf78a54f1030546e6fb3147c400b28d24ef585f527bb503965f4f777b2bc18b06bc682a164a2ffd42ba0468659b2f4bed6729df3e52be0",
+    "상태": "기존 의존성 기록. 이번 다운로드·설치·현재 접속 가능 여부 미확인"
+  },
+  {
+    "파일": "EssentialsX-2.22.1-dev+28-f8724e2.jar",
+    "당시버전": "2.22.1-dev+28-f8724e2",
+    "당시다운로드주소": "https://ci.ender.zone/job/EssentialsX/1833/artifact/jars/EssentialsX-2.22.1-dev%2B28-f8724e2.jar",
+    "해시방식": "SHA256",
+    "당시해시": "5B8A1FEB7C40A45D81E516BD077A7272D833C76CF829098743211999ABD95929",
+    "상태": "기존 의존성 기록. 이번 다운로드·설치·현재 접속 가능 여부 미확인"
+  },
+  {
+    "파일": "EssentialsXSpawn-2.22.1-dev+28-f8724e2.jar",
+    "당시버전": "2.22.1-dev+28-f8724e2",
+    "당시다운로드주소": "https://ci.ender.zone/job/EssentialsX/1833/artifact/jars/EssentialsXSpawn-2.22.1-dev%2B28-f8724e2.jar",
+    "해시방식": "SHA256",
+    "당시해시": "707C3F2EC3BA9274F4B2F3C664D6B2447117EE100D074F08B02D1CD01B8CC6E3",
+    "상태": "기존 의존성 기록. 이번 다운로드·설치·현재 접속 가능 여부 미확인"
+  }
+]

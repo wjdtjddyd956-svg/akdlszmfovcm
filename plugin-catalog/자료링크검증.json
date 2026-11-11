@@ -1,0 +1,199 @@
+{
+  "기준일": "2026-11-11",
+  "검사방식": "공개 공식 GitHub 주소에 HTTPS HEAD 요청",
+  "의미": "자료 주소의 정상 응답만 확인. 후보 JAR를 받거나 Paper 호환·전체 한글화·실서버 설치를 검증한 것은 아님. 표에 없는 외부 사이트는 접속 미확인.",
+  "검사": [
+    {
+      "주소": "https://github.com/LuckPerms/LuckPerms",
+      "응답코드": 200,
+      "최종주소": "https://github.com/LuckPerms/LuckPerms",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/pop4959/Chunky",
+      "응답코드": 200,
+      "최종주소": "https://github.com/pop4959/Chunky",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/lucko/spark",
+      "응답코드": 200,
+      "최종주소": "https://github.com/lucko/spark",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/PlaceholderAPI/PlaceholderAPI",
+      "응답코드": 200,
+      "최종주소": "https://github.com/PlaceholderAPI/PlaceholderAPI",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/NEZNAMY/TAB",
+      "응답코드": 200,
+      "최종주소": "https://github.com/NEZNAMY/TAB",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/DecentSoftware-eu/DecentHolograms",
+      "응답코드": 200,
+      "최종주소": "https://github.com/DecentSoftware-eu/DecentHolograms",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/Multiverse/Multiverse-Core",
+      "응답코드": 200,
+      "최종주소": "https://github.com/Multiverse/Multiverse-Core",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/plan-player-analytics/Plan",
+      "응답코드": 200,
+      "최종주소": "https://github.com/plan-player-analytics/Plan",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/DiscordSRV/DiscordSRV",
+      "응답코드": 200,
+      "최종주소": "https://github.com/DiscordSRV/DiscordSRV",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/GrimAnticheat/Grim",
+      "응답코드": 200,
+      "최종주소": "https://github.com/GrimAnticheat/Grim",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/retrooper/packetevents",
+      "응답코드": 200,
+      "최종주소": "https://github.com/retrooper/packetevents",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/dmulloy2/ProtocolLib",
+      "응답코드": 200,
+      "최종주소": "https://github.com/dmulloy2/ProtocolLib",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/CitizensDev/Citizens2",
+      "응답코드": 200,
+      "최종주소": "https://github.com/CitizensDev/Citizens2",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/BetonQuest/BetonQuest",
+      "응답코드": 200,
+      "최종주소": "https://github.com/BetonQuest/BetonQuest",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/SkytAsul/BeautyQuests",
+      "응답코드": 200,
+      "최종주소": "https://github.com/SkytAsul/BeautyQuests",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/oraxen/oraxen",
+      "응답코드": 200,
+      "최종주소": "https://github.com/oraxen/oraxen",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/Shopkeepers/Shopkeepers",
+      "응답코드": 200,
+      "최종주소": "https://github.com/Shopkeepers/Shopkeepers",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/ViaVersion/ViaVersion",
+      "응답코드": 200,
+      "최종주소": "https://github.com/ViaVersion/ViaVersion",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/ViaVersion/ViaBackwards",
+      "응답코드": 200,
+      "최종주소": "https://github.com/ViaVersion/ViaBackwards",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/GeyserMC/Geyser",
+      "응답코드": 200,
+      "최종주소": "https://github.com/GeyserMC/Geyser",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/GeyserMC/Floodgate",
+      "응답코드": 200,
+      "최종주소": "https://github.com/GeyserMC/Floodgate",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/PlayPro/CoreProtect",
+      "응답코드": 200,
+      "최종주소": "https://github.com/PlayPro/CoreProtect",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/QuickShop-Community/QuickShop-Hikari",
+      "응답코드": 200,
+      "최종주소": "https://github.com/QuickShop-Community/QuickShop-Hikari",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/MilkBowl/Vault",
+      "응답코드": 200,
+      "최종주소": "https://github.com/MilkBowl/Vault",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/EngineHub/WorldEdit",
+      "응답코드": 200,
+      "최종주소": "https://github.com/EngineHub/WorldEdit",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/EngineHub/WorldGuard",
+      "응답코드": 200,
+      "최종주소": "https://github.com/EngineHub/WorldGuard",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/GriefPrevention/GriefPrevention",
+      "응답코드": 200,
+      "최종주소": "https://github.com/GriefPrevention/GriefPrevention",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/tr7zw/Item-NBT-API",
+      "응답코드": 200,
+      "최종주소": "https://github.com/tr7zw/Item-NBT-API",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/EssentialsX/Essentials",
+      "응답코드": 200,
+      "최종주소": "https://github.com/EssentialsX/Essentials",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/TechnicallyCoded/Inventory-Rollback-Plus",
+      "응답코드": 200,
+      "최종주소": "https://github.com/TechnicallyCoded/Inventory-Rollback-Plus",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/nulli0n/ExcellentCrates-spigot",
+      "응답코드": 200,
+      "최종주소": "https://github.com/nulli0n/ExcellentCrates-spigot",
+      "결과": "정상 응답"
+    },
+    {
+      "주소": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
+      "응답코드": 200,
+      "최종주소": "https://github.com/wjdtjddyd956-svg/akdlszmfovcm",
+      "결과": "정상 응답"
+    }
+  ]
+}
