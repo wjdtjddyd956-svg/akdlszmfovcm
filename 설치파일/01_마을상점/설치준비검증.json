@@ -1,0 +1,12 @@
+{
+  "검사수": 68,
+  "한글ZIP_해시검증": true,
+  "한글JAR_원본동일": true,
+  "실제Java설치기_설치_재설치_손상거절_백업_복원": true,
+  "한글서버경로_기존DB_월드_잔액파일보존": true,
+  "PowerShell_실행": false,
+  "CMD_Windows_실행": false,
+  "Windows_운영서버_적용": false,
+  "설명": "PowerShell 실행기 자체는 미실행. 한글 파일의 임시 원래 이름 준비 방식과 실제 Java 설치기·파일 시스템을 검사함.",
+  "플랫폼": "posix"
+}

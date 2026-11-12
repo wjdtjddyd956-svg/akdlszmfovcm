@@ -1,0 +1,30 @@
+{
+  "설명": "설치파일·사용안내·개발자료·이전자료. releases는 기존 서버 다운로드 주소 호환용으로 유지합니다.",
+  "정리일": "2026-11-12",
+  "이전경로대응": {
+    "korean-economy": "개발자료/플러그인/생활경제",
+    "korean-menu": "개발자료/플러그인/마을수첩",
+    "korean-civic": "개발자료/플러그인/마을상점",
+    "korean-farming": "개발자료/플러그인/커스텀농사",
+    "korean-codex": "개발자료/플러그인/아이템도감",
+    "korean-commands": "개발자료/플러그인/한글명령어",
+    "korean-pack-setup": "개발자료/플러그인/경제설정",
+    "city-textures": "개발자료/플러그인/도시화면",
+    "plugin-integration": "개발자료/플러그인/서버연결",
+    "city-resourcepack": "개발자료/리소스팩/도시기본팩",
+    "farming-resourcepack": "개발자료/리소스팩/농장팩",
+    "interface-resourcepack": "개발자료/리소스팩/메뉴팩",
+    "civic-update": "개발자료/배포도구/마을상점",
+    "interface-update": "개발자료/배포도구/메뉴통합",
+    "survival-pack": "개발자료/배포도구/경제야생",
+    "life-server": "개발자료/배포도구/생활서버",
+    "economy-spawn": "개발자료/지도/경제마을",
+    "tools": "개발자료/공통도구",
+    "plugin-catalog": "사용안내/플러그인목록",
+    "tycoon": "사용안내/생활타이쿤",
+    "archive": "이전자료/초기개발",
+    "TYCOON-WORKPLAN.md": "이전자료/생활타이쿤-작업기록.md"
+  },
+  "호환배포경로": "releases",
+  "기준커밋": "231e432"
+}

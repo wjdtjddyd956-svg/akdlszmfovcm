@@ -1,0 +1,7 @@
+{
+  "actual_production_core_and_civic_jars": true,
+  "embedded_native_sqlite_only": true,
+  "migration_title_transfer_payout_restart_review_and_snapshot": true,
+  "platform": "posix",
+  "result": "PACKAGED_CIVIC_SQLITE_OK"
+}

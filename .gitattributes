@@ -1,3 +1,4 @@
 # Release manifests hash exact bytes, including PowerShell BOM and line endings.
 releases/plugin-integration/** -text whitespace=cr-at-eol
 releases/civic-update/** -text whitespace=cr-at-eol
+설치파일/** -text whitespace=cr-at-eol

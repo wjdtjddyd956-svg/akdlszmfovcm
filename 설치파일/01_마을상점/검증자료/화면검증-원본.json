@@ -1,0 +1,10 @@
+{
+  "browser": "system Chromium via Playwright",
+  "headless": true,
+  "screens": 6,
+  "slots_per_screen": 54,
+  "navigation_town_fee_whole_bundle_price_seller_tooltips": true,
+  "mobile_width_390_tested": true,
+  "javascript_errors": [],
+  "native_minecraft_client_tested": false
+}

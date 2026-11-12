@@ -1,93 +1,35 @@
-# 한글 생활 타이쿤 서버
+# 도시생활 마인크래프트 서버
 
-최신 기능은 **[마을·필지 매매 + 개인상점 1.0.0](civic-update/README.md)**입니다. 쉬프트+F에서 마을 설립·인접 영역 확장·필지 분양·땅 구매·재판매와 유저 물품 등록·구매·회수를 이용합니다. 자체 메뉴와 이용자 명령은 한글이며 기존 경제·농사·도감 데이터를 이어갑니다.
+설치 파일, 사용 안내, 개발 자료를 용도별로 정리했습니다. **설치할 때는 아래 한글 파일을 받으면 됩니다.**
 
-[**마을·개인상점 설치 ZIP 받기**](releases/civic-update/1.0.0/도시생활-마을상점-1.0.0.zip) · [메뉴 미리보기](releases/civic-update/1.0.0/메뉴-미리보기.png) · [설치·설정](civic-update/README.md) · [거래·검증 범위](civic-update/거래·검증.md)
+### 바로 받기
 
-이번 새 버전은 실제 Paper 26.3 API·MockBukkit 테스트 178개, 기존 데이터/거래 검사 121개, 설치·백업·복원 검사 39개와 배포 JAR의 SQLite 검사까지 완료했습니다. **이번 버전의 Windows 운영 적용·실제 클라이언트 플레이는 아직 수행하지 않았습니다.** 이전 버전의 적용 기록은 아래에 구분합니다.
+| 필요한 것 | 파일 | 안내 |
+| --- | --- | --- |
+| **마을·땅 거래 + 개인상점** | [**최신 한글 설치 ZIP**](설치파일/01_마을상점/도시생활-마을상점-한글설치-1.0.0.zip) | [설치 방법](설치파일/01_마을상점/설치안내.md) |
+| 메뉴·농사·도감 화면팩 | [도시생활 메뉴팩](설치파일/02_리소스팩/도시생활-메뉴팩-1.2.0.zip) | [팩 선택·적용](설치파일/02_리소스팩/README.md) |
+| 건축 재질까지 포함한 팩 | [도시생활 전체팩](설치파일/02_리소스팩/도시생활-전체팩-1.2.0.zip) | [팩 선택·적용](설치파일/02_리소스팩/README.md) |
+| 경제 마을 지도 | [자연형 마을 스키매틱](설치파일/03_지도/경제마을-자연형-3판.schem) | [설치·미리보기](설치파일/03_지도/README.md) |
+| 이전 서버·메뉴 설치 자료 | [이전 설치 목록](설치파일/04_이전설치/README.md) | [배포 이력](이전자료/배포이력.md) |
 
-이전 메뉴 업데이트는 **[도시 생활 수첩 UI 1.2.1](interface-update/README.md)**입니다. 쉬프트+F·도감 필터·정품 수량·실제 보상·업적/효과·화면 복귀·농장을 통합하고 Windows에 백업 후 적용했습니다. [설치 ZIP](releases/ui-update/1.2.1/도시생활-Windows-메뉴통합-1.2.1.zip) · [실제 화면](releases/ui-update/1.2.1/실제화면-마을수첩.png) · [검증·남은 범위](releases/ui-update/1.2.1/검증결과.md).
+최신 ZIP은 **기존 생활 경제 서버용 업데이트**입니다. 서버 폴더 밖에 풀고 **설치하기.cmd**를 실행하세요. 전체 백업 후 기존 잔액·월드·설정·농사·도감을 이어받습니다. 대상은 **Paper 26.3 build238 / Java 25 이상**입니다.
 
-**[플러그인 전체 한글 정리 — 46종](plugin-catalog/README.md)** · [정리·기존 자체 플러그인 묶음 ZIP](releases/plugin-catalog/한글플러그인-정리묶음-1.0.0.zip) · [설치 순서](plugin-catalog/설치순서.md) · [연결·한글화 현황](plugin-catalog/연결·한글화.md)
+### 최신 기능
 
-기존 구성과 추가 후보를 나누고 기능·우선순위·공식 자료·버전·검증 범위를 한국어로 정리했습니다. 묶음에는 기존 자체 플러그인 7개와 통합팩·설치 도구가 들어 있으며, 추가 후보의 신규 JAR·내부 전체 한글화·Windows 설치는 미포함입니다.
+- **쉬프트+F → 마을·땅 거래:** 마을 설립 → 인접 영역 확장 → 필지 분양 → 땅 구매·재판매
+- **쉬프트+F → 개인상점:** 물품 등록·구매·회수·판매대금 받기
+- **기존 생활 기능:** NPC 상점·직업·요리·농사 5종·아이템 도감·업적
 
-현재 Windows 업그레이드는 **생활타이쿤 2.0.1**, Paper 26.3 build 238용입니다. NPC 상점·직업·요리·강화·임무·기존 GriefPrevention 땅 보호·Prism 기록·Windows 백업과 쉬프트+F 한글 메뉴를 포함합니다.
+[한글 명령어·이용 방법](사용안내/이용방법.md) · [플러그인 목록](사용안내/플러그인목록/README.md) · [마을·상점 화면 미리보기](설치파일/01_마을상점/메뉴-미리보기.png)
 
-- [기존 1.2/2.0용 Windows 설치 ZIP](releases/tycoon-2.0.1/생활타이쿤-Windows-업그레이드-2.0.1.zip)
-- [설치·명령어·백업·복원 안내](releases/tycoon-2.0.1/설치·운영안내.md)
-- [실제 Windows/Paper 검증 범위와 한계](releases/tycoon-2.0.1/검증결과.md)
-- [JAR·체크섬·빌드 출처](releases/tycoon-2.0.1/)
-- [이전 2.0.0 전체 설치 자료](releases/tycoon-2.0/)
+### 폴더 안내
 
-2026-11-11 실제 Windows 서버가 1.2.0임을 확인하고, 기존 데이터의 전체 백업·복원 검증 후 2.0.1을 적용했습니다. 실제 Paper 복사본과 순정 26.3 클라이언트에서도 검증했습니다. 운영 서버의 로그인한 실제 이용자 플레이와 10명 동시 활동 부하 검증은 별도입니다. 설치된 호환 EssentialsX `2.22.1-dev+28-f8724e2` 본체·Spawn, GP·Prism·WorldGuard와 기존 백업 관리자를 유지했습니다. 새 ZIP은 이미 설치된 이 플러그인들을 재사용하며 미지원 버전으로 교체하지 않습니다.
+| 폴더 | 내용 |
+| --- | --- |
+| [설치파일](설치파일/README.md) | 한글 설치 묶음·개별 JAR·리소스팩·지도 |
+| [사용안내](사용안내/README.md) | 설치·명령어·설정·복구·플러그인 설명 |
+| [개발자료](개발자료/README.md) | 플러그인 소스·팩 제작·빌드·검사 도구 |
+| [이전자료](이전자료/README.md) | 이전 배포 이력과 초기 개발 자료 |
+| [releases](releases/README.md) | 기존 서버가 참조하는 원본 다운로드 주소 보관 |
 
-현실적인 도시·경제풍의 [시티 이코노미 리소스팩](city-resourcepack/README.md)도 제공합니다. 요리·경제·직업·메뉴 아이콘 32종(64x), 선택 건축 재질 8종(128x), 기존 메뉴에 연결하는 CityTextures 보조 플러그인과 [미리보기](releases/city-resourcepack/미리보기.png)를 포함합니다. [전체 다운로드](releases/city-resourcepack/CityEconomy-Package-1.0.0.zip).
-
-[아이템 도감·수집 업적 1.0.1](korean-codex/README.md)을 전체 백업 후 실제 Windows 서버에 JAR 하나만 추가했습니다. 80종을 1개씩 소비해 UUID별 영구 등록하고 희귀도·12업적에 따라 8종의 작은 보너스를 받습니다. [설치 ZIP](releases/korean-codex/1.0.1/KoreanCodex-Windows-설치-1.0.1.zip) · [80종 보너스 표](releases/korean-codex/1.0.1/아이템별보너스.md) · [실제 Paper·순정 화면·모의 검사 구분](releases/korean-codex/1.0.1/검증결과.md).
-
-[도시 농장 Windows 1.0.1](korean-farming/README.md)은 **딸기·토마토·옥수수·쌀·오이** 5종의 씨앗 구매·재배·수확·농부 보상·요리·NPC 판매·도감을 연결합니다. 경제 2.0.2 / 농사 1.0.1 / 도감 1.1.0 조합이며 기존 2.0.1 서버의 데이터를 이어받습니다. 도감은 기존 보상을 유지하며 85종·13업적으로 확장합니다. NPC 우클릭과 쉬프트+F 메뉴로 시작하며 `/농사`는 보조 안내입니다.
-
-- [농장 Windows 설치 ZIP](releases/farming-update/1.0.1/도시농장-Windows-설치-1.0.1.zip) · [설치와 사용법](releases/farming-update/1.0.1/설치안내.md)
-- [작물·씨앗·요리·성장 모델 미리보기](releases/farming-update/농작물-미리보기.png) · [Windows·실제 Paper·모의 검사 구분](releases/farming-update/1.0.1/검증결과.md)
-- 새 농장 팩은 기존 도시 아이콘 32종에 농장 아이콘 15종·성장 모델 20종을 합칩니다. 새 작물은 이 통합팩이 필요합니다.
-- 2026-11-11 최신 main의 기존 농장 구현을 이어서 보완하고 실제 Windows 전체 백업·627파일 복원 검증 후 적용했습니다. 운영 서버 이용자의 실계정 플레이와 10명 동시 부하 검증은 별도입니다.
-
-[쉬프트+F 메뉴·도감 UI 개선](interface-update/README.md)을 추가했습니다. 기능별 구분·등록 가능/미보유/완료 필터·보유 수량·업적 진행률·상한을 반영한 실제 보상 확인과 전용 아이콘 24종을 제공합니다. 기존 85종·13업적의 보상과 데이터는 유지합니다.
-
-- [최신 메뉴 통합 설치 ZIP](releases/ui-update/도시생활-메뉴통합-1.2.0.zip) · [UI 구성 미리보기](releases/ui-update/메뉴-미리보기.png)
-- [설치·설정·검증 범위](interface-update/README.md) · [브라우저에서 열 수 있는 HTML 미리보기](releases/ui-update/메뉴-미리보기.html)
-- 이 UI 업데이트는 클라우드에서 제작·자동 검증했으며 실제 Windows 적용·게임 클라이언트 검증은 별도입니다.
-
-아래는 이전 RPG·경제 야생 자료의 이력입니다.
-
-# 이전 서버 자료
-
-소규모 Paper 기반 RPG 서버를 만들면서 사용하는 설정과 결과물을 보관합니다.
-
-## 10인 한글 생활 경제 서버
-
-Paper 26.3용 1.2.0은 NPC 상점에 매입 한도를 추가하고, 직업·일일 임무·땅 보호·기록 복구·자동 백업을 구성합니다.
-
-- [설치 ZIP](releases/survival-pack/Korean-Life-Server-1.2.0.zip)
-- [Windows 설치와 백업 복원](life-server/README.md) · [한글 명령어표](life-server/명령어.md) · [검증 결과](life-server/검증.md)
-- 현재 배포본은 `life-server/Build-LifePack.ps1`로 실제 Paper 26.3 API에서 빌드하고 `life-server/Package-LifePack.ps1`로 패키징합니다. 예전 배포 파일은 해당 버전의 커밋에서 재빌드할 수 있습니다.
-
-## 플러그인 한글화
-
-`releases/korean-plugins/`에 WorldEdit 7.4.6 및 WorldGuard 7.0.21 한국어 수정본과 설치 안내가 있습니다.
-
-- `WorldEdit-WorldGuard-Korean.zip`: 두 플러그인과 안내 문서를 묶은 파일
-- `worldedit-bukkit-7.4.6-ko.jar`: WorldEdit 한국어 수정본
-- `worldguard-bukkit-7.0.21-ko.jar`: WorldGuard 한국어 수정본
-- `설치안내.txt`: 적용법, 번역 범위, 검증 결과
-
-공식 배포판이 아닌 수정본이므로 적용 전에 서버와 기존 플러그인을 백업해야 합니다.
-
-## 한글 명령어
-
-`korean-commands/`에는 WorldEdit과 WorldGuard의 주요 명령어를 한글로 입력할 수 있게 해 주는 Paper 플러그인 소스가 있습니다.
-설치용 JAR과 안내 문서는 `releases/korean-commands/`에 있습니다.
-
-```text
-//채우기 돌                    → //set stone
-/영역 생성 마을               → /rg define 마을
-/영역 설정 마을 피브이피 거부 → /rg flag 마을 pvp deny
-```
-
-## 현실 경제 야생 스폰
-
-`economy-spawn/`에는 중앙광장, 시청, 은행, 직업소, 유저 상점 10칸, 초보 농장과 야생 출구가 포함된 현대 소도시형 스폰 생성기가 있습니다.
-설치용 WorldEdit 스키매틱은 `releases/economy-spawn/`에 있습니다.
-`v3_handbuilt`판은 굽은 길·하천·돌다리·경사지붕·목재 골조·불규칙 농장으로 다시 설계한 고품질 버전입니다.
-
-## 경제 야생 플러그인과 쉬프트+F 메뉴
-
-`korean-menu/`에는 직접 만든 한글 메뉴와 검사가 있습니다. `korean-economy/`에는 같은 Vault 잔액으로 거래하는 서버 상점과 일일 보상이 있습니다.
-`survival-pack/`에는 공식 EssentialsX·EssentialsXSpawn·Vault·QuickShop JAR의 배포 묶음 생성기와 한글 신규 설정, 추가 플러그인 다운로드 스크립트가 있습니다.
-설치 ZIP과 단독 메뉴 JAR는 `releases/survival-pack/`에 있습니다. Paper 26.3 전체 호환성 및 실제 서버 실행은 미검증이며, 추천 추가 플러그인 LuckPerms·GriefPrevention·CoreProtect JAR는 ZIP에 포함되지 않습니다. 상세 범위는 해당 설치 안내를 참고하세요.
-이전 묶음은 `EconomySurvival-Korean-Pack-1.1.0.zip`이며 한글 채팅 기능은 포함하지 않습니다. EarthMC 공개 가이드를 참고한 [설계](survival-pack/참고서버.md)와 [한글 명령어 안내](survival-pack/한글명령어.md)를 함께 제공합니다.
-
-Paper 26.3에서 EssentialsX 2.22.0 미지원 메시지가 실제 확인되었습니다. 본체·스폰은 공식 26.3 지원 개발 빌드로 교체해야 합니다. [26.3 수정 안내](korean-pack-setup/README.md)와 `releases/survival-pack/Paper26.3-Economy-Fix-1.0.0.zip`에는 기존 데이터를 유지하는 1회 설정 적용 JAR와 공식 개발 빌드 다운로드 스크립트가 있습니다. 차단된 공식 개발 JAR 자체는 포함하지 않습니다.
-
-이전 1.1 상점은 NPC 우클릭 방식입니다. `NPC-Shop-Korean-Update-1.1.0.zip`의 `KoreanEconomy-1.1.0.jar`로 기존 1.0.0 JAR를 교체하세요. `/상인 생성 농부 농산물`처럼 한글 명령으로 사람형·주민형 NPC를 배치할 수 있습니다. [NPC 상점 안내](survival-pack/NPC상점-설치안내.md)를 확인하세요. 이전 배포물의 소스/도구 사용법은 해당 버전 이력을 참고하세요.
+이번 정리는 파일·폴더·안내를 정리한 작업입니다. **운영 서버에 새로 설치하거나 게임 기능·보상을 변경하지 않았습니다.** 기존 배포 파일과 다운로드 주소를 유지하며, 한글 이름의 JAR·리소스팩도 원본과 내용이 같습니다. Windows 운영 적용·실제 게임 확인 범위는 각 배포의 검증 기록에서 확인하세요.

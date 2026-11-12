@@ -1,0 +1,44 @@
+현실 경제 야생 스폰 v3 Handbuilt 설치 안내
+
+파일
+- 경제마을-자연형-3판.schem
+- 크기: 193 × 48 × 193 블록
+- 기준점: 중앙 우물 광장의 지면
+
+특징
+- 굽은 자갈길과 자연스럽게 갈라지는 골목
+- 마을 동쪽을 굽이치는 하천과 돌다리
+- ㄱ자 시청, 비대칭 정원, 종탑
+- 박공지붕, 맞배지붕, 굴뚝과 목재 골조
+- 석재 은행과 내부 금고·창구
+- 작업장이 붙은 직업 길드
+- 크기와 높이가 모두 다른 개별 상점 10채
+- 불규칙한 울타리 농장과 헛간
+- 강변 산책로, 연못, 정자, 벤치
+- 여관, 안뜰, 마구간과 작은 주택
+- 나무·꽃·통·퇴비통·가로등 등 수작업형 디테일
+
+설치 방법
+1. 서버 콘솔에 stop을 입력하고 월드를 백업합니다.
+2. 경제마을-자연형-3판.schem 파일을 다음 폴더에 넣습니다.
+   plugins/WorldEdit/schematics/
+3. 서버를 다시 실행하고 운영자 권한으로 접속합니다.
+4. 최소 200 × 200 블록의 빈 장소 중앙에 섭니다.
+5. 다음 명령을 각각 별도로 실행합니다.
+   //schem load 경제마을-자연형-3판.schem
+   //paste
+6. 위치가 잘못되었다면 즉시 //undo를 실행합니다.
+
+주의
+- //schem load와 //paste를 같은 줄에 입력하지 마세요.
+- 기존 지형과 건축물을 덮어쓰므로 반드시 백업 후 사용하세요.
+- 공기 블록이 포함되어 있어 마을 위 장애물도 함께 정리됩니다.
+- 붙여넣기는 다른 플레이어가 적을 때 실행하는 것을 권장합니다.
+
+권장 WorldGuard 설정
+/rg define spawn_city
+/rg flag spawn_city pvp deny
+/rg flag spawn_city mob-spawning deny
+/rg flag spawn_city creeper-explosion deny
+/rg flag spawn_city tnt deny
+/rg flag spawn_city fire-spread deny
