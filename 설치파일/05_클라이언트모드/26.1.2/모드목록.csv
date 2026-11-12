@@ -1,0 +1,25 @@
+﻿한글이름,식별자,상태,확보버전,한글파일,이유,공식자료
+펀치 이동 동작,punchy_moves,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/punchy-guys/punchy-wiki
+펀치 1인칭 동작,punchy,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/punchy-mod/punchy-wiki/wiki
+셜커 상자 미리보기,shulkerboxtooltip,기본구성,5.4.3+26.1.1,셜커상자미리보기-5.4.3.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/MisterPeModder/ShulkerBoxTooltip
+소듐 렌더링 최적화,sodium,공식버전확인_다운로드대기,,,mc26.1.2-0.9.2 공식 릴리스 확인. 배포 사이트 접속 차단으로 본체를 받지 못함. 해당 공식 태그의 영어 언어 파일 105개를 번역함.,https://github.com/CaffeineMC/sodium/releases/tag/mc26.1.2-0.9.2
+입자 효과,visuality,필수모드대기,0.7.13+26.1,입자효과-0.7.13.jar,공식 JAR은 확보했으나 필수 Cloth Config를 아직 받지 못해 기본 구성에서 제외함.,https://github.com/PinkGoosik/visuality
+근거리 음성 채팅,voicechat,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/henkelmax/simple-voice-chat
+제로 월드 지도,xaeroworldmap,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://www.curseforge.com/minecraft/mc-mods/xaeros-world-map
+제로 미니맵,xaerominimap,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap
+음식 회복량 표시,appleskin,기본구성,3.0.10+mc26.1.2,음식회복량-3.0.10.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/squeek502/AppleSkin
+커스텀 아이템 텍스처,citresewn,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/SHsuperCM/CITResewn
+클로스 설정 화면,cloth-config,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/shedaniel/ClothConfig
+음식 먹기 애니메이션,eatinganimationid,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/Theoness1/EatingAnimation
+엔티티 커스텀 모델,entity_model_features,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/Traben-0/Entity_Model_Features
+엔티티 커스텀 텍스처,entity_texture_features,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/Traben-0/Entity_Texture_Features
+엔티티 표시 최적화,entityculling,기본구성,1.12.0,엔티티최적화-1.12.0.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/tr7zw/EntityCulling
+패브릭 API,fabric-api,기본구성,0.155.3+26.1.2,패브릭API-0.155.3.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/FabricMC/fabric
+물과 환경 효과,effective,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/Ladysnake/Effective
+메모리 사용량 최적화,ferritecore,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/malte0811/FerriteCore
+인듐 렌더링 연결,indium,제외,,,제작자가 Sodium 0.6.0 이상에서 불필요하고 비호환이라고 안내함. 구버전을 새 Sodium에 넣지 않음.,https://github.com/comp500/Indium#since-sodium-060-indium-is-no-longer-required
+인벤토리 화면 표시,inventoryhud,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://www.curseforge.com/minecraft/mc-mods/inventory-hud-forge
+아이템 제작법 보기,jei,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/mezz/JustEnoughItems
+아이리스 셰이더,iris,추가확인대기,,,Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.,https://github.com/IrisShaders/Iris.git
+모드 목록·설정,modmenu,기본구성,18.0.2,모드목록-18.0.2.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/TerraformersMC/ModMenu
+추가 동작 애니메이션,notenoughanimations,기본구성,1.12.7,추가동작-1.12.7.jar,공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.,https://github.com/tr7zw/NotEnoughAnimations

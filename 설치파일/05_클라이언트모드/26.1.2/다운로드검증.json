@@ -1,0 +1,16 @@
+{
+  "검사수": 20,
+  "PowerShell버전": "7.5.4",
+  "실행플랫폼": "posix",
+  "공식GitHub실제다운로드_6종": true,
+  "SHA256_FabricID_버전검사": true,
+  "재실행_원본바이트와수정시간보존": true,
+  "손상파일_기존모드혼합_중복ID_비공식URL_거절": true,
+  "WindowsPowerShell5_실행": false,
+  "CMD실행": false,
+  "Minecraft실행": false,
+  "기존게임폴더변경": false,
+  "실행스크립트SHA256": "1e0617cbcccdb3f8e523e9043637357297a54ccfe126dbe9e657cedb5d36b8e2",
+  "목록SHA256": "9df7340737079abc918c479a8e1c0e01f90ff9a0de96f7e5d9812987682abeca",
+  "한국어팩SHA256": "b57f997b17de1f58b2464b131079d7ef200bcd98a00a9ac4d8a9dcb20a96879d"
+}

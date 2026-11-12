@@ -1,0 +1,321 @@
+{
+  "대상버전": "26.1.2",
+  "로더": "Fabric",
+  "로더검사기준": "0.19.5",
+  "자바최소버전": 25,
+  "확인일": "2026-11-13",
+  "전체요청수": 24,
+  "받은원본수": 7,
+  "기본구성수": 6,
+  "한글화방식": "JAR 원본은 그대로 유지. 파일명과 Mod Menu 표시 이름은 한글, 언어 파일은 추가 리소스팩으로 보충.",
+  "Modrinth접속": "현재 실행 환경 차단·환경 설정 초안 저장됨·아직 미적용",
+  "모드": [
+    {
+      "식별자": "punchy_moves",
+      "한글이름": "펀치 이동 동작",
+      "업로드원본": "punchy-moves-1.0.7-fabric-1.20.1.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/punchy-guys/punchy-wiki"
+    },
+    {
+      "식별자": "punchy",
+      "한글이름": "펀치 1인칭 동작",
+      "업로드원본": "punchy-3.1b-fabric-1.20.1.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/punchy-mod/punchy-wiki/wiki"
+    },
+    {
+      "식별자": "shulkerboxtooltip",
+      "한글이름": "셜커 상자 미리보기",
+      "업로드원본": "shulkerboxtooltip-fabric-4.0.4+1.20.1.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/MisterPeModder/ShulkerBoxTooltip",
+      "확보버전": "5.4.3+26.1.1",
+      "한글파일": "셜커상자미리보기-5.4.3.jar",
+      "공식파일": "shulkerboxtooltip-fabric-5.4.3+26.1.1.jar",
+      "다운로드주소": "https://github.com/MisterPeModder/ShulkerBoxTooltip/releases/download/v5.4.3%2B26.1.1/shulkerboxtooltip-fabric-5.4.3+26.1.1.jar",
+      "SHA256": "6da9330bedd5382986321f28cebc64a583aa946a9d38c46948710e3bec8b6b56",
+      "SHA512": "ec4372f10db38588ebbc09b44745dc7e248e8294e54a994ffaa70b0b3466ab8ab4f10f6a423ea7cc20291788a2945437717ffec4c8ac85876f7d977c75a0a61c",
+      "SHA1": "fc8be5bd8b9b72b0505620b76e27eaca77d83764",
+      "크기": 420115,
+      "게임버전조건": ">=26.1.1",
+      "필수조건": {
+        "fabric-resource-loader-v1": "*",
+        "fabricloader": ">=0.16.0",
+        "minecraft": ">=26.1.1"
+      },
+      "라이선스": "MIT",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "sodium",
+      "한글이름": "소듐 렌더링 최적화",
+      "업로드원본": "sodium-fabric-0.5.13+mc1.20.1.jar",
+      "상태": "공식버전확인_다운로드대기",
+      "이유": "mc26.1.2-0.9.2 공식 릴리스 확인. 배포 사이트 접속 차단으로 본체를 받지 못함. 해당 공식 태그의 영어 언어 파일 105개를 번역함.",
+      "공식자료": "https://github.com/CaffeineMC/sodium/releases/tag/mc26.1.2-0.9.2",
+      "확인버전": "0.9.2+mc26.1.2"
+    },
+    {
+      "식별자": "visuality",
+      "한글이름": "입자 효과",
+      "업로드원본": "visuality-0.7.1+1.20.jar",
+      "상태": "필수모드대기",
+      "이유": "공식 JAR은 확보했으나 필수 Cloth Config를 아직 받지 못해 기본 구성에서 제외함.",
+      "공식자료": "https://github.com/PinkGoosik/visuality",
+      "확보버전": "0.7.13+26.1",
+      "한글파일": "입자효과-0.7.13.jar",
+      "공식파일": "visuality-0.7.13+26.1.jar",
+      "다운로드주소": "https://github.com/PinkGoosik/visuality/releases/download/0.7.13%2B26.1/visuality-0.7.13+26.1.jar",
+      "SHA256": "14d44503562adc0228b0dcbbe2532b1af6d55afe9930e9565c574b3347bc70b7",
+      "SHA512": "7483a87d8fd20b1be82dc339d1b7155ae354c736b55d8a6ce4966d2e5167e2a3f01cb135121001e86880bc999ca32f46fac8825bc1da686e0b208a01b50d80a9",
+      "SHA1": "ff350d5d1253285f9a19f05f8e44d2403215b61d",
+      "크기": 82146,
+      "게임버전조건": ">=26.1 <26.2",
+      "필수조건": {
+        "fabricloader": "*",
+        "fabric-api": "*",
+        "cloth-config": "*",
+        "minecraft": ">=26.1 <26.2",
+        "java": ">=25"
+      },
+      "라이선스": "MIT",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "voicechat",
+      "한글이름": "근거리 음성 채팅",
+      "업로드원본": "voicechat-fabric-1.20.1-2.6.22.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/henkelmax/simple-voice-chat"
+    },
+    {
+      "식별자": "xaeroworldmap",
+      "한글이름": "제로 월드 지도",
+      "업로드원본": "xaeroworldmap-fabric-1.20.1-1.47.0.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://www.curseforge.com/minecraft/mc-mods/xaeros-world-map"
+    },
+    {
+      "식별자": "xaerominimap",
+      "한글이름": "제로 미니맵",
+      "업로드원본": "xaerominimap-fabric-1.20.1-26.6.0.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap"
+    },
+    {
+      "식별자": "appleskin",
+      "한글이름": "음식 회복량 표시",
+      "업로드원본": "appleskin-fabric-mc1.20.1-2.5.2.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/squeek502/AppleSkin",
+      "확보버전": "3.0.10+mc26.1.2",
+      "한글파일": "음식회복량-3.0.10.jar",
+      "공식파일": "appleskin-fabric-mc26.1.2-3.0.10.jar",
+      "다운로드주소": "https://github.com/squeek502/AppleSkin/releases/download/v3.0.9/appleskin-fabric-mc26.1.2-3.0.10.jar",
+      "SHA256": "6a03ad4fcf0a2c831ebabd56fc1b5aca2463e35f289a927adfdbaaf0e944d41c",
+      "SHA512": "eacb134cc9e03a4fd870c3e75fedd3fba6ef9bf1611dcff5b89f0d35b22bda5709f085436ac071c018cf7d3e5a54c9783477c4f091d4ded74deb5292f25f5644",
+      "SHA1": "8100276373646b6740bf20be59e9d8ed7ba24579",
+      "크기": 181584,
+      "게임버전조건": "공식 배포 파일이 26.1.2 명시",
+      "필수조건": {
+        "fabricloader": ">=0.15.10",
+        "fabric-api": "*"
+      },
+      "라이선스": "Unlicense",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "citresewn",
+      "한글이름": "커스텀 아이템 텍스처",
+      "업로드원본": "citresewn-1.1.5+1.20.1.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/SHsuperCM/CITResewn"
+    },
+    {
+      "식별자": "cloth-config",
+      "한글이름": "클로스 설정 화면",
+      "업로드원본": "cloth-config-11.1.136-fabric.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/shedaniel/ClothConfig"
+    },
+    {
+      "식별자": "eatinganimationid",
+      "한글이름": "음식 먹기 애니메이션",
+      "업로드원본": "eating-animation-1.20+1.9.61.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/Theoness1/EatingAnimation"
+    },
+    {
+      "식별자": "entity_model_features",
+      "한글이름": "엔티티 커스텀 모델",
+      "업로드원본": "entity_model_features-3.3.12-1.20.1-fabric.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/Traben-0/Entity_Model_Features"
+    },
+    {
+      "식별자": "entity_texture_features",
+      "한글이름": "엔티티 커스텀 텍스처",
+      "업로드원본": "entity_texture_features-7.2.7-1.20.1-fabric.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/Traben-0/Entity_Texture_Features"
+    },
+    {
+      "식별자": "entityculling",
+      "한글이름": "엔티티 표시 최적화",
+      "업로드원본": "entityculling-fabric-1.11.3-mc1.20.1.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/tr7zw/EntityCulling",
+      "확보버전": "1.12.0",
+      "한글파일": "엔티티최적화-1.12.0.jar",
+      "공식파일": "entityculling-fabric-1.12.0-mc26.1.jar",
+      "다운로드주소": "https://github.com/tr7zw/EntityCulling/releases/download/1.12.0/entityculling-fabric-1.12.0-mc26.1.jar",
+      "SHA256": "a2f882b62f0aecba47192837be96d74ae21ac48a1bd4aafd2563ef317da6543c",
+      "SHA512": "3a64c31be23b20eaece9de4181a1fcc2b1f74127836cc373884744e25ec4917392fd7127607845a3732d274acff56c4660b391488ba1209d1816fd9f071e4193",
+      "SHA1": "c735c00b20ea23768270c7f6cb79c2b66f8fdef0",
+      "크기": 1518670,
+      "게임버전조건": "~26.1",
+      "필수조건": {
+        "minecraft": "~26.1",
+        "fabric-api": "*"
+      },
+      "라이선스": "tr7zw Protective License",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "fabric-api",
+      "한글이름": "패브릭 API",
+      "업로드원본": "fabric-api-0.92.12+1.20.1.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/FabricMC/fabric",
+      "확보버전": "0.155.3+26.1.2",
+      "한글파일": "패브릭API-0.155.3.jar",
+      "공식파일": "fabric-api-0.155.3+26.1.2.jar",
+      "다운로드주소": "https://github.com/FabricMC/fabric-api/releases/download/0.155.3%2B26.1.2/fabric-api-0.155.3+26.1.2.jar",
+      "SHA256": "7fe7bea3dbb7b2e9ff998ab583130cd62fab22ab8a5229656ff14b2e648c91dd",
+      "SHA512": "fa0308b42e9cd0dc3ff946f246d199d74547e0c946d7e3c9780a2537155307baf25129f69bd1349273babf879ffb4608b7e4af0740938f9c0f7b371b1c67d6ca",
+      "SHA1": "16c30dfcceaed1ac3b6ac84cbd348a906dc5093e",
+      "크기": 2521340,
+      "게임버전조건": "~26.1-",
+      "필수조건": {
+        "fabricloader": ">=0.18.4",
+        "java": ">=25",
+        "minecraft": "~26.1-"
+      },
+      "라이선스": "Apache-2.0",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "effective",
+      "한글이름": "물과 환경 효과",
+      "업로드원본": "effective-2.3.2-1.20.1.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/Ladysnake/Effective"
+    },
+    {
+      "식별자": "ferritecore",
+      "한글이름": "메모리 사용량 최적화",
+      "업로드원본": "ferritecore-6.0.1-fabric.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/malte0811/FerriteCore"
+    },
+    {
+      "식별자": "indium",
+      "한글이름": "인듐 렌더링 연결",
+      "업로드원본": "indium-1.0.36+mc1.20.1.jar",
+      "상태": "제외",
+      "이유": "제작자가 Sodium 0.6.0 이상에서 불필요하고 비호환이라고 안내함. 구버전을 새 Sodium에 넣지 않음.",
+      "공식자료": "https://github.com/comp500/Indium#since-sodium-060-indium-is-no-longer-required"
+    },
+    {
+      "식별자": "inventoryhud",
+      "한글이름": "인벤토리 화면 표시",
+      "업로드원본": "inventoryhud.fabric.1.20.1-3.4.26.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://www.curseforge.com/minecraft/mc-mods/inventory-hud-forge"
+    },
+    {
+      "식별자": "jei",
+      "한글이름": "아이템 제작법 보기",
+      "업로드원본": "jei-1.20.1-fabric-15.56.0.205.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/mezz/JustEnoughItems"
+    },
+    {
+      "식별자": "iris",
+      "한글이름": "아이리스 셰이더",
+      "업로드원본": "iris-1.7.6+mc1.20.1.jar",
+      "상태": "추가확인대기",
+      "이유": "Modrinth API·파일 CDN 접속이 현재 클라우드에서 차단되어 정확한 26.1.2 배포를 확인하지 못함. 미지원이라고 판정한 것이 아님.",
+      "공식자료": "https://github.com/IrisShaders/Iris.git"
+    },
+    {
+      "식별자": "modmenu",
+      "한글이름": "모드 목록·설정",
+      "업로드원본": "modmenu-7.2.2.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/TerraformersMC/ModMenu",
+      "확보버전": "18.0.2",
+      "한글파일": "모드목록-18.0.2.jar",
+      "공식파일": "modmenu-18.0.2.jar",
+      "다운로드주소": "https://github.com/TerraformersMC/ModMenu/releases/download/v18.0.2/modmenu-18.0.2.jar",
+      "SHA256": "87ab58f8907dad8346ecc4500a522d66dd4c907462df5bff23c60b07caca8c96",
+      "SHA512": "37393e1d4a23a548463e92eb0687af69034ee7c308bd1d2d27d78df0292f124c4463f19d4b53128b59cda4e02d01d7ae09f06456d10abde19b6e450163e50e97",
+      "SHA1": "8fa5f0c6e844f44bfd836197b680ee6ea0006bcd",
+      "크기": 859999,
+      "게임버전조건": ">1.26-",
+      "필수조건": {
+        "fabric-resource-loader-v1": "*",
+        "fabric-screen-api-v1": "*",
+        "fabric-key-mapping-api-v1": "*",
+        "fabric-lifecycle-events-v1": "*",
+        "fabricloader": ">=0.17.2",
+        "minecraft": ">1.26-"
+      },
+      "라이선스": "MIT",
+      "바이너리변경": false
+    },
+    {
+      "식별자": "notenoughanimations",
+      "한글이름": "추가 동작 애니메이션",
+      "업로드원본": "notenoughanimations-fabric-1.12.7-mc1.20.1.jar",
+      "상태": "기본구성",
+      "이유": "공식 GitHub JAR 확보·Fabric 메타데이터가 26.1.2를 허용함. 실제 게임 실행은 미검증.",
+      "공식자료": "https://github.com/tr7zw/NotEnoughAnimations",
+      "확보버전": "1.12.7",
+      "한글파일": "추가동작-1.12.7.jar",
+      "공식파일": "notenoughanimations-fabric-1.12.7-mc26.1.jar",
+      "다운로드주소": "https://github.com/tr7zw/NotEnoughAnimations/releases/download/1.12.7/notenoughanimations-fabric-1.12.7-mc26.1.jar",
+      "SHA256": "2787c915f5fa430c8cd12abc3404c535ab3cf6666d50074cac7567fcc2d1b445",
+      "SHA512": "2da8d00c140983d98da03727e82050e630103a77ad5791b001106b50f7f271c4ad9d31d8bc9fa629afdb2a4e0c2b3e66097edaaebda5ec4ad30dedcff721cb44",
+      "SHA1": "2e162287f744def4bef1804e8651b4c7ec8d6e53",
+      "크기": 1865387,
+      "게임버전조건": "~26.1",
+      "필수조건": {
+        "minecraft": "~26.1",
+        "fabric-api": "*"
+      },
+      "라이선스": "tr7zw Protective License",
+      "바이너리변경": false
+    }
+  ]
+}
